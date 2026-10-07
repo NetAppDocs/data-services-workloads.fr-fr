@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: setup/learn-about-permissions.html 
+keywords: permissions, actions 
+summary: Pour utiliser les fonctionnalités et les services de NetApp Workload Factory, vous devrez fournir des autorisations afin que Workload Factory puisse effectuer des opérations dans votre environnement cloud. 
+---
+= Autorisations pour NetApp Workload Factory
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour utiliser les fonctionnalités et les services de NetApp Workload Factory, vous devrez fournir des autorisations afin que Workload Factory puisse effectuer des opérations dans votre environnement cloud.
+
+
+
+[[why-use-permissions]]
+== Pourquoi utiliser les autorisations
+
+Lorsque vous accordez des autorisations, Workload Factory attache une stratégie à l’instance avec les autorisations nécessaires pour gérer les ressources et les processus au sein de votre compte de fournisseur de cloud. Cela permet à Workload Factory d’exécuter diverses opérations, de la découverte de vos environnements de stockage au déploiement de ressources cloud telles que des volumes dans la gestion du stockage.
+
+Pour les charges de travail de base de données FSx for ONTAP, par exemple, lorsque Workload Factory dispose des autorisations requises, il analyse toutes les instances EC2 d’un compte et d’une région donnés, et filtre toutes les machines Windows. Si AWS Systems Manager (SSM) Agent est installé et en cours d’exécution sur l’hôte, et si la mise en réseau de System Manager est correctement configurée, Workload Factory peut accéder à la machine Windows et vérifier si le logiciel SQL Server est installé ou non.
+
+
+
+[[how-permissions-are-used]]
+== Comment les autorisations sont utilisées
+
+Workload Factory utilise des autorisations pour effectuer certaines tâches. Les autorisations sont regroupées en ensembles de stratégies d’autorisations. Les stratégies d’autorisations apparaissent dans link:../admin/codebox-automation.html["la Codebox"] et sont en JSON copiable. Chaque fournisseur de cloud dispose de son propre ensemble de stratégies d’autorisations, adaptées aux exigences et aux capacités spécifiques de cet environnement cloud. Cette documentation fournit des références d’autorisations pour chaque fournisseur de cloud.
+
+
+
+[[permission-references-by-cloud-provider]]
+=== Références d'autorisation par fournisseur de cloud
+
+Consultez les pages suivantes pour en savoir plus sur les exigences d'autorisation de votre fournisseur de cloud :
+
+* link:../fsx-storage/permissions-reference-fsx.html["Amazon FSx for NetApp ONTAP"]
+* link:../oci/permissions-oci.html["Service de stockage OCI NetApp"]
+

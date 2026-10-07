@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/update-snapshot-replication.html 
+keywords: update snapshot data, replication 
+summary: 'Mettez à jour manuellement et à tout moment les données d"instantané transférées entre les volumes source et cible dans une relation de réplication.' 
+---
+= Mettre à jour les données d'instantané de réplication dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Une relation de réplication possède un calendrier de réplication défini, mais vous pouvez à tout moment mettre à jour manuellement les données d'instantané transférées entre les volumes source et cible dans NetApp Workload Factory.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans *FSx for ONTAP*, sélectionnez le menu des actions du système de fichiers à mettre à jour, puis sélectionnez *Gérer*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez l'onglet *Relations de réplication*.
+. Dans l'onglet Relations de réplication, sélectionnez le menu Actions de la relation de réplication à mettre à jour.
+. Sélectionnez *Update now*.
+. Dans la boîte de dialogue Mise à jour, sélectionnez *Mettre à jour maintenant*.
+

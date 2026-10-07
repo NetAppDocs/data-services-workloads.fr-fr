@@ -1,0 +1,45 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/split-cloned-volume.html 
+keywords: split clone volume, FlexVol volume 
+summary: Séparer un volume FlexVol cloné de son volume parent pour faire du clone un volume FlexVol normal en lecture/écriture. 
+---
+= Fractionner un volume cloné dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Séparer un volume FlexVol cloné de son volume parent pour faire du clone un volume FlexVol normal en lecture/écriture dans NetApp Workload Factory.
+
+Les données restent accessibles sur le clone et le parent pendant le fractionnement. Le processus de fractionnement met uniquement à jour les métadonnées et nécessite un minimum d'E/S. Aucun bloc de données n'est copié.
+
+.À propos de cette tâche
+L'opération de fractionnement des clones comprend les éléments suivants :
+
+* Il est impossible de créer de nouvelles copies Snapshot du volume FlexClone pendant l'opération de fractionnement.
+* Un volume FlexClone ne peut pas être séparé du volume parent s'il fait partie d'une relation de protection des données.
+* Si vous mettez le volume FlexClone hors ligne pendant le fractionnement, l'opération de fractionnement est suspendue ; lorsque vous remettez le volume FlexClone en ligne, l'opération de fractionnement reprend.
+* Après la séparation, le volume parent FlexVol et le clone nécessitent tous deux l'espace total alloué, tel que déterminé par leurs garanties de volume.
+* Une fois qu'un FlexClone volume est séparé de son volume parent, les deux ne peuvent plus être réunis.
+
+
+.Avant de commencer
+Tenez compte des points suivants avant de diviser un volume cloné :
+
+* Pour scinder un volume cloné, vous devez associer un lien. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Une fois le lien associé, revenez à cette opération.
+* Le volume FlexClone doit être en ligne lorsque l'opération de fractionnement commence.
+* Le volume parent doit être en ligne pour que le fractionnement réussisse.
+
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Explorateur de volumes*.
+. Sélectionnez le menu Actions du volume avec le volume cloné à diviser.
+. Sélectionnez *Actions de protection des données*, puis *Fractionner le volume cloné*.
+. Dans la boîte de dialogue Fractionner le volume, sélectionnez *Supprimer*.
+
+
+.Résultat
+Le clone de volume est scindé et apparaît dans l'onglet Volumes.

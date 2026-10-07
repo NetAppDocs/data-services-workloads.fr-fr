@@ -1,0 +1,73 @@
+---
+sidebar: sidebar 
+permalink: admin/create-custom-dashboard-fsx.html 
+keywords: create dashboard, custom dashboard, AI dashboard, dashboard creation, personalized dashboard 
+summary: 'Créez un tableau de bord personnalisé à l"aide d"invites guidées par l"IA pour surveiller ce qui compte le plus pour vos charges de travail et vos priorités opérationnelles.' 
+---
+= Créez un tableau de bord personnalisé dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Créez des tableaux de bord personnalisés en décrivant clairement ce que vous souhaitez surveiller. L’IA vous guide tout au long de la configuration afin que vos tableaux de bord correspondent à vos charges de travail et à vos priorités.
+
+.À propos de cette tâche
+Les tableaux de bord personnalisés utilisent un dialogue guidé par l'IA pour comprendre ce que vous souhaitez visualiser. Vous décrivez vos besoins de surveillance en langage naturel, et le système pose des questions de clarification afin de s'assurer que le tableau de bord réponde à vos exigences.
+
+Une fois créée, vous pouvez actualiser le tableau de bord pour voir les données mises à jour.
+
+N'oubliez pas que les tableaux de bord personnalisés sont conçus pour être en lecture seule et ne peuvent pas modifier vos configurations de stockage ou de charge de travail.
+
+
+NOTE: Si l'administrateur de votre compte a désactivé les fonctionnalités d'IA, un message s'affichera et vous ne pourrez pas créer de tableaux de bord. Contactez votre administrateur ou link:manage-genai-features.html["Découvrez l'administration de l'IA"].
+
+
+
+[[create-a-dashboard]]
+== Créer un tableau de bord
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Dans le menu NetApp Console, sélectionnez *Workloads* > *Workloads Overview* > *Custom dashboards*.
++
+Si c'est votre premier tableau de bord, vous verrez un écran vierge avec des exemples d'invites pour vous aider à démarrer. Vous pouvez sélectionner *Copier l'invite* pour copier un exemple d'invite dans la zone de texte de la boîte de dialogue AI.
+
+. Sélectionnez *Créer un nouveau tableau de bord*.
+. Dans la boîte de dialogue IA, décrivez ce que vous souhaitez surveiller.
++
+Décrivez-le en termes simples. L'IA vous posera quelques questions pour mieux comprendre vos besoins.
+
+. Sélectionnez image:arrow.png["L'icône de menu permet de lancer la génération de tableaux de bord., width=18"].
+. Répondez aux questions de clarification de l'IA.
++
+L'IA pourrait vous proposer plusieurs options pour mieux comprendre vos besoins. Répondez à chaque question et sélectionnez *Continuer*, ou sélectionnez *Passer* pour ignorer les questions facultatives.
+
+. Après avoir répondu à toutes les questions, sélectionnez *Continuer* pour créer votre tableau de bord.
+
+
+Votre tableau de bord est en cours de création. Cela peut prendre un moment.
+
+.Résultat
+Votre tableau de bord personnalisé a été créé et ajouté au catalogue de tableaux de bord. Par défaut, le tableau de bord est privé et visible uniquement par vous. Vous pouvez modifier la visibilité pour le rendre public si vous souhaitez le partager avec d'autres utilisateurs de votre compte Workload Factory. link:manage-custom-dashboards-fsx.html#change-dashboard-visibility["Découvrez comment modifier la visibilité du tableau de bord"].
+
+Vous recevrez une notification lorsque votre tableau de bord sera prêt. S'il ne peut pas être créé, vous recevrez une notification contenant un lien pour réessayer. link:configure-notifications.html["Découvrez comment configurer les notifications"].
+
+.Et ensuite
+Après la création, vous pouvez :
+
+* Modifiez la visibilité du tableau de bord pour la partager avec votre équipe
+* Actualisez les données du tableau de bord pour afficher les informations les plus récentes
+* Supprimez les tableaux de bord dont vous n'avez plus besoin
+* Consultez les détails du tableau de bord, y compris qui l'a créé et quand il a été mis à jour pour la dernière fois
+
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:manage-custom-dashboards-fsx.html["Gérez vos tableaux de bord personnalisés"]
+* link:troubleshoot-custom-dashboards-fsx.html["Dépannage des tableaux de bord personnalisés"]
+

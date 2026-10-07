@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/quick-start-native.html 
+keywords: quick start 
+summary: 'Commencez avec l"assistant de migration VMware pour déplacer votre infrastructure actuelle vers Amazon EC2 en utilisant Amazon FSx for ONTAP comme datastores NFS externes.' 
+---
+= Démarrage rapide pour la migration vers Amazon EC2 à l'aide de l'assistant de migration des charges de travail VMware
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Commencez avec l'assistant de migration VMware pour déplacer votre infrastructure actuelle vers Amazon EC2 en utilisant Amazon FSx for ONTAP comme datastores NFS externes.
+
+Avant de commencer, vous devriez avoir une compréhension de link:../fsx-storage/permissions-reference-fsx.html["Autorisations FSx for ONTAP pour NetApp Workload Factory"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Un"] Connectez-vous à Workload Factory
+[role="quick-margin-para"]
+Vous devrez link:../setup/sign-up-and-log-in.html["Configurez un compte avec Workload Factory"^] et vous connecter à NetApp Console.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Deux"] Ajouter des identifiants et des autorisations
+[role="quick-margin-para"]
+Choisissez le link:../fsx-storage/permissions-reference-fsx.html["Politiques d’autorisation"] qui répond à vos besoins.
+
+[role="quick-margin-para"]
+Si vous choisissez de ne pas accorder d'autorisations, vous pouvez commencer à utiliser Workload Factory for Databases pour copier des exemples de code partiellement complétés.
+
+[role="quick-margin-para"]
+Si vous choisissez d'accorder des autorisations, vous devrez link:../fsx-storage/add-credentials.html["ajouter manuellement les identifiants à un compte"] notamment sélectionner des fonctionnalités de workload, telles que Databases et AI, et créer les stratégies IAM pour les autorisations requises.
+
+[role="quick-margin-para"]
+link:../fsx-storage/add-credentials.html["Découvrez comment ajouter des identifiants et des autorisations"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Trois"] Téléverser les données d'inventaire des machines virtuelles
+[role="quick-margin-para"]
+Vous pouvez utiliser le centre de planification pour importer les détails d'inventaire de votre environnement de machines virtuelles actuel. Utilisez le script de collecte de données, RVTools ou NetApp Data Infrastructure Insights pour capturer la configuration actuelle de vos machines virtuelles et importer les données dans le centre de planification.
+
+[role="quick-margin-para"]
+link:upload-vm-inventory.html["Découvrez comment télécharger les données d'inventaire des VM"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quatre"] Créez un plan de déploiement à l'aide de VMware migration advisor
+[role="quick-margin-para"]
+Lancez l'assistant de migration VMware et sélectionnez les machines virtuelles que vous souhaitez migrer vers une infrastructure Amazon EC2 à l'aide d'un système de fichiers Amazon FSx for ONTAP comme datastore NFS externe. Vous pouvez apporter des modifications avant d'enregistrer le plan.
+
+[role="quick-margin-para"]
+link:launch-onboarding-advisor-native.html["Découvrez comment utiliser l'assistant de migration VMware pour créer un plan de déploiement"].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinq"] Déployez le système de fichiers FSx for ONTAP recommandé
+[role="quick-margin-para"]
+Déployez le nouveau système de fichiers FSx for ONTAP qui fournira les banques de données pour vos machines virtuelles dans votre infrastructure Amazon EC2.
+
+[role="quick-margin-para"]
+link:deploy-fsx-file-system-native.html["Découvrez comment déployer votre nouveau système de fichiers FSx for ONTAP"].

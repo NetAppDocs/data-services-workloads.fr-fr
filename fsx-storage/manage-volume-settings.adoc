@@ -1,0 +1,101 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-volume-settings.html 
+keywords: volume tags, edit volume tags, edit tags, enable immutable files, disable immutable files, lock files, unlock files, storage efficiency change, update storage efficiency 
+summary: Les étiquettes vous permettent de catégoriser vos ressources. Vous pouvez ajouter, modifier et supprimer des étiquettes de volume à tout moment pour les volumes FSx for ONTAP. 
+---
+= Gérez les paramètres de volume dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Personnalisez les paramètres de volume FSx for ONTAP dans NetApp Workload Factory afin de les adapter aux besoins de votre organisation. Vous pouvez gérer les balises de volume pour catégoriser les ressources, mettre à jour les paramètres d'efficacité du stockage pour optimiser l'espace et les économies, et gérer les paramètres des fichiers immuables pour contrôler la conservation des données et les protéger contre les modifications non autorisées.
+
+
+
+[[manage-volume-tags]]
+== Gérer les balises de volume
+
+Les étiquettes peuvent vous aider à catégoriser vos ressources. Vous pouvez ajouter, modifier et supprimer des étiquettes de volume à tout moment pour les volumes FSx for ONTAP dans NetApp Workload Factory.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Explorateur de volumes*.
+. Sélectionnez le menu Actions du volume pour modifier les balises.
+. Sélectionnez *Actions de base* puis *Modifier les balises de volume*.
+. Sur la page Modifier les balises du volume, ajoutez, modifiez ou supprimez des balises.
++
+Le nombre maximal d'étiquettes que vous pouvez appliquer à un volume est de 50.
+
+. Sélectionnez *Appliquer*.
+
+
+
+
+[[update-volume-storage-efficiency]]
+== Mettre à jour l'efficacité du stockage de volume
+
+Mettez à jour le paramètre d'efficacité du stockage après la création du volume.
+
+La fonction d'optimisation du stockage comprend la déduplication, la compression et le compactage des données afin d'obtenir un gain d'espace optimal sur un volume FlexVol. La déduplication élimine les blocs de données dupliqués. La compression des données compresse les blocs de données afin de réduire l'espace de stockage physique requis. Le compactage des données permet de stocker davantage de données dans un espace réduit afin d'améliorer l'efficacité du stockage.
+
+Si vous avez choisi de ne pas activer l'optimisation du stockage lors de la création d'un volume, vous pouvez activer ce paramètre à tout moment afin de potentiellement économiser de l'espace et réaliser des économies.
+
+Les volumes utilisent le provisionnement fin, que vous activiez ou désactiviez l’efficacité du stockage.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Explorateur de volumes*.
+. Sélectionnez le menu Actions du volume pour lequel vous souhaitez mettre à jour le paramètre d'efficacité du stockage.
+. Sélectionnez *Actions avancées*, puis *Définir l'efficacité du stockage*.
+. Choisissez d'activer ou de désactiver l'efficacité du stockage des volumes.
+. Sélectionnez *Appliquer* pour enregistrer la modification.
+
+
+
+
+[[manage-immutable-files-for-a-volume-in-netapp-workload-factory]]
+== Gérer les fichiers immuables d'un volume dans NetApp Workload Factory
+
+Vous pouvez mettre à jour certains paramètres des fichiers immuables pour un volume lorsque cette fonctionnalité est activée, tels que la politique et les périodes de conservation, la période de validation automatique et le mode d’ajout du volume.
+
+Notez que l'activation des fichiers immuables n'est possible que pendant link:create-volume.html["création de volume"].
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Explorateur de volumes*.
+. Sélectionnez le menu Actions du volume à mettre à jour.
+. Sélectionnez *Actions de protection des données*, puis *Gérer les fichiers immuables*.
+. Sur la page Gérer les fichiers immuables, vous pouvez mettre à jour les éléments suivants :
++
+** *Durée de conservation* : sélectionnez *Non spécifié* ou *Spécifier la période*.
++
+*** *Non spécifié* : la période minimale par défaut est de « 0 » ans et la période maximale par défaut est de « 30 ans ».
+*** *Période à préciser* : option permettant de définir la politique de rétention, les périodes minimale et maximale, la fonctionnalité d’autocommit et la fonctionnalité de mode d’ajout du volume. Veuillez fournir les informations suivantes :
++
+**** *Politique de conservation* : cette période doit être supérieure ou égale à la période de conservation minimale et inférieure ou égale à la période de conservation maximale.
+**** *Périodes minimales et maximales* : Définissez les périodes minimales et maximales pour valider les fichiers de ce volume dans un état WORM immuable.
+
+
+
+
+** *Autocommit* : activez ou désactivez la fonction permettant de valider automatiquement dans WORM les fichiers qui n’ont pas été modifiés pendant la période d’Autocommit.
+** *Suppression privilégiée* : activez ou désactivez la fonctionnalité. L’activation de la fonctionnalité permet à un administrateur SnapLock de supprimer un volume WORM non expiré. Cette fonctionnalité est prise en charge uniquement en mode de rétention Enterprise.
+** *Mode d'ajout de volume* : activez ou désactivez cette fonction. L'activation du mode d'ajout de volume vous permet d'ajouter du contenu aux fichiers WORM.
+
+
+. Cliquez sur *Appliquer*.
+
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:create-volume.html["Créez un volume dans Workload Factory"]
+* link:manage-volume-capacity.html["Gérer la capacité de volume dans NetApp Workload Factory"]
+* link:change-tiering-policy.html["Modifier la stratégie de hiérarchisation des volumes dans Workload Factory"]
+* link:manage-s3-access-points.html["Gérez les points d'accès S3 dans Workload Factory"]
+

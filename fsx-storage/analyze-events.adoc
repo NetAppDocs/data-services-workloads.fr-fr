@@ -1,0 +1,149 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/analyze-events.html 
+keywords: analyze events, events, FSx for ONTAP events, EMS, troubleshoot FSx for ONTAP, latency 
+summary: Analyser les événements dans NetApp Workload Factory pour FSx pour ONTAP. 
+---
+= Analyser les événements FSx pour ONTAP dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Identifiez et résolvez rapidement les problèmes du système de fichiers FSx for ONTAP grâce à l'analyseur d'événements intelligent de NetApp Workload Factory. L'analyseur d'événements extrait et analyse automatiquement les événements EMS (Event Management System) et les événements de latence FSx for ONTAP, en tirant parti de l'IA Agentic avec l'intégration Amazon Bedrock.
+
+
+
+[[about-this-task]]
+== À propos de cette tâche
+
+Les administrateurs de stockage ne réagissent souvent aux événements FSx for ONTAP qu'après des réclamations clients, ou en maintenant des scripts et des alarmes personnalisés. Cette approche réactive peut réduire l'efficacité, retarder la résolution des problèmes et augmenter l'interruption.
+
+L'analyseur d'événements extrait automatiquement les types d'événements suivants des systèmes de fichiers FSx pour ONTAP :
+
+* *Événements EMS* : Erreur, alerte et urgence provenant du système de gestion des événements ONTAP.
+* *Événements de latence* : Événements de latence en lecture et en écriture. Les événements de latence peuvent être consultés sans connexion de lien.
+
+
+Grâce à l'intégration d'Amazon Bedrock, Workload Factory utilise l'IA pour analyser les événements et fournir des informations exploitables afin de maintenir la santé et les performances de vos systèmes de fichiers FSx for ONTAP.
+
+Les principaux avantages sont les suivants :
+
+* Dépannage avancé : l’IA identifie, analyse et fournit automatiquement des informations pour corriger les événements FSx for ONTAP EMS et de latence, réduisant ainsi le temps d’investigation manuelle.
+* Remédiation selon les meilleures pratiques : l’analyseur d’événements fournit des étapes claires et concrètes pour résoudre les événements FSx for ONTAP EMS et de latence.
+
+
+Lorsque vous utilisez l'analyseur d'événements, vous gardez le contrôle total de votre environnement tout en bénéficiant d'une analyse IA avancée.
+
+Pour permettre à Workload Factory d'analyser les événements, vous devez activer Amazon Bedrock, sélectionner le modèle que Workload Factory utilise, créer un point de terminaison privé pour se connecter à Amazon Bedrock, ajouter des autorisations et créer une licence d'entreprise.
+
+link:https://aws.amazon.com/bedrock/pricing/["Tarifs Amazon Bedrock"^]
+
+
+NOTE: Si l'administrateur de votre compte a désactivé les fonctionnalités d'IA, un message s'affichera et vous ne pourrez pas utiliser l'analyse par IA. Contactez votre administrateur ou link:../admin/manage-genai-features.html["Découvrez l'administration de l'IA"^].
+
+
+
+[[data-privacy-and-security]]
+=== Confidentialité et sécurité des données
+
+Votre confidentialité des données et votre sécurité sont protégées par :
+
+* *Souveraineté des données* : Toutes les données et agrégations restent au sein de votre compte AWS et sont communiquées via un point de terminaison VPC privé (Amazon Bedrock), sans aucune exposition sur Internet public.
+* *Aucun entraînement d'IA* : les données client ne sont pas utilisées pour entraîner ou améliorer les modèles. Amazon Bedrock traite les événements en temps réel mais n'effectue aucun entraînement sur vos données. Les résultats sont stockés uniquement dans votre environnement.
+
+
+Pour plus de détails, consultez le link:https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html["Documentation sur la protection des données Amazon Bedrock"^].
+
+
+
+[[before-you-begin]]
+== Avant de commencer
+
+Pour visualiser les événements de latence, vous devez procéder comme suit :
+
+* link:add-credentials.html["accorder les autorisations de _consultation, de planification et d'analyse_"^] dans votre compte AWS.
+* link:create-link.html["Connectez-vous au système de fichiers à l'aide d'un lien"^].
+
+
+Pour analyser les événements EMS et de latence et recevoir des informations et des recommandations basées sur l'IA, assurez-vous des points suivants :
+
+* Vous avez link:add-credentials.html["autorisations _opérations et remédiation_"^] dans votre compte AWS.
+* Vous avez link:create-link.html["connecté au système de fichiers via un lien"^].
+* Le port 22 (SSH) est ouvert dans le groupe de sécurité associé à votre système de fichiers FSx for ONTAP.
+
+
+Exigences supplémentaires (le système vous le demandera lors de l'analyse de l'événement) :
+
+* *Activation d'Amazon Bedrock*
++
+Configurez les API Amazon Bedrock pour chaque compte AWS. Les API Amazon Bedrock sont utilisées pour fournir des informations sur les événements FSx for ONTAP.
+
++
+Modèle recommandé : `anthropic.claude-sonnet-4-20250514-v1:0`. Veuillez fournir l’ARN du profil d’inférence pour la région sélectionnée.
+
+* *Lien vers Workload Factory*
++
+Créez et associez un lien à un système de fichiers FSx for ONTAP pour activer l'analyse des événements basée sur l'IA. Un lien établit une relation de confiance entre Workload Factory et un ou plusieurs systèmes de fichiers FSx for ONTAP et exploite AWS Lambda.
+
++
+link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"]. Une fois le lien associé, revenez à cette opération.
+
+* *Autorisations AWS IAM*
++
+Ajoutez les autorisations suivantes à la stratégie associée au rôle IAM de NetApp Workload Factory.
+
++
+** `bedrock:InvokeModel`
+** `bedrock:InvokeModelWithResponseStream`
++
+Ces autorisations permettent à Workload Factory d'utiliser les modèles Bedrock pour l'analyse des erreurs et la fourniture de recommandations de correction. Ce profil garantit également un accès sécurisé à l'IA pour des analyses personnalisées.
+
++
+Ajoutez également les autorisations suivantes pour les informations d'identification AWS associées à Workload Factory :
+
+** `bedrock:GetInferenceProfile`
+** `bedrock:ListInferenceProfiles`
++
+Ces autorisations vérifient la disponibilité du modèle.
+
+
+
+
+
+
+
+[[view-and-analyze-events-for-fsx-for-ontap]]
+== Affichez et analysez les événements pour FSx for ONTAP
+
+Utilisez la console Workload Factory pour visualiser et analyser les événements EMS et de latence pour les systèmes de fichiers FSx for ONTAP.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans le menu Stockage, sélectionnez *Analyse*.
+. Dans l'écran Analyse, sélectionnez les comptes AWS, les informations d'identification et les régions qui contiennent les systèmes de fichiers FSx for ONTAP que vous souhaitez visualiser.
++
+Seuls les systèmes de fichiers FSx for ONTAP ayant des événements sont affichés.
+
+. Sélectionnez le système de fichiers FSx for ONTAP que vous souhaitez afficher.
++
+Le tableau des événements affiche tous les événements pour ce système de fichiers.
+
+. Consultez les détails de l'événement dans le tableau.
+. Pour analyser les événements, procédez comme suit :
++
+** Pour analyser plusieurs événements, cochez les cases en regard des événements, puis sélectionnez *Analyser* dans le tableau.
+** Pour analyser un événement et afficher les informations dans le panneau latéral, sélectionnez le nom de l'événement, puis sélectionnez *Analyser* dans le panneau. Les informations et recommandations sont affichées dans le panneau.
+** Pour analyser un événement du tableau, sélectionnez *Analyser* dans la ligne de l'événement, puis sélectionnez le nom de l'événement pour afficher les informations et les recommandations.
++
+Si nécessaire, complétez les exigences de configuration de l'analyse IA en suivant les instructions à l'écran afin de satisfaire aux prérequis manquants.
+
+
+
+
+
+.Informations connexes
+* link:set-volume-latency-thresholds.html["Définissez les seuils de latence des volumes dans Workload Factory"]
+

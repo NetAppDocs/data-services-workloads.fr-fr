@@ -1,0 +1,17 @@
+= Version initiale de Oracle Cloud Infrastructure NetApp Storage Service for Workload Factory
+:allow-uri-read: 
+
+
+
+
+[[initial-release-of-oracle-cloud-infrastructure-netapp-storage-service-for-workload-factory]]
+=== Version initiale de Oracle Cloud Infrastructure NetApp Storage Service for Workload Factory
+
+La version initiale d'OCI NetApp Storage Service (OCI NSS) pour Workload Factory propose l'intégration, la découverte du système, la gestion des identifiants, ainsi que la création et l'association de liens. Pour demander l'accès à OCI NSS, veuillez ouvrir un ticket de support auprès d'Oracle.
+
+
+
+[[workload-factory-documentation-for-netapp-console-users]]
+=== Documentation de Workload Factory pour les utilisateurs de NetApp Console
+
+Vous trouverez une documentation détaillée sur Workload Factory dans la NetApp Console, notamment des guides sur l'intégration, la découverte du système, la gestion des identifiants, ainsi que la création et l'association de liens.

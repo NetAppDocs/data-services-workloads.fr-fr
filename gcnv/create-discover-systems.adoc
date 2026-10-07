@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: gcnv/create-discover-systems.html 
+keywords: Google Cloud NetApp Volumes, gcnv, volumes, create system, delete system, access key, secret key, region, availability zones, discover, storage capacity, iops, throughput, security group, security, NetApp Console 
+summary: Créez ou découvrez des systèmes de stockage cloud pour ajouter et gérer des volumes et des services de données supplémentaires depuis la NetApp Console. 
+---
+= Créez ou découvrez les systèmes Google Cloud NetApp Volumes dans NetApp Console
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Découvrez les systèmes Google Cloud NetApp Volumes et gérez les volumes et les services de données supplémentaires depuis la NetApp Console.
+
+
+
+[[discover-an-existing-cloud-storage-system]]
+== Découvrez un système de stockage cloud existant
+
+Découvrez vos systèmes de stockage à partir de la page Discoverable systems.
+
+.Avant de commencer
+Fournissez vos identifiants pour vos Google Cloud NetApp Volumes dans Workload Factory.
+
+.À propos de cette tâche
+Vous ne pouvez découvrir un système de stockage cloud qu'une seule fois dans un compte et l'associer à un seul espace de travail. Ce système de stockage peut ensuite être supprimé et réassocié à un autre espace de travail.
+
+.Étapes
+. Dans le menu NetApp Console, sélectionnez *Stockage*, puis *Gestion*, et enfin *Discoverable systems*.
+. Le nombre de systèmes de stockage cloud détectés s'affiche. Sélectionnez *Discover*.
+. Sélectionnez un ou plusieurs systèmes de stockage, puis sélectionnez *Discover* pour les ajouter à la page Systèmes.
+
+
+[NOTE]
+====
+* Si vous sélectionnez un système de stockage sans nom, vous serez invité à saisir un nom pour ce système.
+* Si vous sélectionnez un système de stockage qui ne dispose pas des informations d'identification requises pour le gérer depuis la Console, vous recevrez une invite vous demandant de sélectionner des informations d'identification disposant des autorisations requises.
+
+
+====
+.Résultat
+La Console affiche votre système découvert sur la page Systems. Vous pouvez gérer vos systèmes de stockage de plusieurs manières, par exemple depuis Workloads dans la NetApp Console, à l'aide de ONTAP System Manager ou à l'aide des outils de gestion du stockage de votre fournisseur de cloud.

@@ -1,0 +1,157 @@
+---
+sidebar: sidebar 
+permalink: get-help.html 
+keywords: help, ticket, open support case, support, netapp support, technical support, call support, phone number, open ticket, web ticket, open an issue, NetApp Console 
+summary: 'NetApp propose une assistance pour la NetApp Console de différentes manières. De nombreuses options d"assistance en libre-service gratuites sont disponibles 24h/24 et 7j/7, telles que des articles de la base de connaissances (KB) et un forum communautaire. Votre inscription à l"assistance inclut un support technique à distance via un système de tickets en ligne.' 
+---
+= Obtenez de l'aide concernant les services cloud de la NetApp Console
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp propose une assistance pour NetApp Console et ses services cloud de différentes manières. De nombreuses options d’assistance en libre-service gratuites sont disponibles 24 h/24 et 7 j/7, telles que des articles de la base de connaissances (KB) et un forum communautaire. Votre inscription à l'assistance inclut un support technique à distance via un système de tickets en ligne.
+
+
+
+[[get-support-for-a-cloud-provider-file-service]]
+== Obtenez de l'aide pour un service de fichiers de fournisseur de cloud
+
+Pour toute assistance technique relative à un fournisseur de cloud service de fichiers, à son infrastructure ou à toute solution utilisant ce service, veuillez vous référer à la documentation du produit.
+
+* link:https://docs.netapp.com/us-en/storage-management-fsx-ontap/start/concept-fsx-aws.html#getting-help["Amazon FSx for NetApp ONTAP"^]
+* link:https://docs.netapp.com/us-en/storage-management-azure-netapp-files/concept-azure-netapp-files.html#getting-help["Azure NetApp Files"^]
+* link:https://docs.netapp.com/us-en/storage-management-google-cloud-netapp-volumes/concept-gcnv.html#getting-help["Google Cloud NetApp Volumes"^]
+
+
+Pour bénéficier d'une assistance technique spécifique à NetApp et à ses solutions de stockage et services de données, utilisez les options d'assistance décrites ci-dessous.
+
+
+
+[[use-self-support-options]]
+== Utilisez les options d'auto-assistance
+
+Ces options sont disponibles gratuitement, 24 heures sur 24, 7 jours sur 7 :
+
+* Documentation
++
+La documentation NetApp Console que vous consultez actuellement.
+
+* https://kb.netapp.com/Cloud/BlueXP["Base de connaissances"^]
++
+Recherchez dans la base de connaissances NetApp pour trouver des articles utiles pour résoudre les problèmes.
+
+* http://community.netapp.com/["Communautés"^]
++
+Rejoignez la communauté NetApp Console pour suivre les discussions en cours ou en créer de nouvelles.
+
+
+
+
+
+[[create-a-case-with-netapp-support]]
+== Créer un dossier auprès du support NetApp
+
+En plus des options d'auto-assistance ci-dessus, vous pouvez collaborer avec un spécialiste du support NetApp pour résoudre tout problème après l'activation du support.
+
+.Avant de commencer
+* Pour utiliser la fonctionnalité *Créer un dossier*, vous devez d'abord associer vos identifiants du site de support NetApp à votre identifiant de connexion à la Console. https://docs.netapp.com/us-en/bluexp-setup-admin/task-manage-user-credentials.html["Découvrez comment gérer les identifiants associés à votre connexion NetApp Console"^].
+* Si vous ouvrez un dossier pour un système ONTAP qui possède un numéro de série, votre compte NSS doit être associé au numéro de série de ce système.
+
+
+.Étapes
+. Dans la NetApp Console, sélectionnez *Aide > Support*.
+. Sur la page *Ressources*, choisissez l'une des options disponibles sous Technical Support :
++
+.. Sélectionnez *Nous appeler* si vous souhaitez parler à quelqu'un par téléphone. Vous serez dirigé vers une page sur netapp.com qui répertorie les numéros de téléphone que vous pouvez appeler.
+.. Sélectionnez *Créer un dossier* pour ouvrir un ticket auprès d'un spécialiste du support NetApp :
++
+*** *Service* : Sélectionnez le service auquel le problème est associé. Par exemple, *NetApp Console* lorsqu'il s'agit d'un problème d’assistance technique lié aux flux de travail ou à la fonctionnalité de la Console.
+*** *Système* : Si applicable au stockage, sélectionnez *Cloud Volumes ONTAP* ou *On-Prem*, puis l’environnement de travail associé.
++
+La liste des systèmes relève de la portée de l'organisation Console et de l'agent Console que vous avez sélectionné dans la bannière supérieure.
+
+*** *Priorité du dossier* : Choisissez la priorité du dossier, qui peut être Faible, Moyenne, Élevée ou Critique.
++
+Pour en savoir plus sur ces priorités, passez votre souris sur l'icône d'information située à côté du nom du champ.
+
+*** *Description du problème* : Veuillez fournir une description détaillée de votre problème, y compris tous les messages d’erreur applicables ou les étapes de dépannage que vous avez effectuées.
+*** *Adresses électroniques supplémentaires* : Saisissez des adresses électroniques supplémentaires si vous souhaitez informer une autre personne de ce problème.
+*** *Pièce jointe (facultative)* : Téléversez jusqu’à cinq pièces jointes, une à la fois.
++
+La taille des pièces jointes est limitée à 25 Mo par fichier. Les extensions de fichiers suivantes sont prises en charge : txt, log, pdf, jpg/jpeg, rtf, doc/docx, xls/xlsx et csv.
+
+
+
+
+
++
+image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/screenshot-create-case.png["Capture d'écran du formulaire « Créer un cas » qui vous permet de créer un cas auprès du support NetApp."]
+
+
+
+.Après avoir terminé
+Une fenêtre contextuelle affichera votre numéro de dossier de support. Un spécialiste du support NetApp examinera votre dossier et vous recontactera prochainement.
+
+Pour consulter l'historique de vos dossiers de support, vous pouvez sélectionner *Paramètres > Chronologie* et rechercher les actions nommées « create support case ». Un bouton situé à l'extrême droite vous permet de développer l'action pour afficher les détails.
+
+Il est possible que vous rencontriez le message d'erreur suivant lorsque vous essayez de créer un dossier :
+
+« Vous n'êtes pas autorisé à créer un dossier de support pour le service sélectionné »
+
+Cette erreur peut indiquer que le compte NSS et l'entreprise à laquelle il est associé ne correspondent pas à l'entreprise de référence pour le numéro de série du compte NetApp Console (c.-à-d. 960xxxx) ou au numéro de série de l'environnement de travail. Vous pouvez obtenir de l'aide en utilisant l'une des options suivantes :
+
+* Soumettez un cas non technique à https://mysupport.netapp.com/site/help[]
+
+
+
+
+[[manage-your-support-cases]]
+== Gérez vos demandes d'assistance
+
+Vous pouvez consulter et gérer les demandes d'assistance actives et résolues directement depuis la Console. Vous pouvez gérer les demandes associées à votre compte NSS et à votre entreprise.
+
+Remarque :
+
+* Le tableau de bord de gestion des dossiers de support, situé en haut de la page, propose deux affichages :
++
+** La vue de gauche affiche le nombre total de dossiers ouverts au cours des 3 derniers mois par le compte utilisateur NSS que vous avez fourni.
+** La vue de droite affiche le nombre total de dossiers ouverts au cours des 3 derniers mois au niveau de votre entreprise, en fonction de votre compte utilisateur NSS.
+
+
++
+Les résultats dans le tableau reflètent les cas liés à la vue que vous avez sélectionnée.
+
+* Vous pouvez ajouter ou supprimer des colonnes qui vous intéressent et vous pouvez filtrer le contenu de colonnes telles que Priorité et Statut. D'autres colonnes offrent uniquement des capacités de tri.
++
+Consultez les étapes ci-dessous pour plus de détails.
+
+* Pour chaque dossier, nous offrons la possibilité de mettre à jour les notes de dossier ou de clôturer un dossier qui n'est pas déjà en statut Closed ou Pending Closed.
+
+
+.Étapes
+. Dans la NetApp Console, sélectionnez *Aide > Assistance*.
+. Sélectionnez *Gestion des cas* et, si vous y êtes invité, ajoutez votre compte NSS à la Console.
++
+La page *Gestion des cas* affiche les cas ouverts liés au compte NSS associé à votre compte utilisateur Console. Il s'agit du même compte NSS qui apparaît en haut de la page *Gestion NSS*.
+
+. Modifiez éventuellement les informations affichées dans le tableau :
++
+** Sous *Dossiers de l'organisation*, sélectionnez *Afficher* pour consulter tous les dossiers associés à votre entreprise.
+** Modifiez la plage de dates en choisissant une plage de dates exacte ou en choisissant une période différente.
+** Filtrez le contenu des colonnes.
+** Modifiez les colonnes affichées dans le tableau en sélectionnant image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-table-columns.png["L'icône plus qui apparaît dans le tableau"] puis en choisissant les colonnes que vous souhaitez afficher.
+
+
+. Gérez un dossier existant en sélectionnant image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-table-action.png["Une icône à trois points qui apparaît dans la dernière colonne du tableau"] l'une des options disponibles :
++
+** *Voir le dossier* : Affichez tous les détails d’un dossier spécifique.
+** *Mise à jour des notes de cas* : Fournissez des détails supplémentaires sur votre problème ou sélectionnez *Télécharger des fichiers* pour joindre jusqu’à un maximum de cinq fichiers.
++
+La taille des pièces jointes est limitée à 25 Mo par fichier. Les extensions de fichiers suivantes sont prises en charge : txt, log, pdf, jpg/jpeg, rtf, doc/docx, xls/xlsx et csv.
+
+** *Clôturer le dossier* : Fournissez des détails sur les raisons pour lesquelles vous clôturez le dossier et sélectionnez *Clôturer le dossier*.
+
+
+

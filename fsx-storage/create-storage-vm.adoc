@@ -1,0 +1,48 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/create-storage-vm.html 
+keywords: create storage VM, create svm 
+summary: 'Vous pouvez créer une machine virtuelle de stockage (SVM) FSx for ONTAP afin de fournir des services de stockage et de données pour vos charges de travail dans NetApp Workload Factory.' 
+---
+= Créer une machine virtuelle de stockage pour un système de fichiers FSx for ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Créez une machine virtuelle de stockage (SVM) pour un système de fichiers FSx for ONTAP afin d'accéder virtuellement aux services de stockage et de données pour vos charges de travail dans NetApp Workload Factory.
+
+.À propos de cette tâche
+Les machines virtuelles de stockage (SVM) sont des serveurs de fichiers isolés permettant d'accéder aux données de chaque charge de travail dans Workload Factory Storage. Chaque SVM possède ses propres identifiants d'administration et points de terminaison pour la gestion et l'accès aux données.
+
+Avec les SVM, lorsque vous accédez aux données dans FSx for ONTAP, vos clients et postes de travail montent un volume, un partage CIFS/SMB ou une LUN iSCSI hébergé par une SVM à l'aide du point de terminaison (adresse IP) de la SVM.
+
+.Avant de commencer
+Vérifiez le nombre de machines virtuelles de stockage (SVM) pris en charge par système de fichiers. Reportez-vous à link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-svms.html#max-svms["Gestion des machines virtuelles de stockage FSx for ONTAP"^] dans la documentation AWS pour connaître le nombre maximal de SVM par système de fichiers.
+
+
+
+[[create-a-storage-vm]]
+== Créer une machine virtuelle de stockage
+
+Vous pouvez créer une machine virtuelle de stockage à partir de la console Workload Factory. Vous pouvez également utiliser les outils suivants disponibles dans Codebox : API REST, CloudFormation et Terraform. link:../admin/use-codebox.html#how-to-use-codebox["Apprenez à utiliser Codebox pour l’automatisation"^].
+
+
+NOTE: Lorsque vous utilisez Terraform depuis Codebox, le code que vous copiez ou téléchargez masque `fsxadmin` et `vsadmin` les mots de passe. Vous devrez les saisir à nouveau lors de l'exécution du code.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans *FSx for ONTAP*, sélectionnez le menu Actions du système de fichiers, puis sélectionnez *Manage*.
+. Dans l’aperçu du système de fichiers, sous Storage VMs, sélectionnez *Create storage VM*.
+. Sur la page Créer une machine virtuelle de stockage, sous Configuration de la machine virtuelle de stockage, indiquez les informations suivantes :
++
+.. *Nom* : Veuillez saisir un nom pour la machine virtuelle de stockage.
+.. *Identifiants de la machine virtuelle de stockage* : Fournissez un mot de passe pour l’utilisateur de cette machine virtuelle de stockage `vsadmin` ou utilisez les identifiants utilisateur du système de fichiers `fsxadmin`.
+.. *Style de sécurité du volume racine* : Sélectionnez le style de sécurité du volume racine en fonction du type de clients qui accèdent à vos données : UNIX (clients Linux), NTFS (clients Windows) ou Mixed.
+.. *Étiquettes* : Vous pouvez éventuellement ajouter jusqu’à 50 étiquettes.
+
+
+. Sélectionnez *Créer*.
+

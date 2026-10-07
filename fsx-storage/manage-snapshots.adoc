@@ -1,0 +1,101 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-snapshots.html 
+keywords: snapshot, snapshots, manage snapshots, edit snapshots, access snapshots, delete snapshots, remove snapshots 
+summary: 'Modifiez les paramètres des instantanés, activez l"accès au répertoire et supprimez les instantanés pour gérer vos instantanés et la protection des données dans Workload Factory.' 
+---
+= Gérer les instantanés d’un volume FSx for ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Modifiez les paramètres des instantanés, activez l'accès au répertoire et supprimez les instantanés pour gérer vos instantanés et la protection des données dans Workload Factory.
+
+
+
+[[edit-a-snapshot]]
+== Modifier un instantané
+
+Modifiez le nom, l'étiquette et la durée de conservation d'un instantané. Si l'instantané n'est pas déjà immuable, vous pouvez le rendre immuable.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Explorateur de volumes*.
+. Sélectionnez le menu Actions du volume contenant l'instantané à modifier.
+. Sélectionnez *Actions de protection des données* puis *Gérer les instantanés*.
+. Sur la page Gérer les instantanés, sélectionnez le menu des actions de l'instantané à modifier, puis sélectionnez *Modifier*.
+. Dans la boîte de dialogue Modifier un instantané, vous pouvez modifier les éléments suivants :
++
+.. Changez le nom.
+.. Changez l'étiquette.
+.. Modifier la durée de conservation.
+.. Facultatif : *Rendez cet instantané immuable* pour empêcher sa suppression pendant la période de conservation.
++
+Si l'instantané est déjà immuable, vous ne pouvez pas modifier ce paramètre.
+
++
+Acceptez l’énoncé concernant les instantanés immuables.
+
+
+
+. Sélectionnez *Appliquer*.
+
+
+
+
+[[access-a-snapshot]]
+== Accéder à un instantané
+
+Activez l'accès au répertoire des instantanés pour permettre aux utilisateurs d'accéder aux instantanés de manière autonome.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Explorateur de volumes*.
+. Sélectionnez le menu Actions du volume avec l'instantané auquel vous souhaitez accéder.
+. Sélectionnez *Actions de protection des données* puis *Gérer les instantanés*.
+. Depuis la page Gérer les instantanés, sélectionnez le menu des actions de l’instantané auquel vous souhaitez accéder, puis sélectionnez *Accès*.
+. Dans la boîte de dialogue Accès à l’instantané, sélectionnez *Activer l’accès au répertoire des instantanés* pour accéder à cet instantané de volume et à tous les instantanés du volume.
++
+** Pour les volumes NFS : sélectionnez *Chemin d’accès NFS* pour afficher le chemin NFS de l’instantané.
+** Pour les volumes SMB/CIFS : sélectionnez *chemin d’accès SMB* pour afficher le chemin SMB de l’instantané.
+
+
+. Copiez le chemin d'accès.
+. Sélectionnez *Appliquer*.
+
+
+
+
+[[restore-data-from-a-snapshot]]
+== Restaurer les données à partir d'un instantané
+
+Vous avez la possibilité de restaurer les données d'un instantané sur un volume existant ou sur un nouveau volume.
+
+link:use-snapshots.html["Restaurez un volume à partir d'un instantané"]
+
+
+
+[[delete-a-snapshot]]
+== Supprimer un instantané
+
+Supprimez un instantané pour libérer de l'espace.
+
+Les instantanés immuables ne peuvent pas être supprimés avant la fin de la période de conservation.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Explorateur de volumes*.
+. Sélectionnez le menu Actions du volume contenant l'instantané à supprimer.
+. Sélectionnez *Actions de protection des données* puis *Gérer les instantanés*.
+. Sur la page Gérer les instantanés, sélectionnez le menu des actions de l'instantané à supprimer, puis sélectionnez *Supprimer*.
+. Dans la boîte de dialogue Supprimer l’instantané, tapez « delete ».
+. Sélectionnez *Supprimer* pour confirmer la suppression.
+
+
+.Informations connexes
+* link:use-snapshots.html["Créer un instantané"]
+* link:use-snapshots.html["Créer une politique de snapshot"]
+* link:use-snapshots.html["Restaurez un volume à partir d'un instantané"]
+

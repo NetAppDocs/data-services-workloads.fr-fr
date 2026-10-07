@@ -1,0 +1,96 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/protect-sql-server.html 
+keywords: protect, server, Microsoft SQL Server, SQL Server, protect instance, protect database 
+summary: Protégez les instances et les bases de données Microsoft SQL Server. 
+---
+= Protégez les charges de travail Microsoft SQL Server avec NetApp Workload Factory pour bases de données
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Protégez les données de vos applications Microsoft SQL Server à l’aide de NetApp Backup and Recovery depuis la console NetApp Workload Factory. Grâce à cette intégration, vous pouvez atteindre les objectifs de protection suivants : sauvegarder les charges de travail à l’aide d’instantanés locaux sur le stockage principal local Amazon FSx for NetApp ONTAP (FSx for ONTAP), et répliquer les charges de travail vers un stockage secondaire FSx for ONTAP.
+
+
+
+[[about-this-task]]
+== À propos de cette tâche
+
+Workload Factory automatise la découverte des ressources, la validation des prérequis, ainsi que la configuration et l'installation du Plug-in for Microsoft SQL Server afin de préparer la protection de vos charges de travail avec NetApp Backup and Recovery. Le plug-in est un composant côté hôte du logiciel NetApp qui vous permet de protéger vos charges de travail Microsoft SQL Server.
+
+NetApp Backup and Recovery exploite la technologie de réplication des données NetApp SnapMirror pour garantir que toutes les sauvegardes sont entièrement synchronisées en créant des copies Snapshot et en les transférant vers les emplacements de sauvegarde.
+
+Pour plus de détails sur la protection avec Backup and Recovery, reportez-vous à link:https://docs.netapp.com/us-en/data-services-backup-recovery/br-use-mssql-protect-overview.html["Vue d'ensemble de la protection des charges de travail Microsoft SQL avec Backup and Recovery"^].
+
+
+
+[[before-you-begin]]
+== Avant de commencer
+
+Les exigences suivantes doivent être respectées pour protéger les charges de travail Microsoft SQL Server avec Backup and Recovery.
+
+* Assurez-vous que votre environnement répond à link:https://docs.netapp.com/us-en/data-services-backup-recovery/concept-start-prereq.html#microsoft-sql-server-workload-requirements["les exigences SQL Server de Backup and Recovery"^].
+* link:https://docs.netapp.com/us-en/data-services-backup-recovery/concept-start-prereq.html#in-netapp-console["Configuration requise complète de NetApp Console"^]y compris la configuration, l'attribution des rôles IAM et l'installation d'un agent Console.
+
+
+Si vous disposez d'un accès d'administrateur de l'organisation au compte NetApp, le `backup and recovery super admin` rôle est automatiquement attribué lorsque vous <<Préparez-vous à la protection avec NetApp Backup and Recovery,Préparez-vous à la protection avec NetApp Backup and Recovery>>.
+
+* Configurez la résolution de l'hôte sur le Connector
++
+Pour découvrir les bases de données, vous devez configurer la résolution d'hôte sur le Connector. Sur le périphérique hébergé, ajoutez la correspondance entre l'adresse IP et le nom d'hôte dans le fichier  `/etc/hosts`.
+
++
+** link:https://docs.netapp.com/us-en/data-services-backup-recovery/br-start-licensing.html["Configurer les licences pour NetApp Backup and Recovery"^]
+
+
+
+
+
+
+[[prepare-for-protection-with-netapp-backup-and-recovery]]
+== Préparez-vous à la protection avec NetApp Backup and Recovery
+
+Finalisez le processus de préparation pour protéger vos ressources Microsoft SQL Server avec NetApp Backup and Recovery.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Bases de données*.
+. Dans le menu Bases de données, sélectionnez *Inventaire*.
+. Dans l'inventaire, sélectionnez *Microsoft SQL Server* comme type de moteur.
+. Repérez l'instance que vous souhaitez protéger, puis sélectionnez *Protect* dans le menu.
+. Si le système vous y invite, fournissez des identifiants Windows disposant d'un accès administrateur.
++
+Pour utiliser NetApp Backup and Recovery à des fins de protection, les instances SQL Server doivent être enregistrées dans Workload Factory avec des informations d'identification Windows.
+
+. Si plusieurs Console agents sont actifs et disponibles, sélectionnez le *Console agent* sur lequel vous souhaitez enregistrer et protéger la charge de travail.
+. Pour préparer la protection des données, Workload Factory enregistre automatiquement vos ressources SQL Server dans Backup and Recovery, configure et installe le Plug-in for Microsoft SQL Server, et détecte les ressources afin de remplir les conditions préalables à la protection de votre instance SQL Server. Sélectionnez *Démarrer* pour lancer le processus.
+. Une fois les conditions préalables remplies, sélectionnez *Redirect* pour accéder à Backup and Recovery.
+
+
+.Et ensuite
+Dans Backup and Recovery, créez une stratégie pour protéger votre instance Microsoft SQL Server et vos bases de données.
+
+link:https://docs.netapp.com/us-en/data-services-backup-recovery/br-use-policies-create.html["Découvrez comment créer une stratégie pour protéger votre instance Microsoft SQL Server et vos bases de données"^].
+
+Pour obtenir des informations connexes, consultez la link:https://docs.netapp.com/us-en/data-services-backup-recovery/br-use-mssql-protect-overview.html["Documentation Backup and Recovery"^]documentation relative à la gestion des charges de travail Microsoft SQL Server.
+
+
+
+[[edit-protection-for-microsoft-sql-server-resources]]
+== Modifier la protection des ressources Microsoft SQL Server
+
+Vous pouvez modifier la protection des instances et des bases de données Microsoft SQL Server déjà protégées dans NetApp Backup and Recovery. La modification de la protection vous permet de modifier la stratégie de protection ou la planification de vos instances SQL Server protégées.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Bases de données*.
+. Dans le menu Bases de données, sélectionnez *Inventaire*.
+. Dans l'inventaire, sélectionnez *Microsoft SQL Server* comme type de moteur.
+. Sélectionnez l'onglet *Bases de données*.
+. Localisez la base de données dont vous souhaitez modifier la protection, puis sélectionnez *Modifier la protection* dans le menu.
++
+Vous serez redirigé vers Backup and Recovery dans la NetApp Console, où vous pourrez modifier la stratégie de protection ou la planification.
+
+

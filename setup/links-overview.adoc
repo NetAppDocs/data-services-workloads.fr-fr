@@ -1,0 +1,88 @@
+---
+sidebar: sidebar 
+permalink: setup/links-overview.html 
+keywords: links, accounts, connectivity, 
+summary: Un lien Workload Factory crée une relation de confiance et une connectivité entre un compte Workload Factory et un ou plusieurs systèmes de stockage cloud. 
+---
+= Découvrez les liens NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un lien NetApp Workload Factory crée une relation de confiance et une connectivité entre un compte Workload Factory et un ou plusieurs systèmes de stockage cloud. Cela vous permet de surveiller et de gérer certaines fonctionnalités du système de stockage directement à partir des appels à l'API REST ONTAP qui ne sont pas disponibles via l'API de votre fournisseur de cloud.
+
+Vous n'avez pas besoin de lien pour commencer à utiliser Workload Factory, mais dans certains cas, vous devrez en créer un pour débloquer toutes les fonctionnalités et capacités de Workload Factory.
+
+
+
+[[why-links-are-beneficial]]
+== Pourquoi les liens sont bénéfiques
+
+Les liens sont avantageux, car ils permettent à Workload Factory d'effectuer des opérations qui ne sont pas disponibles nativement via l'API de votre fournisseur de cloud. Les liens permettent d'utiliser des fonctionnalités ONTAP avancées et l'automatisation, ce qui améliore la gestion de vos systèmes de stockage cloud.
+
+Voici quelques avantages de l'utilisation des liens :
+
+* Ce lien permet à la NetApp Console d’envoyer des commandes ONTAP directement à votre système de stockage cloud, offrant ainsi des fonctionnalités ONTAP avancées au-delà de celles que votre fournisseur de cloud propose nativement.
+* Links exploitent des fonctions serverless distantes pour exécuter du code en réponse à des événements. Cette approche serverless supprime la dépendance à une instance s’exécutant dans votre VPC.
+
+
+
+
+[[how-links-work]]
+== Comment fonctionnent les liens
+
+Les liens exploitent des services de calcul sans serveur distants, tels qu'AWS Lambda et Oracle Cloud Infrastructure Functions. Ces services exécutent du code en réponse à des événements et gèrent automatiquement les ressources de calcul requises par ce code. Les liens que vous créez font partie de votre compte NetApp et sont associés au compte du fournisseur de cloud correspondant.
+
+Après avoir créé un lien, vous pouvez l'associer à un ou plusieurs systèmes de stockage cloud. Chaque système de stockage cloud ne peut être associé qu'à un seul lien dans le même compte NetApp. Si vous possédez plusieurs comptes NetApp, un même système de stockage cloud peut être associé à des liens supplémentaires dans différents comptes NetApp.
+
+Vous créez et associez des liens depuis la page Liens de la NetApp Console pour vos systèmes de stockage cloud.
+
+Vous pouvez authentifier les liens à l’aide des identifiants stockés dans le service d’identifiants de Workload Factory ou avec le service d’identifiants de votre fournisseur de cloud. Workload Factory ne prend pas en charge la modification des modes d’authentification.
+
+
+
+[[costs]]
+== Coûts
+
+Chaque transaction effectuée par le service de calcul sans serveur de votre fournisseur de cloud entraîne des frais. Comme il agit comme un proxy entre les deux systèmes, des frais s’appliquent lorsque le service envoie une requête à l’API REST ONTAP sur un système de fichiers, puis lorsqu’il renvoie la réponse à Workload Factory.
+
+* link:https://aws.amazon.com/lambda/pricing/["En savoir plus sur les coûts liés à l'utilisation d'AWS Lambda"^]
+* link:https://www.oracle.com/cloud/cloud-native/functions/["Découvrez plus d'informations sur les coûts liés à l'utilisation d'Oracle Cloud Infrastructure Functions"^]
+
+
+
+
+[[when-a-link-is-required]]
+== Lorsqu'un lien est requis
+
+Workload Factory nécessite un lien pour afficher certaines informations et effectuer certaines tâches. Si vous tentez d’effectuer une opération qui nécessite un lien et que vous n’avez pas associé de lien au système de stockage cloud, Workload Factory vous informe que l’opération nécessite un lien.
+
+Les fonctionnalités qui nécessitent un lien incluent :
+
+* État de l'architecture optimale des configurations de système de stockage cloud pour une maintenance proactive, une fiabilité accrue et une optimisation du rapport coût-performance
+* Surveillance et alerte des événements ONTAP EMS
+* NetApp Autonomous Ransomware Protection (ARP/IA)
+* Observabilité holistique améliorée de la capacité sur l’ensemble des systèmes de stockage cloud
+* Réplication des données, gestion et surveillance des volumes et des machines virtuelles de stockage
+* Provisionnement et gestion des partages SMB/CIFS et des règles d'export NFS
+* Gestion des volumes iSCSI sur un système de stockage cloud
+* Création et gestion des règles de snapshot pour les SLA de protection personnalisés
+* Améliorations de la gestion des inodes pour la gestion de la capacité automatique
+* Croissance automatique du volume pour une mise à l'échelle élastique
+* Création et gestion de clones, pour un clonage de données instantané et sur place
+* Affichage de métriques supplémentaires directement à partir de votre système de stockage cloud, telles que la version du système
+* Affichage des détails des machines virtuelles de stockage et des LIF de cluster, notamment les rôles, les points de terminaison, les nœuds, les adresses IP et l’état
+
+
+
+
+[[related-information]]
+== Informations connexes
+
+Apprenez à créer et à associer des liens pour:
+
+* link:../fsx-storage/create-link.html["Amazon FSx for NetApp ONTAP"]
+* link:../oci/create-link.html["Service de stockage OCI NetApp"]
+

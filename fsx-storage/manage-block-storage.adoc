@@ -1,0 +1,221 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-block-storage.html 
+keywords: block storage, manage block storage, igroups, block devices, view details, clone, client access, delete block device 
+summary: Gérer le stockage bloc pour un système de fichiers FSx for ONTAP dans NetApp Workload Factory. 
+---
+= Gérer le stockage bloc pour un système de fichiers dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Utilisez NetApp Workload Factory pour simplifier la gestion de vos ressources de stockage bloc, y compris les igroups et les périphériques de bloc, et contrôler l'accès client pour les périphériques de bloc FSx for ONTAP afin d'offrir des performances optimales et de minimiser les coûts.
+
+.À propos de cette tâche
+Depuis la console NetApp Workload Factory, vous pouvez gérer les groupes d'initiateurs (igroups) afin de contrôler l'accès des clients aux périphériques de stockage bloc. Vous pouvez également consulter les détails des périphériques de stockage bloc, augmenter leur capacité, créer des clones, gérer l'accès des clients, archiver les données pour les périphériques de stockage bloc inactifs et supprimer des périphériques de stockage bloc.
+
+Consultez le schéma du stockage bloc pour vérifier les points suivants :
+
+* Connexions client
+* État du périphérique bloc
+* Relation nœud-client
+* Connexions client potentiellement incorrectes
+
+
+.Avant de commencer
+* Vous devez associer un lien pour gérer les igroups. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Après avoir associé le lien, revenez à cette opération.
+* Vous devez disposer d'un igroup ou d'un périphérique bloc existant pour les afficher et les gérer.
+
+
+
+
+[[manage-igroups]]
+== Gérer les igroups
+
+Vous pouvez consulter les détails des igroups, gérer l'accès client et supprimer des igroups.
+
+
+
+[[manage-client-access-for-an-igroup]]
+=== Gérer l'accès client pour un igroup
+
+Gérez à tout moment l'accès client pour un igroup existant.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans *FSx for ONTAP*, sélectionnez l'onglet *Périphériques de bloc*.
+. Sélectionnez le type de ressource *Initiator groups (igroups)* pour afficher les igroups existants.
+. Accédez au menu actions du périphérique de bloc et sélectionnez *Gérer l'accès client*.
+. Vérifiez les détails d'accès client affichés pour l'igroup.
+. Pour modifier l'accès client, sélectionnez *Modifier l'accès client*.
+. Dans la boîte de dialogue *Modifier l'accès client*, vous pouvez modifier les éléments suivants :
++
+** *nom igroup*
+** *Description igroup*
+** *Nom de la machine virtuelle de stockage*
+** *Nom du périphérique bloc*
+** *Type de système d'exploitation*
+** *Initiateurs hôtes*
+
+
+. Sélectionnez *Appliquer*.
+
+
+
+
+[[delete-an-igroup]]
+=== Supprimer un igroup
+
+Supprimez un igroup lorsqu'il n'est plus nécessaire.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans *FSx for ONTAP*, sélectionnez l'onglet *Périphériques de bloc*.
+. Sélectionnez le type de ressource *Initiator groups (igroups)* pour afficher les igroups existants.
+. Accédez au menu actions du block device, puis sélectionnez *Supprimer le groupe d'initiateurs*.
+. Dans la boîte de dialogue Supprimer le groupe d'initiateurs (igroup), tapez "delete" pour confirmer que vous souhaitez supprimer l'igroup, puis sélectionnez *Supprimer*.
+
+
+
+
+[[manage-block-devices-for-an-igroup]]
+== Gérer les périphériques bloc pour un igroup
+
+Les périphériques de stockage par blocs, ou LUN (logical unit numbers), sont des volumes dotés de systèmes de fichiers dans un environnement SAN, accessibles aux hôtes via un réseau.
+
+Vous pouvez gérer les périphériques de blocs pour les systèmes de fichiers FSx for ONTAP qui utilisent le protocole iSCSI.
+
+
+
+[[view-block-device-details]]
+=== Afficher les détails du périphérique de bloc
+
+Consultez à tout moment les détails d'un périphérique de blocs existant.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans *FSx for ONTAP*, sélectionnez l'onglet *Périphériques de bloc*.
+. Accédez au menu des actions du périphérique de bloc, puis sélectionnez *Afficher les détails*.
++
+Les informations générales, de consommation, d'accès et de protection du périphérique de bloc sont affichées.
+
+
+
+
+
+[[manage-client-access-for-a-block-device]]
+=== Gérer l'accès client à un périphérique de bloc
+
+Vous pouvez gérer l'accès client à un périphérique de stockage par blocs existant à tout moment en créant des igroups et en ajoutant ou en supprimant des périphériques de stockage par blocs et des initiateurs hôtes.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans *FSx for ONTAP*, sélectionnez l'onglet *Périphériques de bloc*.
+. Accédez au menu des actions du périphérique de bloc, puis sélectionnez *Gérer l'accès client*.
+. S'il n'existe aucun igroup, créez-en un nouveau en sélectionnant *Map igroup > Create igroup*, puis procédez comme suit :
++
+.. *Nom du périphérique de bloc* : Saisissez un nom de périphérique de bloc. Vous pouvez sélectionner plusieurs périphériques de bloc à associer à l’igroup.
+.. *Type de système d'exploitation*: Sélectionnez le type de système d'exploitation.
+.. *Nom de l'igroup*: Saisissez un nom d'igroup.
+.. *Description de l'igroup* : Facultativement, saisissez une description de l'igroup.
+.. *Initiateurs hôtes* : Veuillez saisir un ou plusieurs initiateurs hôtes. Ces initiateurs doivent respecter le format iSCSI qualifié (IQN).
+.. Sélectionnez *Créer*.
+
+
+. Si un igroup existe déjà, sélectionnez *Mapper igroup > Mapper igroup existant* pour ajouter ou supprimer des périphériques de bloc et des initiateurs hôtes de l'igroup, puis sélectionnez *Mapper*.
+
+
+
+
+[[increase-the-capacity-of-a-block-device]]
+=== Augmenter la capacité d’un périphérique de bloc
+
+Augmentez à tout moment la capacité d'un périphérique de bloc existant.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans *FSx for ONTAP*, sélectionnez l'onglet *Périphériques de bloc*.
+. Accédez au menu des actions du périphérique de bloc, puis sélectionnez *Augmenter la capacité*.
+. Saisissez la nouvelle capacité du périphérique de bloc et sélectionnez l'unité.
+. Sélectionnez *Increase* pour appliquer les modifications.
+
+
+
+NOTE: Après avoir augmenté la taille du périphérique de stockage bloc, suivez la procédure fournie par votre système d'exploitation hôte pour découvrir la nouvelle taille et étendre le système de fichiers.
+
+
+
+[[clone-a-block-device]]
+=== Cloner un périphérique de stockage bloc
+
+Vous pouvez créer un clone d'un périphérique de stockage bloc existant à tout moment. Un clone de périphérique de stockage bloc est une copie accessible en écriture du périphérique d'origine, partageant les mêmes blocs de données jusqu'à ce que des modifications soient apportées à l'original ou au clone. Cloner un périphérique de stockage bloc est une méthode rapide et efficace pour créer des copies réutilisables de vos données sans consommer de capacité de stockage supplémentaire.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans *FSx for ONTAP*, sélectionnez l'onglet *Périphériques de bloc*.
+. Accédez au menu des actions du périphérique de bloc, puis sélectionnez *Cloner le périphérique de bloc*.
+. Dans la boîte de dialogue Cloner le périphérique de bloc, saisissez un nom pour le périphérique de bloc cloné.
+. Vous pouvez activer la suppression automatique pour que le périphérique de bloc cloné soit automatiquement supprimé lorsque l'espace disponible sur le volume est faible.
+. *Configuration iSCSI* : Facultatif. Pour connecter le clone du périphérique de stockage bloc aux initiateurs hôtes, créez un nouveau groupe d’initiateurs ou associez-le à un groupe d’initiateurs existant.
++
+** *Créer un nouveau groupe d'initiateurs* : Sélectionnez cette option pour créer un nouveau groupe d'initiateurs pour le clone du périphérique de stockage bloc. Saisissez les informations suivantes :
++
+... *Système d'exploitation hôte* : Sélectionnez le type de système d'exploitation hôte.
+... *Nom du groupe initiateur* : Saisissez un nom d’igroup.
+... *Initiateurs hôtes* : Veuillez saisir un ou plusieurs initiateurs hôtes. Ces initiateurs doivent respecter le format iSCSI qualifié (IQN).
+
+
+** *Associer à un groupe d'initiateurs existant* : sélectionnez cette option pour associer le clone du périphérique de stockage bloc à un groupe d'initiateurs existant. Sélectionnez un ou plusieurs groupes d'initiateurs auxquels associer le périphérique de stockage bloc.
+
+
+. Sélectionnez *Cloner* pour créer le clone du périphérique de stockage bloc.
+
+
+
+
+[[archive-the-data-of-an-inactive-block-device]]
+=== Archiver les données d’un périphérique de bloc inactif
+
+Les périphériques de stockage par blocs qui ne sont plus associés à un client ou qui sont inutilisés pendant sept jours consécutifs sont classés comme périphériques de stockage par blocs inactifs. Vous pouvez archiver les données d'un périphérique de blocs inactif dans le niveau de pool de capacité pour récupérer de la capacité SSD.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans *FSx for ONTAP*, sélectionnez l'onglet *Périphériques de bloc*.
+. Sous Périphériques orphelins, sélectionnez *Afficher et récupérer la capacité*.
+. Sur l’écran « Récupérer l’espace pour les périphériques de bloc inutilisés », sélectionnez un ou plusieurs périphériques de bloc pour archiver les données et récupérer la capacité.
+. Sélectionnez *Archive*.
+
+
+
+
+[[delete-a-block-device]]
+=== Supprimer un périphérique de bloc
+
+Les périphériques de stockage bloc qui ne sont pas associés à un client ou qui sont inutilisés depuis sept jours sont des périphériques de stockage bloc inactifs. Cette opération dissocie et supprime le périphérique de stockage bloc sélectionné. Si le volume FlexVol hôte ne contient aucun périphérique de stockage bloc, Workload Factory le supprime.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans *FSx for ONTAP*, sélectionnez l'onglet *Périphériques de bloc*.
+. Sous Périphériques orphelins, sélectionnez *Afficher et récupérer la capacité*.
+. Sur l’écran « Récupérer l’espace pour les périphériques de bloc inutilisés », sélectionnez un ou plusieurs périphériques de bloc pour archiver les données et récupérer la capacité.
+. Sélectionnez *Delete*.
+
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:create-igroup.html["Créer un igroup pour un système de fichiers FSx for ONTAP"]
+* link:create-block-device.html["Créer un périphérique de stockage par blocs pour un système de fichiers FSx for ONTAP"]
+

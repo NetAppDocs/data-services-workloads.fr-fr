@@ -1,0 +1,124 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/task-analyze-latency-issues.html 
+keywords: latency analysis, analyze latency, latency events, root cause analysis, QoS delay center, AI analysis, latency troubleshooting, volume latency, basic analysis, affected clients, remediation steps, iops, throughput 
+summary: 'Visualisez et analysez les événements de latence pour identifier les problèmes de performance avec les volumes FSx for ONTAP. Utilisez l"analyse de base et, en option, l"analyse IA pour identifier la cause première et les correctifs suggérés.' 
+---
+= Analyser les problèmes de latence dans Workload Factory pour EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Consultez les délais détectés et utilisez des outils automatisés pour en trouver la cause et corriger les ralentissements dans vos volumes Amazon FSx for ONTAP.
+
+
+
+[[before-you-begin]]
+== Avant de commencer
+
+Vous devez avoir link:task-configure-latency-monitoring.html["surveillance de la latence configurée"] avant de pouvoir visualiser et analyser les événements de latence.
+
+
+
+[[view-volumes-with-latency-above-threshold]]
+== Afficher les volumes avec une latence supérieure au seuil
+
+Le tableau « Volumes avec latence supérieure au seuil » affiche les volumes qui ont dépassé le seuil de latence d'avertissement ou critique.
+
+.À propos de cette tâche
+* Seule la violation la plus récente pour chaque volume est affichée. Les violations antérieures pour le même volume ne sont pas affichées.
+* Seuls 200 événements au maximum sont affichés. Les événements les plus anciens sont supprimés au fur et à mesure que de nouveaux sont ajoutés.
+* Les événements apparaissent même sans lien vers le système de fichiers. Un lien est nécessaire pour consulter les détails d’analyse de base ou exécuter une analyse par IA.
+
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *EDA*.
+. Sélectionnez l'onglet *Latence*.
+. Examinez les informations relatives à chaque événement dans le tableau.
+. Pour afficher les détails d'un événement de latence, sélectionnez l'événement dans la colonne *Severity*. Cela ouvre un panneau d'analyse de latence pour cet événement.
+. Pour trier le tableau, sélectionnez l'en-tête d'une colonne. Par défaut, les événements critiques sont affichés en premier, triés par heure, suivis des événements d'avertissement triés par heure.
+. Pour annuler un ou plusieurs événements, à côté de chaque événement, sélectionnez image:icon-action.png["L'icône du menu d'action"]*Annuler*.
+. Pour ajouter des colonnes au tableau, sélectionnez image:column-icon.png["L'icône de la colonne"], choisissez les colonnes, puis sélectionnez *Appliquer*.
+. Le panneau d'analyse de latence offre un aperçu rapide de la violation, incluant un graphique de latence et des contrôles pour la période et le type. Sélectionnez *Afficher l'analyse complète* pour ouvrir la page d'analyse de latence détaillée avec une analyse de base, une analyse par IA (facultative) et des graphiques supplémentaires. Consultez link:task-analyze-latency-trends.html["Analyser les tendances de latence"] pour plus de détails.
+
+
+
+
+[[analyze-a-latency-event]]
+== Analyser un événement de latence
+
+L'analyse de latence vous aide à identifier rapidement ce qui cause les ralentissements sans avoir à enquêter manuellement.
+
+
+NOTE: Pour utiliser l'analyse par IA, vous devez avoir activé l'IA gérée par NetApp. Pour plus d'informations, consultez link:../admin/manage-genai-features.html["Gérer les fonctionnalités d'IA"^].
+
+Une analyse de base vous aide à identifier rapidement la cause des ralentissements sans avoir à enquêter manuellement.
+
+
+
+[[latency-analysis-panel]]
+=== Panneau d'analyse de la latence
+
+Sélectionnez un événement de latence dans la colonne *Gravité* pour ouvrir le panneau d'analyse de latence correspondant. Le panneau comprend des onglets qui offrent différentes vues de l'événement de latence.
+
+La disponibilité de l'analyse IA dépend de la configuration de votre compte. Si l'IA gérée par NetApp est activée, vous pouvez exécuter une analyse IA sans configurer Bedrock. L'analyse IA est indisponible si la limite de crédit mensuelle est atteinte ou si votre administrateur désactive les fonctionnalités IA.
+
+* *Basique* : Affiche les résultats d'une analyse automatique. S'il est lié au système de fichiers, il présente le détail des composants et indique celui qui est à l'origine du délai. En l'absence de lien, vous êtes invité à en ajouter un.
++
+Un graphique interactif de latence des métriques CloudWatch pour le volume concerné s'affiche. Il présente soit les métriques de lecture, soit celles d'écriture, selon l'alarme qui a déclenché l'événement. Vous pouvez sélectionner différentes plages horaires et utiliser un filtre pour afficher toutes les opérations, les opérations de lecture, d’écriture ou de métadonnées.
+
+* *Analyse par IA* : Affiche une investigation plus approfondie pour déterminer la cause profonde spécifique et les mesures correctives potentielles.
+* *Analyse détaillée de la latence* : Affiche des graphiques interactifs des métriques CloudWatch pour le volume concerné. Ces graphiques présentent la latence, les IOPS et le débit au fil du temps. Ils affichent soit les métriques de lecture, soit celles d’écriture, selon l’alarme qui a déclenché l’événement. Vous pouvez sélectionner différentes plages horaires et utiliser un filtre pour afficher toutes les opérations, les opérations de lecture, d’écriture ou de métadonnées.
+
+
+Pour des instructions détaillées sur l'utilisation des graphiques, voir link:task-analyze-latency-trends.html["Analyser les tendances de latence"].
+
+
+
+[[steps]]
+=== Étapes
+
+. Dans l'onglet *Latence*, repérez l'événement que vous souhaitez analyser.
+. Dans la colonne *Gravité*, sélectionnez un événement de latence pour ouvrir un panneau d'analyse pour cet événement.
+. Consultez l'onglet *Basic*. Si un lien est connecté, ouvrez le détail des composants pour voir d'où provient le délai. Si aucun lien n'est connecté, sélectionnez l'invite pour en lier un afin de pouvoir analyser les composants.
+. Dans l'onglet *Analyse IA*, sélectionnez *Analyser* (si disponible) pour consulter les résultats d'une analyse plus approfondie, tels que d'éventuels problèmes liés aux données ou aux clusters. Cela vous aide à déterminer la cause première spécifique et les étapes potentielles de remédiation.
++
+Examinez les résultats, notamment :
+
++
+** Explication de la cause potentielle
+** Liste des clients EC2 concernés
+** Étapes correctives recommandées
+
+
+. Sélectionnez *Afficher l'analyse complète* pour consulter l'intégralité des résultats de l'analyse IA, y compris les graphiques de performance affichant la latence du volume, les IOPS et le débit à partir des métriques CloudWatch sur la période sélectionnée.
+. Suivez les étapes recommandées pour résoudre le problème de latence.
+. Après avoir effectué les modifications, consultez le tableau des événements de latence pour confirmer que le problème est résolu.
+
+
+
+
+[[best-practices]]
+== Meilleures pratiques
+
+Tenez compte des recommandations suivantes lors de l'analyse des problèmes de latence :
+
+* *Surveillez les tendances* : Consultez régulièrement le tableau des volumes dont la latence dépasse le seuil afin de repérer les tendances ou les problèmes récurrents pouvant indiquer des problèmes de configuration.
+* *Utilisez l'analyse IA de manière stratégique* : utilisez l'analyse IA lors de l'examen des données si une analyse de base le suggère. L'analyse IA peut révéler des informations plus approfondies sur des problèmes de performance complexes nécessitant un dépannage détaillé.
+* *Examinez les événements rejetés* : Passez régulièrement en revue les raisons pour lesquelles des événements ont été rejetés afin de déterminer si les seuils doivent être ajustés ou si le système doit être amélioré.
+
+
+Pour connaître les meilleures pratiques en matière d'analyse des tendances de latence, voir link:task-analyze-latency-trends.html#graph-interpretation["Interprétation du graphique"].
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:learn-latency-monitoring.html["Découvrez la surveillance de la latence"]
+* link:task-configure-latency-monitoring.html["Configurer la surveillance de la latence"]
+* link:task-analyze-latency-trends.html["Analyser les tendances de latence"]
+

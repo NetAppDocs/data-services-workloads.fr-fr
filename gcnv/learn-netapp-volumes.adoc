@@ -1,0 +1,66 @@
+---
+sidebar: sidebar 
+permalink: gcnv/learn-netapp-volumes.html 
+keywords: google cloud netapp volumes, cost, price, features, google cloud netapp volumes features, gcnv, supported regions, google regions, google cloud netapp volumes regions 
+summary: 'Google Cloud NetApp Volumes permet aux entreprises de migrer et d"exécuter leurs applications stratégiques et centrales, sensibles à la latence et exigeantes en performances, dans Google sans avoir à les refactoriser pour le cloud.' 
+---
+= Découvrez Google Cloud NetApp Volumes
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Google Cloud NetApp Volumes est un service de stockage de données cloud entièrement géré, offrant des fonctionnalités avancées de gestion des données et des performances hautement évolutives.
+
+NetApp Volumes contribue à accélérer les délais de déploiement, à gérer vos charges de travail et vos applications, et à migrer les charges de travail vers le cloud tout en conservant les performances et les fonctionnalités du stockage sur site.
+
+
+
+[[features]]
+== Caractéristiques
+
+* Exécute les applications d'entreprise plus rapidement et plus efficacement.
+* Réduit les coûts de stockage cloud jusqu'à 90 %.
+* Répond aux exigences en matière de temps de fonctionnement, de disponibilité et de sécurité.
+* Prend en charge les environnements NFS, SMB et multiprotocoles.
+
+
+
+
+[[cost]]
+== Coût
+
+Les volumes créés par Google Cloud NetApp Volumes sont facturés sur votre abonnement au service, et non via la NetApp Console.
+
+La découverte d'une région ou d'un volume Google Cloud NetApp Volumes depuis la NetApp Console est gratuite.
+
+
+
+[[supported-regions]]
+== Régions prises en charge
+
+https://cloud.google.com/netapp/volumes/docs/discover/service-levels#supported_regions["Afficher les régions prises en charge de Google Cloud NetApp Volumes"^]
+
+
+
+[[getting-help]]
+== Obtenir de l'aide
+
+Pour obtenir une assistance technique, veuillez soumettre une demande via le portail Google Cloud. Sélectionnez votre abonnement Google Cloud et le service *Google Cloud NetApp Volumes* sous *Storage*. Renseignez les informations requises.
+
+Pour toute question d'ordre général concernant Google Cloud NetApp Volumes, veuillez contacter l'équipe Google Cloud de NetApp à l'adresse gcinfo@netapp.com.
+
+Pour tout problème technique lié à vos volumes cloud, vous pouvez créer un dossier d’assistance technique depuis le Google Cloud Console. Consultez link:https://cloud.google.com/netapp/volumes/docs/support["obtenir de l'assistance"^] pour plus d’informations.
+
+
+
+[[related-links]]
+== Liens associés
+
+* https://cloud.google.com/netapp/volumes/docs/discover/overview["Documentation Google Cloud NetApp Volumes"^]
+* https://docs.netapp.com/us-en/data-services-copy-sync/index.html["NetApp Console : documentation sur Copy and Sync"^]
+

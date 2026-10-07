@@ -1,0 +1,90 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/data-protection-overview.html 
+keywords: overview 
+summary: FSx pour ONTAP prend en charge les snapshots, NetApp Autonomous Ransomware with AI, la réplication de volumes et les sauvegardes dans NetApp Workload Factory. 
+---
+= Types de protection des données dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FSx for ONTAP prend en charge les snapshots, la protection autonome contre les ransomwares avec IA de NetApp, la réplication et les sauvegardes pour la protection des données. Nous vous recommandons d'utiliser une combinaison de types de protection des données afin de vous préparer à l'inévitable et de protéger vos données.
+
+
+
+[[types-of-data-protection]]
+== Types de protection des données
+
+La protection des données de vos charges de travail vous permet de récupérer après toute perte de données à tout moment. Renseignez-vous sur les différents types de protection des données avant de choisir les fonctionnalités dont vous aurez besoin.
+
+.Snapshots
+Un instantané crée une image en lecture seule d'un volume à un instant précis au sein du volume source sous la forme d'une copie Snapshot. Vous pouvez utiliser la copie Snapshot pour récupérer des fichiers individuels ou restaurer l'intégralité du contenu d'un volume. Les instantanés sont à la base de toutes les méthodes de sauvegarde. La copie Snapshot créée sur votre volume est utilisée pour maintenir la synchronisation du volume répliqué et du fichier de sauvegarde avec les modifications apportées au volume source.
+
+.NetApp Protection autonome contre les ransomwares grâce à l'IA
+NetApp Autonomous Ransomware Protection with AI (ARP/AI) utilise l'analyse de la charge de travail dans les environnements NAS (NFS/SMB) pour détecter et signaler toute activité anormale susceptible d'être une attaque par ransomware. En cas de suspicion d'attaque, ARP/AI crée également de nouveaux instantanés immuables, en complément de la protection existante assurée par les instantanés planifiés.
+
+.Réplication
+La réplication crée une copie secondaire de vos données sur un autre système de fichiers FSx for ONTAP et met continuellement à jour les données secondaires. Vos données sont maintenues à jour et restent disponibles chaque fois que vous en avez besoin, notamment pour la reprise après sinistre.
+
+Vous pouvez choisir de créer à la fois des volumes répliqués sur un autre système de fichiers FSx for ONTAP et des fichiers de sauvegarde dans le cloud. Ou vous pouvez choisir de créer uniquement des volumes répliqués ou des fichiers de sauvegarde : c'est vous qui choisissez.
+
+.Sauvegardes
+Vous pouvez créer des sauvegardes de vos données dans le cloud pour les protéger et les conserver à long terme. Si nécessaire, vous pouvez restaurer un volume, un dossier ou des fichiers individuels à partir de la sauvegarde vers le même système de fichiers de travail, ou un système différent.
+
+Le schéma suivant présente une représentation visuelle de la protection des données pour le stockage FSx for ONTAP à l'aide d'instantanés, de la réplication entre les régions et de la sauvegarde vers le stockage objet.
+
+image:diagram-fsx-data-protection.png["La capture d'écran montre la protection des données du stockage FSx for ONTAP à l'aide d'instantanés, de la réplication entre les régions et de la sauvegarde vers le stockage objet."]
+
+
+
+[[best-practices-for-protecting-your-workload-data]]
+== Meilleures pratiques pour protéger les données de votre charge de travail
+
+FSx for ONTAP offre plusieurs options de protection des données qui peuvent être combinées pour atteindre vos objectifs sélectionnés de point de restauration et de délai de restauration. Pour une protection optimale, nous vous recommandons d'utiliser à la fois des instantanés de volume et des sauvegardes de volume.
+
+Un objectif de point de restauration (RPO) décrit à quel point la dernière copie de vos données est récente, ce qui dépend de la fréquence à laquelle les copies sont effectuées. Un objectif de temps de restauration (RTO) définit le temps nécessaire pour restaurer vos données.
+
+
+
+[[protect-your-workload-data-with-snapshots]]
+== Protégez les données de votre charge de travail grâce aux instantanés
+
+Les snapshots sont des versions virtuelles d'un volume à un instant précis, créées de manière planifiée. Vous pouvez accéder aux snapshots à l'aide des commandes standard du système de fichiers. Les snapshots offrent un RPO d'à peine une heure. Le RTO dépend de la quantité de données à restaurer et est principalement limité par le débit du volume. Les snapshots permettent également aux utilisateurs de restaurer des fichiers et des répertoires spécifiques, ce qui réduit encore davantage le RTO. Les snapshots ne consomment de l'espace supplémentaire sur le volume que pour les modifications apportées au volume.
+
+
+
+[[protect-your-workload-data-with-netapp-autonomous-ransomware-protection-with-ai]]
+== Protégez les données de votre workload avec NetApp Autonomous Ransomware Protection with AI
+
+NetApp Autonomous Ransomware Protection with AI (ARP/AI) constitue une couche de défense supplémentaire importante si le logiciel antivirus n'a pas détecté une intrusion. La définition d'une règle ARP/AI l'active pour toutes les machines virtuelles de stockage et tous les volumes existants et nouvellement créés. Une fois activée, ARP/AI détecte et protège tous les volumes et toutes les machines virtuelles de stockage. Si une extension de fichier est signalée comme anormale, vous devez évaluer l'alerte.
+
+
+
+[[protect-your-workload-data-with-volume-replication]]
+== Protégez les données de votre charge de travail grâce à la réplication de volumes
+
+La réplication de volumes crée une copie des données les plus récentes d'un volume, y compris tous ses instantanés, dans une autre région. Si vous ne pouvez pas vous permettre des délais de restauration (RTO) de plusieurs heures pour une restauration complète d'un volume à partir d'une sauvegarde de volume, envisagez d'effectuer une réplication de volume. Bien que la réplication de volumes garantisse la disponibilité des données récentes dans une autre région pour votre utilisation, vous devez ajuster vos clients pour qu'ils utilisent le volume dans l'autre région.
+
+
+
+[[protect-your-workload-data-with-backups]]
+== Protégez les données de votre charge de travail grâce aux sauvegardes
+
+Les sauvegardes de volume fournissent des copies indépendantes de votre volume à un instant précis. Elles permettent de stocker d'anciennes sauvegardes et de disposer d'une seconde copie de vos données. Les planifications de sauvegarde quotidiennes, hebdomadaires et mensuelles offrent des objectifs de point de restauration (RPO) à partir d'un jour. Les sauvegardes de volume ne peuvent être restaurées que dans leur intégralité. La création d'un volume à partir d'une sauvegarde (RTO) peut prendre de quelques heures à plusieurs jours, selon la taille de la sauvegarde.
+
+
+
+[[recommendations-for-protecting-your-workload-data]]
+== Recommandations pour la protection des données de votre charge de travail
+
+Tenez compte des recommandations suivantes pour protéger les données de votre charge de travail.
+
+* Utilisez la réplication de volumes pour la reprise après sinistre : si votre application nécessite un RTO faible, envisagez d’utiliser la réplication de volumes pour répliquer vos données dans une autre région.
+* Utilisez les sauvegardes de volume conjointement avec les instantanés : l’utilisation conjointe de ces deux fonctionnalités vous permet de restaurer vos fichiers à partir d’instantanés et d’effectuer des restaurations complètes en cas de perte de volume à l’aide des sauvegardes.
+* Définissez une règles de sauvegarde : assurez-vous que la règles de sauvegarde répond aux exigences de votre entreprise en matière d’ancienneté et de fréquence des sauvegardes. Nous recommandons de conserver au minimum deux sauvegardes quotidiennes pour chaque volume.
+* Définissez une planification des instantanés : les instantanés les plus anciens sont moins susceptibles d’être utilisés pour restaurer des données. Nous vous recommandons de définir une planification des instantanés qui tienne compte de la diminution des gains liés à la conservation des instantanés anciens par rapport au coût d’une capacité d’instantanés supplémentaire.
+* Activez une stratégie ARP/AI pour votre système de fichiers ou vos volumes individuels afin d'ajouter une couche de protection supplémentaire contre les attaques de ransomware.
+

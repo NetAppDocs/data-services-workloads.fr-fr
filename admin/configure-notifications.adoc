@@ -1,0 +1,254 @@
+---
+sidebar: sidebar 
+permalink: admin/configure-notifications.html 
+keywords: amazon, sns, notification, topic, notifications, notifications service, alerts, email, email notifications, console notifications, filter, filtering 
+summary: 'Vous pouvez configurer NetApp Workload Factory pour envoyer des notifications à une personne ou à une autre application lorsque certains types d"événements se produisent.' 
+---
+= Configurer les notifications de NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez configurer le service de notification NetApp Workload Factory pour envoyer des notifications sous forme d’alertes dans NetApp Console, à toutes les adresses e-mail associées au compte, ou à une rubrique Amazon SNS. Les notifications envoyées sous forme d’alertes s’affichent dans NetApp Console lorsqu’un agent ou un lien Console est déployé. Lorsque Workload Factory publie des notifications sur une rubrique Amazon SNS, les abonnés à cette rubrique (personnes ou autres applications) reçoivent les notifications aux points de terminaison configurés pour la rubrique (par exemple, e-mail ou messages SMS).
+
+
+
+[[configure-workload-factory-notifications]]
+== Configurer les notifications de Workload Factory
+
+Vous pouvez configurer les notifications de Workload Factory à l'aide de la NetApp Console ou de la console Workload Factory.
+
+Les options pour recevoir des notifications incluent :
+
+
+
+[[netapp-console]]
+=== NetApp Console
+
+* *Notifications* : Configurez Workload Factory pour envoyer des notifications qui apparaissent sous l’icône de cloche dans NetApp Console.
+* *Courriel* : Activez les notifications par courriel dans NetApp Console pour recevoir des notifications à toutes les adresses courriel associées au compte sans nécessiter de configuration Amazon SNS.
+* *Amazon SNS* : Configurez Workload Factory pour envoyer des notifications à un sujet Amazon SNS.
+
+
+
+
+[[workload-factory-console]]
+=== console Workload Factory
+
+* *Courriel* : Activez les notifications par courriel dans la console Workload Factory pour recevoir des notifications à toutes les adresses courriel associées au compte sans nécessiter de configuration Amazon SNS.
+* *Amazon SNS* : Configurez Workload Factory pour envoyer des notifications à un sujet Amazon SNS à l’aide de la console Workload Factory.
+
+
+
+IMPORTANT: Lorsque vous configurez les notifications dans NetApp Console, celle-ci prend en charge la distribution des notifications et les options de notification de la console Workload Factory sont désactivées et affichées en mode lecture seule. Une infobulle indique que les notifications sont gérées depuis NetApp Console. Vous pouvez alors gérer les notifications uniquement depuis NetApp Console.
+
+.Avant de commencer
+Les conditions préalables suivantes s'appliquent uniquement lors de la configuration des notifications Amazon SNS :
+
+* Vous devez configurer Amazon SNS et créer des rubriques Amazon SNS à l’aide de la console Amazon SNS ou de l’AWS CLI.
+* Notez que Workload Factory prend en charge le type de sujet *Standard*. Ce type de sujet ne garantit pas l’envoi des notifications aux abonnés dans l’ordre de leur réception ; tenez-en compte pour les notifications critiques ou urgentes.
+
+
+[role="tabbed-block"]
+====
+.Configurer les notifications depuis NetApp Console
+--
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Dans le menu NetApp Console, sélectionnez *Workloads*, *Administration*, puis *Notifications setup*.
+. Sur la page de configuration des notifications, activez un ou plusieurs des types de notifications suivants :
++
+.. *NetApp Console notifications* : Sélectionnez *Activer les notifications NetApp Console* pour configurer Workload Factory afin d’envoyer des notifications dans NetApp Console.
+.. *Notifications par e-mail* : Sélectionnez *Activer les notifications par e-mail* pour configurer Workload Factory afin qu’il envoie des notifications à toutes les adresses e-mail associées au compte.
+.. *Notifications Amazon SNS* : Sélectionnez *Enable SNS notifications*, puis suivez les instructions pour configurer Amazon SNS depuis la console Amazon SNS.
++
+Une fois le sujet créé, copiez son ARN et saisissez-le dans le champ *ARN du sujet SNS* sur la page *Configuration des notifications*.
+
+
+
+. Après avoir vérifié la configuration en envoyant une notification de test, sélectionnez *Apply*.
+
+
+--
+[[wf-console-email-notifications]]
+.Configurer les notifications depuis la console Workload Factory
+--
+.Étapes
+. Connectez-vous au link:https://console.workloads.netapp.com["console Workload Factory"^].
+. Dans le menu de la console Workload Factory, sélectionnez *Workloads*, *Administration*, puis *Notifications setup*.
+. Activez un ou plusieurs des types de notification suivants :
++
+** *Notifications par e-mail* : Sélectionnez *Activer les notifications par e-mail*. Toutes les adresses e-mail associées au compte sont affichées en mode lecture seule.
+** *Notifications Amazon SNS* : Sélectionnez *Enable SNS notifications*, puis suivez les instructions pour configurer Amazon SNS depuis la console Amazon SNS.
++
+Après avoir vérifié la configuration en envoyant une notification de test, sélectionnez *Apply*.
+
+
+
+
+
+--
+====
+
+
+[[subscribe-to-the-amazon-sns-topic]]
+== Abonnez-vous à la rubrique Amazon SNS
+
+Après avoir configuré Workload Factory pour envoyer des notifications à un sujet, suivez les https://docs.aws.amazon.com/sns/latest/dg/sns-create-subscribe-endpoint-to-topic.html["instructions"] instructions de la documentation Amazon SNS pour vous abonner à ce sujet afin de recevoir des notifications de Workload Factory.
+
+
+
+[[filter-notifications]]
+== Filtrer les notifications
+
+Vous pouvez réduire le trafic de notifications inutiles et cibler des types de notifications spécifiques pour des utilisateurs spécifiques en appliquant des filtres aux notifications. Vous pouvez le faire à l'aide d'une stratégie Amazon SNS pour les notifications SNS, et en utilisant les paramètres de notifications dans NetApp Console.
+
+
+
+[[filter-amazon-sns-notifications]]
+=== Filtrer les notifications Amazon SNS
+
+Lorsque vous vous abonnez à un sujet Amazon SNS, vous recevez par défaut toutes les notifications publiées sur ce sujet. Si vous souhaitez recevoir uniquement des notifications spécifiques du sujet, vous pouvez utiliser une politique de filtrage pour contrôler les notifications que vous recevez. Les politiques de filtrage permettent à Amazon SNS de transmettre à l'abonné uniquement les notifications qui correspondent à la politique de filtrage.
+
+Vous pouvez filtrer les notifications Amazon SNS selon les critères suivants :
+
+[cols="3*"]
+|===
+| Description | Nom du champ de la stratégie de filtre | Valeurs possibles 
+
+
+| Type de ressource | `resourceType`  a| 
+* `DB`
+* `Microsoft SQL Server host`
+* `PostgreSQL Server host`
+
+
+
+
+| Charge de travail | `workload` | `WLMDB` 
+
+
+| Priorité | `priority`  a| 
+* `Success`
+* `Info`
+* `Recommendation`
+* `Warning`
+* `Error`
+* `Critical`
+
+
+
+
+| Type de notification | `notificationType`  a| 
+* `Deployment`
+* `Well-architected`
+
+
+|===
+.Étapes
+. Dans la console Amazon SNS, modifiez les détails de l’abonnement pour la rubrique SNS.
+. Dans la section *Stratégie de filtrage des abonnements*, sélectionnez le filtrage par *Attributs des messages*.
+. Activez l'option *Stratégie de filtrage des abonnements*.
+. Saisissez une stratégie de filtrage JSON dans la zone *JSON editor*.
++
+Par exemple, la stratégie de filtrage JSON suivante accepte les notifications de la ressource Microsoft SQL Server liées à la charge de travail WLMDB, ayant une priorité Success ou Error, et fournissant des détails sur le statut Well-architected :
+
++
+[source, json]
+----
+{
+  "accountId": [
+    "account-a"
+  ],
+  "resourceType": [
+    "Microsoft SQL Server host"
+  ],
+  "workload": [
+    "WLMDB"
+  ],
+  "priority": [
+    "Success",
+    "Error"
+  ],
+  "notificationType": [
+    "Well-architected"
+  ]
+}
+----
+. Sélectionnez *Enregistrer les modifications*.
+
+
+Pour d'autres exemples de politiques de filtrage, reportez-vous à https://docs.aws.amazon.com/sns/latest/dg/example-filter-policies.html["Exemples de politiques de filtrage Amazon SNS"^].
+
+Pour plus d'informations sur la création de politiques de filtrage, reportez-vous à la documentation https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html["Documentation Amazon SNS"^].
+
+
+
+[[filter-notifications-in-netapp-console]]
+=== Filtrer les notifications dans la NetApp Console
+
+Vous pouvez utiliser les paramètres de notification de la NetApp Console pour filtrer les notifications que vous recevez dans la Console par niveau de gravité, comme Critique, Info ou Avertissement.
+
+Pour plus d'informations sur le filtrage des notifications dans la Console, reportez-vous à la https://docs.netapp.com/us-en/console-setup-admin/task-monitor-cm-operations.html#filter-notifications["Documentation NetApp Console"^].
+
+
+
+[[notification-types-and-messages]]
+== Types de notifications et messages
+
+Workload Factory envoie des notifications pour les événements suivants:
+
+[cols="6*"]
+|===
+| Événement | Description | Type de notification | Gravité | Charge de travail | Type de ressource 
+
+
+| Certaines instances de base de données de votre compte ne sont pas bien architecturées | Toutes les instances Microsoft SQL Server de votre compte ont été analysées pour détecter les problèmes liés à l’architecture. La description de cet événement indique le nombre d’instances bien architecturées et d’instances non optimisées. Consultez les résultats et les recommandations sur l’état de l’architecture dans l’inventaire des bases de données depuis la console Workload Factory. | Bien architecturé | Recommandation | Bases de données | instance Microsoft SQL Server 
+
+
+| Le déploiement du serveur Microsoft SQL Server/PostgreSQL a réussi | Le déploiement de l'hôte Microsoft SQL Server ou PostgreSQL a réussi. Pour plus d'informations, consultez le suivi des tâches. | Déploiement | Succès | Bases de données | FSx pour ONTAP, hôte de base de données 
+
+
+| Le déploiement du serveur Microsoft SQL Server/PostgreSQL a échoué | Le déploiement de l'hôte Microsoft SQL Server ou PostgreSQL a échoué. Pour plus d'informations, consultez la surveillance des tâches. | Déploiement | Erreur | Bases de données | FSx pour ONTAP, hôte de base de données 
+
+
+| Échec de la création de la relation de réplication | La création d'une relation de réplication SnapMirror a échoué. Pour plus d'informations, consultez Tracker. | Réplication | Primordial | Stockage général | FSx for ONTAP 
+
+
+| Échec de la création de FSx for ONTAP | La création d'un système de fichiers FSx for ONTAP a échoué. Pour plus d'informations, consultez Tracker. | Action du système de fichiers FSx for ONTAP | Primordial | Stockage général | FSx for ONTAP 
+
+
+| Succès de l’augmentation automatique de la capacité SSD ou du nombre d’inodes | Lors d’une récente mise à jour automatique de la gestion de la capacité, le système de fichiers FSx for ONTAP a augmenté avec succès la capacité SSD ou le nombre d’inodes de volume. Pour plus d’informations, consultez Tracker. | Gestion de la capacité | Succès | Stockage général | fichier FSx for ONTAP 
+
+
+| Échec de l'augmentation automatique de la capacité ou des inodes du SSD | Lors d’une récente mise à jour automatique de la gestion de la capacité, le système de fichiers FSx for ONTAP n’a pas pu augmenter la capacité SSD ni le nombre d’inodes du volume. Pour plus d’informations, consultez Tracker. | Gestion de la capacité | Primordial | Stockage général | Systèmes de fichiers FSx for ONTAP 
+
+
+| Problème détecté avec FSx for ONTAP | Tous les systèmes de fichiers FSx for ONTAP ont été analysés pour détecter les problèmes de bonne architecture. L’analyse a détecté un ou plusieurs problèmes. Pour plus d’informations, consultez l’analyse de bonne architecture depuis le tableau de bord Storage dans la console Workload Factory. | Analyse bien architecturée | Recommandation | Stockage général | Systèmes de fichiers FSx for ONTAP 
+
+
+| Événement de gestion automatique de la capacité pour FSx for ONTAP | Le niveau de performance SSD du système de fichiers FSx for ONTAP a atteint le seuil d'avertissement de capacité/pourcentage total. | Gestion de la capacité | Avertissement | Stockage général | Systèmes de fichiers FSx for ONTAP 
+
+
+| Événement de gestion automatique des inodes pour FSx pour ONTAP | Le nombre d'inodes du volume FSx for ONTAP a atteint le seuil d'avertissement du nombre/pourcentage total. | Gestion de la capacité | Avertissement | Stockage général | Systèmes de fichiers FSx for ONTAP 
+
+
+| Activité suspecte détectée sur le volume FSx for ONTAP système de fichiers | NetApp Autonomous Ransomware Protection avec IA (ARP/IA) a détecté une activité volumique suspecte. | Protection contre les ransomwares | Primordial | Stockage général | Systèmes de fichiers FSx for ONTAP 
+
+
+| Dépassement du seuil de latence détecté | Un ou plusieurs volumes dans le cluster FSx for ONTAP ont dépassé le seuil de latence. | Surveillance des performances | Avertissement | EDA | Systèmes de fichiers FSx for ONTAP 
+
+
+| Rapport mensuel des coûts | Récapitulatif mensuel des coûts de votre compte, présentant les tendances de dépenses, les variations inhabituelles et les meilleures opportunités d'économies pour les systèmes de fichiers FSx for ONTAP. | Rapport de coûts | Recommandation | Stockage général | Systèmes de fichiers FSx for ONTAP 
+
+
+| Délai de réplication | La réplication prend plus de temps que prévu. | Réplication | Primordial | Stockage général | Systèmes de fichiers FSx for ONTAP 
+
+
+| Création réussie du tableau de bord personnalisé | Votre tableau de bord personnalisé a été créé avec succès et est prêt à être consulté. | Tableaux de bord personnalisés | Succès | Stockage général | Compte Workload Factory 
+
+
+| La création du tableau de bord personnalisé a échoué | Workload Factory n'a pas pu créer votre tableau de bord personnalisé. Essayez de créer à nouveau le tableau de bord. | Tableaux de bord personnalisés | Erreur | Stockage général | Compte Workload Factory 
+|===

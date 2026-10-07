@@ -1,0 +1,81 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-s3-access-points.html 
+keywords: S3, s3, access points, manage access points, change access points, update access points, modify access points 
+summary: 'Gérez les points d"accès S3 d"un volume dans NetApp Workload Factory.' 
+---
+= Gérez les points d'accès S3 pour un volume dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Mettez à jour les détails du point d'accès S3 ou supprimez les points d'accès S3 d'un volume dans NetApp Workload Factory.
+
+Vous pouvez également activer ou désactiver la *table d'inventaire* pour le point d'accès. La table d'inventaire génère des métadonnées pour tous les objets accessibles au point d'accès S3 et engendre des coûts de requête AWS S3. Consultez link:https://aws.amazon.com/s3/pricing/["Documentation tarifaire Amazon S3"^] pour plus d'informations.
+
+
+
+[[edit-the-s3-access-points-for-a-volume]]
+== Modifier les points d'accès S3 pour un volume
+
+Modifiez les points d'accès S3 pour un volume dans NetApp Workload Factory.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Stockage* > *Explorateur de volumes*.
+. Sélectionnez le menu actions du volume pour lequel vous souhaitez modifier les points d'accès S3, puis sélectionnez *Actions avancées*, puis *Gérer les points d'accès S3*.
+. Depuis l'écran *Gérer les points d'accès S3*, sélectionnez le menu actions, puis sélectionnez *Modifier point d'accès*.
+. Apportez les mises à jour, puis sélectionnez *Appliquer*.
++
+Pour configurer l'infrastructure de la fonctionnalité de table de journal, vous devez sélectionner *Internet* comme configuration réseau pour le point d'accès S3. link:setup-journal-table.html["Découvrez comment configurer l'infrastructure de la table Journal pour NetApp Workload Factory"].
+
+
+
+
+
+[[view-s3-access-point-details-for-a-volume]]
+== Afficher les détails du point d'accès S3 pour un volume
+
+Consultez les détails du point d'accès S3, tels que l'alias, l'ARN et l'URI S3. Avec les tables d'inventaire et de journal activées, vous pouvez consulter les métadonnées et les journaux d'audit des événements d'accès utilisateur et des opérations sur les objets à travers les points d'accès S3.
+
+.À propos de cette tâche
+Lorsque la table d'inventaire est activée sur le volume, vous pouvez consulter les détails du point d'accès, de la table d'inventaire et du compartiment de table des points d'accès S3 existants associés au volume. Le système fournit également un lien vers la table d'inventaire dans la console de gestion AWS.
+
+Lorsque la table de journal est activée, Workload Factory génère des journaux sur les points d'accès dans un tableau pour votre référence. Le tableau inclut les événements CloudTrail, les traces (un enregistrement des activités AWS), les filtres CloudTrail, les groupes de journaux CloudWatch, et plus encore.
+
+Vous pouvez copier les détails du point d'accès pour les utiliser dans d'autres applications.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Stockage* > *Explorateur de volumes*.
+. Sélectionnez le menu Actions du volume dont vous souhaitez afficher les détails, puis sélectionnez *Actions avancées*, et enfin *Afficher les détails*.
++
+Les détails apparaissent sous quatre onglets : *Point d'accès*, *Tableau d’inventaire*, *Tableau de journal* et *Table bucket*.
+
+. Si le statut des tables d'inventaire ou de journal est activé, mais que vous ne disposez pas de l' `get:Object`autorisation, suivez les instructions de la boîte de dialogue pour ajouter l'autorisation requise.
+. Lorsque le statut de la table de journal est en attente, vous devez fournir l'CloudTrail ARN pour connecter la table de journal à l'infrastructure créée. Suivez les instructions pour déployer la pile CloudFormation à l'aide de l'AWS CLI ou de la console de gestion AWS, puis retournez à la console NetApp Workload Factory pour saisir l'CloudTrail ARN.
+
+
+
+
+[[delete-the-s3-access-points-for-a-volume-in-netapp-workload-factory]]
+== Supprimez les points d'accès S3 pour un volume dans NetApp Workload Factory
+
+Supprimez les points d'accès S3 existants d'un volume dans NetApp Workload Factory.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Stockage* > *Explorateur de volumes*.
+. Sélectionnez le menu actions du volume pour lequel vous souhaitez gérer les points d'accès S3, puis sélectionnez *Actions avancées*, puis *Gérer les points d'accès S3*.
+. Sélectionnez le menu des actions pour le point d'accès S3 à supprimer, puis sélectionnez *Supprimer*.
+. Dans la boîte de dialogue *Supprimer un point d'accès S3*, sélectionnez *Supprimer* pour supprimer le point d'accès S3 du volume.
++
+Workload Factory ne supprime pas la table d'inventaire ni la table de journal, mais vous pouvez les supprimer manuellement depuis la console de gestion AWS.
+
+
+
+.Informations connexes
+* link:setup-journal-table.html["Configurer l'infrastructure de la table de journalisation"]
+

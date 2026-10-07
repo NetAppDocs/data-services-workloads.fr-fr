@@ -1,0 +1,145 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/launch-onboarding-advisor.html 
+keywords: overview, concepts, features, use case, workloads, how Workload Factory works 
+summary: 'Connectez-vous à NetApp Workload Factory pour accéder à l"assistant de migration VMware. Suivez les étapes de l"assistant pour créer un plan de déploiement ou un plan de migration personnalisé selon vos besoins.' 
+---
+= Créez un plan de déploiement pour VMware Cloud on AWS à l'aide de VMware workloads migration advisor
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Connectez-vous à NetApp Workload Factory pour accéder à l'assistant de migration VMware. Suivez les étapes de l'assistant pour créer un plan de déploiement ou un plan de migration personnalisé selon vos besoins.
+
+Lors de la migration vers VMware Cloud, vous pouvez utiliser l'assistant de migration pour migrer votre environnement sur site actuel vSphere vers VMWare cloud.
+
+Veuillez noter que vous devez posséder un nom d'utilisateur et un mot de passe pour accéder à Workload Factory. Si vous n'en avez pas, créez un compte dès maintenant. Consultez les instructions link:quick-start-vmware.html["ici"].
+
+
+
+[[create-a-deployment-plan-based-on-an-on-premises-vsphere-environment]]
+== Créez un plan de déploiement basé sur un environnement vSphere sur site
+
+Vous pouvez migrer vos configurations actuelles de machines virtuelles dans des environnements sur site vSphere vers des machines virtuelles dans VMware Cloud on AWS et utiliser des systèmes de fichiers Amazon FSx for NetApp ONTAP personnalisés comme datastores externes.
+
+.Exigences
+* Vous devez avoir créé le fichier d'inventaire à partir de vos systèmes existants à l'aide du migration advisor VM collector (fichier .csv) ou de RVTools (fichier .xlsx).
+* Vous devez avoir accès au fichier d'inventaire du système sur lequel vous vous connectez à Workload Factory.
+
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *VMware*.
++
+Le centre de planification est affiché.
+
+. Sélectionnez *Planifier et créer un VMC*.
+. Sélectionnez le type de fichier d'inventaire que vous utiliserez pour renseigner Workload Factory avec la configuration actuelle de votre machine virtuelle, puis sélectionnez *Suivant*.
++
+** Sélectionnez *Utiliser le collecteur de données VMware de l'assistant de migration* pour utiliser le fichier .csv que vous avez créé à l'aide du collecteur de données VMware.
+** Sélectionnez *Utiliser RVTools* pour utiliser le fichier .xlsx que vous avez créé à l'aide de RVTools.
+
+
++
+La page « Préparation à l'intégration à VMware Cloud » s'affiche.
+
+. Dans la section _Téléverser la configuration de la VM_, sélectionnez image:button-upload-file.png["le bouton de téléchargement"] et sélectionnez le fichier que vous souhaitez utiliser.
++
+** Sélectionnez le fichier .csv lorsque vous utilisez le collecteur de VM de l'assistant de migration.
+** Sélectionnez le fichier .xlsx lors de l'utilisation de RVTools.
+
+
++
+La section récapitulative des VM s’appuie sur le fichier d’inventaire pour indiquer le nombre de VM et la capacité de stockage totale.
+
+. Dans la section _Considérations relatives à l'inventaire des VM_, sélectionnez les options permettant de filtrer la liste des VM que vous souhaitez migrer.
++
+.. *Vérifiez les machines virtuelles* : indiquez quelles machines virtuelles seront extraites du fichier .csv en fonction de leur état d’alimentation. Vous pouvez inclure toutes les machines virtuelles, ou seulement celles qui sont allumées, éteintes ou suspendues.
+.. *Stockage des VM à prendre en compte*: Choisissez si les datastores créés pour chaque VM intégrée sont dimensionnés en fonction de leur taille actuellement utilisée (recommandé) ou de leur taille provisionnée.
++
+Les banques de données externes seront mises en œuvre à l’aide de volumes de système de fichiers Amazon FSx for NetApp ONTAP.
+
+.. *Mémoire des VM à prendre en compte* : Choisissez si la mémoire allouée à chaque VM intégrée est dimensionnée en fonction de sa taille actuellement utilisée (recommandé) ou de sa taille provisionnée.
+
+
+. Dans la section _Configuration du déploiement VMware Cloud on AWS_, saisissez les détails concernant la configuration VMware Cloud on AWS requise.
++
+.. *Région* : Sélectionnez la région dans laquelle les VM et les systèmes de fichiers Amazon FSx for NetApp ONTAP seront déployés.
++
+Pour des performances optimales et une rentabilité maximale, il s'agit généralement de la même région que celle où votre SDDC VMware Cloud on AWS existant est déployé.
+
+.. *Exigences de performances estimées des VM* : cette option est disponible uniquement lors de l’utilisation de RVTools. Le collecteur de VM Migration advisor capture ces informations dans votre environnement. Indiquez les paramètres de performances moyens suivants par machine virtuelle que vous souhaitez appliquer à vos nouvelles VM qui seront déployées :
++
+*** *IOPS moyennes par VM* : saisissez le nombre d’IOPS requis pour vos systèmes de fichiers. En cas de doute, vous pouvez utiliser la valeur par défaut de 3 IOPS par Gio de stockage SSD pour les systèmes de fichiers Amazon FSx for NetApp ONTAP. Par exemple, si vous déployez 2 000 Gio de capacité, cela correspondra à 6 000 IOPS. Nous vous recommandons de commencer avec un paramètre d’IOPS plus faible. Vous pouvez augmenter les IOPS SSD provisionnées après la création du système de fichiers, à mesure que les charges de travail sont migrées ou déployées.
+*** *Taille moyenne des blocs d'E/S* : taille de chaque bloc contenant des opérations de lecture ou d'écriture. La taille par défaut est de 4 Ko. Une taille de bloc plus importante peut être préférable pour les charges de travail importantes impliquant des opérations de lecture et d'écriture séquentielles. Une taille de bloc plus petite peut offrir de meilleures performances pour les charges de travail effectuant de petites écritures aléatoires dans des fichiers épars ou dans des fichiers volumineux.
+*** *Taux d'écriture moyen* : Pourcentage d'opérations d'écriture parmi vos charges de travail. Le taux par défaut est de 30 % d'écritures et 70 % de lectures.
+
+
+
+
+. Dans la section _Considérations relatives à la capacité de stockage des machines virtuelles_, sélectionnez l’une des options de stockage proposées.
++
+.. *Taux moyen de réduction des données* : choisissez parmi les trois valeurs de réduction des données courantes. Sélectionnez « 1:1 - Aucune réduction », « 1:1.25 - 20 % de réduction » ou « 1:1.5 - 33 % de réduction ».
+.. *Pourcentage de marge de manœuvre* : Saisissez le pourcentage de croissance de capacité ajouté à la capacité de vos systèmes de fichiers FSx for ONTAP.
++
+Notez que si vous sélectionnez une valeur inférieure à 20% vous ne pourrez pas créer d'instantanés de volume pour la protection et les sauvegardes à long terme.
+
+
+
+. Sélectionnez *Next* et la page « VMware cloud on AWS node configuration » s'affiche.
++
+Cette page vous permet de définir la configuration du cluster VMware cloud on AWS à l’aide d’une analyse des économies estimées et du type de nœud recommandé. Vous pouvez configurer les éléments suivants :
+
++
+.. *Architecture vSAN* : Choisissez si vous souhaitez utiliser l’architecture vSAN Express Storage Architecture (ESA) ou l’architecture vSAN Original Storage Architecture (OSA).
+.. *Tolérance aux pannes vSAN* : Sélectionnez le niveau de tolérance aux pannes requis pour les machines virtuelles. Vous pouvez choisir « Auto », option recommandée, ou sélectionner un niveau RAID parmi plusieurs options.
++
+*** RAID-1 (FTT 1) : consiste en une copie exacte (ou miroir) d'un ensemble de données sur 2 disques ou plus.
+*** RAID-5 (FTT 1) : consiste en un striping au niveau des blocs avec parité distribuée ; les informations de parité sont réparties entre 3 disques ou plus, et il peut tolérer la défaillance d'un seul disque.
+*** RAID-5 (FTT 2): consiste en une répartition par bandes au niveau des blocs avec parité distribuée - les informations de parité sont réparties entre 4 disques ou plus, et il peut survivre à deux pannes de disque simultanées.
+*** RAID-6 (FTT 2) : étend RAID 5 par l’ajout d’un autre bloc de parité ; il utilise ainsi un striping au niveau des blocs avec deux blocs de parité répartis sur tous les disques membres. Il nécessite 4 disques ou plus et peut supporter la défaillance simultanée de deux disques.
+
+
+.. *Liste de sélection de la configuration des nœuds*: Sélectionnez un type d’instance EC2 pour les nœuds.
+
+
+. Sélectionnez *Suivant* et la page « Sélectionner les machines virtuelles » affichera les machines virtuelles correspondant aux critères que vous avez fournis sur la page précédente.
++
+.. Dans la section _Critères de sélection_, sélectionnez les critères des machines virtuelles que vous prévoyez de déployer :
++
+*** En fonction de l'optimisation des coûts et des performances
+*** En fonction de votre capacité à restaurer facilement vos données à l’aide d’instantanés locaux pour les scénarios de récupération
+*** Selon les deux ensembles de critères : le coût le plus bas tout en offrant de bonnes options de récupération
+
+
+.. Dans la section _Machines virtuelles_, les machines virtuelles correspondant aux critères que vous avez fournis à la page précédente sont sélectionnées (cochées). Sélectionnez ou désélectionnez des machines virtuelles si vous souhaitez intégrer ou migrer moins ou plus de machines virtuelles sur cette page.
++
+La section *Déploiement recommandé* sera mise à jour si vous apportez des modifications. Notez qu'en cochant la case dans la ligne d'en-tête, vous pouvez sélectionner toutes les machines virtuelles de cette page.
+
+.. Sélectionnez *Suivant*.
+
+
+. Sur la page *Plan de déploiement du datastore*, vérifiez le nombre total de machines virtuelles et de datastores recommandés pour la migration.
++
+.. Sélectionnez chaque Datastore répertorié en haut de la page pour voir comment les Datastores et les VM seront provisionnés.
++
+Le bas de la page affiche la VM source (ou plusieurs VM sources) pour laquelle ou lesquelles cette nouvelle VM et ce datastore seront provisionnés.
+
+.. Une fois que vous avez compris comment vos datastores seront déployés, sélectionnez *Suivant*.
+
+
+. Sur la page *Vérifier le plan de déploiement*, consultez le coût mensuel estimé pour toutes les machines virtuelles que vous prévoyez de migrer.
++
+En haut de la page, vous trouverez le coût mensuel de toutes les machines virtuelles déployées et des systèmes de fichiers Amazon FSx for ONTAP. Vous pouvez développer chaque section pour consulter les détails de « Recommended Amazon FSx for ONTAP file system configuration », « Estimated cost breakdown », « Volume configuration », « Sizing assumptions » et les « Disclaimers » techniques.
+
+. Lorsque vous êtes satisfait du plan de migration, plusieurs options s'offrent à vous :
++
+** Sélectionnez *Deploy* pour déployer les systèmes de fichiers FSx for ONTAP afin de prendre en charge vos machines virtuelles. link:deploy-fsx-file-system.html["Découvrez comment déployer un système de fichiers FSx for ONTAP"].
+** Sélectionnez *Télécharger le plan > Déploiement de VM* pour télécharger le plan de migration au format .csv afin de pouvoir l'utiliser pour créer votre nouvelle infrastructure de données intelligente basée sur le cloud.
+** Sélectionnez *Télécharger le plan > Rapport du plan* pour télécharger le plan de migration au format .pdf afin de le distribuer pour révision.
+** Sélectionnez *Exporter le plan* pour enregistrer le plan de migration comme modèle au format .json. Vous pourrez l'importer ultérieurement et l'utiliser comme modèle lors du déploiement de systèmes aux exigences similaires.
+
+
+

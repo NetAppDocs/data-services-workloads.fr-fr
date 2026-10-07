@@ -1,0 +1,65 @@
+= 
+:allow-uri-read: 
+
+
+. Sur la page Créer un système de fichiers FSx for ONTAP, sélectionnez *Quick create*.
++
+Vous pouvez également charger une configuration enregistrée.
+
+. Dans la section Configuration générale du système de fichiers, veuillez indiquer les éléments suivants :
++
+.. *Identifiants AWS* : Sélectionnez cette option pour ajouter des identifiants AWS dans Workload Factory ou continuez sans identifiants.
+.. *Nom du système de fichiers*: Entrez un nom pour le système de fichiers.
+.. *Région et VPC* : Sélectionnez la région et le VPC pour le système de fichiers.
+.. *Type de déploiement* : Sélectionnez un type de déploiement.
++
+*** Déploiement en zone de disponibilité unique (Single-AZ) : assure la disponibilité en surveillant les pannes matérielles et en remplaçant automatiquement les composants d’infrastructure en cas de défaillance. Garantit une haute durabilité grâce à la réplication automatique de vos données au sein d’une zone de disponibilité afin de les protéger contre les pannes de composants.
++
+Cette configuration est recommandée pour les charges de travail hautes performances ou lorsque les charges de travail démarrent à petite échelle et montent progressivement en charge jusqu'à un débit de 72 Go/s et 2,4 millions d'IOPS.
+
+*** Déploiement sur plusieurs zones de disponibilité (Multi-AZ) : assure une disponibilité continue des données même lorsqu’une zone de disponibilité est indisponible. Un système de fichiers Multi-AZ est conçu pour les charges de travail de production stratégiques qui nécessitent une haute disponibilité des données de fichiers ONTAP partagées et un stockage avec réplication intégrée entre les zones de disponibilité.
++
+Cette configuration à une seule paire haute disponibilité est recommandée pour les charges de travail nécessitant un débit allant jusqu'à 6 Go/s ou 200 000 IOPS.
+
+
+
+.. *Étiquettes* : Vous pouvez éventuellement ajouter jusqu’à 50 étiquettes.
+
+
+. Sous *Détails du système de fichiers*, veuillez fournir les informations suivantes :
++
+.. *Capacité de stockage SSD* : Saisissez la capacité de stockage et sélectionnez l’unité de capacité de stockage.
++
+*** Pour les déploiements de première génération, vous ne pouvez pas réduire la capacité après la création du système de fichiers.
+*** Pour les déploiements de deuxième génération, vous pouvez augmenter la capacité après la création du système de fichiers.
+
+
+.. *Identifiants ONTAP* : Facultatif. Saisissez votre nom d’utilisateur ONTAP et votre mot de passe. Vous pouvez définir le mot de passe maintenant ou plus tard.
++
+Si l'utilisateur que vous fournissez n'est pas l'utilisateur fsxadmin et que vous devez ultérieurement réinitialiser le mot de passe fsxadmin, vous pourrez le faire depuis la console AWS.
+
+.. *Configuration SMB/CIFS* : Facultatif. Si vous prévoyez d'utiliser le protocole SMB/CIFS pour accéder aux volumes, vous devez configurer Active Directory pour la machine virtuelle de stockage lors de la création du système de fichiers. Fournissez les informations suivantes pour la machine virtuelle de stockage créée pour ce système de fichiers.
++
+... *Domaine Active Directory à rejoindre* : Saisissez le nom de domaine complet (FQDN) de l’Active Directory.
+... *Adresses IP DNS*: Saisissez jusqu’à trois adresses IP DNS séparées par des virgules.
+... *Nom NetBIOS du serveur SMB* : saisissez le nom NetBIOS du serveur SMB de l’objet ordinateur Active Directory à créer pour votre machine virtuelle de stockage. Il s’agit du nom de cette machine virtuelle de stockage dans Active Directory.
+... *Nom d'utilisateur* : Saisissez le nom d'utilisateur du compte de service dans votre Active Directory existant.
++
+N'incluez pas de préfixe ni de suffixe de domaine. Pour `EXAMPLE\ADMIN`, utilisez `ADMIN`.
+
+... *Mot de passe*: Saisissez le mot de passe du compte de service.
+... *Unité d'organisation* : Facultativement, saisissez le nom de l'unité d'organisation dans laquelle vous prévoyez de créer le compte d'ordinateur pour FSx for ONTAP. L'unité d'organisation est le nom de chemin distinctif de l'unité d'organisation à laquelle vous souhaitez joindre le système de fichiers.
+... *Groupe des administrateurs délégués* : Vous pouvez saisir, si vous le souhaitez, le nom du groupe de votre Active Directory qui peut administrer votre système de fichiers.
++
+Si vous utilisez AWS Managed Microsoft AD, vous devez spécifier un groupe tel que AWS Delegated FSx Administrators, AWS Delegated Administrators ou un groupe personnalisé disposant d'autorisations déléguées pour l'OU.
+
++
+Si vous rejoignez un Active Directory autogéré, utilisez le nom du groupe dans votre Active Directory. Le groupe par défaut est `Domain Admins`.
+
+
+
+
+
+. Ouvrez *Summary* pour consulter la configuration que vous avez définie. Si nécessaire, vous pouvez modifier n'importe quel paramètre à ce stade avant d'enregistrer ou de créer le système de fichiers.
+. Sauvegardez ou créez le système de fichiers.
+

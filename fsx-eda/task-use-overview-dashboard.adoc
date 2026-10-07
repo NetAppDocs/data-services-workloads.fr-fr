@@ -1,0 +1,271 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/task-use-overview-dashboard.html 
+keywords: cluster overview, filter dashboard, cluster health, capacity recommendations, SSD management, throughput management, bulk edit, decision points, clusters table, ONTAP events, latency events 
+summary: 'Utilisez le tableau de bord Vue d"ensemble pour surveiller l"état du cluster, consulter les recommandations de capacité, gérer les paramètres SSD et de débit, et analyser les tendances de performance de vos systèmes de fichiers FSx for ONTAP.' 
+---
+= Utilisez le tableau de bord Vue d'ensemble dans Workload Factory pour EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Utilisez le tableau de bord Vue d'ensemble pour vérifier l'état et la capacité de vos systèmes de fichiers FSx for ONTAP. Vous pouvez filtrer les données, consulter les recommandations de capacité, ajuster les paramètres SSD et de débit, et analyser les tendances de performance afin de déterminer où placer les volumes et quand augmenter la capacité.
+
+
+
+[[before-you-begin]]
+== Avant de commencer
+
+Vous devez disposer de link:task-activate-overview-dashboard.html["activé le tableau de bord Overview"] avant de pouvoir l'utiliser pour surveiller vos systèmes de fichiers.
+
+
+
+[[filter-the-dashboard]]
+== Filtrer le tableau de bord
+
+Utilisez les filtres en haut du tableau de bord pour afficher des systèmes de fichiers spécifiques. Les filtres s'appliquent aux sections latence, utilisation, événements ONTAP et au tableau des clusters.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *EDA*.
+. Sélectionnez l’onglet *Overview*.
+. Utilisez les filtres disponibles pour affiner votre affichage :
++
+** *Comptes AWS* : Filtrez par un ou plusieurs comptes AWS associés à vos informations d’identification configurées
+** *Identifiants* : Filtrez par identifiants AWS spécifiques si vous en avez plusieurs configurés
+** *Régions* : Filtrer par une ou plusieurs régions AWS
+
+
+. Lorsque vous mettez à jour les sélections de filtre, toutes les informations sont actualisées pour n'afficher que les systèmes de fichiers correspondants.
+
+
+
+
+[[view-cluster-health-status]]
+== Afficher l'état de santé du cluster
+
+En haut du tableau de bord, vous voyez un résumé de l'état et de l'activité des systèmes de fichiers que vous avez sélectionnés. Cela apparaît uniquement lorsqu'au moins un lien FSx for ONTAP est connecté à vos systèmes de fichiers.
+
+.À propos de cette tâche
+L'état sanitaire du cluster comprend les domaines clés suivants :
+
+* *Latence* : Nombre d’événements de latence détectés
+* *Élasticité du système de fichiers* :
++
+** *Capacité SSD* : Indique combien de systèmes de fichiers utilisent Automate, Recommend ou None pour gérer la capacité SSD.
+** *Débit* : Indique combien de systèmes de fichiers utilisent Automate, Recommend ou None pour gérer le débit.
+
+
+* *Événements ONTAP* : Nombre d’événements EMS par catégorie (Capacité, Disponibilité et protection, Sécurité et autres)
+
+
+.Étapes
+. Consultez l'état de santé du cluster en haut du tableau de bord.
+. Pour consulter les événements de latence :
++
+** Sélectionnez *Review* pour accéder à l'onglet *Latence*
+** Si la surveillance de la latence n'est pas configurée, sélectionnez *Configurer* pour définir les seuils de latence
++
+Pour plus d'informations sur la surveillance de la latence, voir link:task-configure-latency-monitoring.html["Configurer la surveillance de la latence"^].
+
+
+
+. Pour afficher les événements ONTAP de vos systèmes de fichiers FSx pour ONTAP, sélectionnez *Revoir*.
++
+La carte d'affichage des événements ONTAP présente le nombre d'événements EMS par catégorie (Capacité, Disponibilité et protection, et Sécurité et autres). Pour obtenir la liste complète des événements EMS surveillés, consultez link:https://docs.netapp.com/us-en/ontap-cli-9171/index.html["Documentation ONTAP CLI"^].
+
+
+
+
+
+[[view-and-apply-capacity-or-throughput-recommendations]]
+== Consultez et appliquez les recommandations de capacité ou de débit
+
+Workload Factory exécute automatiquement des recommandations pour chaque système de fichiers FSx for ONTAP. Vous pouvez trouver les systèmes de fichiers avec des recommandations en filtrant le tableau Clusters.
+
+.Étapes
+. Dans le tableau *Clusters*, filtrez par les colonnes de temps ou de détails pertinentes.
++
+Les systèmes de fichiers avec des recommandations de capacité ou de débit apparaissent en haut du tableau.
+
+. Sélectionnez un nom de système de fichiers dans le tableau pour ouvrir les détails du cluster.
+. Examinez la recommandation et le graphique.
++
+La recommandation explique la modification suggérée et la justification de celle-ci. Par exemple : _Nous recommandons d’augmenter la taille du SSD en fonction de votre utilisation du SSD au niveau du système de fichiers._
+
++
+Le graphique présente l'utilisation actuelle ainsi que les tendances historiques.
+
+. En haut à droite du graphique, sélectionnez la plage horaire pour modifier la période affichée.
++
+Le graphique affiche également les points de décision relatifs aux recommandations et à l'automatisation (si le mode d'automatisation est activé). Survolez un point de décision pour afficher les détails de la recommandation de capacité ou de l'action d'automatisation à ce moment-là.
+
+. Pour appliquer la recommandation, suivez les instructions fournies dans le message de recommandation.
+
+
+
+
+[[change-ssd-management-mode]]
+== Modifier le mode de gestion du SSD
+
+Pour chaque système de fichiers, choisissez comment la capacité SSD est gérée : recevoir des recommandations manuelles ou autoriser la mise à l’échelle automatique.
+
+.Étapes
+. Dans le tableau Clusters, repérez le nom du système de fichiers. À côté, ouvrez image:icon-action.png["l'icône du menu d'actions"] et sélectionnez *Modifier la gestion de la capacité SSD*.
+. Sélectionnez *Enable SSD capacity management* puis *Apply*.
+. Choisissez votre mode préféré :
++
+** *Notification uniquement (mode recommandé)*
+** *Automatiser*
+
+
+. Configurez les paramètres de gestion de la capacité SSD :
++
+** *Seuil (%)* : Pourcentage d’utilisation du SSD déclenchant une recommandation
+** *Lookback (%)* : Période de données d'utilisation historiques pour l'analyse
+** *Prévisions (%)* : Utilisation projetée pour la planification de la capacité
+
+
+. Sélectionnez *Appliquer*.
+
+
+.Résultat
+Le système de fichiers bascule immédiatement vers le nouveau mode. Si vous choisissez Recommander ou Automatiser, le système utilise les paramètres définis pour analyser la capacité de stockage et prendre des décisions.
+
+
+
+[[change-throughput-management-mode]]
+== Modifier le mode de gestion du débit
+
+Pour chaque système de fichiers, choisissez comment l’augmentation du débit est gérée.
+
+.Étapes
+. Dans l'onglet *Aperçu*, sélectionnez un ou plusieurs systèmes de fichiers dans le tableau Clusters.
+. Sélectionnez *Modifier la gestion du débit*.
+. Sélectionnez *Activer la gestion du débit* puis *Appliquer*.
+. Choisissez votre mode préféré :
++
+** *Notification uniquement (mode recommandé)*
+** *Automatiser*
+
+
+. Dans la boîte de dialogue, configurez les paramètres de gestion du débit :
++
+** *Période d'évaluation (heures)* : Période pour analyser les profils de débit
+** *Indicateurs non respectés (%)* : Seuil de pourcentage pour déterminer une violation
+** *Fenêtre de violation consécutive (heures)* : Durée des violations consécutives avant intervention
+** *Latence minimale (ms)* : seuil de latence utilisé pour déterminer l’augmentation du débit
+** *Débit maximal (SKU)* : SKU ayant le débit maximal autorisé
+
+
+. Sélectionnez *Appliquer*.
+
+
+.Résultat
+Les systèmes de fichiers sélectionnés passent immédiatement au nouveau mode de débit.
+
+
+
+[[bulk-edit-management-parameters]]
+== Modifier en masse les paramètres de gestion
+
+Modifiez simultanément les paramètres de plusieurs systèmes de fichiers afin que les mêmes paramètres s'appliquent à l'ensemble de vos clusters.
+
+.Étapes
+. Dans l'onglet *Aperçu*, sélectionnez les systèmes de fichiers que vous souhaitez modifier dans le tableau.
++
+
+TIP: Vous pouvez sélectionner des systèmes de fichiers individuels ou utiliser la case à cocher d'en-tête pour sélectionner tous les systèmes de fichiers visibles.
+
+. Sélectionnez *Modifier la gestion de la capacité* ou *Modifier la gestion du débit* au-dessus du tableau.
+. Choisissez votre mode préféré.
+. Dans la boîte de dialogue d'édition, ajustez les paramètres selon vos besoins.
++
+Chaque champ de paramètre comporte une infobulle décrivant sa fonction et sa plage de valeurs valides. La boîte de dialogue affiche les valeurs actuelles ou les valeurs par défaut en fonction de votre sélection.
+
+. Sélectionnez *Appliquer* pour appliquer les modifications à tous les systèmes de fichiers sélectionnés.
+
+
+.Résultat
+Les paramètres sont mis à jour pour tous les systèmes de fichiers sélectionnés. Les systèmes de fichiers en mode Recommend ou Automate utilisent immédiatement les nouveaux paramètres pour l’analyse et la prise de décision.
+
+
+
+[[analyze-capacity-trends-and-decision-points]]
+== Analyser les tendances de capacité et les points de décision
+
+Utilisez le graphique d'utilisation du SSD pour observer l'évolution de l'utilisation du stockage au fil du temps et repérer les tendances.
+
+.À propos de cette tâche
+Les points de décision sur le graphique indiquent quand :
+
+* *Points de décision de recommandation* : L’algorithme de recommandation de capacité a identifié qu’une capacité SSD supplémentaire est nécessaire.
+* *Points de décision d'automatisation* : Le système d'automatisation a tenté d'augmenter la capacité SSD. Ces points indiquent si l'action a réussi ou échoué.
+
+
+.Étapes
+. Dans l'onglet *Vue d'ensemble*, sélectionnez un nom de système de fichiers dans le tableau.
+. Consultez le graphique d'utilisation des SSD présentant les tendances historiques de capacité.
+. Sélectionnez différentes plages horaires pour visualiser l'évolution de la capacité sur diverses périodes.
+. Survolez les points de décision sur le graphique pour afficher des détails sur les recommandations ou les actions d'automatisation à des moments précis.
+. Utilisez les informations tirées du graphique pour :
++
+** Comprendre la fréquence à laquelle des ajustements de capacité sont nécessaires
+** Évaluez si le mode d'automatisation ou le mode de recommandation correspond mieux à vos modèles de charge de travail
+** Identifier les contraintes de capacité récurrentes
+** Planifiez les besoins futurs en capacité en fonction des tendances de croissance
+** Dépanner les tentatives d'automatisation ayant échoué
++
+Les causes d'échec courantes incluent : des autorisations AWS insuffisantes, une mise à jour du système de fichiers déjà en cours, un stockage modifié au cours des 6 dernières heures, une capacité SSD maximale atteinte ou des métriques CloudWatch indisponibles.
+
+
+
+
+
+
+
+[[use-the-clusters-table]]
+== Utilisez le tableau des clusters
+
+Le tableau des clusters fournit une vue détaillée de chaque système de fichiers FSx for ONTAP avec des indicateurs de performance et d'utilisation.
+
+.Étapes
+. Dans l'onglet *Aperçu*, consultez le tableau des clusters.
+. Utilisez le champ de recherche pour trouver des systèmes de fichiers spécifiques par leur nom.
+. Sélectionnez les en-têtes de colonnes pour trier les données.
+. Utilisez *Utilisation des SSD* pour identifier les systèmes de fichiers qui approchent de leurs limites de capacité.
+. Utilisez *Utilisation du débit (P99)* pour comparer la demande de débit au SKU de débit provisionné.
++
+Survolez les en-têtes de colonne de débit pour afficher les détails du calcul.
+
+. Pour personnaliser les colonnes, sélectionnez l'icône des paramètres de colonne et choisissez les colonnes à afficher.
+. Pour exporter des données, sélectionnez l'icône d'exportation pour télécharger un fichier CSV.
+
+
+
+
+[[best-practices]]
+== Meilleures pratiques
+
+Tenez compte des recommandations suivantes lors de l'utilisation du tableau de bord Overview :
+
+* *Surveillance régulière* : Consultez fréquemment le tableau de bord pour repérer les tendances avant qu’elles ne deviennent des problèmes.
+* **Définissez des seuils clairs** : Choisissez des seuils d’utilisation SSD et des paramètres de débit adaptés à votre charge de travail et à vos plans de capacité.
+* **Utilisez des filtres** : Appliquez des filtres de région et de compte pour vous concentrer sur les parties de votre infrastructure que vous souhaitez examiner.
+* **Consultez rapidement les recommandations** : Filtrez le tableau des clusters pour trouver les systèmes de fichiers avec des recommandations de capacité ou de débit. Vérifiez-les et agissez en conséquence pour éviter de manquer d’espace.
+* **Choisissez le bon mode** : utilisez le mode **Recommend** si vous souhaitez approuver vous-même les modifications de capacité ou de débit. Utilisez le mode **Automate** si vous souhaitez que le système gère automatiquement la capacité ou le débit.
+* **Surveillez les points de décision** : Consultez les points de décision sur les graphiques de capacité pour voir comment le système prend ses décisions et confirmez que les paramètres correspondent à vos besoins.
+* **Modification en masse** : Lorsque vous gérez plusieurs systèmes de fichiers, utilisez la modification en masse pour garantir la cohérence des paramètres.
+
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:learn-overview-dashboard.html["Découvrez le tableau de bord Vue d'ensemble"]
+* link:task-activate-overview-dashboard.html["Activer le tableau de bord Vue d'ensemble"]
+* link:task-configure-latency-monitoring.html["Configurer la surveillance de la latence"]
+

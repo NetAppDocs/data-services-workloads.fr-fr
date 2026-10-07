@@ -1,0 +1,120 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/analyze-error-logs.html 
+keywords: analyze error logs, errors, error severity, Microsoft SQL Server error logs, Oracle database error logs, smart analysis, Agentic AI 
+summary: 'Analysez les journaux d"erreurs dans Workload Factory for Databases.' 
+---
+= Analysez les journaux d'erreurs dans NetApp Workload Factory for Databases
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Utilisez l'analyseur intelligent de journaux d'erreurs pour interpréter automatiquement les journaux d'erreurs des bases de données Microsoft SQL Server et Oracle afin que vous puissiez identifier et résoudre rapidement les problèmes. L'analyse basée sur l'IA Agentic nécessite l'intégration d'Amazon Bedrock.
+
+
+
+[[about-this-task]]
+== À propos de cette tâche
+
+L'analyse et la correction des journaux d'erreurs contribuent à préserver la santé et les performances des instances SQL Server et des bases de données Oracle. Une interprétation efficace de ces journaux exige une analyse approfondie et une expertise pointue. La surveillance manuelle, la détection des erreurs et l'analyse des causes profondes sont chronophages et sujettes aux erreurs. Ces difficultés peuvent retarder la résolution des problèmes, accroître les interruptions et engendrer des pertes d'efficacité opérationnelle. L'analyseur intelligent de journaux d'erreurs répond à ces problématiques et offre les avantages clés suivants :
+
+* Regroupement intelligent : regroupe intelligemment les erreurs par unicité, gravité et catégorie, et simplifie le processus de dépannage pour des résolutions plus rapides et plus efficaces.
+* Investigation pilotée par l'IA : exploite l'IA pour analyser proactivement les erreurs et fournir des informations claires et exploitables afin d'accélérer l'identification des problèmes sans nécessiter d'expertise approfondie.
+* Enrichissement des erreurs : améliore les journaux d’erreurs avec des références externes, offrant une clarté contextuelle pour améliorer la compréhension et la prise de décision.
+* Remédiation selon les meilleures pratiques : fournit des recommandations de remédiation personnalisées pour les charges de travail SQL Server exécutées sur FSx pour ONTAP, permettant aux utilisateurs de tous niveaux de compétence de résoudre les problèmes en toute confiance.
+
+
+Lorsque vous utilisez l'analyseur de journaux d'erreurs, vous conservez un contrôle total sur votre environnement tout en bénéficiant d'une analyse avancée par IA.
+
+Pour utiliser l'analyseur de journaux d'erreurs, vous devez activer Amazon Bedrock, sélectionner le modèle utilisé par Workload Factory, créer un point de terminaison privé pour vous connecter à Amazon Bedrock, ajouter des autorisations et créer une licence d'entreprise.
+
+link:https://aws.amazon.com/bedrock/pricing/["Tarifs Amazon Bedrock"^]
+
+
+NOTE: Si l'administrateur de votre compte a désactivé les fonctionnalités d'IA, un message s'affichera et vous ne pourrez pas utiliser l'analyse par IA. Contactez votre administrateur ou link:../admin/manage-genai-features.html["Découvrez l'administration de l'IA"^].
+
+
+
+[[data-privacy-and-security]]
+=== Confidentialité et sécurité des données
+
+Cette fonctionnalité garantit la confidentialité des données et la sécurité grâce aux mesures suivantes :
+
+.souveraineté des données
+Les données de journalisation et les agrégations restent au sein de votre compte AWS et sont transmises via un point de terminaison VPC privé (Amazon Bedrock), garantissant ainsi l'absence d'exposition à l'Internet public.
+
+.Aucun entraînement en IA
+Les données client ne sont pas utilisées pour entraîner ou améliorer les modèles. Amazon Bedrock traite les journaux en temps réel, mais ne s'entraîne pas sur vos données. Les résultats sont stockés dans votre environnement à titre de référence uniquement. Pour plus de détails, consultez link:https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html["Documentation sur la protection des données Amazon Bedrock"^].
+
+
+
+[[before-you-begin]]
+== Avant de commencer
+
+Pour utiliser l'analyseur de journal d'erreurs, vous devez remplir les conditions préalables suivantes :
+
+* Vous devez link:../fsx-storage/add-credentials.html["accorder les autorisations de _consultation, de planification et d'analyse_"^] dans votre compte AWS pour créer un nouvel hôte de base de données dans Workload Factory.
+* link:../fsx-databases/register-instance.html["Enregistrer des ressources"^] dans Workload Factory.
+* Les conditions préalables suivantes doivent également être remplies. Il vous sera demandé de satisfaire à ces conditions préalables dans le cadre des étapes d’analyse des erreurs du journal.
++
+** *Activation d'Amazon Bedrock*
++
+Amazon Bedrock est nécessaire pour que l'agent d'IA exécuté sur l'hôte SQL Server ou Oracle de Workload Factory puisse se connecter de manière transparente à Bedrock et récupérer des informations basées sur l'IA pour les journaux d'erreurs identifiés.
+
+** *Réseau*
++
+Le point de terminaison VPC Amazon Bedrock garantit une communication privée entre votre hôte SQL Server ou Oracle et les API Amazon Bedrock, et élimine toute exposition à l’Internet public. Assurez-vous que le point de terminaison VPC Amazon Bedrock est associé au sous-réseau de l’hôte SQL Server ou Oracle (exemple : vpce-050cb2f33a1380ffd).
+
+** *Autorisations AWS IAM*
++
+Les autorisations suivantes sont requises pour le rôle de profil d'instance EC2 associé à l'hôte SQL Server ou Oracle et pour les informations d'identification AWS associées à Workload Factory.
+
++
+*** rôle de profil d'instance EC2 avec l'autorisation "bedrock:InvokeModel"
++
+Cette autorisation permet à l'instance EC2 sur l'hôte SQL Server ou Oracle correspondant d'invoquer des modèles Bedrock pour une analyse proactive des erreurs et des recommandations de correction. Ce profil garantit également un accès sécurisé à l'IA pour des analyses personnalisées.
+
+*** Identifiants AWS associés à Workload Factory : autorisations « bedrock:GetFoundationModelAvailability » et « bedrock:ListInferenceProfiles »
++
+Ces autorisations vérifient la disponibilité et la configuration du modèle dans la région de l'hôte SQL Server ou Oracle, et garantissent des performances fiables et spécifiques à la région.
+
+
+
+** *Autorisation de l'utilisateur Oracle*
++
+L'autorisation suivante accorde un accès en lecture aux alertes de diagnostic étendues, permettant l'extraction des détails d'erreur/de trace des journaux pour la détection de modèles et la correction par l'IA `V$DIAG_ALERT_EXT`. Cette autorisation est requise uniquement pour les bases de données Oracle.
+
+
+
+
+
+
+
+[[analyze-error-logs]]
+== Analyser les journaux d'erreurs
+
+Utilisez Workload Factory console pour analyser les journaux d'erreurs de SQL Server.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Bases de données*.
+. Dans le menu Bases de données, sélectionnez *Inventaire*.
+. Dans l’inventaire, sélectionnez *Microsoft SQL Server* ou *Oracle* comme type de moteur de base de données.
+. Dans l'onglet Instances, repérez l'instance SQL Server spécifique ou la base de données Oracle que vous souhaitez analyser, puis sélectionnez *Rechercher les erreurs* dans le menu.
+. Dans l'onglet *Analyse des erreurs*, veuillez effectuer les opérations préalables suivantes, comme indiqué dans la console :
++
+** Amazon Bedrock
+** Mise en réseau : point de terminaison privé pour Amazon Bedrock
+** Autorisations pour le rôle de profil d'instance EC2
+** Identifiants associés à Workload Database Management (wlmdb)
+
+
+. Lorsque les conditions préalables sont remplies, sélectionnez *Analyser maintenant* pour utiliser l'analyseur de journaux d'erreurs et obtenir des informations sur vos journaux d'erreurs SQL Server.
++
+Après l'analyse, les erreurs s'affichent dans la console, offrant une vue d'ensemble complète des problèmes détectés par le Smart error log analyzer.
+
+. Utilisez des filtres pour affiner les erreurs affichées en fonction de critères tels que la gravité, la période et le code d'erreur, ou de balises liées à l’infrastructure telles que compute, storage, network et security.
+. Consultez les informations détaillées sur l'erreur, notamment le message d'erreur original, l'explication basée sur l'IA et les étapes de correction suggérées pour résoudre les erreurs.
+

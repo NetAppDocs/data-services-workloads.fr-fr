@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/discover-cache-volumes.html 
+keywords: discover cache volume, FlexCache technology, ONTAP FlexCache, FSx for ONTAP volume 
+summary: Découvrez et visualisez les volumes de cache associés aux relations de cache sans quitter la console NetApp Workload Factory. 
+---
+= Découvrez les volumes de cache dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Découvrez et affichez les volumes _cache_ associés aux relations de cache sans quitter la console NetApp Workload Factory. Les relations de cache sont également appelées relations ONTAP FlexCache. Workload Factory détecte les relations de cache existantes à l’aide de la technologie FlexCache, qui est la capacité de mise en cache à distance de NetApp ONTAP qui accélère l’accès aux données et réduit la latence WAN, la bande passante et les coûts pour les charges de travail à forte intensité de lecture, en particulier lorsque les clients doivent accéder plusieurs fois aux mêmes données.
+
+link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/using-flexcache.html["Apprenez-en davantage sur la réplication des données avec FlexCache."^]
+
+.À propos de cette tâche
+L'association de liens est nécessaire pour découvrir les relations de cache.
+
+Une relation de cache peut exister entre des volumes sur deux systèmes ONTAP, tels qu'un système de fichiers FSx for ONTAP et un système Cloud Volumes ONTAP. Une relation de cache peut également exister au sein d'un seul système de fichiers FSx for ONTAP, d'un volume à l'autre.
+
+.Avant de commencer
+Tenez compte des points suivants avant de commencer.
+
+* Vous devez associer un lien pour découvrir les relations de cache sur un système de fichiers. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Une fois le lien associé, revenez à cette opération.
+* Vous devez disposer d’une relation de cache existante.
+
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans *FSx for ONTAP*, sélectionnez l'onglet *Cache relationships*.
+. Vos volumes de cache apparaissent dans le tableau. Ce tableau contient les informations suivantes concernant chaque volume de cache :
++
+** *Cluster d'origine* : le cluster d'origine, ou cluster source, de la relation FlexCache.
+** *Volume d'origine* : volume d'origine, ou source, de la relation FlexCache®.
+** *VM de stockage d'origine* : La VM de stockage d'origine, ou source, du volume.
+** *Volume de cache* : volume de cache ou cible de la relation FlexCache®.
+** *VM de stockage du cache* : la VM de stockage du cache, ou cible, du volume.
+** *Statut* : le statut de la relation FlexCache.
+** *Espace de stockage disponible sur le cache* : la quantité d’espace de stockage disponible sur le volume de cache.
+** *Système de fichiers cache* : Le système de fichiers du volume de cache.
+** *Modes d'écriture* : Le mode d'écriture de la relation FlexCache.
+** *Cache DR* : indique si la relation FlexCache est un cache de reprise après sinistre (DR).
+** *Règles d'export* : Les règles d'export du volume de cache.
+
+
+
+
+.Informations connexes
+link:manage-cache-volumes.html["Gérer les volumes de cache"^]

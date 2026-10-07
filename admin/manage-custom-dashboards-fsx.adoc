@@ -1,0 +1,90 @@
+---
+sidebar: sidebar 
+permalink: admin/manage-custom-dashboards-fsx.html 
+keywords: manage dashboards, delete dashboard, refresh dashboard, dashboard catalog 
+summary: Accédez à votre catalogue de tableaux de bord pour afficher, actualiser et supprimer des tableaux de bord personnalisés dans Workload Factory. 
+---
+= Gérez les tableaux de bord personnalisés dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gérez vos tableaux de bord personnalisés depuis le catalogue de tableaux de bord. À partir de là, vous pouvez consulter les détails, partager des tableaux de bord, actualiser les données ou supprimer les tableaux de bord dont vous n'avez plus besoin.
+
+.À propos de cette tâche
+Vous pouvez consulter et gérer les tableaux de bord personnalisés à partir du catalogue des tableaux de bord. Les tableaux de bord privés ne sont visibles que par vous, tandis que les tableaux de bord publics sont visibles par tous les utilisateurs de votre compte Workload Factory. Chaque tableau de bord affiche des informations de base telles que le nom du créateur, la date de création et un libellé de visibilité (Privé ou Public).
+
+Les tableaux de bord personnalisés sont en lecture seule. Ils ne permettent pas de modifier vos paramètres de stockage ni de charge de travail.
+
+.Avant de commencer
+Vous devez disposer d'au moins un tableau de bord personnalisé dans votre compte Workload Factory.
+
+
+
+[[access-the-dashboard-catalog]]
+== Accédez au catalogue du tableau de bord
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Dans le menu NetApp Console, sélectionnez *Workloads* > *Workloads Overview* > *Custom dashboards*.
++
+Le catalogue des tableaux de bord affiche tous les tableaux de bord personnalisés de votre compte Workload Factory.
+
+. Consultez la liste du tableau de bord.
+
+
+
+
+[[change-dashboard-visibility]]
+== Modifier la visibilité du tableau de bord
+
+Rendez votre tableau de bord public pour le partager avec votre équipe. Rendez-le privé pour ne plus le partager.
+
+.Étapes
+. Sur la page *Tableaux de bord personnalisés*, repérez le tableau de bord que vous souhaitez mettre à jour.
+. Dans le menu déroulant *Actions* image:icon-action.png["L'icône à trois points qui ouvre le menu des actions"] pour ce tableau de bord, sélectionnez l’une des options suivantes :
++
+** *Partager le tableau de bord* - Rend le tableau de bord visible à tous les utilisateurs de votre compte Workload Factory
+** *Passer au tableau de bord privé* - Rend le tableau de bord visible uniquement pour vous
+
+
+
+
+.Résultat
+Le tableau de bord se met à jour instantanément. L'étiquette de visibilité sur la carte du tableau de bord indique l'état actuel.
+
+
+
+[[refresh-dashboard-data]]
+== Actualiser les données du tableau de bord
+
+Les données du tableau de bord se chargent à l'ouverture de celui-ci. Vous pouvez l'actualiser pour afficher les informations les plus récentes.
+
+Le tableau de bord recharge les données de vos charges de travail. L'heure de la dernière mise à jour change pour indiquer quand les données ont été actualisées.
+
+
+
+[[delete-a-dashboard]]
+== Supprimer un tableau de bord
+
+Supprimez les tableaux de bord dont vous n'avez plus besoin. Cette action est permanente et ne peut pas être annulée.
+
+.Étapes
+. Sur la page *Tableaux de bord personnalisés*, repérez le tableau de bord que vous souhaitez supprimer.
+. Dans le menu déroulant *Actions* de ce tableau de bord, sélectionnez *Supprimer*.
+. Confirmez la suppression.
+
+
+.Résultat
+Le tableau de bord est définitivement supprimé de votre compte Workload Factory et tous les utilisateurs perdent l'accès à celui-ci.
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:create-custom-dashboard-fsx.html["Créer des tableaux de bord personnalisés supplémentaires"]
+* link:troubleshoot-custom-dashboards-fsx.html["Dépannage des tableaux de bord personnalisés"]
+

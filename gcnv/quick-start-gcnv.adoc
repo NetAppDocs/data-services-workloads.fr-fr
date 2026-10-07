@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: gcnv/quick-start-gcnv.html 
+keywords: set up google cloud netapp volumes, quick start,system 
+summary: Pour commencer à utiliser Google Cloud NetApp Volumes, configurez Google Cloud puis créez un système. 
+---
+= Démarrage rapide pour Google Cloud NetApp Volumes
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour commencer à utiliser Google Cloud NetApp Volumes, configurez Google Cloud, puis créez un système.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Un"] link:set-up.html["Configurer Google Cloud NetApp Volumes"]
+[role="quick-margin-para"]
+Dans Google, créez un compte de service.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Deux"] link:add-roles.html["Attribuer des rôles"]
+[role="quick-margin-para"]
+Pour commencer à utiliser Google Cloud NetApp Volumes, vous devez disposer des autorisations appropriées et du rôle d’administrateur Google Cloud NetApp Volumes ou du rôle de lecteur Google Cloud NetApp Volumes qui vous est attribué.
+
+[role="quick-margin-para"]
+image:role_gcnv.png["Capture d'écran du rôle Google Cloud NetApp Volumes."]
+
+[role="quick-margin-para"]
+Depuis la NetApp Console, attribuez les rôles corrects aux membres.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Trois"] link:create-discover-systems.html["Ajouter un système"]
+[role="quick-margin-para"]
+Dans la NetApp Console, cliquez sur *Add System*, puis sur *Google Cloud Platform*, puis sur *Google Cloud NetApp Volumes* et enfin sur *Discover*. Indiquez les informations relatives au compte de service et au projet Google Cloud.

@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/learn-eda.html 
+keywords: software builders, development, benefits, eda, electronic design automation 
+summary: 'NetApp Workload Factory for EDA vous aide à optimiser les performances d"utilisation de FSx for ONTAP.' 
+---
+= Découvrez Workload Factory pour EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Workload Factory for EDA vous aide à gérer Amazon FSx for ONTAP sur plusieurs systèmes de fichiers. Il améliore les performances et réduit les coûts en ajustant automatiquement les paramètres de stockage, en détectant les problèmes de latence et en fournissant des informations sur vos projets EDA.
+
+Il est conçu pour s'intégrer à vos frameworks d'Infrastructure as Code (IaC).
+
+Workload Factory for EDA propose des tableaux de bord, des outils d'automatisation et des utilitaires qui vous aident à gérer plusieurs systèmes de fichiers Amazon FSx for ONTAP.
+
+Il offre les éléments suivants :
+
+* link:learn-overview-dashboard.html["Tableau de bord général"] : Offre une vue unique de votre cluster FSx for ONTAP afin que vous puissiez surveiller l’état, la capacité et le débit. Utilisez-la pour décider où placer de nouveaux volumes, planifier quand augmenter la capacité ou le débit, obtenir des recommandations automatiques de capacité ou activer la mise à l’échelle automatique. Vous pouvez également consulter les décisions passées pour voir comment les recommandations du système ont évolué au fil du temps.
+* link:learn-latency-monitoring.html["Surveiller la latence du volume"]Surveille la latence de lecture et d'écriture des volumes et vous permet de définir des seuils d'avertissement et de criticité. Lorsque les seuils sont dépassés, il envoie des notifications par e-mail ou SNS. Inclut une analyse de base automatisée utilisant les métriques du centre de délai QoS d'ONTAP, avec une analyse IA optionnelle pour les problèmes plus complexes nécessitant une identification plus approfondie de la cause racine.
+* link:task-analyze-latency-trends.html["Analyser les tendances de latence"]Utilisez des graphiques de performance synchronisés pour la latence, les IOPS et le débit afin de voir comment ces indicateurs évoluent au fil du temps. Cela vous aide à repérer des tendances, à déterminer si les problèmes se répètent ou ne surviennent qu'une seule fois, et à prendre des décisions éclairées concernant les corrections à apporter.
+* link:learn-project-dashboard.html["Tableau de bord des projets"] : Affiche l'utilisation du stockage pour tous vos systèmes de fichiers Amazon FSx for ONTAP en un seul endroit, vous aidant à planifier la gestion de la capacité, à estimer les coûts et à voir comment chaque projet utilise le stockage.
+* link:learn-eda-workloads.html["CI/CD"] : Accélère la compilation des logiciels en clonant rapidement des volumes FSx pour ONTAP.
+

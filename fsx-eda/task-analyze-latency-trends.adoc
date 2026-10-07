@@ -1,0 +1,91 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/task-analyze-latency-trends.html 
+keywords: latency graph, latency visualization, latency trends, breach patterns, latency spikes, latency patterns, time range analysis, breach frequency, iops, throughput 
+summary: 'Utilisez les graphiques interactifs pour analyser les tendances de latence du volume au fil du temps, identifier les schémas et suivre l"efficacité des mesures correctives.' 
+---
+= Analyser les tendances de latence pour l'EDA dans Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Après la détection d'une violation de latence, utilisez les graphiques pour voir comment la latence du volume, les IOPS et le débit évoluent au fil du temps. Cela vous aide à repérer des schémas et à vérifier si la remédiation a amélioré les performances.
+
+
+
+[[before-you-begin]]
+== Avant de commencer
+
+Vous devez disposer de link:task-configure-latency-monitoring.html["surveillance de la latence configurée"] et d'au moins une brèche détectée. Pour consulter les graphiques, assurez-vous que les identifiants AWS sont disponibles. Pour afficher la répartition des composants de latence QoS, assurez-vous que le système de fichiers est lié.
+
+
+
+[[analyze-latency-trends]]
+== Analyser les tendances de latence
+
+La page *Analyse détaillée de la latence* fournit des graphiques de performance pour vous aider à analyser le comportement du volume au fil du temps : latence, IOPS et débit.
+
+.À propos de cette tâche
+Les graphiques présentent les indicateurs CloudWatch pour le volume concerné. Tous les graphiques utilisent la même chronologie. Ils affichent automatiquement les indicateurs en fonction de l’alarme qui a déclenché l’événement.
+
+Vous pouvez modifier la plage horaire pour observer les performances sur différentes périodes. Vous pouvez également passer de Tout, Lecture, Écriture ou Métadonnées.
+
+La visualisation comprend :
+
+* *Graphique de latence* : Affiche la latence du volume (ms) au fil du temps avec des lignes de seuil d’avertissement et de seuil critique et des marqueurs de dépassement.
+* *Graphique IOPS* : Affiche les IOPS au fil du temps, avec des seuils et des indicateurs de dépassement (si configuré).
+* *Graphique de débit* : Affiche le débit au fil du temps pour la période sélectionnée. Si **Métadonnées** est sélectionné dans le filtre, le graphique de débit n'affiche aucune donnée.
+* *Lignes de seuil* : Les lignes horizontales pointillées indiquent les seuils d’avertissement et critiques.
+* *Indicateurs de violation* : Des indicateurs visuels signalent les violations détectées. Survolez un indicateur pour afficher la gravité, l’heure de détection, la latence médiane CloudWatch (ms) et la répartition des composantes de latence QoS.
+
+
+.Étapes
+. Dans l'onglet *Latence*, sélectionnez l'événement dans la colonne Gravité.
++
+Le panneau d'analyse de latence s'ouvre.
+
+. Examinez le graphique de latence et le résumé des violations pour la *période* et le *type* sélectionnés.
+. Sélectionnez *Afficher l'analyse complète* pour ouvrir *Analyse détaillée de la latence*.
+. Dans les graphiques de *latence*, utilisez la *période* (par exemple, 72 heures) et le *type* (Lecture/Écriture/Métadonnées) pour ajuster les graphiques.
+. Examinez les graphiques pour :
++
+** *Latence* (ms) avec lignes de seuil d'alerte/critique
+** *IOPS* avec lignes de seuil (si configuré)
+** *Débit* sur la même période
+
+
+. Utilisez les marqueurs de pic et le résumé de la violation (par exemple, « 1 violation critique détectée dans cette période ») pour corréler les augmentations de latence avec les changements d'IOPS et de débit.
+. Modifiez la période pour examiner d'autres périodes et rechercher des tendances.
+. Consultez les courbes de tendance pour la latence, les IOPS et le débit. Les graphiques des IOPS et de la latence incluent des lignes de seuil pour comparaison.
+. Placez le pointeur de votre souris sur un marqueur de violation pour afficher les détails de la violation (gravité, heure de détection, latence médiane CW et composantes de latence QoS).
+. Utilisez les informations du graphique pour :
++
+** Vérifiez si les problèmes de latence se produisent une fois ou de façon répétée
+** Identifier les moments de la journée où la latence est plus élevée
+** Déterminez si les pics de latence sont courts ou de longue durée
+** Comparez les événements de latence avec les modèles de charge de travail ou les modifications du système
+
+
+
+
+.Résultat
+Vous pouvez observer l'évolution de la latence du volume au fil du temps. Cela vous aide à décider s'il convient d'agir maintenant, de modifier les seuils d'alerte ou de vérifier la présence de problèmes système.
+
+
+NOTE: Les graphiques utilisent des métriques CloudWatch. Celles-ci peuvent différer légèrement des composantes de latence rapportées par la QoS, car elles sont collectées de différentes manières.
+
+
+
+[[graph-interpretation]]
+== Interprétation du graphique
+
+Utilisez ces conseils lors de l'analyse des changements de temps de réponse :
+
+* *Utilisez plusieurs périodes* : Analysez les graphiques sur différentes plages horaires pour distinguer les pics ponctuels des ralentissements persistants. Commencez par la vue sur 24 heures pour avoir le contexte général. Zoomez ensuite sur des périodes plus courtes pour examiner des incidents spécifiques, ou passez à la vue sur 72 heures pour repérer les tendances quotidiennes.
+* *Comparer visuellement les seuils* : Utilisez les lignes de seuil sur le graphique pour vérifier si vos paramètres d’alerte et de criticité sont adaptés à votre charge de travail. Si la latence s’approche souvent du seuil sans le franchir, ce dernier est peut-être trop élevé. Si vous observez de nombreux pics brefs qui franchissent le seuil sans affecter les opérations, le seuil est peut-être trop sensible.
+* *Identifier les tendances quotidiennes* : Utilisez les vues 24 h et 72 h pour repérer les tendances au cours de la journée. Si des pics de latence surviennent aux mêmes moments, planifiez les tâches lourdes pendant les périodes plus calmes ou augmentez la capacité pendant les périodes de forte activité.
+* *Différencier les types de pics* : Les pics brefs indiquent généralement des problèmes temporaires, comme une contention de ressources passagère. Une latence élevée et persistante révèle des problèmes système plus profonds, tels qu’une capacité limitée ou des problèmes de configuration. Chaque situation requiert une solution différente.
+* *Surveillez les tendances après les modifications* : Après avoir ajusté les seuils, ajouté de la capacité ou modifié les paramètres, surveillez le graphique pendant au moins 72 heures pour vous assurer que les modifications ont fonctionné.
+

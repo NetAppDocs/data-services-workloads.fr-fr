@@ -1,0 +1,71 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/create-sandbox-clone.html 
+keywords: create, clone, sandbox 
+summary: Créez un clone sandbox dans NetApp Workload Factory for Databases. 
+---
+= Créer un clone sandbox dans NetApp Workload Factory for Databases
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La création d'un clone sandbox d'une base de données dans NetApp Workload Factory for Databases vous permet d'utiliser ce clone pour le développement, les tests, l'intégration, l'analyse, la formation, l'assurance qualité, et bien plus encore sans modifier la base de données source.
+
+.À propos de cette tâche
+Un clone sandbox est créé à partir de l’instantané le plus récent sur la base de données source. Il peut être cloné sur le même Microsoft SQL Server que la base de données source ou sur un autre Microsoft SQL Server, à condition qu’ils partagent le même système de fichiers FSx for ONTAP.
+
+.Avant de commencer
+Assurez-vous de remplir les conditions préalables suivantes avant de créer un clone de bac à sable.
+
+* *Identifiants et autorisations* : Vous devez avoir link:../fsx-storage/add-credentials.html["Informations d'identification du compte AWS et autorisations _opérations et remédiation_"^] pour créer un clone sandbox dans Workload Factory.
++
+Vous pouvez également utiliser le Codebox pour copier un modèle partiellement rempli ou créer un modèle complet afin de pouvoir créer le clone du sandbox en dehors de Workload Factory à l’aide de l’API REST. link:../admin/codebox-automation.html["Découvrez-en plus sur l'automatisation de Codebox"^].
+
+* *Microsoft SQL Server* : vous devez disposer d’un Microsoft SQL Server géré dans Workload Factory for Databases pour héberger le nouveau clone de sandbox.
+* *AWS Systems Manager*: Assurez-vous que le `NT Authority\SYSTEM` privilège utilisateur est activé sur l’hôte Microsoft SQL via AWS Systems Manager.
+* *Base de données source* : Vous avez besoin d’une base de données source disponible pour le clone.
+
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Bases de données*.
+. Dans Databases, sélectionnez l’onglet *Sandboxes*.
+. Dans l’onglet Bacs à sable, sélectionnez *Créer un nouveau bac à sable*.
+. Sur la page Créer un nouvel environnement de test, sous Source de base de données, indiquez les informations suivantes :
++
+.. *Hôte de la base de données source* : Sélectionnez l’hôte de la base de données source.
+.. *Instance de base de données source* : Sélectionnez l’instance de base de données source.
+.. *Base de données source*: Sélectionnez la base de données source à partir de laquelle effectuer le clonage.
+
+
+. Sous « Cible de base de données », indiquez les éléments suivants :
++
+.. *Hôte de base de données cible* : Sélectionnez un hôte de base de données cible pour le clone sandbox qui se trouve dans le même VPC et qui possède le même système de fichiers FSx for ONTAP que l’hôte source.
+.. *Instance de base de données cible* : Sélectionnez l’instance de base de données cible pour le clone de bac à sable.
+.. *Base de données cible* : Saisissez un nom pour le clone sandbox.
+
+
+. *Montage* : Lors du clonage d’une base de données comportant plusieurs fichiers de données et/ou de journalisation, Workload Factory clone tous les fichiers sous la lettre de lecteur attribuée automatiquement ou définie.
++
+Sélectionnez l'une des options suivantes :
+
++
+.. *Attribution automatique du point de montage*
+.. *Définir le chemin du point de montage*
++
+Veuillez fournir les informations suivantes pour définir le chemin du point de montage :
+
++
+*** Saisissez la lettre du lecteur pour le chemin d'accès au fichier de données.
+*** Saisissez la lettre du lecteur correspondant au chemin d'accès du fichier journal.
+
+
+
+
+. *Définir l'étiquette* : Sélectionnez une étiquette pour définir le clone du bac à sable.
+. Cliquez sur *Créer*.
+
+
+Pour vérifier l'avancement de la tâche, rendez-vous dans l'onglet *Suivi des tâches*.

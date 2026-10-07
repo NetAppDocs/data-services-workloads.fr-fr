@@ -1,0 +1,166 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/use-onprem-data.html 
+keywords: use, detect, replicate, remove, on-premises, ONTAP cluster, on-premises cluster, ONTAP 
+summary: 'Découvrez et répliquez les données ONTAP locales dans NetApp Workload Factory afin qu"elles puissent être utilisées comme sauvegarde dans le cloud.' 
+---
+= Répliquez les données du cluster ONTAP local dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Découvrez et répliquez les données ONTAP locales dans NetApp Workload Factory afin qu'elles puissent être utilisées comme sauvegarde dans le cloud.
+
+.À propos de cette tâche
+Pour utiliser les données d’un cluster ONTAP sur site, vous devez d’abord découvrir le cluster ONTAP sur site. Après avoir découvert un cluster ONTAP sur site, vous pouvez utiliser les données pour l’un des cas d’utilisation suivants.
+
+Cas d'utilisation::
++
+--
+* *Sauvegarde et migration vers le cloud* : les données de volume ONTAP répliquées sur site vers un système de fichiers FSx for ONTAP peuvent être utilisées comme sauvegarde dans le cloud.
+* *Hiérarchisation des données* : après la réplication, les données de volume ONTAP sur site rarement consultées peuvent être hiérarchisées du niveau de stockage SSD vers le niveau de stockage du pool de capacité.
+
+
+--
+
+
+
+
+[[discover-an-on-premises-ontap-cluster]]
+== Découvrez un cluster ONTAP sur site
+
+Découvrez un cluster ONTAP sur site dans NetApp Workload Factory afin de pouvoir répliquer les données vers un système de fichiers Amazon FSx for NetApp ONTAP.
+
+.Avant de commencer
+Assurez-vous d'avoir les éléments suivants avant de commencer :
+
+* Un système de fichiers FSx for ONTAP pour la réplication.
+* Un lien actif pour associer le cluster local détecté. Si vous n'avez pas de lien, vous devrez link:create-link.html["en créer un"^].
+* Identifiants utilisateur ONTAP avec les autorisations requises.
+* Version 9.8 et ultérieure d'ONTAP sur site.
+* Connectivité illustrée dans le schéma suivant.
++
+image:screenshot-on-prem-connectivity.png["Capture d'écran montrant comment un cluster ONTAP sur site doit être connecté au cloud Amazon Web Services pour le chemin de gestion et le chemin d'accès aux données"]
+
+
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans le menu *FSx for ONTAP*, sélectionnez *On-premises ONTAP*.
+. Sélectionnez *Discover*.
+. Passez en revue les prérequis et sélectionnez *Next*.
+. Sur la page Discover ONTAP on-premises, indiquez les informations suivantes sous *Configuration du cluster* :
++
+.. *Lien* : Sélectionnez un lien. Le lien sera associé au cluster sur site afin d’établir une connectivité entre le cluster et Workload Factory.
++
+Si vous n'avez pas créé de lien, suivez les instructions puis revenez à cette opération et sélectionnez le lien.
+
+.. *Adresse IP du cluster* : Indiquez l’adresse IP du cluster ONTAP sur site à répliquer.
+.. *Identifiants ONTAP* : Fournissez les éléments suivants :
++
+*** GovCloud accounts : Saisissez l’ARN avec les informations d’identification ONTAP.
+*** Tous les autres comptes : saisissez les identifiants ONTAP pour le cluster ONTAP sur site. Assurez-vous que l’utilisateur dispose des autorisations requises.
+
+
+
+
+. Sélectionnez *Discover* pour démarrer le processus de découverte.
+
+
+.Résultat
+Le cluster ONTAP sur site a été détecté et apparaît désormais dans l'onglet *On-Premises ONTAP*.
+
+Vous pouvez désormais consulter les données dans votre cluster ONTAP sur site et <<Répliquer les données de volume à partir d’un cluster ONTAP sur site,répliquer les données vers un système de fichiers FSx for ONTAP>>.
+
+
+
+[[replicate-volume-data-from-an-on-premises-ontap-cluster]]
+== Répliquer les données de volume à partir d’un cluster ONTAP sur site
+
+Répliquez les données du volume d’un cluster ONTAP sur site vers un système de fichiers FSx for ONTAP. Après la réplication, les données peuvent être utilisées pour enrichir les bases de connaissances de l’IA.
+
+.Avant de commencer
+* Vous devez découvrir un cluster ONTAP sur site pour répliquer ses données de volume.
+* Vous devez disposer d’un système de fichiers FSx for ONTAP disponible comme cible de la réplication.
+* Le cluster ONTAP sur site et le système de fichiers FSx for ONTAP que vous utilisez pour la relation de réplication doivent avoir un lien associé. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Une fois le lien associé, revenez à cette opération.
+
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans le menu *FSx for ONTAP*, sélectionnez *On-premises ONTAP*.
+. Pour trouver les volumes par machine virtuelle de stockage, vous pouvez sélectionner *Select storage VM* dans la liste déroulante.
+. Sélectionnez un ou plusieurs volumes à répliquer, puis sélectionnez *Replicate*.
+. Sur la page Créer une réplication, sous Cible de réplication, indiquez les informations suivantes :
++
+.. *FSx for ONTAP file system* : Sélectionnez les informations d’identification, la région et le nom du système de fichiers FSx for ONTAP pour le système de fichiers cible FSx for ONTAP.
+.. *Nom de la machine virtuelle de stockage* : Sélectionnez la machine virtuelle de stockage dans le menu déroulant.
+.. *Nom du volume* : Le nom du volume cible est généré automatiquement au format suivant `{OriginalVolumeName}_copy`. Vous pouvez utiliser le nom de volume généré automatiquement ou saisir un autre nom de volume.
+.. *Hiérarchisation des données* : Sélectionnez la stratégie de hiérarchisation des données stockées dans le volume cible.
++
+*** *Auto* : stratégie de hiérarchisation par défaut lors de la création d’un volume à l’aide de l’interface utilisateur Workload Factory FSx for ONTAP. Hiérarchise toutes les données inactives, y compris les données utilisateur et les instantanés, vers le niveau de stockage du pool de capacité pendant une période donnée.
+*** *Snapshot uniquement* : met en niveau uniquement les données Snapshot vers le niveau de stockage du pool de capacité.
+*** *Aucun*: Conserve toutes les données de votre volume sur le niveau de stockage principal.
+*** *Toutes* : marque toutes les données utilisateur et les données d’instantané comme froides et les stocke dans le niveau de stockage du pool de capacité.
++
+Notez que certaines politiques de hiérarchisation sont associées à une période de refroidissement minimale qui définit la durée, ou le nombre de jours de refroidissement, pendant laquelle les données utilisateur d'un volume doivent rester inactives pour que ces données soient considérées comme « froides » et déplacées vers le niveau de stockage du pool de capacité. La période de refroidissement commence dès que des données sont écrites sur le disque.
+
++
+Pour plus d'informations sur les politiques de hiérarchisation des volumes, reportez-vous à link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Capacité de stockage du volume"^]la documentation AWS FSx for NetApp ONTAP.
+
+
+
+.. *Débit de transfert maximal* : sélectionnez *Limité* et saisissez la limite de transfert maximale en Mio/s. Vous pouvez également sélectionner *Illimité*.
++
+Sans limite, les performances du réseau et de l'application pourraient diminuer. Nous recommandons également un débit de transfert illimité pour les systèmes de fichiers FSx for ONTAP destinés aux charges de travail critiques, par exemple celles qui sont utilisées principalement pour la reprise après sinistre.
+
+
+
+. Dans les paramètres de réplication, veuillez indiquer les éléments suivants :
++
+.. *Intervalle de réplication*: Sélectionnez la fréquence à laquelle les instantanés sont transférés du volume source vers le volume cible.
+.. *Conservation à long terme*: Activez éventuellement les instantanés pour la conservation à long terme.
++
+Si vous activez la conservation à long terme, sélectionnez une stratégie existante ou créez-en une nouvelle pour définir les instantanés à répliquer et le nombre à conserver.
+
++
+*** Pour une stratégie existante, sélectionnez *Choisir une stratégie existante*, puis sélectionnez la stratégie existante dans le menu déroulant.
+*** Pour une nouvelle stratégie, sélectionnez *Créer une nouvelle stratégie* et indiquez les informations suivantes :
++
+**** *Nom de la stratégie* : Saisissez un nom de stratégie.
+**** *Stratégies de snapshot* : Dans le tableau, sélectionnez la fréquence de la stratégie de snapshot et le nombre de copies à conserver. Vous pouvez sélectionner plusieurs stratégies de snapshot.
+
+
+
+
+
+
+. Sélectionnez *Créer*.
+
+
+.Résultat
+La relation de réplication apparaît dans l’onglet *Relations de réplication* du système de fichiers FSx for ONTAP cible.
+
+
+
+[[remove-an-on-premises-ontap-cluster-from-netapp-workload-factory]]
+== Supprimer un cluster ONTAP sur site de NetApp Workload Factory
+
+Supprimez un cluster ONTAP sur site de NetApp Workload Factory en cas de besoin.
+
+.Avant de commencer
+Vous devez link:manage-replication.html["supprimer toutes les relations de réplication existantes"] pour tous les volumes du cluster ONTAP sur site avant de supprimer le cluster afin qu'aucune relation rompue ne subsiste.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans le menu *FSx for ONTAP*, sélectionnez *On-premises ONTAP*.
+. Sélectionnez le cluster ONTAP sur site à supprimer.
+. Sélectionnez le menu Actions et sélectionnez *Retirer de Workload Factory*.
+
+
+.Résultat
+Le cluster ONTAP sur site est supprimé de NetApp Workload Factory.

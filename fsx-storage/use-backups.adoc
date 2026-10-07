@@ -1,0 +1,95 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/use-backups.html 
+keywords: create backup, volume backup, back up a volume, FSx for ONTAP backup, manual backup, restore from a backup, restore volume 
+summary: 'Protégez vos données de volume contre la suppression accidentelle, la corruption et d"autres événements de perte de données en créant et en restaurant des sauvegardes dans NetApp Workload Factory.' 
+---
+= Utilisez des sauvegardes pour protéger les données dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Protégez vos données de volume contre la suppression accidentelle, la corruption et d'autres événements de perte de données en créant et en restaurant des sauvegardes dans NetApp Workload Factory. Vous pouvez configurer une planification de sauvegarde, créer une sauvegarde à la demande d'un volume en dehors de vos sauvegardes planifiées régulières, et restaurer un volume à partir d'une sauvegarde existante vers n'importe quel système de fichiers FSx for ONTAP de votre compte AWS.
+
+
+
+[[create-an-on-demand-backup-of-a-volume]]
+== Créer une sauvegarde à la demande d'un volume
+
+Créez une sauvegarde manuelle d'un volume en dehors des sauvegardes régulièrement planifiées dans NetApp Workload Factory.
+
+.À propos de cette tâche
+Les sauvegardes de volume sont effectuées volume par volume, donc chaque sauvegarde contient uniquement les données d'un volume particulier.
+
+Les sauvegardes de volume sont incrémentales, ce qui signifie que seules les données du volume qui ont changé depuis votre sauvegarde la plus récente sont enregistrées. Cela minimise le temps nécessaire pour créer la sauvegarde et l'espace de stockage requis pour la sauvegarde, ce qui permet d'économiser sur les coûts de stockage en ne dupliquant pas les données.
+
+.Avant de commencer
+Pour sauvegarder vos volumes, votre volume et votre système de fichiers doivent tous deux disposer d'une capacité de stockage SSD disponible suffisante pour stocker l'instantané de sauvegarde. Lors de la création d'un instantané de sauvegarde, la capacité de stockage supplémentaire consommée par l'instantané ne doit pas amener le volume à dépasser 98 % d'utilisation du stockage SSD. Si cela se produit, la sauvegarde échouera.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Explorateur de volumes*.
+. Sélectionnez le menu Actions pour sauvegarder le volume.
+. Sélectionnez *Data protection actions*, *Volume backups*, puis *Manual backup*.
+. Dans la boîte de dialogue de sauvegarde manuelle, saisissez un nom pour la sauvegarde.
+. Sélectionnez *Back up*.
+
+
+
+
+[[manage-the-backup-schedule-for-an-fsx-for-ontap-file-system]]
+== Gérer la planification des sauvegardes d’un système de fichiers FSx for ONTAP
+
+Gérez la planification des sauvegardes d'un système de fichiers FSx for ONTAP dans NetApp Workload Factory.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans *FSx for ONTAP*, sélectionnez le menu Actions du système de fichiers dont vous souhaitez mettre à jour la planification de sauvegarde, puis sélectionnez *Manage*.
+. Sous Informations, sélectionnez l'icône en forme de crayon à côté de *Sauvegardes de volume*. L'icône en forme de crayon apparaît à côté de la flèche déroulante lorsque la souris survole la ligne *Sauvegardes de volume*.
+. Dans la boîte de dialogue *Sauvegardes de volume*, fournissez les éléments suivants :
++
+.. *Sauvegardes automatiques quotidiennes* : Activez ou désactivez cette fonctionnalité. Si vous la désactivez, sélectionnez *Appliquer*. Si vous l’activez, suivez les étapes suivantes.
+.. *Période de conservation des sauvegardes automatiques* : Saisissez le nombre de jours pendant lesquels conserver les sauvegardes automatiques.
+.. *Fenêtre de sauvegarde automatique quotidienne* : Sélectionnez soit *Aucune préférence* (une heure de début de sauvegarde quotidienne est sélectionnée pour vous), soit *Sélectionner une heure de début pour les sauvegardes quotidiennes* et spécifiez une heure de début.
+.. *Fenêtre de maintenance hebdomadaire* : Sélectionnez soit *Aucune préférence* (une heure de début de la fenêtre de maintenance hebdomadaire est sélectionnée pour vous), soit *Sélectionnez une heure de début pour la fenêtre de maintenance hebdomadaire de 30 minutes* et indiquez une heure de début.
+
+
+. Sélectionnez *Appliquer*.
+
+
+
+
+[[restore-a-volume-from-a-backup-in-netapp-workload-factory]]
+== Restaurer un volume à partir d'une sauvegarde dans NetApp Workload Factory
+
+Dans NetApp Workload Factory, vous pouvez restaurer un volume à partir d'une sauvegarde vers n'importe quel système de fichiers FSx for ONTAP de votre compte AWS.
+
+Workload Factory détermine si vous disposez d'une capacité suffisante pour la restauration et peut ajouter automatiquement de la capacité de stockage SSD si vous n'en avez pas.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Explorateur de volumes*.
+. Sélectionnez le menu Actions du volume à restaurer à partir d'une sauvegarde.
+. Sélectionnez *Actions de protection des données*, *Sauvegardes de volume*, puis *Restaurer à partir d'une sauvegarde*.
+. Dans la boîte de dialogue Restaurer à partir d'une sauvegarde, indiquez les informations suivantes :
++
+.. *Système de fichiers cible* : Sélectionnez le système de fichiers cible dans le menu déroulant.
+.. *VM de stockage cible* : Sélectionnez la VM de stockage cible dans le menu déroulant.
+.. *Nom de la sauvegarde*: Sélectionnez le nom de la sauvegarde dans le menu déroulant.
+.. *Nom du volume restauré* : Saisissez le nom du volume restauré.
+
+
+. Vérifiez la capacité du système de fichiers pour l'opération de restauration.
++
+Lorsque la capacité du système de fichiers est limitée, les problèmes suivants peuvent survenir :
+
++
+** La restauration peut faire dépasser la capacité utilisée le seuil que vous avez spécifié. Vous pouvez terminer l'opération de restauration. Pensez link:adjust-file-system-capacity.html["ajout manuel de la capacité du niveau de stockage SSD"] ou sélectionnez Workload Factory pour qu'il ajoute automatiquement la capacité du niveau de stockage SSD.
+** La restauration nécessite de la capacité SSD supplémentaire. Vous devez sélectionner l'option permettant à Workload Factory d'ajouter automatiquement de la capacité de stockage SSD pour continuer.
+
+
+. Sélectionnez *Restaurer*.
+

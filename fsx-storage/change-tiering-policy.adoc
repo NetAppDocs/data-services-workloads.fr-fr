@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/change-tiering-policy.html 
+keywords: tiering policy, change tier, change tiers, tier policy update 
+summary: Modifiez la politique de hiérarchisation dans NetApp Workload Factory pour réaffecter les données du niveau de stockage principal haute performance au niveau de stockage du pool de capacité secondaire. 
+---
+= Modifier la stratégie de hiérarchisation d'un volume dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dans NetApp Workload Factory, vous pouvez modifier la politique de hiérarchisation pour réaffecter automatiquement les données du niveau de stockage principal haute performance vers le niveau de stockage du pool de capacité secondaire.
+
+.À propos de cette tâche
+Vous pouvez modifier à tout moment la politique de hiérarchisation d'un volume. La politique de hiérarchisation est définie pour chaque volume.
+
+Le choix de l'emplacement de stockage de vos données a des répercussions sur vos économies.
+
+FSx pour ONTAP comporte deux niveaux pour le stockage des données de volume :
+
+* *Niveau de stockage SSD* : Ce niveau de stockage principal est destiné aux données que vous consultez le plus fréquemment, également appelées données « chaudes ». Le stockage des données sur le niveau de stockage principal est plus coûteux que sur le niveau de stockage secondaire.
+* *Niveau de stockage du pool de capacité*: Ce niveau de stockage secondaire est destiné aux données archivées ou aux données rarement consultées, également appelées données _froides_.
+
+
+Reportez-vous à link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-storage-capacity.html#storage-tiers["Gestion de la capacité de stockage"^] dans la documentation AWS for FSx for NetApp ONTAP pour plus d'informations sur les niveaux de stockage.
+
+.Avant de commencer
+Veuillez consulter les politiques de hiérarchisation disponibles avant de modifier la politique de hiérarchisation.
+
+* *Équilibré (Auto)* : stratégie de hiérarchisation par défaut lors de la création d'un volume via l'interface utilisateur. Les données fréquemment consultées sont conservées sur le niveau de stockage SSD, tandis que les données rarement consultées et les instantanés sont placés sur le niveau de stockage du pool de capacité après la période de refroidissement. Recommandé pour les charges de travail principales courantes.
+* *Optimisation des coûts (Tous)* : hiérarchise tous les snapshots et toutes les données vers le niveau de stockage du pool de capacité. Recommandé pour les cibles secondaires.
+* *Performances optimisées (instantanés uniquement)* : place uniquement les données d’instantané sur le niveau de stockage du pool de capacité. Recommandé pour les charges de travail à faible latence, telles que les bases de données stratégiques.
+* *None* : Conserve les données du volume dans le niveau de stockage SSD, les empêchant d’être déplacées vers le niveau de stockage du pool de capacité.
+
+
+Notez que certaines politiques de hiérarchisation sont associées à une période de refroidissement minimale qui définit la durée, ou le nombre de jours de refroidissement, pendant laquelle les données utilisateur d'un volume doivent rester inactives pour que ces données soient considérées comme « froides » et déplacées vers le niveau de stockage du pool de capacité. La période de refroidissement commence dès que des données sont écrites sur le disque.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Explorateur de volumes* > *FSx for ONTAP*.
+. Sélectionnez le menu Actions du volume pour lequel vous souhaitez modifier la politique de hiérarchisation.
+. Sélectionnez *Actions avancées*, puis *Modifier la politique de hiérarchisation*.
+. Sur la page Modifier la stratégie de hiérarchisation, sélectionnez l'option permettant de copier la stratégie de hiérarchisation du volume source ou sélectionnez l'une des stratégies de hiérarchisation suivantes :
++
+** *Équilibré (Auto)* : Entrez le nombre de jours de refroidissement.
+** *Optimisation des coûts (Tous)*
+** *Optimisé pour les performances (instantanés uniquement)* : Saisissez le nombre de jours de refroidissement.
+** *Aucun*
+
+
+. Sélectionnez *Appliquer*.
+

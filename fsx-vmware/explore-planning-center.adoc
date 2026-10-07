@@ -1,0 +1,147 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/explore-planning-center.html 
+keywords: vm workloads, netapp Workload Factory 
+summary: 'Vous pouvez utiliser le centre de planification VMware pour gérer les données d"inventaire chargées et les plans de migration que vous avez créés.' 
+---
+= Explorez le centre de planification VMware
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le centre de planification VMware vous permet de télécharger de nouvelles données d'inventaire de machines virtuelles et de créer de nouveaux plans de migration, ainsi que de gérer les données d'inventaire de machines virtuelles et les plans de migration que vous avez déjà enregistrés avec NetApp Workload Factory.
+
+
+
+[[manage-vm-inventory-data]]
+== Gérer les données d'inventaire des machines virtuelles
+
+Utilisez le centre de planification pour créer et gérer les données d’inventaire des VM.
+
+
+
+[[upload-vm-inventory-data]]
+=== Télécharger les données d'inventaire des machines virtuelles
+
+Vous pouvez importer les données d'inventaire des machines virtuelles lorsque vous êtes prêt à utiliser Workload Factory pour explorer les options de migration vers les environnements Amazon AWS. Consultez la link:upload-vm-inventory.html["Télécharger les données d'inventaire des machines virtuelles"]documentation pour obtenir des instructions.
+
+
+
+[[rename-a-dataset]]
+=== Renommer un jeu de données
+
+Vous pouvez modifier le nom d'un jeu de données enregistré.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *VMware*.
++
+Le centre de planification est affiché.
+
+. Sélectionnez le menu Actions (...) pour l'ensemble de données que vous souhaitez renommer, puis sélectionnez *Renommer*.
+. Saisissez un nouveau nom pour l'ensemble de données et sélectionnez *Enregistrer*.
+
+
+
+
+[[delete-a-dataset]]
+=== Supprimer un ensemble de données
+
+Lorsqu'un ensemble de données n'est plus nécessaire, vous pouvez le supprimer à tout moment.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *VMware*.
++
+Le centre de planification est affiché.
+
+. Sélectionnez le menu Actions (...) du jeu de données que vous souhaitez supprimer, puis sélectionnez *Supprimer*.
+. Sélectionnez *Supprimer* pour confirmer l'action.
+
+
+
+
+[[manage-migration-plans]]
+== Gérer les plans de migration
+
+Utilisez le centre de migration pour créer et gérer les plans de migration.
+
+
+
+[[provision-a-migration-plan]]
+=== Élaborer un plan de migration
+
+Vous pouvez sélectionner un plan de migration et l’approvisionner afin que les machines virtuelles soient migrées vers l’environnement Amazon AWS de votre choix.
+
+.Étapes
+. Connectez-vous à Workload Factory en utilisant l'une des https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["expériences sur console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet de naviguer vers des charges de travail telles que le stockage, eda, ai, bases de données, vmware et l'administration."] puis sélectionnez *VMware*.
++
+Le centre de planification est affiché.
+
+. Sélectionnez *Plans de migration*.
+. Sélectionnez le menu Actions (...) du plan de migration que vous souhaitez provisionner, puis sélectionnez *Provision*.
+. Selon le plan de migration, reportez-vous aux instructions pour déployer le système de fichiers :
++
+** link:deploy-fsx-file-system.html["Déployez le système de fichiers pour les plans Amazon VMware Cloud"]
+** link:deploy-fsx-file-system-native.html["Déployer le système de fichiers pour les plans Amazon EC2"]
+** link:deploy-fsx-file-system-evs.html["Déployez le système de fichiers pour les plans Amazon Elastic VMware Service"]
+
+
+
+
+
+
+[[edit-the-comment-for-a-migration-plan]]
+=== Modifiez le commentaire d’un plan de migration
+
+Si vous devez modifier les détails d'un commentaire pour un plan de migration, modifiez le commentaire depuis le centre de planification.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *VMware*.
++
+Le centre de planification est affiché.
+
+. Sélectionnez *Plans de migration*.
+. Sélectionnez le menu Actions (...) du plan de migration que vous souhaitez modifier, puis sélectionnez *Modifier le commentaire*.
+. Saisissez un commentaire et sélectionnez *Enregistrer*.
+
+
+
+
+[[create-a-pdf-or-csv-report-of-a-migration-plan]]
+=== Créer un rapport PDF ou CSV d'un plan de migration
+
+Créez un rapport PDF ou CSV détaillant le plan de migration.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *VMware*.
++
+Le centre de planification est affiché.
+
+. Sélectionnez *Plans de migration*.
+. Sélectionnez le menu Actions (...) pour le plan de migration pour lequel vous souhaitez créer un rapport PDF ou CSV, puis sélectionnez *Télécharger le plan (PDF)* ou *Télécharger le rapport VM (CSV)*.
+. Saisissez un nom pour le rapport et sélectionnez *Enregistrer*.
+
+
+
+
+[[delete-a-migration-plan]]
+=== Supprimer un plan de migration
+
+Lorsqu'un plan de migration n'est plus nécessaire, vous pouvez le supprimer à tout moment.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *VMware*.
++
+Le centre de planification est affiché.
+
+. Sélectionnez *Plans de migration*.
+. Sélectionnez le menu Actions (...) pour le plan de migration que vous souhaitez supprimer, puis sélectionnez *Supprimer*.
+. Confirmez l'action en sélectionnant *Supprimer*.
+

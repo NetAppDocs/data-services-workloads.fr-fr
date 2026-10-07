@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/delete-volume.html 
+keywords: delete volume, volume deletion 
+summary: 'Supprimez un volume de votre système de fichiers FSx for ONTAP qui n"est plus nécessaire afin de libérer de l"espace. Cette opération est irréversible.' 
+---
+= Supprimer un volume dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Supprimez un volume de votre système de fichiers FSx for ONTAP qui n'est plus nécessaire afin de libérer de l'espace. Cette opération est irréversible.
+
+.Avant de commencer
+Veuillez tenir compte des points suivants avant de supprimer un volume :
+
+* Relations de réplication : vous devez link:manage-replication.html["supprimer toutes les relations de réplication existantes"] effectuer cette opération pour ce volume avant de le supprimer afin qu’aucune relation rompue ne subsiste.
+* Instantanés locaux : tous les instantanés associés à ce système de fichiers FSx for ONTAP seront définitivement supprimés.
+* Sauvegardes de volumes : Les copies de sauvegarde de volumes seront conservées et vous pouvez toujours les utiliser.
+* Fichiers et instantanés immuables : les volumes contenant des fichiers et des instantanés immuables ne peuvent pas être supprimés avant la fin de la période de rétention.
+
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Explorateur de volumes*.
+. Sélectionnez le menu Actions du volume à supprimer.
+. Sélectionnez *Actions de base* puis *Supprimer le volume*.
+. Dans la boîte de dialogue Supprimer le volume, procédez comme suit :
++
+.. Vous pouvez également sélectionner *Sauvegarder le volume* pour sauvegarder le volume avant la suppression.
++
+La sauvegarde restera dans le système de fichiers jusqu'à ce que vous la supprimiez manuellement.
+
+.. Sélectionnez *Continuer*.
+.. Tapez « delete » pour supprimer le volume.
+.. Sélectionnez *Supprimer* pour confirmer.
+
+
+

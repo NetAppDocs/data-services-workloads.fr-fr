@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-nfs-export-policy.html 
+keywords: NFS, nfs, export policy, change export policy, update export policy, modify export policy 
+summary: 'Gérez les règles d"export pour un volume qui utilise les types de protocole NFSv3 ou NFSv4.1 dans NetApp Workload Factory.' 
+---
+= Gérez les règles d'export d'un volume dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gérez les règles d'export pour un volume qui utilise les types de protocole NFSv3 ou NFSv4.1 dans NetApp Workload Factory.
+
+.À propos de cette tâche
+La gestion des règles d'export d'un volume implique l'ajout de règles qui détaillent les spécifications client, le contrôle d'accès, les droits de superutilisateur et la version NFS. Vous pouvez ajouter plusieurs règles d'export et les hiérarchiser.
+
+.Avant de commencer
+Déterminez les spécifications client pour les règles d'export. Les valeurs valides pour les spécifications client sont les suivantes :
+
+* adresses IP
+* Adresses IP avec masques de sous-réseau
+* Adresses IP avec un masque de réseau
+* Un nom de netgroup précédé du caractère « @ »
+* Un nom de domaine précédé d'un point "."
+* Noms d'hôtes
+
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Explorateur de volumes*.
+. Sélectionnez le menu Actions du volume pour lequel vous souhaitez modifier les règles d'export NFS.
+. Sélectionnez *Actions avancées*, puis *Modifier les règles d'export NFS*.
+. Sur la page Modifier les règles d'export NFS, indiquez les informations suivantes :
++
+.. *Contrôle d'accès* : Sélectionnez *règles d'export personnalisées* ou *règles d'export existantes*.
++
+Vous pouvez également sélectionner *Aucun accès au volume*.
+
+.. *Nom des règles d'export* : Vous pouvez éventuellement saisir un nom pour les règles d'export.
+.. *Ajouter une règle de règles d'export* : Fournissez les détails suivants et classez les politiques en commençant par la règle n° 1 comme règle prioritaire :
++
+... *Spécifications client*: Séparez plusieurs valeurs par des virgules.
+... *Contrôle d'accès* : Sélectionnez *Lecture/Écriture*, *Lecture seule* ou *Aucun accès* dans le menu déroulant.
+... *Accès super-utilisateur* : Sélectionnez *Oui* ou *Non*.
+... *Version NFS*: Sélectionnez *Toutes*, *NFSv3* ou *NFSv4*.
+
+
+
+
+. Sélectionnez *Appliquer*.
+

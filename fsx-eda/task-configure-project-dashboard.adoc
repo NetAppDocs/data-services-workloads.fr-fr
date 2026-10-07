@@ -1,0 +1,73 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/task-configure-project-dashboard.html 
+keywords: configure, dashboard, AWS tags, CloudWatch, FSx for ONTAP, Workload Factory, EDA, custom filters, project tags, team tags 
+summary: 'Configurez des filtres personnalisés pour le tableau de bord Projets afin d"organiser les indicateurs selon la structure de votre entreprise, par exemple par projets, équipes ou applications.' 
+---
+= Configurez le tableau de bord Projets dans Workload Factory pour EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Configurez des filtres personnalisés sur le tableau de bord Projets pour organiser les données d'une manière qui correspond au fonctionnement de votre entreprise, par exemple par projet, équipe ou centre de coûts. Cela facilite la visualisation claire des coûts, permet d’identifier les ressources utilisant le plus de capacité et d’améliorer la prise de décisions concernant les budgets et les effectifs. Lorsque les filtres correspondent à la structure de votre organisation, vous pouvez rapidement trouver les données dont vous avez besoin et gérer la capacité, les coûts et les performances plus efficacement.
+
+
+
+[[before-you-begin]]
+== Avant de commencer
+
+Pour utiliser des filtres personnalisés, ajoutez des balises AWS à vos volumes FSx for ONTAP en fonction de vos besoins, telles que des balises pour les projets, les équipes ou les unités commerciales.
+
+
+
+[[configure-custom-filters]]
+== Configurer les filtres personnalisés
+
+
+NOTE: Seul le premier administrateur qui ouvre le tableau de bord Projets peut créer, modifier ou supprimer des filtres personnalisés. Tous les autres utilisateurs, y compris les autres administrateurs, peuvent uniquement consulter les filtres.
+
+.À propos de cette tâche
+Vous pouvez configurer jusqu'à cinq filtres personnalisés à l'aide de vos balises AWS. Chaque filtre nécessite les éléments suivants : une étiquette de filtre, une clé de balise AWS et un type de sélection (unique ou multiple).
+
+Si vous ne configurez aucun filtre personnalisé, les filtres par défaut, système de fichiers, type de volume et plage horaire, resteront disponibles, vous permettant ainsi de continuer à consulter et à utiliser vos tableaux de bord.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *EDA*.
+. Sélectionnez *Projets*.
++
+Si vous n'avez pas encore configuré votre tableau de bord, une invite vous demande automatiquement de le faire.
+
+. Sélectionnez *Ajouter des filtres*.
+. Pour chaque filtre personnalisé que vous souhaitez créer, ajoutez les détails :
++
+** Nom du libellé du filtre (nom affiché dans le tableau de bord)
+** Nom de la clé de balise AWS (la clé de balise réelle utilisée sur vos ressources)
+** Type de sélection (sélection unique ou multiple)
++
+
+NOTE: Les filtres apparaissent sur le tableau de bord dans l'ordre où vous les avez définis. Placez les filtres que vous utilisez le plus en haut afin qu'ils soient plus faciles d'accès.
+
+
+
+. Sélectionnez *Appliquer*.
++
+Vous pouvez supprimer un filtre personnalisé en sélectionnant l'icône de la corbeille à côté de ce filtre avant d'appliquer vos modifications.
+
+. Pour visualiser vos modifications après avoir appliqué des étiquettes ou des filtres, sélectionnez l'icône d'actualisation sur le tableau de bord.
+. Pour modifier ultérieurement la configuration du tableau de bord, sélectionnez *Configurer*.
+
+
+.Résultat
+Lorsque vous appliquez ces balises, Workload Factory commence à collecter et à afficher les CloudWatch metrics correspondantes. Votre tableau de bord vous aide ensuite à organiser les ressources, à suivre les coûts et à filtrer les éléments selon vos besoins.
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:learn-project-dashboard.html["Découvrez le tableau de bord Projets"]
+* link:task-use-project-dashboard.html["Utilisez le tableau de bord Projets"]
+

@@ -1,0 +1,75 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-file-system-settings.html 
+keywords: create fsx tags, create tags, edit fsx tags, fsx tags, reset fsx admin password 
+summary: Ajoutez, mettez à jour ou supprimez à tout moment les balises d’un système de fichiers FSx for ONTAP. 
+---
+= Gérez les paramètres du système de fichiers FSx for ONTAP dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gérez les paramètres d'un système de fichiers FSx for ONTAP dans NetApp Workload Factory. Vous pouvez gérer les balises du système de fichiers, réinitialiser le mot de passe fsxadmin si nécessaire et mettre à jour la capacité de débit selon les besoins.
+
+
+
+[[manage-fsx-for-ontap-file-system-tags]]
+== Gérez les balises du système de fichiers FSx for NetApp ONTAP
+
+Les balises peuvent vous aider à catégoriser vos ressources. Vous pouvez ajouter, modifier et supprimer des balises pour un système de fichiers à tout moment dans NetApp Workload Factory.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Stockage*.
+. Dans le menu Stockage, sélectionnez *Inventaire*.
+. Dans l'*Inventaire*, sélectionnez le menu des actions du système de fichiers à mettre à jour, puis sélectionnez *Gérer les balises du système de fichiers*.
+. Dans la boîte de dialogue *Gérer les balises du système de fichiers*, ajoutez, modifiez ou supprimez des balises selon vos besoins.
++
+Le nombre maximal d'étiquettes que vous pouvez appliquer à un système de fichiers est de 50.
+
+. Sélectionnez *Appliquer*.
+
+
+
+
+[[reset-the-fsxadmin-password-of-an-fsx-for-ontap-file-system]]
+== Réinitialiser le mot de passe fsxadmin d'un système de fichiers FSx for ONTAP
+
+Réinitialisez le mot de passe fsxadmin dans NetApp Workload Factory si nécessaire.
+
+Si vous avez fourni un autre utilisateur lors de la création du système de fichiers, vous pouvez réinitialiser le mot de passe fsxadmin uniquement dans la console AWS.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Stockage*.
+. Dans le menu Stockage, sélectionnez *Inventaire*.
+. Dans *Inventory*, sélectionnez le menu Actions du système de fichiers pour lequel vous souhaitez réinitialiser le mot de passe fsxadmin, puis sélectionnez *Manage*.
+. Depuis l’aperçu du système de fichiers, sélectionnez le menu Actions.
++
+image:screenshot-reset-fsxadmin-password.png["Capture d'écran du menu Actions dans l'onglet Vue d'ensemble d'un système de fichiers."]
+
+. Sélectionnez *Réinitialiser le mot de passe fsxadmin*.
+. Dans la boîte de dialogue Réinitialiser le mot de passe fsxadmin, saisissez un nouveau mot de passe fsxadmin et saisissez-le à nouveau pour confirmer.
+. Sélectionnez *Appliquer*.
+
+
+
+
+[[update-throughput-capacity-for-an-fsx-for-ontap-file-system]]
+== Mettez à jour la capacité de débit d'un système de fichiers FSx for ONTAP
+
+Mettez à jour la capacité de débit d’un système de fichiers FSx for ONTAP dans NetApp Workload Factory selon les besoins.
+
+Pour connaître les limites de capacité de débit, consultez link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/limits.html["Quotas"^] dans la documentation AWS FSx for NetApp ONTAP.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Stockage*.
+. Dans le menu Stockage, sélectionnez *Inventaire*.
+. Dans l’*Inventaire*, sélectionnez le menu d’actions du système de fichiers pour lequel vous souhaitez mettre à jour la capacité de débit, puis sélectionnez *Gérer*.
+. Dans la section Informations, sélectionnez l'icône en forme de crayon à côté de *Capacité de débit*. Cette icône apparaît à côté de la flèche déroulante lorsque vous survolez la ligne *Capacité de débit* avec la souris.
+. Dans la boîte de dialogue Capacité de débit, sélectionnez la capacité de débit dont vous avez besoin.
+. Sélectionnez *Appliquer* pour enregistrer les modifications
+

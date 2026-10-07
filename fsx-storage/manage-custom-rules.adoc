@@ -1,0 +1,72 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-custom-rules.html 
+keywords: manage custom rules, disable rules, delete rules, rule catalog, byor 
+summary: Consultez, activez, désactivez et supprimez les règles architecturales personnalisées du catalogue de règles. 
+---
+= Gérer les règles personnalisées pour NetApp Workload Factory
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le catalogue des règles centralise la gestion de toutes vos règles personnalisées. Vous pouvez consulter les détails de chaque règle, vérifier ses résultats et l'activer ou la désactiver.
+
+
+
+[[view-the-rules-catalog]]
+== Consultez le catalogue des règles
+
+Le catalogue des règles affiche toutes les règles que vous avez créées, leur statut, leur planification et leurs derniers résultats.
+
+.Étapes
+. Connectez-vous en utilisant l'un des link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["expériences sur console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger"] puis sélectionnez *Générateur de règles*.
+. Cliquez sur *Afficher vos règles* pour ouvrir le catalogue des règles.
+
+
+
+
+[[view-rule-results]]
+== Afficher les résultats de la règle
+
+Les résultats indiquent quelles ressources respectent votre règle et lesquelles ne la respectent pas.
+
+.Étapes
+. Dans le catalogue des règles, cliquez sur la règle que vous souhaitez consulter.
+. Sélectionnez l’onglet *Résultats de toutes les exécutions*.
+. Sélectionnez **Afficher les détails** pour voir les résultats de chaque exécution.
+
+
+Si la vérification a échoué pour certains éléments, consultez le message d'erreur pour en connaître la raison. Les causes fréquentes sont des problèmes de connexion, des autorisations manquantes ou un lien non configuré.
+
+
+
+[[edit-a-custom-rule]]
+== Modifier une règle personnalisée
+
+Vous pouvez modifier à tout moment la logique, la planification ou d'autres paramètres d'une règle. Lorsque vous modifiez une règle, l'éditeur de règles s'ouvre avec les paramètres actuels de la règle.
+
+.Étapes
+. Dans le catalogue des règles, cliquez sur la règle que vous souhaitez modifier.
+. Cliquez sur *Modifier*.
++
+La règle passe en mode brouillon et l'éditeur de règles s'ouvre.
+
+. Modifiez le libellé de la règle ou utilisez la conversation pour l’améliorer.
+. Examinez l’interprétation mise à jour de l’IA et la définition de la règle.
++
+Le système indique ce qui a changé par rapport à la règle actuelle, y compris les appels d'API ou la logique.
+
+. Effectuez l'une des actions suivantes en fonction des modifications apportées :
++
+** Si des modifications mineures ont été apportées, cliquez sur *Enregistrer* pour mettre à jour la règle.
+** Si des modifications importantes ont été apportées, cliquez sur *Valider la règle* pour tester les modifications, puis sur *Planifier* pour enregistrer et planifier la règle, ou sur *Enregistrer comme brouillon* pour enregistrer sans la planifier.
+** Pour annuler les modifications, cliquez sur *Rétablir la version précédente*. La règle retrouve sa définition d'origine et quitte le mode d'édition.
+
+
+

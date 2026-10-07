@@ -1,0 +1,120 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/learn-custom-rules.html 
+keywords: custom rules, byor, bring your own rules, fsx, ontap, well architected, organizational standards 
+summary: Apprenez à définir et à gérer vos propres règles architecturales afin de faire respecter les normes organisationnelles ainsi que les meilleures pratiques de NetApp. 
+---
+= Découvrez les règles personnalisées dans la NetApp Console
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les règles personnalisées vous permettent de définir, de vérifier et d'appliquer vos propres normes d'architecture, ainsi que les meilleures pratiques de NetApp, dans le tableau de bord Well-architected.
+
+
+
+[[overview]]
+== Aperçu
+
+Le générateur de règles vous permet de créer des règles personnalisées basées sur les meilleures pratiques, en utilisant un langage simple. Ces règles sont vérifiées sur l'ensemble de vos ressources.
+
+Les règles personnalisées vous aident à faire respecter les normes, les limites de risque et les exigences opérationnelles de votre organisation—des éléments que les règles génériques des fournisseurs ne couvrent pas toujours entièrement.
+
+
+NOTE: Si l'administrateur de votre compte a désactivé les fonctionnalités d'IA, le générateur de règles ne sera pas disponible et vous ne pourrez pas créer de règles personnalisées. link:../admin/manage-genai-features.html["Découvrez comment gérer les fonctionnalités d'IA"^].
+
+
+
+[[how-custom-rules-work]]
+== Comment fonctionnent les règles personnalisées
+
+Les règles personnalisées utilisent un processus guidé par l'IA qui transforme vos instructions en langage clair en règles structurées. L'IA agit comme traducteur et vérificateur. Elle suggère une règle, explique comment elle a compris votre demande et demande votre approbation avant que la règle ne soit enregistrée ou planifiée.
+
+Ce processus garantit que :
+
+* La logique des règles est clairement définie et vérifiée pour détecter les erreurs
+* Aucun code libre n'est exécuté
+* Vous pouvez voir exactement ce qui sera évalué avant d'approuver la règle
+
+
+
+
+[[limitations]]
+== Limitations
+
+Les limitations suivantes s'appliquent aux règles personnalisées :
+
+* Les corrections automatiques ne sont pas disponibles. Vous devez corriger vous-même les ressources non conformes en suivant les instructions fournies.
+* Chaque règle ne peut vérifier qu'un seul type de ressource. Pour vérifier plusieurs types de ressources, créez des règles distinctes.
+* L'intervalle d'évaluation le plus court est d'une heure afin d'éviter une analyse excessive.
+* Les règles ont un accès en lecture seule et ne peuvent pas modifier votre environnement.
+
+
+
+
+[[rule-definition-model]]
+== Modèle de définition de règles
+
+Chaque règle personnalisée se compose des éléments suivants :
+
+Nom de la règle:: Un nom défini par l'utilisateur pour la règle.
+Description:: Votre justification de l'importance de cette règle pour votre organisation.
+Type de ressource:: Ressource FSx à évaluer (système de fichiers, volume ou cache). Actuellement, un seul type de ressource par règle.
+Planificateur:: Fréquence d'évaluation de la règle (minimum 1 heure, par défaut 24 heures).
+Logique conditionnelle:: Les critères spécifiques à vérifier.
+Étendue de l'évaluation:: Quelles ressources sont évaluées (toutes les ressources applicables dans le périmètre).
+Logique de remédiation:: Guide manuel pour la gestion des ressources non conformes.
+
+
+
+
+[[rule-lifecycle]]
+== Cycle de vie des règles
+
+Les règles personnalisées progressent à travers les états suivants :
+
+Brouillon:: Une règle est en cours de création. Aucune évaluation n’a lieu.
+Essai à blanc:: Évaluation ponctuelle permettant de prévisualiser les ressources qui seraient affectées. Utilisée pour la validation avant la planification.
+Programmé (Activé):: La règle est active et s'exécute selon la planification définie.
+Désactivées:: La règle est suspendue mais non supprimée. Peut être réactivée.
+Supprimé:: La règle est définitivement supprimée.
+
+
+
+
+[[custom-rule-examples]]
+== Exemples de règles personnalisées
+
+Les exemples suivants illustrent les règles personnalisées courantes :
+
+*Protection du volume de production*:: « Tous les volumes portant l’étiquette ‘Prod’ doivent avoir une stratégie de snapshot installée »
++
+--
+Cette règle crée automatiquement des instantanés pour protéger les volumes de production conformément aux exigences de l'entreprise.
+
+--
+*Hiérarchisation des volumes d’archives*:: "Tous les volumes portant l'étiquette 'Archive' doivent avoir une politique de hiérarchisation définie sur 'All'"
++
+--
+Cette règle permet de réduire les coûts en déplaçant automatiquement les données archivées vers un stockage moins coûteux.
+
+--
+*Normes de dénomination des systèmes de fichiers*:: "Tous les systèmes de fichiers doivent respecter la convention d'appellation 'fsx-{environment}-{application}'"
++
+--
+Cette règle garantit que les systèmes de fichiers respectent les conventions d'appellation de l'organisation pour faciliter la gestion et la répartition des coûts.
+
+--
+
+
+
+
+[[what-to-do-next]]
+== Que faire ensuite
+
+link:create-custom-rule.html["Créer une règle personnalisée"]

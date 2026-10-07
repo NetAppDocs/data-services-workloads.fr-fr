@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/clone-volume.html 
+keywords: clone volume, clone, clone data 
+summary: Clonez un volume dans NetApp Workload Factory pour créer un volume de lecture/écriture à partir du volume original à des fins de test. 
+---
+= Cloner un volume dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Clonez un volume dans NetApp Workload Factory pour créer un volume de lecture/écriture à partir du volume original à des fins de test.
+
+Le clone reflète l'état actuel des données à un instant précis. Vous pouvez également utiliser des clones pour donner accès aux données à des utilisateurs supplémentaires sans leur donner accès aux données de production.
+
+.À propos de cette tâche
+Le clonage de volumes n'est pris en charge que pour les volumes FlexClone.
+
+Lorsqu'un volume est cloné, un volume accessible en écriture est créé avec des références aux instantanés du volume parent. La création du clone s'effectue en quelques secondes. Les données clonées ne résident pas sur le clone de volume, mais sur le volume parent. Toute nouvelle donnée écrite sur le volume après la création du clone réside sur le clone.
+
+Pour qu’un volume cloné contienne toutes les données du volume parent ainsi que les nouvelles données ajoutées au clone après sa création, vous devrez link:split-cloned-volume.html["scinder le clone"] le dissocier du volume parent. De plus, vous ne pouvez pas supprimer un volume parent s’il possède un clone. Un clone doit être dissocié avant qu’un volume parent puisse être supprimé.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Explorateur de volumes*.
+. Sélectionnez le menu Actions du volume à cloner.
+. Sélectionnez *Actions de protection des données*, puis *Cloner le volume*.
+. Dans la boîte de dialogue Cloner le volume, saisissez un nom pour le clone du volume.
+. Sélectionnez *Clone*.
+

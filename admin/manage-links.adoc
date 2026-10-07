@@ -1,0 +1,182 @@
+---
+sidebar: sidebar 
+permalink: admin/manage-links.html 
+keywords: links, accounts, lambda, creating, associating, disassociating, deleting, editing 
+summary: 'Vous pouvez consulter les liens associés à votre compte, mettre à jour les mots de passe pour l"authentification des liens et supprimer un lien dans NetApp Workload Factory.' 
+---
+= Gérer les liens NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gérez les liens que vous avez associés à votre compte Workload Factory. Vous pouvez consulter les liens associés à un système de fichiers FSx for ONTAP ou à un système OCI NetApp Storage Service (OCI NSS), fournir les mots de passe utilisés pour l'authentification des liens et supprimer des liens de NetApp Console.
+
+link:../setup/links-overview.html["En savoir plus sur les liens."]
+
+
+
+[[view-the-links-associated-with-your-account]]
+== Consultez les liens associés à votre compte
+
+Vous pouvez consulter les liens actuellement associés à votre compte.
+
+.Étapes
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Administration* > *Liens*.
++
+Les liens existants apparaissent sur la page Links.
+
+. Pour afficher les systèmes de stockage associés à un lien, sélectionnez le bouton *View* dans la section Ressources associées.
+. Si vous avez besoin du nom de ressource Amazon (ARN) pour le lien, vous pouvez sélectionner l'icône _copie_ à côté du champ ARN.
+
+
+
+
+[[edit-a-link]]
+== Modifier un lien
+
+Vous ne pouvez pas modifier un lien depuis NetApp Console. Si vous devez modifier un lien, vous devrez en créer un nouveau, puis associer ce lien à votre système de stockage.
+
+
+NOTE: Vous pouvez modifier la configuration réseau d'AWS Lambda ou d'Oracle Cloud Functions (par exemple, les VPC, les sous-réseaux et les groupes de sécurité) à l'aide de la console de votre fournisseur de cloud, et les modifications seront reflétées dans les liens ou dans l'interface utilisateur de gestion de Functions ; toutefois, ces modifications peuvent entraîner des problèmes de connectivité entre AWS Lambda ou Oracle CLoud Functions et ONTAP, et elles ne sont pas recommandées.
+
+
+
+[[authenticate-a-link]]
+== Authentifier un lien
+
+Authentifiez un lien en fournissant un mot de passe d'utilisateur administrateur pour les identifiants Workload Factory ou avec un secret provenant de AWS Secrets Manager ou de Oracle Vault.
+
+* Pour AWS Secrets Manager, fournissez soit le nom du secret, soit un ARN de secret AWS Secrets Manager pour connecter le lien à un système de fichiers FSx for ONTAP.
++
+
+NOTE: AWS Secrets Manager n'est pas pris en charge lors de l'utilisation d'un agent de console.
+
+* Pour Oracle Vault, fournissez l'OCID du secret du coffre-fort pour connecter le lien à un système OCI NetAApp Storage Service.
+
+
+
+NOTE: Une seule méthode d'authentification est prise en charge par lien. Par exemple, si vous choisissez l'authentification du lien avec AWS Secrets Manager, vous ne pouvez pas modifier la méthode d'authentification par la suite.
+
+[role="tabbed-block"]
+====
+.Amazon FSx for NetApp ONTAP
+--
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans *FSx for ONTAP*, sélectionnez le menu actions du système de fichiers auquel associer un lien, puis sélectionnez *Gérer*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez *Authentifier le lien*.
+. Sur la page du lien d'authentification, sélectionnez un mode d'authentification :
++
+** *Workload Factory*: saisissez le mot de passe deux fois.
+** *AWS Secrets Manager* : saisissez l’ARN du secret.
+
+
+. Sélectionnez *Appliquer*.
+
+
+--
+.Service de stockage OCI NetApp
+--
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *OCI NetApp Storage Service*.
+. Dans *OCI NetApp Storage Service*, sélectionnez le menu d’actions du pool de stockage auquel associer un lien, puis sélectionnez *Gérer*.
+. Dans la vue d'ensemble du pool de stockage, sélectionnez *Authentifier le lien*.
+. Sur la page du lien d'authentification, sélectionnez un mode d'authentification :
++
+** *Workload Factory*: saisissez le mot de passe deux fois.
+** *OCI Vault* : entrez l’OCID du secret.
+
+
+. Sélectionnez *Appliquer*.
+
+
+--
+====
+.Résultat
+La connexion est authentifiée et vous pouvez effectuer des opérations ONTAP avancées
+
+
+
+[[update-the-password-for-link-authentication]]
+== Mettez à jour le mot de passe pour l'authentification par lien
+
+Si le mot de passe administrateur n'est pas valide, mettez-le à jour pour connecter le lien à votre système de stockage.
+
+[role="tabbed-block"]
+====
+.Amazon FSx for NetApp ONTAP
+--
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans *FSx for ONTAP*, sélectionnez le menu actions du système de fichiers auquel associer un lien, puis sélectionnez *Gérer*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez *Mettre à jour le mot de passe*.
+. Sur la page du lien d'authentification, saisissez le nouveau mot de passe deux fois.
+. Sélectionnez *Appliquer*.
+
+
+--
+.Service de stockage OCI NetApp
+--
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *OCI NetApp Storage Service*.
+. Dans *OCI NetApp Storage Service*, sélectionnez le menu d’actions du pool de stockage auquel associer un lien, puis sélectionnez *Gérer*.
+. Dans la vue d'ensemble du pool de stockage, sélectionnez *Mettre à jour le mot de passe*.
+. Sur la page du lien d'authentification, saisissez le nouveau mot de passe deux fois.
+. Sélectionnez *Appliquer*.
+
+
+--
+====
+.Résultat
+Le mot de passe a été mis à jour et le lien est désormais connecté au système de stockage.
+
+
+
+[[remove-a-link]]
+== Supprimer un lien
+
+Vous pouvez supprimer un lien que vous n'utilisez plus dans votre environnement. Les systèmes de stockage ou autres ressources qui utilisaient ce lien ne pourront plus utiliser certaines fonctionnalités après sa suppression.
+
+Notez que le lien est uniquement supprimé de Workload Factory - il n'est pas supprimé de votre environnement AWS ou Oracle.
+
+* Pour FSx for ONTAP, vous devez supprimer la fonction Lambda de votre compte AWS après avoir supprimé le lien dans Workload Factory.
+* Pour OCI NetApp Storage Service, vous devez supprimer l'instance Function de votre compte OCI après avoir supprimé le lien dans Workload Factory.
+
+
+[role="tabbed-block"]
+====
+.Amazon FSx for NetApp ONTAP
+--
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Administration* > *Liens*.
++
+Les liens existants apparaissent sur la page Links.
+
+. Sur la page Liens, sélectionnez le menu Actions du lien à supprimer, puis sélectionnez *Supprimer*.
+. Si vous êtes sûr, sélectionnez à nouveau *Supprimer*.
+
+
+Consultez la documentation AWS pour link:https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-awscli.html#with-userapp-walkthrough-custom-events-delete-function["supprimer la fonction Lambda"].
+
+--
+.Service de stockage OCI NetApp
+--
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Administration* > *Liens*.
++
+Les liens existants apparaissent sur la page Links.
+
+. Sur la page Liens, sélectionnez le menu Actions du lien à supprimer, puis sélectionnez *Supprimer*.
+. Si vous êtes sûr, sélectionnez à nouveau *Supprimer*.
+
+
+--
+====

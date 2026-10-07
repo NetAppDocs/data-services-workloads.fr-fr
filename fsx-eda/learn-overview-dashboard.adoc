@@ -1,0 +1,193 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/learn-overview-dashboard.html 
+keywords: cluster overview, cluster dashboard, FSx for ONTAP, cluster health, EMS events, latency events, SSD management, throughput management, capacity automation, capacity recommendations, decision points 
+summary: 'Découvrez comment le tableau de bord Vue d"ensemble de Workload Factory for EDA vous aide à surveiller la santé, la capacité et le débit du cluster FSx for ONTAP à grande échelle.' 
+---
+= Découvrez le tableau de bord Vue d'ensemble dans Workload Factory pour EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le tableau de bord Vue d'ensemble offre aux administrateurs informatiques un point central pour superviser les charges de travail EDA sur plusieurs systèmes de fichiers FSx for ONTAP. Utilisez-le pour vérifier rapidement l'état et l'utilisation du système, choisir où placer de nouveaux volumes ou tâches, repérer les volumes ou SVM qui pourraient devoir être déplacés, et voir quand il est temps d'augmenter la capacité ou le débit.
+
+
+
+[[overview]]
+== Aperçu
+
+Le tableau de bord Vue d'ensemble collecte les métriques CloudWatch pour tous les systèmes de fichiers FSx for ONTAP associés à vos informations d'identification AWS configurées.
+
+Il comprend :
+
+* *État de santé du cluster* : Un résumé en haut met en évidence les événements de latence, l’utilisation des SSD, l’état du mode de débit, les recommandations de capacité et les événements ONTAP EMS sur vos systèmes de fichiers.
+* *Tableau des clusters* : Un tableau consultable qui affiche l’utilisation et les performances de chaque cluster. Vous pouvez filtrer et trier les données, passer d’une page à l’autre et les exporter au format CSV.
+
+
+Cela vous aide :
+
+* Ajoutez de nouveaux volumes et rééquilibrez les charges de travail
+* Planifier l'évolutivité de la capacité ou du débit
+* Surveiller l'état du cluster à grande échelle
+* Prenez des décisions éclairées concernant le placement des volumes
+* Identifier les clusters qui approchent des limites de capacité
+
+
+
+
+[[dashboard-components]]
+== Composants du tableau de bord
+
+
+
+[[cluster-health-status]]
+=== État de santé du cluster
+
+L'état du cluster affiche un aperçu rapide de l'activité sur les systèmes de fichiers que vous avez sélectionnés. Cela n'apparaît que si au moins une liaison FSx for ONTAP est connectée à vos systèmes de fichiers.
+
+L'état de santé comprend les domaines suivants :
+
+*Latence*:: Affiche le nombre d'événements de latence détectés dans les systèmes de fichiers sélectionnés. Cette information apparaît uniquement si la surveillance de la latence est activée.
+*Élasticité du système de fichiers*::
++
+--
+* *Capacité SSD* : Indique combien de systèmes de fichiers utilisent Automate, Recommend ou None pour gérer la capacité SSD.
+* *Débit* : Indique combien de systèmes de fichiers utilisent Automate, Recommend ou None pour gérer le débit.
+
+
+--
+*Événements ONTAP*:: Affiche le nombre d'événements EMS détectés, classés par capacité, disponibilité et protection, et sécurité et autres.
+
+
+
+
+[[clusters-table]]
+=== Tableau des clusters
+
+Le tableau des clusters présente une vue détaillée de chaque système de fichiers FSx for ONTAP, filtrée selon votre région active et votre compte AWS. Les données sont collectées à partir des métriques CloudWatch.
+
+Utilisez le tableau pour :
+
+* Identifier les systèmes de fichiers approchant leurs limites de capacité (colonne d'utilisation du SSD)
+* Comparez la demande de débit au débit provisionné SKU (colonne Utilisation du débit P99)
+* Suivi des indicateurs de performance sur plusieurs clusters
+* Vérifiez l'état de la configuration du lien (colonne Lien associé) - La validité de la connexion est vérifiée quotidiennement
+* Sélectionnez plusieurs clusters pour les mises à jour groupées des paramètres
+
+
+Sélectionnez un système de fichiers pour ouvrir les détails du cluster, notamment les informations sur le cluster, les valeurs de capacité SSD et le graphique de capacité SSD au fil du temps.
+
+
+
+[[ssd-capacity-management]]
+== Gestion de la capacité SSD
+
+
+
+[[management-modes]]
+=== Modes de gestion
+
+*Notification uniquement (mode recommandé)*:: Workload Factory analyse la façon dont vous utilisez vos SSD et suggère quand augmenter la capacité. Vous examinez ces suggestions et décidez si vous souhaitez les appliquer. Cela vous permet de garder un contrôle total sur les modifications de capacité tout en bénéficiant de l'analyse automatisée.
+*Automatiser*:: Workload Factory ajoute automatiquement de l'espace SSD lorsque l'utilisation atteint les limites définies. Il gère cela de manière autonome, aucune intervention manuelle n'est nécessaire. Cela fonctionne bien pour les environnements qui privilégient la gestion automatique.
+*Aucun*:: Si vous n'avez pas activé la gestion de la capacité, le système ne formule aucune recommandation de capacité et n'effectue aucune action automatisée. Utilisez cette option si vous souhaitez gérer vous-même la capacité.
+
+
+
+
+[[ssd-management-parameters]]
+=== Paramètres de gestion SSD
+
+Les paramètres contrôlent la manière dont le système de gestion de la capacité analyse et agit sur l'utilisation de votre SSD :
+
+*Seuil* (10-90%):: Le pourcentage d'utilisation du SSD qui déclenche des recommandations de capacité ou des actions automatisées. Par exemple, un seuil de 80 % signifie que des recommandations ou des actions sont déclenchées lorsque l'utilisation du SSD atteint 80 %. Ce paramètre est disponible dans les modes Recommend et Automate.
+*Rétrospective* (1-200 heures):: Période d'analyse des tendances d'utilisation des SSD. Une période d'analyse plus longue permet d'obtenir un contexte historique plus riche pour les décisions relatives à la capacité. Disponible uniquement en mode Automate.
+*À venir* (1-200 heures):: Période utilisée pour prévoir les besoins futurs en capacité. Une période plus longue permet d’anticiper la croissance future de la capacité. Disponible uniquement en mode Automate.
+
+
+Vous pouvez définir ces paramètres pour chaque système de fichiers individuellement, ou utiliser l’édition groupée pour appliquer les mêmes paramètres à plusieurs systèmes de fichiers.
+
+
+
+[[throughput-management]]
+== Gestion du débit
+
+Vous pouvez configurer le comportement d'augmentation élastique du débit pour un ou plusieurs systèmes de fichiers.
+
+
+
+[[management-modes]]
+=== Modes de gestion
+
+*Notification uniquement (mode recommandé)*:: Workload Factory évalue la pression sur le débit et fournit des recommandations que vous pouvez appliquer.
+*Automatiser*:: Workload Factory augmente automatiquement le débit lorsque les conditions configurées sont remplies.
+*Aucun*:: Si vous n'avez pas activé la gestion du débit, le système ne formule aucune recommandation et n'entreprend aucune action automatisée. Utilisez cette option si vous souhaitez gérer vous-même la capacité.
+
+
+
+
+[[throughput-parameters]]
+=== Paramètres de débit
+
+La boîte de dialogue de configuration du débit comprend :
+
+* *Seuil d'utilisation* (50-100%, par défaut 80%) : Pourcentage d'utilisation du débit qui déclenche des recommandations ou une automatisation.
+
+
+Les paramètres de débit avancés sont disponibles dans une section extensible *Advanced configuration*.
+
+* *Période d'évaluation (heures)* (12-72 heures, par défaut 24)
+* *Indicateurs de dépassement (%)* (par défaut 66 %) : Seuil de pourcentage pour déterminer un dépassement
+* *Période de violation consécutive (heures)* (1-5 heures, par défaut 2)
+* *Indicateurs de violation consécutive (%)* (par défaut 95%)
+* *Latence minimale (ms)* (par défaut 10 ms)
+* *Référence produit avec débit maximal* (par défaut None)
+
+
+
+
+[[file-system-elasticity-recommendations]]
+== Recommandations sur l'élasticité du système de fichiers
+
+Lorsque Workload Factory est en mode Automate ou Recommandation, il vérifie automatiquement chaque système de fichiers FSx for ONTAP et exécute un algorithme de recommandation de capacité. Le système effectue des analyses périodiques pour déterminer si la capacité ou le débit des SSD doivent être ajustés.
+
+Lorsqu'une recommandation est identifiée :
+
+* Vous recevez une notification immédiate en fonction de vos paramètres de notification Workload Factory.
+* Identifiez les systèmes de fichiers avec des recommandations en filtrant le tableau Clusters.
+* L'interface affiche le nombre total de systèmes de fichiers qui ont actuellement des recommandations actives.
+
+
+La recommandation explique la modification suggérée et le raisonnement qui la sous-tend, par exemple : _Nous recommandons d’augmenter la taille du SSD en fonction de l’utilisation du SSD au niveau de votre système de fichiers._
+
+Des notifications sont envoyées pour les événements liés à la capacité de stockage, notamment les recommandations, les augmentations de capacité réussies, les alertes d’avertissement et les erreurs lors des vérifications de capacité ou des opérations d’augmentation de capacité. Les notifications d’erreur expliquent la cause, par exemple des autorisations manquantes, une mise à jour du système de fichiers déjà en cours, une période d’attente AWS après une modification récente du stockage, l’atteinte de la capacité maximale ou des données CloudWatch indisponibles.
+
+
+
+[[understanding-capacity-decision-points]]
+=== Comprendre les points de décision en matière de capacité
+
+Le graphique d'utilisation du SSD indique les moments où le système a formulé des recommandations de capacité ou a entrepris des actions automatisées. Ces indicateurs montrent comment l'algorithme de gestion de la capacité s'est comporté au fil du temps.
+
+*Points de décision pour les recommandations*:: Apparaissent lorsque le système détecte qu'une capacité SSD supplémentaire est nécessaire. Si la capacité n'a pas été augmentée, ces points peuvent apparaître aussi souvent que toutes les 30 minutes. Le graphique affiche chaque point de décision lorsque cela est possible. Si la plage horaire sélectionnée est trop dense, les points sont regroupés.
+*Points de décision en matière d'automatisation*:: Ces messages apparaissent lorsque le système d'automatisation tente d'augmenter la capacité du SSD. Ils indiquent si l'action a réussi ou échoué.
+
+
+Utilisez le graphique d'historique d'utilisation du SSD pour :
+
+* Découvrez à quelle fréquence vous devez modifier la taille du stockage
+* Déterminez si le mode d'automatisation ou le mode de recommandation correspond mieux à vos habitudes d'utilisation
+* Repérez les pénuries de stockage répétées
+* Planifiez les besoins futurs en stockage en fonction de la croissance au fil du temps
+* Enquêter sur les raisons de l'échec des tentatives d'automatisation
+
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:task-activate-overview-dashboard.html["Activer le tableau de bord Vue d'ensemble"]
+* link:task-use-overview-dashboard.html["Utilisez le tableau de bord Vue d'ensemble"]
+

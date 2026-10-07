@@ -1,0 +1,221 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/configuration-analysis.html 
+keywords: configuration issues, issues, improve, analyze, storage configuration, Amazon FSx for NetApp ONTAP, FSx for ONTAP, recommendation, recommendations 
+summary: 'NetApp Workload Factory analyse régulièrement les configurations du système de fichiers Amazon FSx for NetApp ONTAP afin de déterminer s"il existe des problèmes de configuration.' 
+---
+= Analyse de la configuration des systèmes de fichiers FSx for ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp Workload Factory analyse régulièrement les configurations du système de fichiers Amazon FSx for NetApp ONTAP afin de déterminer s'il existe des problèmes de configuration. Lorsque des problèmes sont détectés, Workload Factory vous montre quels sont les problèmes et explique ce qui doit être modifié pour garantir que le stockage de votre système de fichiers atteigne des performances optimales, une efficacité des coûts et la conformité aux meilleures pratiques.
+
+Principales fonctionnalités :
+
+* Analyse quotidienne de la configuration
+* Validations automatiques des bonnes pratiques
+* Observabilité proactive
+* Des idées à l'action
+* Conseiller AWS Well-Architected Framework
+
+
+
+
+[[how-it-works]]
+== Comment ça marche
+
+Workload Factory analyse quotidiennement vos charges de travail exécutées sur les systèmes de stockage cloud compatibles. L’analyse fournit l’état de l’architecture bien conçue, des informations et des recommandations.
+
+Une fois l'analyse quotidienne terminée, les configurations apparaissent comme « optimisées » ou « non optimisées » dans le tableau de bord Well-architected du déploiement. Vous y trouverez les problèmes de configuration classés par catégorie et une liste de problèmes de configuration et de recommandations. Vous pouvez consulter les recommandations pour les problèmes de configuration. Workload Factory peut corriger automatiquement certains problèmes ; d'autres nécessitent une intervention manuelle. Dans ce cas, Workload Factory fournit des instructions détaillées pour vous aider à mettre en œuvre les modifications recommandées.
+
+Vous pouvez ignorer l'analyse des configurations qui ne s'appliquent pas à vos environnements. Cela évite les alertes inutiles et des résultats d'optimisation inexacts.
+
+Vous pouvez également créer des règles personnalisées en langage clair pour valider vos environnements par rapport aux normes de votre organisation et aux bonnes pratiques NetApp. Testez les règles à blanc, puis planifiez leur exécution dans vos environnements. link:learn-custom-rules.html["En savoir plus sur les règles personnalisées"^].
+
+
+
+[[why-it-matters]]
+== Pourquoi c'est important
+
+NetApp Workload Factory applique les meilleures pratiques aux environnements de stockage, de base de données et VMware de grande envergure en combinant une évaluation continue avec des recommandations et des corrections. Les correctifs automatisés réduisent les erreurs humaines, garantissent une gestion uniforme et préservent les performances et la fiabilité de vos infrastructures de charges de travail.
+
+
+
+[[analysis-requirements]]
+== Exigences d'analyse
+
+Pour une analyse complète du système de fichiers, vous devez procéder comme suit :
+
+* Associez un lien. La connectivité des liens permet à Workload Factory d'analyser toutes les configurations du système de fichiers, comme la protection des données et les performances.
++
+link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^].
+
+* Accordez les autorisations de _visualisation, de planification et d'analyse_ dans votre compte AWS.
++
+link:add-credentials.html["Découvrez comment accorder des autorisations à un compte AWS"^].
+
+
+
+
+
+[[best-practices-and-recommendations-for-storage-workloads]]
+== Meilleures pratiques et recommandations pour les charges de travail de stockage
+
+Le tableau de bord bien architecturé évalue les configurations de stockage par rapport aux bonnes pratiques ONTAP et au cadre AWS Well-Architected. L'évaluation recommande également des améliorations et des correctifs.
+
+L'analyse bien conçue catégorise les configurations selon les piliers suivants du cadre : _fiabilité_, _sécurité_, _excellence opérationnelle_, _optimisation des coûts_ et _efficacité des performances_.
+
+
+
+[[reliability]]
+=== Fiabilité
+
+La fiabilité garantit que les charges de travail exécutent leurs fonctions prévues correctement et de manière constante, même en cas de perturbations.
+
+* *Sauvegardes de volumes*
++
+La sauvegarde de vos volumes contribue à la conservation des données et au respect des exigences de conformité. Utilisez les sauvegardes de volumes pour configurer des sauvegardes et une conservation automatisées de vos données.
+
+* *Politique d'instantané*
++
+Planifiez des instantanés locaux pour une sauvegarde efficace et une restauration rapide. Les instantanés sont des images instantanées de vos volumes à un instant précis. Cette recommandation ne s'applique pas aux environnements de base de données.
+
+* *Instantanés cohérents au niveau des applications*
++
+Pour les environnements de base de données, utilisez des snapshots cohérents au niveau des applications avec NetApp SnapCenter pour prendre des snapshots précis et fiables de vos données de volume à un moment précis. Cela permet à vos applications de fonctionner de manière fluide et à vos données de rester en sécurité. SnapCenter facilite les sauvegardes et vous aide à restaurer les données rapidement et correctement, réduisant ainsi les interruptions et protégeant vos charges de travail les plus importantes.
+
+* *Réplication interrégionale*
++
+La réplication interrégionale garantit la réplication de vos données vers une autre région AWS, assurant ainsi une durabilité et une disponibilité accrues. Configurez la réplication interrégionale pour prendre en charge la reprise après sinistre et la conformité.
+
+* *Marge de capacité SSD*
++
+La capacité du niveau de stockage SSD ne doit pas dépasser 80 % d'utilisation. Cela pourrait impacter les lectures et écritures de données sur votre niveau de stockage pool de capacité et affecter la capacité de débit de votre système de fichiers. Lorsque la capacité est épuisée, les volumes de données deviennent en lecture seule. Les services tentant d'écrire de nouvelles données échouent également.
+
+* *Étiquettes de politique de réplication*
++
+Les étiquettes de la stratégie d'instantané du volume source et les étiquettes de la stratégie de réplication doivent correspondre pour garantir la fiabilité des données.
+
+* *Capacité des objets de fichier*
++
+Il convient d'augmenter le seuil de capacité des fichiers afin d'éviter d'atteindre la limite de capacité du volume. Une capacité de fichiers insuffisante (en inodes) empêche l'écriture de données supplémentaires sur le volume. Workload Factory recommande de maintenir l'utilisation de la capacité des fichiers en dessous de 80% pour permettre la création de nouveaux fichiers.
+
+
+
+
+
+[[security]]
+=== Sécurité
+
+La sécurité met l'accent sur la protection des données, des systèmes et des actifs grâce à des évaluations des risques et des stratégies d'atténuation.
+
+* *Protection contre les ransomwares (ARP/IA)*
++
+NetApp Autonomous Ransomware Protection avec intelligence artificielle (ARP/AI) aide à protéger vos volumes contre les menaces de ransomware. Workload Factory recommande d'activer ARP/AI pour tous les volumes.
+
+* *Accès non autorisé au volume iSCSI*
++
+Les volumes hébergeant des données applicatives via iSCSI ne doivent pas autoriser simultanément l'accès NAS. Workload Factory recommande de restreindre l'utilisation d'autres protocoles sur les volumes iSCSI.
+
+
+
+
+
+[[operational-excellence]]
+=== Excellence opérationnelle
+
+L'excellence opérationnelle vise à fournir l'architecture la plus optimale et la valeur commerciale.
+
+* *gestion de la capacité*
++
+La gestion de la capacité automatique doit être activée afin de garantir régulièrement que la couche SSD ne dépasse pas le seuil.
+
+* *Capacité maximale du volume*
++
+Maintenez le taux d'utilisation du volume en dessous de 80 % afin d'éviter tout impact potentiel sur les opérations de lecture/écriture des applications. Vous pouvez augmenter la capacité manuellement ou avec l'extension automatique du volume.
+
+* *FlexCache mode écriture*
++
+Pour des performances optimales, configurez le mode d'écriture du cache en fonction de votre charge de travail. Le mode « write-around » offre de meilleures performances pour les charges de travail axées sur la lecture de petits fichiers, tandis que le mode « write-back » offre de meilleures performances pour les charges de travail axées sur l'écriture de fichiers volumineux.
+
+* *FlexCache taille de la réplique*
++
+Activez le dimensionnement automatique des volumes et le nettoyage des volumes de cache pour maintenir une taille optimale et concentrer le cache sur les données chaudes afin d'obtenir une efficacité maximale.
+
+* *Rapports de capacité visibles par l’hôte*
++
+Activez la génération de rapports de capacité visibles par l'hôte pour une meilleure visibilité sur l'utilisation du stockage au niveau du volume.
+
+* *Type de système d'exploitation (OS)*
++
+Vérifiez que la valeur du type de système d'exploitation (OS) du LUN ONTAP correspond au schéma de partitionnement du système d'exploitation afin d'assurer l'alignement des E/S. Une configuration incorrecte peut réduire les performances.
+
+* *Gestion de l'espace disque du périphérique*
++
+Configurez les paramètres d'espace des périphériques de stockage par blocs pour les LUN utilisés par les instances hôtes de base de données afin d'éviter les échecs d'écriture et d'améliorer l'efficacité de l'espace sur FSx for NetApp ONTAP. Cette configuration s'applique à la combinaison recommandée de paramètres pour les volumes à provisionnement fin : réservation d'espace, allocation d'espace et réserve fractionnaire.
+
+* *Provisionnement fin*
++
+Configurez le provisionnement fin pour les volumes FSx for ONTAP hébergeant des instances de base de données. Cette approche permet de stocker davantage de données logiques que de données physiquement disponibles.
+
+
+
+
+
+[[cost-optimization]]
+=== Optimisation des coûts
+
+L'optimisation des coûts vous aide à obtenir la plus grande valeur pour votre entreprise tout en maintenant les coûts bas.
+
+* *Hiérarchisation des données froides*
++
+Activez la hiérarchisation des données inactives pour réduire l'utilisation du niveau de stockage SSD. Appliquez une stratégie de hiérarchisation à chaque volume dédié au stockage des données. Pour les volumes de bases de données, activez la hiérarchisation des données inactives lorsque cela est approprié. FSx for ONTAP analyse en continu les données à la recherche de données inactives et les déplace vers le niveau de pool de capacité sans interruption.
+
+* *Efficacités de stockage*
++
+Activez les techniques d'efficacité du stockage — compactage, compression et déduplication — pour optimiser l'utilisation du stockage et réduire le coût de la couche SSD.
+
+* *Expiration de la sauvegarde*
++
+Supprimez toutes les sauvegardes manuelles des volumes supprimés, ainsi que les sauvegardes datant de plus de deux semaines. Ces sauvegardes n'expirent pas automatiquement, peuvent augmenter les coûts et ajouter de la complexité si vous n'en avez plus besoin pour le SLA ou la récupération.
+
+* *Expiration de l'instantané*
++
+Supprimez les anciens instantanés ou ceux créés manuellement dont vous n'avez plus besoin. Leur suppression permet de réduire les coûts et l'encombrement, surtout s'ils ne sont pas nécessaires à votre SLA ou à vos besoins de restauration.
+
+* *Périphériques de blocs inactifs*
++
+Après qu'un périphérique de stockage n'est pas utilisé pendant sept jours, archivez les données du périphérique de stockage ou supprimez le périphérique de stockage inutilisé afin de réduire les coûts.
+
+* *Capacité SSD surdimensionnée*
++
+Une capacité SSD excédentaire engendre des coûts inutiles. Réduisez le niveau SSD tout en conservant une réserve d'espace libre de 20 %. L'opération peut prendre de quelques heures à plusieurs jours, et aucune autre opération du système de fichiers n'est prise en charge pendant cette période.
+
+* *Volumes NAS inactifs*
++
+L'analyse de configuration identifie les volumes NAS qui ne sont pas utilisés activement et suggère de les supprimer ou de les archiver afin de réduire les coûts.
+
+
+
+
+
+[[performance-efficiency]]
+=== Efficacité des performances
+
+L'efficacité des performances vous aide à garantir une utilisation efficace de vos ressources de stockage et à assurer des performances optimales pour vos charges de travail.
+
+* *FlexGroup volumes rééquilibrés*
++
+Rééquilibrez vos FlexGroup volumes pour améliorer l'efficacité. Après une mise à l'échelle horizontale, la capacité et l'activité de charge de travail peuvent devenir inégales au sein du volume.
+
+* *FlexVol rééquilibrage des volumes*
++
+Rééquilibrez vos volumes FlexVol pour améliorer l'efficacité. Après une mise à l'échelle horizontale, la capacité et l'activité de charge de travail peuvent devenir inégales au sein du volume.
+
+
+
+.Et ensuite
+link:improve-configurations.html["Mettre en œuvre des configurations de système de fichiers bien architecturées"]

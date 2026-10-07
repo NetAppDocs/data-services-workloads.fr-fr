@@ -1,0 +1,105 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/launch-onboarding-advisor-native.html 
+keywords: overview, concepts, features, use case, workloads, how Workload Factory works 
+summary: 'Connectez-vous à NetApp Workload Factory pour accéder à l"assistant de migration VMware. Suivez les étapes de l"assistant pour créer un plan de déploiement ou un plan de migration personnalisé selon vos besoins.' 
+---
+= Créez un plan de déploiement pour Amazon EC2 à l’aide de VMware workloads migration advisor
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Connectez-vous à NetApp Workload Factory pour accéder à l'assistant de migration VMware. Suivez les étapes de l'assistant pour créer un plan de déploiement ou un plan de migration personnalisé selon vos besoins.
+
+Veuillez noter que vous devez posséder un nom d'utilisateur et un mot de passe pour accéder à Workload Factory. Si vous n'en avez pas, créez un compte dès maintenant. Consultez les instructions link:quick-start-vmware.html["ici"].
+
+
+
+[[create-a-deployment-plan-based-on-an-on-premises-vsphere-environment]]
+== Créez un plan de déploiement basé sur un environnement vSphere sur site
+
+Vous pouvez migrer vos configurations actuelles de machines virtuelles dans des environnements vSphere sur site vers des machines virtuelles dans Amazon EC2 et utiliser des systèmes de fichiers Amazon FSx for NetApp ONTAP personnalisés comme banques de données externes.
+
+.Exigences
+* Vous devez avoir link:upload-vm-inventory.html["a téléchargé un inventaire de VM"].
+
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *VMware*.
++
+Le centre de planification est affiché.
+
+. Si vous n'avez pas encore importé d'inventaire de machines virtuelles, sélectionnez *Importer l'inventaire des machines virtuelles* et suivez les instructions dans link:upload-vm-inventory.html["Télécharger les données d'inventaire des machines virtuelles"].
+. Choisissez un ensemble de données d'inventaire de machines virtuelles dans la liste, puis ouvrez le menu *Démarrer la planification* pour cet ensemble de données.
+. Sélectionnez *la capacité de calcul native d’AWS*.
++
+La page *Préparation à l'intégration au cloud AWS* s'affiche.
+
+. Dans la section _Téléchargement de la configuration VM_, sélectionnez image:button-upload-file.png["le bouton de téléchargement"] et sélectionnez le fichier .xlsx créé par RVTools.
++
+La section *Détails de la collecte de données* indique la plage de dates et le nombre d'heures de données collectées à l'aide de l'outil de collecte de données Onboarding Advisor.
+
++
+La section *Résumé de l’inventaire des machines virtuelles* est renseignée à partir du fichier d’inventaire afin de refléter le nombre de machines virtuelles et la capacité de stockage totale.
+
+. Dans la section _Considérations relatives à l'inventaire des VM_, sélectionnez les options permettant de filtrer la liste des VM que vous souhaitez migrer.
++
+.. *Région* : sélectionnez la région où les systèmes de fichiers Amazon FSx for NetApp ONTAP seront déployés. Pour des performances et une rentabilité optimales, il s'agit généralement de la même région que celle où votre Amazon EC2 SDDC existant est déployé.
+.. Choisissez un niveau de performance prévisionnel pour les machines virtuelles de cette région. Nous vous recommandons de commencer par un nombre d'IOPS plus faible. Vous pourrez augmenter les IOPS SSD provisionnées une fois le système de fichiers créé, à mesure que les charges de travail sont migrées ou déployées.
++
+*** *Performances standard à élevées* : Pour les machines virtuelles avec des taux d’E/S moyens compris entre 20 et 5 000 IOPS.
+*** *Très hautes performances* : Pour les machines virtuelles avec des taux d’E/S moyens supérieurs à 5 000 IOPS.
+*** *Performances très faibles* : Pour les VMs dont le taux d’E/S moyen est inférieur à 20 IOPS.
+
+
+
+
+. Dans la section _Capacité cible et considérations de protection_, sélectionnez parmi plusieurs options de stockage.
++
+.. *Stockage des VM à prendre en compte*: Choisissez si les datastores créés pour chaque VM intégrée sont dimensionnés en fonction de leur taille actuellement utilisée (recommandé) ou de leur taille provisionnée.
++
+Les banques de données externes seront mises en œuvre à l’aide de volumes de système de fichiers Amazon FSx for NetApp ONTAP.
+
+.. *Taux moyen de réduction des données* : choisissez parmi les trois taux courants de réduction des données. Sélectionnez « 1:1 - No reduction », « 1:1.25 - 20% reduction » ou « 1:1.5 - 33% reduction ».
++
+Sélectionnez *Aide au choix* si vous hésitez sur le ratio à privilégier. La boîte de dialogue _Assistant de réduction des données_ s'affiche. Sélectionnez les affirmations qui s'appliquent à votre parc de machines virtuelles et à votre espace de stockage. L'assistant vous recommandera un taux de réduction des données approprié. Sélectionnez *Appliquer* pour utiliser le ratio recommandé.
+
+.. *Pourcentage de marge de manœuvre* : Saisissez le pourcentage de croissance de capacité ajouté à la capacité de vos systèmes de fichiers FSx for ONTAP.
++
+Notez que si vous sélectionnez une valeur inférieure à 20 %, vous ne pourrez pas créer d'instantanés de volume pour la protection et les sauvegardes à long terme.
+
+.. *Protection par instantané de machine virtuelle* : Activez cette option pour protéger les machines virtuelles à l’aide d’instantanés.
+
+
+. Sélectionnez *Suivant*.
+. Sur la page *Scope*, sélectionnez dans la liste les machines virtuelles que vous souhaitez inclure dans la migration AWS. Vous pouvez filtrer la liste selon l'état d'alimentation de chaque machine virtuelle, ainsi que selon le centre de données et le cluster où elle se trouve.
++
+Dans la liste des machines virtuelles, vous pouvez choisir les types d'informations à afficher sous forme de colonnes. Par exemple, en sélectionnant « Type d'instance estimé », une colonne affichera le type d'instance Amazon EC2 estimé pour chaque machine virtuelle, en fonction de ses besoins en ressources.
+
+. Sélectionnez *Suivant*.
+. Sur la page *Classify*, examinez les informations de la machine virtuelle, les règles de classification des volumes, les affectations de volumes et la liste des volumes qui seront migrés dans le cadre du déploiement, puis sélectionnez *Suivant*.
++
+
+NOTE: Si un volume présente des exigences de capacité ou de performances qui dépassent les capacités d’un système de fichiers Amazon FSx for NetApp ONTAP dans une région spécifique, l’assistant de migration recommande de déployer le volume sur un système de fichiers Amazon EBS.
+
+. Sur la page *Package*, examinez les instances EC2 et les volumes affectés aux différents clusters FSx for ONTAP, puis sélectionnez *Next*.
+. Sur la page *Examiner le plan*, consultez les estimations d'économies mensuelles et les estimations de coûts pour toutes les machines virtuelles que vous prévoyez de migrer.
++
+En haut de la page, vous trouverez une estimation des économies mensuelles pour les systèmes de fichiers FSx for ONTAP et les volumes EBS. Vous pouvez développer chaque section pour consulter les détails de la configuration de système de fichiers suggérée, la ventilation des économies estimées, les hypothèses et les clauses de non-responsabilité techniques.
+
++
+Le plan de migration est automatiquement enregistré par défaut dans la liste des plans du centre de planification.
+
++
+Lorsque vous êtes satisfait du plan de migration, plusieurs options s'offrent à vous :
+
++
+** Sélectionnez *Télécharger le plan > Télécharger un rapport* pour télécharger le plan de déploiement au format .pdf afin de pouvoir le diffuser pour examen.
+** Sélectionnez *Télécharger le plan > Télécharger le déploiement du stockage d'instance* pour télécharger le plan de déploiement du datastore externe au format .csv afin de pouvoir l'utiliser pour créer votre nouvelle infrastructure de données intelligente basée sur le cloud.
+** Sélectionnez *Provision* pour commencer le déploiement du système de fichiers Amazon FSx for NetApp ONTAP recommandé.
+
+
+

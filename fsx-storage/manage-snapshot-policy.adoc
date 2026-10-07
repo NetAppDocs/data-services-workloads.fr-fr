@@ -1,0 +1,184 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-snapshot-policy.html 
+keywords: manage snapshot policy, change snapshot policy, assign snapshot policy, remove snapshot policy, snapshot policies, snapshot schedule, update, snapshot long-term retention, enable long-term retention 
+summary: Gérez les stratégies de snapshot pour les volumes FSx for ONTAP dans Workload Factory. Une stratégie de snapshot définit la manière dont le système crée des snapshots pour un volume. 
+---
+= Gérer les stratégies de snapshot pour les volumes dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gérez les stratégies de snapshot pour les volumes FSx for ONTAP dans Workload Factory. Une stratégie de snapshot définit la manière dont le système crée des snapshots pour un volume.
+
+Les opérations de gestion des snapshots, telles que l'attribution, la modification et la suppression des stratégies de snapshot pour les volumes d'un système de fichiers FSx for ONTAP sont gérées au niveau de la machine virtuelle de stockage. Les stratégies de snapshot peuvent être partagées avec une seule machine virtuelle de stockage ou avec toutes les machines virtuelles de stockage.
+
+Certaines tâches de gestion nécessitent que vous associiez un lien avec le système de fichiers FSx for ONTAP. link:../setup/links-overview.html["Découvrez les liens de Workload Factory"^].
+
+Par défaut, chaque volume est associé à la stratégie de snapshots `default` du système de fichiers. Nous recommandons d'utiliser cette stratégie pour la plupart des charges de travail.
+
+
+
+[[assign-a-snapshot-policy-to-a-volume]]
+== Attribuer une stratégie de snapshot à un volume
+
+Vous pouvez attribuer une stratégie de snapshot à un seul volume afin de créer des snapshots planifiés pour ce volume.
+
+.Avant de commencer
+Vous devez associer un lien pour attribuer une stratégie d'instantané. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Une fois le lien associé, revenez à cette opération.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Stockage*.
+. Dans le menu Stockage, sélectionnez *Inventaire*.
+. Sélectionnez le menu Actions du système de fichiers contenant le volume auquel vous souhaitez attribuer une stratégie d'instantané, puis sélectionnez *Gérer*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez l'onglet *Storage VMs*.
+. Dans l'onglet *VM de stockage*, sélectionnez le menu des actions de la VM de stockage contenant le volume à protéger avec des instantanés planifiés, puis *Actions avancées*, puis *Gérer les stratégies d'instantané*.
+. Sur la page de gestion des stratégies d'instantané, sélectionnez le menu Actions de la stratégie d'instantané, puis sélectionnez *Attribuer une stratégie au volume*.
+. Dans la boîte de dialogue « Attribuer une stratégie d’instantané », sélectionnez une stratégie d’instantané à attribuer au volume et examinez la planification de la stratégie.
++
+Si la politique contient des instantanés immuables et que vous souhaitez l'utiliser, acceptez la déclaration.
+
+. Sélectionnez *Attribuer*.
+
+
+.Résultat
+La stratégie de snapshot est attribuée au volume.
+
+
+
+[[change-a-snapshot-policy]]
+== Modifier une politique d'instantané
+
+Vous pouvez modifier le nom, la planification et le nombre de copies à conserver de la stratégie de snapshot, ainsi qu'activer ou désactiver les snapshots immuables. Il n'est pas possible d'activer ou de désactiver le partage de stratégie entre les machines virtuelles de stockage. Cette option est disponible uniquement lors de la création de la stratégie de snapshot.
+
+.Avant de commencer
+Pour afficher les stratégies d'instantané existantes, vous devez associer un lien. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Une fois le lien associé, revenez à cette opération.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Stockage*.
+. Dans le menu Stockage, sélectionnez *Inventaire*.
+. Sélectionnez le menu Actions du système de fichiers, puis sélectionnez *Gérer*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez l'onglet *Storage VMs*.
+. Dans l'onglet *VM de stockage*, sélectionnez le menu des actions de la VM de stockage contenant le volume à protéger avec des instantanés planifiés, puis *Actions avancées*, puis *Gérer les stratégies d'instantané*.
+. Sur la page de gestion des stratégies d'instantané, sélectionnez le menu d'actions de la stratégie d'instantané à modifier, puis sélectionnez *Modifier*.
+. Dans la boîte de dialogue Modifier la stratégie d'instantané, apportez les modifications nécessaires à la stratégie d'instantané.
+. Sélectionnez *Appliquer*.
+
+
+.Résultat
+La politique relative aux instantanés a été mise à jour.
+
+
+
+[[enable-immutable-snapshots]]
+== Activer les instantanés immuables
+
+Verrouillez les snapshots pour éviter leur suppression pendant la période de conservation.
+
+.Avant de commencer
+Vous devez associer un lien pour activer les instantanés immuables. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Une fois le lien associé, revenez à cette opération.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Explorateur de volumes*.
+. Sélectionnez le menu Actions du volume pour lequel vous souhaitez verrouiller les instantanés.
+. Sélectionnez *Actions de protection des données*, *Instantanés*, puis *Rendre un instantané immuable*.
+. Dans la boîte de dialogue « Rendre un instantané immuable », procédez comme suit :
++
+.. *Nom de l'instantané* : Sélectionnez l'instantané à verrouiller.
+.. Définissez la *période de conservation* en nombre d'heures, de jours, de mois ou d'années.
+.. Acceptez cette déclaration.
+
+
+. Sélectionnez *Appliquer*.
+
+
+.Résultat
+L'instantané du volume est maintenant verrouillé.
+
+
+
+[[enable-long-term-snapshot-retention-in-netapp-workload-factory]]
+== Activez la conservation à long terme des instantanés dans NetApp Workload Factory
+
+Dans NetApp Workload Factory, vous pouvez activer les instantanés pour une conservation à long terme, ce qui vous permet de répliquer des instantanés spécifiques pour une reprise après sinistre à long terme.
+
+La conservation à long terme permet aux services métier de continuer à fonctionner même en cas de panne complète d'un site, assurant ainsi un basculement transparent des applications à l'aide d'une copie secondaire.
+
+Les mêmes étapes s'appliquent pour activer et modifier les instantanés destinés à la rétention à long terme.
+
+Lorsqu’un cluster ONTAP sur site est la cible de la relation de réplication, la modification des instantanés pour une conservation à long terme n’est pas prise en charge.
+
+
+NOTE: La modification de la conservation à long terme n'est pas disponible lors de la réplication des données et des paramètres de configuration des storage VM.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans le menu *FSx for ONTAP*, sélectionnez *Inventory*, puis sélectionnez le menu d’actions du système de fichiers à mettre à jour, puis sélectionnez *Manage*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez l'onglet *Relations de réplication*.
+. Dans l'onglet Relations de réplication, sélectionnez le menu Actions de la planification de la relation de réplication à modifier.
+. Sélectionnez *Modifier la rétention à long terme*.
+. Dans la boîte de dialogue Modifier la conservation à long terme, activez ou désactivez les instantanés pour la conservation à long terme.
+. Si vous choisissez de désactiver les instantanés pour la conservation à long terme, sélectionnez *Appliquer* pour terminer cette opération.
+. Si vous choisissez d'activer les instantanés pour une conservation à long terme, choisissez une stratégie existante ou créez-en une nouvelle.
++
+.. Pour utiliser une stratégie existante, sélectionnez-la dans le menu déroulant.
+.. Pour créer une nouvelle politique, veuillez fournir les informations suivantes :
++
+... *Nom de la stratégie* : Saisissez un nom de stratégie.
+... *Stratégies d'instantané* : Sélectionnez une ou plusieurs stratégies d'instantané.
+... *Copies à conserver* : Saisissez le nombre de copies Snapshot à conserver sur le système de fichiers cible.
+
+
+
+
+. Sélectionnez *Appliquer*.
+
+
+
+
+[[remove-a-snapshot-policy-from-a-volume]]
+== Supprimer une stratégie d'instantané d'un volume
+
+Supprimez une stratégie de snapshot d'un volume si vous ne souhaitez plus créer de snapshots de ce volume ou si vous voulez supprimer une stratégie de snapshot attribuée à plusieurs volumes. Pour <<Supprimer une stratégie Snapshot,supprimer une stratégie d'instantané>> attribuée à plusieurs volumes, vous devez la supprimer manuellement de tous les volumes.
+
+.Avant de commencer
+Vous devez associer un lien pour supprimer une stratégie d'instantané. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Une fois le lien associé, revenez à cette opération.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans le menu *FSx for ONTAP*, sélectionnez *Inventory*, puis sélectionnez le menu d’actions du système de fichiers à mettre à jour, puis sélectionnez *Manage*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez l'onglet *Storage VMs*.
+. Dans l'onglet *VM de stockage*, sélectionnez le menu des actions de la VM de stockage contenant le volume à protéger avec des instantanés planifiés, puis *Actions avancées*, puis *Gérer les stratégies d'instantané*.
+. Sur la page de gestion des stratégies d'instantané, sélectionnez le menu Actions de la stratégie d'instantané, puis sélectionnez *Attribuer une stratégie au volume*.
+. Dans la boîte de dialogue Attribuer une stratégie Snapshot, sélectionnez *None* pour supprimer la stratégie Snapshot.
+. Sélectionnez *Attribuer*.
+
+
+.Résultat
+La stratégie de snapshot est supprimée du volume.
+
+
+
+[[delete-a-snapshot-policy]]
+== Supprimer une stratégie Snapshot
+
+Supprimez une stratégie d'instantané lorsque vous n'en avez plus besoin.
+
+Lorsqu'une stratégie de snapshot est attribuée à plusieurs volumes, vous devez manuellement <<Supprimer une stratégie d'instantané d'un volume,supprimez-le>> de tous les volumes pour supprimer la stratégie de snapshot. Vous pouvez également <<Attribuer une stratégie de snapshot à un volume,attribuer une stratégie d'instantané différente>> aux volumes.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans le menu *FSx for ONTAP*, sélectionnez *Inventory*, puis sélectionnez le menu d’actions du système de fichiers à mettre à jour, puis sélectionnez *Manage*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez l'onglet *Storage VMs*.
+. Dans l'onglet *VM de stockage*, sélectionnez le menu d'actions de la VM de stockage avec la stratégie de snapshot à supprimer, puis *Actions avancées*, puis *Gérer les stratégies de snapshot*.
+. Sur la page de gestion des stratégies d'instantané, sélectionnez le menu des actions de la stratégie d'instantané à supprimer, puis sélectionnez *Supprimer*.
+. Dans la boîte de dialogue Supprimer, sélectionnez *Supprimer* pour supprimer la stratégie.
+

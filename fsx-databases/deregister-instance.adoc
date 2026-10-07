@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/deregister-instance.html 
+keywords: Microsoft SQL Server instance, PostgreSQL server instance, Oracle database, deregister instance, unregister instance, remove instance 
+summary: Désinscrivez une ressource si vous ne souhaitez plus déployer ou surveiller des ressources depuis la console Workload Factory. 
+---
+= Désenregistrer une ressource dans NetApp Workload Factory for Databases
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Désinscrivez une ressource, telle qu'une instance Microsoft SQL Server ou une base de données Oracle, si vous ne souhaitez plus déployer ni surveiller des ressources depuis la console NetApp Workload Factory. La désinscription des ressources supprime également la quantité de capacité de stockage FSx for ONTAP utilisée par l'instance.
+
+Vous pouvez enregistrer à nouveau la ressource.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Bases de données*.
+. Dans le menu Bases de données, sélectionnez *Inventaire*.
+. Dans l'inventaire, sélectionnez le type de moteur : *Microsoft SQL Server*, *Oracle* ou *PostgreSQL*.
+. Localisez la ressource que vous souhaitez désinscrire, sélectionnez le menu d’actions, puis sélectionnez *Désinscrire*.
+

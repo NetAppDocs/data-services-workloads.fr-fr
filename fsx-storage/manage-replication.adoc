@@ -1,0 +1,219 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-replication.html 
+keywords: replication management, manage replication, pause replication, stop replication, break replication, delete replication, track replication, change replication schedule, limit replication transfer rate, reverse replication 
+summary: Gérez les relations de réplication dans NetApp Workload Factory. 
+---
+= Gérez vos relations de réplication dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gérez vos relations de réplication dans NetApp Workload Factory. Vous pouvez suspendre, reprendre, inverser, arrêter et supprimer les relations de réplication entre les volumes source et de destination. Vous pouvez également modifier la planification de réplication du volume source et limiter le débit de transfert maximal de vos relations de réplication.
+
+
+
+[[change-the-replication-schedule-of-a-source-volume]]
+== Modifier la planification de réplication d'un volume source
+
+Modifiez la planification de réplication du volume source dans une relation de réplication dans NetApp Workload Factory.
+
+Choisissez la fréquence à laquelle les instantanés du volume source sont transférés vers le volume répliqué afin de respecter vos objectifs de point de récupération (RPO).
+
+Lorsqu'un cluster ONTAP local est la cible de la relation de réplication, la modification de la planification de la réplication n'est pas prise en charge.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Stockage*.
+. Dans le menu Stockage, sélectionnez *Inventaire*.
+. Dans l'*Inventaire*, sélectionnez le menu des actions du système de fichiers à mettre à jour, puis sélectionnez *Gérer*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez l'onglet *Relations de réplication*.
+. Dans l'onglet Relations de réplication, sélectionnez le menu Actions de la planification de la relation de réplication à modifier.
+. Sélectionnez *Modifier l'intervalle de réplication*.
+. Dans la boîte de dialogue Modifier l'intervalle de réplication, sélectionnez la fréquence de transfert des instantanés à partir du volume source. Vous pouvez choisir parmi les fréquences suivantes :
++
+** Toutes les 5 minutes
+** Horaire
+** Toutes les 8 heures
+** Tous les jours
+** Hebdomadaire
+
+
+. Sélectionnez *Appliquer*.
+
+
+
+
+[[limit-the-max-transfer-rate-of-a-replication-relationship]]
+== Limiter le débit de transfert maximal d'une relation de réplication
+
+Limiter le débit de transfert maximal est facultatif, mais recommandé. Sans limite, les performances du réseau et de l'application risquent de diminuer.
+
+Sinon, nous recommandons un taux de transfert illimité pour les systèmes de fichiers FSx for ONTAP pour les charges de travail critiques, par exemple celles utilisées principalement pour la reprise après sinistre.
+
+.Avant de commencer
+Déterminez la bande passante à allouer à la réplication.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Stockage*.
+. Dans le menu Stockage, sélectionnez *Inventaire*.
+. Dans l'*Inventaire*, sélectionnez le menu des actions du système de fichiers à mettre à jour, puis sélectionnez *Gérer*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez l'onglet *Relations de réplication*.
+. Dans l'onglet Relations de réplication, sélectionnez le menu Actions de la relation de réplication pour laquelle vous souhaitez limiter le taux de transfert maximal.
+. Sélectionnez *Modifier le taux de transfert maximal*.
+. Dans la boîte de dialogue Modifier le débit de transfert maximal, sélectionnez *Limited* et saisissez la limite de transfert maximale en MB/s.
++
+Vous pouvez également sélectionner *Illimité*.
+
+. Sélectionnez *Appliquer*.
+
+
+
+
+[[manually-update-snapshot-data-in-a-replication-relationship]]
+== Mettre à jour manuellement les données d'instantané dans une relation de réplication
+
+Une relation de réplication possède un calendrier de réplication défini, mais vous pouvez à tout moment mettre à jour manuellement les données d'instantané transférées entre les volumes source et cible dans NetApp Workload Factory.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Stockage*.
+. Dans le menu Stockage, sélectionnez *Inventaire*.
+. Dans l'*Inventaire*, sélectionnez le menu des actions du système de fichiers à mettre à jour, puis sélectionnez *Gérer*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez l'onglet *Relations de réplication*.
+. Dans l'onglet Relations de réplication, sélectionnez le menu Actions de la relation de réplication à mettre à jour.
+. Sélectionnez *Mettre à jour*.
+. Dans la boîte de dialogue Mise à jour, sélectionnez *Mettre à jour*.
+
+
+
+
+[[pause-a-replication-relationship]]
+== Suspendre une relation de réplication
+
+Suspendre une relation de réplication interrompt les mises à jour de réplication planifiées du volume source vers le volume cible. Le volume cible passe du mode lecture seule au mode lecture/écriture. Les deux volumes continuent de partager le dernier instantané de réplication comme nouvelle référence pour une resynchronisation ultérieure.
+
+.Avant de commencer
+Si vous mettez en pause un transfert en cours, le transfert n'est pas affecté et la relation passe à « Quiescing » jusqu'à la fin du transfert. Si le transfert en cours est interrompu, il devient un transfert ultérieur et ne redémarrera pas.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Stockage*.
+. Dans le menu Stockage, sélectionnez *Inventaire*.
+. Dans l'*Inventaire*, sélectionnez le menu des actions du système de fichiers à mettre à jour, puis sélectionnez *Gérer*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez l'onglet *Relations de réplication*.
+. Dans l'onglet Relations de réplication, sélectionnez le menu Actions de la relation de réplication à suspendre.
+. Sélectionnez *Pause (Quiesce)*.
+. Dans la boîte de dialogue *Relation de mise au repos*, sélectionnez *Mise au repos*.
+
+
+.Résultat
+La relation est suspendue et son statut apparaît comme « En pause ».
+
+
+
+[[resume-a-paused-replication-relationship]]
+== Reprendre une relation de réplication interrompue
+
+Lorsque vous reprenez une relation de réplication, toutes les modifications apportées au volume de destination pendant l'interruption de la réplication sont supprimées. Le volume cible passe du mode lecture/écriture au mode lecture seule et reçoit à nouveau les mises à jour du volume source à l'intervalle de réplication planifié.
+
+
+NOTE: Les données écrites sur le volume source d'origine entre la dernière réplication des données et le moment où le volume source est désactivé ne sont pas conservées.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Stockage*.
+. Dans le menu Stockage, sélectionnez *Inventaire*.
+. Dans l'*Inventaire*, sélectionnez le menu des actions du système de fichiers à mettre à jour, puis sélectionnez *Gérer*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez l'onglet *Relations de réplication*.
+. Dans l'onglet Relations de réplication, sélectionnez le menu Actions de la relation de réplication que vous souhaitez reprendre.
+. Sélectionnez *Resume*.
+. Dans la boîte de dialogue de reprise de la relation, sélectionnez *Reprendre*.
+
+
+.Résultat
+La relation reprend et son statut indique « Répliquée ».
+
+
+
+[[reverse-a-replication-relationship]]
+== Inverser une relation de réplication
+
+Inverser une relation de réplication de sorte que le volume cible devienne le volume source.
+
+Les opérations inverses sont prises en charge pour les éléments suivants :
+
+* Deux systèmes de fichiers FSx pour ONTAP
+* Un système de fichiers FSx for ONTAP et un système ONTAP sur site
+
+
+Une fois la réplication arrêtée et les modifications apportées au volume cible, vous pouvez répliquer ces modifications vers le volume source. Ce processus est courant lors d'une reprise après sinistre, lorsque vous travaillez sur le volume cible pendant un certain temps et souhaitez ensuite inverser les rôles des volumes.
+
+Lorsque vous inversez puis reprenez une réplication, les rôles de la source et de la cible de vos volumes s'inversent : le volume cible devient la nouvelle source et le volume source devient la nouvelle cible. L'opération d'inversion écrase également le contenu du nouveau volume cible avec celui du nouveau volume source. Si vous inversez une réplication deux fois, le sens de réplication initial est rétabli.
+
+[]
+====
+REMARQUE :
+
+* Les données écrites sur le volume source d'origine entre la dernière réplication des données et le moment où le volume source est désactivé ne sont pas conservées.
+* La réplication inverse n'est pas disponible lors de la réplication des données et des paramètres de configuration des storage VM.
+
+
+====
+.Avant de commencer
+Assurez-vous de bien connaître les rôles actuels et futurs de vos volumes source et cible, car les modifications apportées au nouveau volume cible seront écrasées par celles du nouveau volume source. Une utilisation incorrecte peut entraîner une perte de données imprévue.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Stockage*.
+. Dans le menu Stockage, sélectionnez *Inventaire*.
+. Dans l'*Inventaire*, sélectionnez le menu des actions du système de fichiers à mettre à jour, puis sélectionnez *Gérer*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez l'onglet *Relations de réplication*.
+. Dans l'onglet Relations de réplication, sélectionnez le menu Actions de la relation de réplication à inverser.
+. Sélectionnez *Relation inverse*.
+. Dans la boîte de dialogue Inverser la relation, sélectionnez *Inverser*.
+
+
+
+
+[[stop-a-replication-relationship]]
+== Arrêter une relation de réplication
+
+Interrompez une relation de réplication dans NetApp Workload Factory. Lorsque vous interrompez une relation de réplication, les mises à jour de réplication planifiées du volume source vers le volume cible sont suspendues. Le volume cible passe du mode lecture seule au mode lecture/écriture.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Stockage*.
+. Dans le menu Stockage, sélectionnez *Inventaire*.
+. Dans l'*Inventaire*, sélectionnez le menu des actions du système de fichiers à mettre à jour, puis sélectionnez *Gérer*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez l'onglet *Relations de réplication*.
+. Dans l'onglet Relations de réplication, sélectionnez le menu d'actions de la relation de réplication à arrêter.
+. Sélectionnez *Interrompre*.
+. Dans la boîte de dialogue Interrompre la réplication, sélectionnez *Interrompre*.
+
+
+.Résultat
+L'état de réplication du volume passe à *Broken*. Le volume cible devient accessible en écriture.
+
+
+
+[[delete-a-replication-relationship]]
+== Supprimer une relation de réplication
+
+Supprimez une relation de réplication dans NetApp Workload Factory. Lorsque vous supprimez une relation de réplication, cela supprime la relation de réplication entre le volume source et le volume cible. Une fois la relation de réplication supprimée, les deux volumes continuent d'exister indépendamment avec les données actuelles qu'ils contiennent.
+
+Lorsque vous supprimez une relation de réplication, FSx for ONTAP supprime également les instantanés de réplication communs du volume source et du volume cible.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Stockage*.
+. Dans le menu Stockage, sélectionnez *Inventaire*.
+. Dans l'*Inventaire*, sélectionnez le menu des actions du système de fichiers à mettre à jour, puis sélectionnez *Gérer*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez l'onglet *Relations de réplication*.
+. Dans l'onglet Relations de réplication, sélectionnez le menu Actions de la relation de réplication à supprimer.
+. Sélectionnez *Delete*.
+. Dans la boîte de dialogue Supprimer la relation, sélectionnez *Supprimer*.
+

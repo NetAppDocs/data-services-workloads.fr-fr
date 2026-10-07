@@ -1,0 +1,63 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/replicate-svm-to-file-system.html 
+keywords: storage VM, SVM, replication, FSx for ONTAP, Workload Factory 
+summary: 'La réplication d"une machine virtuelle de stockage vers un autre système de fichiers FSx for ONTAP fournit une couche de protection de l"accès aux données en cas de perte de données.' 
+---
+= Répliquer une machine virtuelle de stockage vers un autre système de fichiers FSx for ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La réplication d'une machine virtuelle de stockage vers un autre système de fichiers FSx for ONTAP dans NetApp Workload Factory fournit une couche de protection de l'accès aux données en cas de perte de données. Cette opération réplique tous les volumes d'une machine virtuelle de stockage vers un autre système de fichiers FSx for ONTAP.
+
+.Avant de commencer
+Pour répliquer une machine virtuelle de stockage vers un autre système de fichiers FSx for ONTAP, vous devez associer un lien. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Une fois le lien associé, revenez à cette opération.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans *FSx for ONTAP*, sélectionnez le menu des actions du système de fichiers contenant la machine virtuelle de stockage à répliquer, puis sélectionnez *Gérer*.
+. Dans l’aperçu du système de fichiers, sous Storage VMs, sélectionnez *Manage*.
+. Sur l'écran Gérer les machines virtuelles de stockage, sélectionnez le menu Actions de la machine virtuelle de stockage pour laquelle vous souhaitez répliquer une SVM, puis sélectionnez *Actions avancées* > *Répliquer la machine virtuelle de stockage*.
+. Sur la page Répliquer les données, sous Cible de réplication, indiquez les informations suivantes :
++
+.. *FSx for ONTAP file system* : Sélectionnez les informations d’identification, la région et le nom du système de fichiers FSx for ONTAP pour le système de fichiers cible FSx for ONTAP.
+.. *Nom de la machine virtuelle de stockage* : Sélectionnez la machine virtuelle de stockage dans le menu déroulant.
+.. *Nom du volume* : Le nom du volume cible est généré automatiquement au format suivant `{OriginalVolumeName}_copy`.
+.. *Politique de hiérarchisation* : Sélectionnez la politique de hiérarchisation des données stockées dans le volume cible.
++
+_Auto_ est la stratégie de hiérarchisation par défaut lors de la création d’un volume à l’aide de l’interface utilisateur Workload Factory FSx for ONTAP. Pour plus d’informations sur les stratégies de hiérarchisation des volumes, consultez link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Capacité de stockage du volume"^]la documentation AWS FSx for NetApp ONTAP.
+
+.. *Débit de transfert maximal* : Sélectionnez *Limité* et saisissez la limite de transfert maximale en Mo/s. Vous pouvez également sélectionner *Illimité*.
++
+Sans limite, les performances du réseau et de l'application pourraient diminuer. Nous recommandons également un débit de transfert illimité pour les systèmes de fichiers FSx for ONTAP destinés aux charges de travail critiques, par exemple celles qui sont utilisées principalement pour la reprise après sinistre.
+
+
+
+. Dans les paramètres de réplication, veuillez indiquer les éléments suivants :
++
+.. *Intervalle de réplication*: Sélectionnez la fréquence à laquelle les instantanés sont transférés du volume source vers le volume cible.
+.. *Conservation à long terme*: Activez éventuellement les instantanés pour la conservation à long terme.
++
+Si vous activez la conservation à long terme, sélectionnez une stratégie existante ou créez-en une nouvelle pour définir les instantanés à répliquer et le nombre à conserver.
+
++
+... Pour *Choisir une stratégie existante*, sélectionnez une stratégie existante dans le menu déroulant.
+... Pour *Créer une nouvelle politique*, veuillez fournir les informations suivantes :
++
+.... *Nom de la stratégie* : Saisissez un nom de stratégie.
+.... *Stratégies de snapshot* : Dans le tableau, sélectionnez la fréquence de la stratégie de snapshot et le nombre de copies à conserver. Vous pouvez sélectionner plusieurs stratégies de snapshot.
+
+
+
+
+
+
+. Sélectionnez *Créer*.
+
+
+.Résultat
+Tous les volumes de la machine virtuelle de stockage sont répliqués vers le système de fichiers cible.

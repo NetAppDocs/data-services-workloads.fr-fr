@@ -1,0 +1,132 @@
+---
+sidebar: sidebar 
+permalink: gcnv/improve-configurations.html 
+keywords: improve configurations, optimize configurations, implement best practices, well-architected storage pool, Google Cloud NetApp Volumes, GCNV 
+summary: 'Workload factory analyse les configurations Google Cloud NetApp Volumes et fournit des informations et des recommandations pour vous aider à atteindre l"excellence opérationnelle.' 
+---
+= Implémentez des configurations Google Cloud NetApp Volumes bien architecturées
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Grâce aux analyses et recommandations de configuration, exploitez NetApp pour mettre en œuvre les meilleures pratiques pour vos pools de stockage Google Cloud NetApp Volumes exécutés sur Google Cloud Storage. Vous pouvez facilement vérifier l’état de l’architecture, identifier les problèmes de configuration et obtenir des recommandations pour améliorer l’architecture de tout pool de stockage qui n’est pas optimisé pour la fiabilité, la sécurité, les performances et le coût.
+
+link:configuration-analysis.html["Découvrez l'analyse de configuration et l'état bien architecturé."]
+
+
+
+[[about-this-task]]
+== À propos de cette tâche
+
+NetApp analyse quotidiennement les déploiements de pools de stockage Google Cloud NetApp Volumes sur Google Cloud. L'analyse quotidienne fournit l'état bien architecturé, ainsi que des informations et des recommandations pour vous aider à comprendre les problèmes de configuration afin que vos pools de stockage respectent les meilleures pratiques.
+
+Une fois l'analyse quotidienne terminée, le tableau de bord affiche le nombre total de ressources bien architecturées, le nombre de ressources en état critique et le nombre de ressources en état d'alerte. Les configurations sont classées selon les piliers du cadre de bonnes pratiques d'architecture : fiabilité, excellence opérationnelle, optimisation des coûts, efficacité des performances et sécurité. Le tableau de bord comprend également un tableau répertoriant toutes les configurations, leur statut de bonnes pratiques d'architecture, leur niveau de gravité, leur catégorie, leur type de ressource (volume ou pool de stockage), les ressources affectées et la possibilité d'afficher la recommandation lorsque la configuration n'est pas optimisée.
+
+
+
+[[before-you-begin]]
+== Avant de commencer
+
+* Vous devez link:https://console.netapp.com/add-working-environment/choose-type["ajouter un pool de stockage Google Cloud NetApp Volumes"] vous connecter à la NetApp Console pour consulter l'état de l'architecture et les recommandations concernant les problèmes de configuration.
+
+
+
+
+[[view-recommendations-for-configuration-issues]]
+== Consultez les recommandations pour les problèmes de configuration
+
+Vous pouvez consulter les recommandations relatives aux problèmes de configuration une fois l'analyse quotidienne terminée. Les recommandations expliquent les bonnes pratiques et les risques potentiels liés aux configurations non optimisées. Vous pouvez également télécharger un fichier CSV des recommandations.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com/home["NetApp Console"^].
+. Dans le menu NetApp Console, sélectionnez *Charges de travail* puis *Bien architecturé*.
+. Depuis le tableau de bord Well-architected, sélectionnez *Afficher* pour toute configuration.
++
+Vous pouvez également télécharger un fichier CSV contenant les recommandations pour toutes les configurations.
+
+. Examinez la recommandation.
+
+
+
+
+[[dismiss-a-configuration-analysis]]
+== Rejeter une analyse de configuration
+
+Interrompez une analyse de configuration pour un pool de stockage Google Cloud NetApp Volumes ou pour des volumes sélectionnés. Vous pouvez relancer l'analyse si nécessaire.
+
+[role="tabbed-block"]
+====
+.Rejeter une analyse de configuration pour un pool de stockage
+--
+.Étapes
+. Connectez-vous au link:https://console.netapp.com/home["NetApp Console"^].
+. Dans le menu NetApp Console, sélectionnez *Charges de travail* puis *Bien architecturé*.
+. Depuis le tableau de bord Well-architected, sélectionnez *Afficher* pour toute configuration.
+. Dans la section Configurations, identifiez la configuration qui ne s'applique pas à votre environnement et sélectionnez ensuite *Ignorer*.
+. Dans la boîte de dialogue de configuration « Ignorer », sélectionnez *Ignorer* pour arrêter l’analyse de configuration.
+
+
+--
+.Rejeter une analyse de configuration pour un volume
+--
+.Étapes
+. Connectez-vous au link:https://console.netapp.com/home["NetApp Console"^].
+. Dans le menu NetApp Console, sélectionnez *Charges de travail* puis *Bien architecturé*.
+. Depuis le tableau de bord Well-architected, sélectionnez *Afficher* pour toute configuration.
+. Sous Configurations, identifiez la configuration à ignorer pour les volumes sélectionnés, puis sélectionnez *View*.
+. Identifiez les volumes à exclure de l'analyse de configuration.
++
+** Pour un seul volume : sélectionnez le menu Actions, puis sélectionnez *Ignorer le volume*.
+** Pour plusieurs volumes : sélectionnez les volumes, puis sélectionnez *Ignorer* à côté de Bulk action.
+
+
+. Sélectionnez *Ignorer* pour interrompre l'analyse de la configuration.
+. Dans la boîte de dialogue Ignorer les volumes, sélectionnez *Ignorer* pour confirmer.
+
+
+--
+====
+.Résultat
+L'analyse de configuration s'arrête pour le pool de stockage ou les volumes sélectionnés.
+
+Vous pouvez réactiver l'analyse à tout moment.
+
+
+
+[[reactivate-a-dismissed-configuration-analysis]]
+== Réactiver une analyse de configuration rejetée
+
+Vous pouvez réactiver à tout moment une analyse de configuration annulée. Vous pouvez sélectionner une ou plusieurs configurations à réactiver.
+
+[role="tabbed-block"]
+====
+.Réactiver une analyse de configuration pour un pool de stockage
+--
+.Étapes
+. Connectez-vous au link:https://console.netapp.com/home["NetApp Console"^].
+. Dans le menu NetApp Console, sélectionnez *Charges de travail* puis *Bien architecturé*.
+. Sélectionnez *Configurations rejetées*.
+. Identifiez la configuration que vous souhaitez réactiver et sélectionnez *Réactiver*.
+
+
+--
+.Réactiver une analyse de configuration pour un volume
+--
+.Étapes
+. Connectez-vous au link:https://console.netapp.com/home["NetApp Console"^].
+. Dans le menu NetApp Console, sélectionnez *Charges de travail* puis *Bien architecturé*.
+. Sélectionnez *Configurations rejetées*.
+. Identifiez le(s) volume(s) à réactiver à partir de l'analyse de configuration.
++
+** Pour un volume : sélectionnez le menu Actions, puis sélectionnez *Réactiver le volume*.
+** Pour plusieurs volumes : sélectionnez les volumes, puis sélectionnez *Réactiver* à côté de Bulk action.
+
+
+
+
+--
+====
+.Résultat
+Le système réactive l'analyse de configuration. Une nouvelle analyse a lieu chaque jour.

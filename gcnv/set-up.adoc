@@ -1,0 +1,115 @@
+---
+sidebar: sidebar 
+permalink: gcnv/set-up.html 
+keywords: setup, set up, api, service account, requirements, permissions, google cloud netapp volumes, gcnv, bluexp, netapp console 
+summary: La NetApp Console nécessite un accès à l’API Google Cloud NetApp Volumes et les autorisations appropriées via un compte de service Google Cloud. 
+---
+= Configurer Google Cloud NetApp Volumes
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+La NetApp Console nécessite les autorisations appropriées via un compte de service Google Cloud.
+
+Veuillez effectuer les tâches suivantes pour que NetApp Console puisse accéder à votre projet Google Cloud.
+
+
+NOTE: Vous pouvez utiliser la console Google Cloud ou l'interface de ligne de commande gcloud pour ces tâches. Pour utiliser l'interface de ligne de commande gcloud, vous devez d'abord link:https://cloud.google.com/sdk/docs/install-sdk["installé l'interface de ligne de commande Google Cloud"^].
+
+* Si vous ne disposez pas déjà d’un compte de service existant, créez-en un nouveau.
+* Accorder l’accès pour l’emprunt d’identité.
+* Attribuez le rôle IAM dans le projet partagé.
+
+
+
+
+[[set-up-a-service-account]]
+== Créer un compte de service
+
+
+NOTE: Les modifications apportées aux autorisations des projets Google Cloud peuvent prendre quelques minutes avant d'être effectives.
+
+. Dans la console Google Cloud https://console.cloud.google.com/iam-admin/serviceaccounts["accéder à la page des comptes de service"^].
+. Cliquez sur *Sélectionner un projet*, choisissez votre projet, puis cliquez sur *Ouvrir*.
+. Pour créer un compte de service, procédez comme suit:
++
+.. Cliquez sur *Créer un compte de service*.
+.. Saisissez le nom du compte de service (nom d'affichage convivial) et sa description.
++
+Google Cloud Console génère un ID de compte de service à partir de ce nom. Modifiez l’ID si nécessaire - vous ne pourrez pas le modifier ultérieurement.
+
+.. Cliquez sur *Créer et continuer*.
+.. Dans la liste des rôles, sélectionnez le rôle *Google Cloud NetApp Volumes Admin* ou *Google Cloud NetApp Volumes Viewer*.
+.. Sélectionnez *Continuer*.
++
+Vous pouvez également attribuer le rôle à l'aide de l'interface de ligne de commande gcloud :
+
++
+[source, cli]
+----
+gcloud projects add-iam-policy-binding <YOUR_PROJECT_ID> --member="serviceAccount:<YOUR_SA_EMAIL>" --role="roles/netapp.admin"
+----
+.. Accordez l'accès par usurpation d'identité à ce compte de service : credentials-sa@wf-production-netapp.iam.gserviceaccount.com. Pour plus de détails, consultez https://cloud.google.com/iam/docs/create-short-lived-credentials-direct#sa-credentials-jwt["Créer un JSON Web Token (JWT) auto-signé"^].
++
+Le compte de service détenu par NetApp est utilisé pour demander un jeton d'accès temporaire qui vous permet d'agir en tant que ce compte de service sans avoir besoin d'accéder à sa clé privée.
+
++
+Vous pouvez également accorder un accès par usurpation d'identité à l'aide de l'interface de ligne de commande gcloud :
+
++
+[source, cli]
+----
+gcloud iam service-accounts add-iam-policy-binding <YOUR_SA_EMAIL> --member="serviceAccount:credentials-sa@wf-production-netapp.iam.gserviceaccount.com" --role="roles/iam.serviceAccountTokenCreator" --project=<YOUR_PROJECT_ID>
+----
+.. Cliquez sur *DONE* en bas de la page, puis passez à l’étape suivante.
+
+
+
+
+
+
+[[shared-vpc]]
+== VPC partagé
+
+Dans chaque projet Google Cloud supplémentaire qui utilisera le compte de service, procédez comme suit :
+
+. Sur la page _IAM_, sélectionnez le projet hôte Shared VPC dans le menu déroulant des projets.
+. Cliquez sur *Ajouter un principal*.
+. Dans le champ « Nouveaux responsables », saisissez l'adresse e-mail de votre compte de service.
+. Dans la liste déroulante « Sélectionner un rôle », choisissez le rôle *Google Cloud NetApp Volumes admin*.
+. Cliquez sur *Enregistrer*.
++
+Vous pouvez également ajouter la liaison de stratégie IAM à l'aide de l'interface de ligne de commande gcloud :
+
++
+[source, cli]
+----
+gcloud projects add-iam-policy-binding <SHARED_VPC_HOST_PROJECT_ID> --member="serviceAccount:<YOUR_SA_EMAIL>" --role="roles/netapp.admin"
+----
+
+
+Pour connaître les étapes détaillées, reportez-vous à la documentation Google Cloud :
+
+* link:https://cloud.google.com/iam/docs/creating-managing-service-accounts["Création et gestion des comptes de service"^]
+* link:https://cloud.google.com/iam/docs/roles-permissions/netapp["Rôles et autorisations de Google Cloud NetApp Volumes"^]
+* link:https://cloud.google.com/iam/docs/granting-changing-revoking-access["Octroi, modification et révocation de l'accès aux ressources"^]
+
+
+
+
+[[troubleshooting]]
+== Dépannage
+
+Si vous rencontrez une erreur, la stratégie *iam.disableCrossProjectServiceAccountUsage* pourrait être appliquée. Pour résoudre ce problème, procédez comme suit :
+
+. Dans la console Google Cloud, accédez à la https://console.cloud.google.com/iam-admin/orgpolicies["Page des politiques de l'organisation"^].
+. Recherchez la stratégie *Disable cross-project service account usage* et désactivez-la.
+
+
+.Et ensuite ?
+link:add-roles.html["Attribuer des rôles à Google Cloud NetApp Volumes"].

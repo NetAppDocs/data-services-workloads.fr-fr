@@ -1,0 +1,133 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/deploy-fsx-file-system-evs.html 
+keywords: vm workloads, deploy fsx, deploy storage for vms, evs, elastic vmware service 
+summary: Après avoir vérifié que le système de fichiers FSx recommandé pour ONTAP, ou les systèmes de fichiers dans certains cas, répond exactement à vos exigences, vous pouvez utiliser Workload Factory pour déployer le système dans votre environnement AWS. 
+---
+= Déployez le système de fichiers FSx for ONTAP recommandé
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Après avoir vérifié que le système de fichiers FSx pour ONTAP recommandé (ou plusieurs systèmes de fichiers dans certains cas) répond à vos exigences exactes, vous pouvez utiliser Workload Factory pour déployer le système dans votre environnement AWS.
+
+Selon la politique et les autorisations que vous avez ajoutées à votre compte Workload Factory, vous pouvez déployer entièrement le système de fichiers FSx for ONTAP avec Workload Factory (en mode lecture/écriture). Si vous disposez de moins d'autorisations (mode lecture seule), ou d'aucune autorisation (mode Basic), vous devrez utiliser le modèle CloudFormation de la Codebox et déployer vous-même le système de fichiers FSx for ONTAP dans AWS.
+
+
+
+[[requirements]]
+== Exigences
+
+* Vous devez disposer d'un abonnement à Amazon Elastic VMware Service.
+* Vous devez disposer des autorisations nécessaires pour créer un système de fichiers FSx for ONTAP dans votre compte AWS.
+
+
+
+
+[[considerations]]
+== Considérations
+
+* Vous pouvez utiliser l'option de création rapide ou l'option de création avancée. La création avancée offre quelques paramètres de stockage supplémentaires que vous pouvez personnaliser. link:../fsx-storage/create-discover-systems.html["Découvrez ce que ces deux options offrent"].
+* Dans la section « Préférences Amazon Elastic VMware Service », vous pouvez choisir l’environnement de virtualisation EVS à connecter aux datastores externes. Cela renseigne automatiquement certains champs avec les options de bonne pratique pour le déploiement. Vous pouvez modifier ces options selon vos besoins.
+
+
+
+
+[[steps]]
+== Étapes
+
+. En bas de la page *Review plan*, sélectionnez *Deploy* pour afficher la page Créer un système de fichiers FSx pour ONTAP.
++
+La plupart des champs qui définissent votre système de fichiers FSx for ONTAP sont préremplis en fonction des informations que vous avez fournies, mais vous devez renseigner quelques champs sur cette page.
+
+. Dans la section « Configuration générale du système de fichiers », saisissez les informations suivantes :
++
+.. *Identifiants AWS* : Sélectionnez ou ajoutez des identifiants qui donneront à Workload Factory les autorisations nécessaires pour créer directement votre système de fichiers FSx pour ONTAP. Vous pouvez également sélectionner le code CloudFormation dans Codebox et déployer vous-même le système de fichiers FSx pour ONTAP dans AWS.
+.. *Nom du système de fichiers* : Saisissez le nom que vous souhaitez utiliser pour ce système de fichiers FSx for ONTAP.
+.. *Étiquettes* : Vous pouvez ajouter des étiquettes pour catégoriser ce système de fichiers FSx pour ONTAP.
+
+
+. Dans la section « Préférences Amazon Elastic VMware Service », dans la liste « ID d’environnement », sélectionnez l’environnement EVS auquel les datastores seront connectés.
++
+Cela remplit automatiquement les champs suivants :
+
++
+** *VPC*
+** *Zone de disponibilité*
+** *Sous-réseau*
+** Dans la section *Accès aux banques de données NFS*, si vous avez sélectionné l'option *Gestion de l'hôte EVS uniquement*, le champ *Gestion de l'hôte EVS (CIDR)* est automatiquement rempli.
+** Dans la section *Options de montage du datastore*, si vous avez choisi de monter des datastores sur le cluster EVS, les champs *Adresse VMware vCenter du cluster EVS* et *ARN secret des informations d'identification de l'administrateur vSphere* sont renseignés automatiquement.
+
+
+. Dans la section « Network & security », saisissez les informations suivantes :
++
+.. *Région et VPC* : Sélectionnez la région et le VPC où le système de fichiers FSx for ONTAP sera déployé.
+.. *Groupe de sécurité* (Advanced create uniquement) : lorsque vous utilisez l’option *Advanced create*, vous pouvez sélectionner le groupe de sécurité par défaut pour le VPC FSx for ONTAP afin que tout le trafic puisse accéder au système de fichiers FSx for ONTAP. Vous pouvez soit créer un nouveau groupe de sécurité, soit en sélectionner un existant.
++
+Si vous activez l'option *Ajuster la configuration du groupe de sécurité aux datastores EVS NFS*, Workload Factory configure le groupe de sécurité en fonction des paramètres des datastores EVS NFS.
+
++
+Vous pouvez ajouter une règle entrante au groupe de sécurité afin de restreindre les services AWS pouvant accéder au système de fichiers FSx for ONTAP. Cela réduira le nombre de services ouverts. Voici les ports et protocoles minimums requis :
+
++
+[cols="15,10,55"]
+|===
+| Protocoles | Ports | But 
+
+
+| TCP, UDP | 111 | Portmapper (utilisé pour négocier les ports utilisés dans les requêtes NFS) 
+
+
+| TCP, UDP | 635 | NFS mountd (reçoit les demandes de montage NFS) 
+
+
+| TCP, UDP | 2049 | trafic réseau NFS 
+
+
+| TCP, UDP | 4045 | Network Lock Manager (NLM, lockd) - Gère les demandes de verrouillage. 
+
+
+| TCP, UDP | 4046 | Moniteur d'état du réseau (NSM, statd) - Notifie les clients NFS des redémarrages du serveur pour la gestion des verrous. 
+|===
+.. *Zone de disponibilité* : Sélectionnez la zone de disponibilité et le sous-réseau.
++
+Vous devez sélectionner la même zone de disponibilité que celle dans laquelle votre VMware SDDC est déployé si vous souhaitez éviter les frais liés au trafic inter-AZ.
+
+.. *Chiffrement* (Création avancée uniquement) : Lorsque vous utilisez l’option *Création avancée*, vous pouvez sélectionner le nom de la clé de chiffrement AWS dans la liste déroulante.
+.. *Accès aux banques de données NFS* (Création avancée uniquement) : Lorsque vous utilisez l’option *Création avancée*, vous pouvez choisir si tous les hôtes peuvent accéder aux banques de données ou si seul l’hôte de gestion EVS peut y accéder.
+
+
+. Dans la section « Détails du système de fichiers », saisissez les informations suivantes :
++
+.. *Identifiants ONTAP* : Entrez le nom d'utilisateur et le mot de passe ONTAP.
+.. *Identifiants de la machine virtuelle de stockage* (Création avancée uniquement) : saisissez et confirmez le mot de passe de la machine virtuelle de stockage. Le mot de passe peut être spécifique à ce système de fichiers, ou vous pouvez utiliser le même mot de passe que celui saisi pour les identifiants ONTAP.
+
+
+. Dans la section « Raccordement du cluster EVS », saisissez les informations suivantes :
++
+.. *Options de montage des datastores* : Vous pouvez activer l’option *Mount datastores to EVS cluster* pour connecter automatiquement les datastores au cluster Amazon EVS. Cette option amène également Workload Factory à configurer les paramètres de l’hôte VMware ESXi afin qu’ils correspondent aux recommandations de bonne pratique ONTAP. Avant de déployer le système de fichiers, vous pouvez consulter les détails du plan dans la section *Summary* pour voir les paramètres qui ont été modifiés.
+.. *Détails de la console vSphere du cluster EVS* : saisissez l’adresse IP ou le nom de domaine complet (FQDN) du serveur VMware vCenter qui doit se connecter à Amazon EVS.
+.. *vSphere ARN secret des informations d'identification de l'administrateur* : Choisissez l'ARN secret des informations d'identification de l'administrateur vSphere. Ces informations d'identification servent à monter les datastores et à configurer les paramètres VMware recommandés.
++
+Si Amazon EVS n'est pas disponible dans cette région, ou si votre compte ne dispose pas des autorisations nécessaires pour récupérer la liste des ARN de secrets disponibles, vous pouvez saisir manuellement une valeur d'ARN de secret.
+
+
+
+. Dans la section *Résumé*, vous pouvez consulter la configuration du système de fichiers FSx for ONTAP et de la banque de données que VMware migration advisor a conçue en fonction des informations que vous avez fournies.
+. Sélectionnez *Créer* pour déployer le système de fichiers FSx pour ONTAP. Ce processus peut prendre jusqu'à 2 heures.
++
+Dans la fenêtre Codebox, vous pouvez éventuellement sélectionner *Rediriger vers CloudFormation* pour créer le système de fichiers et la configuration de machine virtuelle recommandée à l'aide d'une pile CloudFormation.
+
++
+Dans les deux cas, vous pouvez suivre la progression de la création dans CloudFormation.
+
+
+
+
+
+[[result]]
+== Résultat
+
+Le système de fichiers FSx for ONTAP est déployé. Vous pouvez désormais utiliser le modèle AWS CloudFormation dans le Codebox pour déployer la configuration de machine virtuelle recommandée dans votre environnement Amazon Elastic VMware Service.

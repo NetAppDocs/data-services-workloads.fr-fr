@@ -1,0 +1,111 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/create-block-device.html 
+keywords: create block device, create lun, iscsi protocol 
+summary: 'Créez des périphériques de stockage par blocs pour répondre aux exigences des applications de votre ligne de métier (LOB).' 
+---
+= Créez un périphérique de blocs pour un système de fichiers dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Créez des périphériques de stockage par blocs pour répondre aux exigences des applications de votre ligne de métier (LOB). Vous pouvez créer des périphériques de stockage par blocs dans un volume existant, créer un nouveau volume pour le nouveau périphérique de stockage par blocs, ou créer un nouveau volume à partir d'un instantané pour le nouveau périphérique de stockage par blocs.
+
+.À propos de cette tâche
+Seuls les volumes FlexVol® sont pris en charge pour les périphériques de bloc dans NetApp Workload Factory. Vous pouvez créer des périphériques de bloc à l'aide du protocole iSCSI.
+
+La taille du bloc doit être inférieure à la taille du volume FlexVol disponible.
+
+.Avant de commencer
+* Vous devez associer un lien pour créer des périphériques de blocs. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Après avoir associé le lien, revenez à cette opération.
+
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans FSx for ONTAP, sélectionnez le système de fichiers pour lequel vous souhaitez créer un périphérique de bloc, puis sélectionnez l'onglet *Block devices*.
+. Sélectionnez *Créer un périphérique de bloc*.
+. Sous *Détails du volume*, procédez comme suit :
++
+.. *Nom du volume*: Sélectionnez l’une des options suivantes.
++
+*** Créez un nouveau volume et saisissez son nom.
+*** Sélectionnez un volume existant.
+*** Créer à partir d'un instantané de volume. Sélectionnez le nom du volume source et le nom de l'instantané. Seuls les volumes sans périphériques de blocs sont disponibles.
+
+
+.. *Nom de l'agrégat* : Sélectionnez l'agrégat qui hébergera le nouveau volume.
+.. *VM de stockage*: Sélectionnez une VM de stockage.
+.. *Style de volume* : le style de volume par défaut est *FlexVol*.
+.. *Taille du volume* : Saisissez la taille du volume et sélectionnez l’unité. La taille maximale par volume FlexVol est de 100 Tio.
+.. *Croissance automatique du volume* : si vous le souhaitez, activez cette option pour permettre au volume d’augmenter automatiquement de taille lorsqu’il atteint sa capacité. La taille de croissance maximale est de 300 Tio.
+.. *Étiquettes* : Vous pouvez ajouter des étiquettes pour organiser et catégoriser votre périphérique de bloc.
+
+
+. Sous *Détails du périphérique de blocs*, procédez comme suit :
++
+.. *Nom du périphérique de bloc* : Saisissez un nom pour le périphérique de bloc.
+.. *Taille du périphérique de blocs* : saisissez la taille du périphérique de blocs et sélectionnez l’unité. La taille du périphérique de blocs doit être inférieure à la taille du volume disponible.
+
+
+. Sous *Accès*, procédez comme suit :
++
+.. *Configuration iSCSI* : Sélectionnez l’une des options suivantes.
++
+*** *Créer un nouveau groupe d'initiateurs* : Indiquez le système d'exploitation hôte, le nom du groupe d'initiateurs et ajoutez un ou plusieurs initiateurs hôtes de nom qualifié iSCSI (IQN).
+*** *Associer un groupe d'initiateurs existant* : Sélectionnez un groupe d'initiateurs existant, indiquez le système d'exploitation hôte et sélectionnez un ou plusieurs initiateurs hôtes de nom qualifié iSCSI (IQN).
+
+
+
+
+. Sous la rubrique *Efficacité et protection*, procédez comme suit :
++
+.. *Optimisation du stockage* : Activée par défaut. Sélectionnez cette option pour la désactiver.
++
+ONTAP assure l'efficacité du stockage grâce à des fonctions de déduplication et de compression. La déduplication élimine les blocs de données dupliqués. La compression des données compresse les blocs de données afin de réduire la quantité de stockage physique requise.
+
+.. *Politique de snapshot* : Sélectionnez la politique de snapshot pour spécifier la fréquence et la durée de conservation des snapshots.
++
+Voici les politiques par défaut d'AWS. Pour afficher les politiques d'instantané existantes, vous devez link:create-link.html["associer un lien"^].
+
++
+`default`:: Cette politique crée automatiquement des instantanés selon la planification suivante, les copies les plus anciennes étant supprimées pour faire place aux copies plus récentes:
++
+--
+*** Un maximum de six snapshots horaires pris cinq minutes après l'heure.
+*** Un maximum de deux instantanés quotidiens pris du lundi au samedi à minuit dix.
+*** Un maximum de deux snapshots hebdomadaires pris chaque dimanche à 15 minutes après minuit.
++
+
+NOTE: L'heure des instantanés est basée sur le fuseau horaire du système de fichiers, qui est par défaut le temps universel coordonné (UTC). Pour plus d'informations sur la modification du fuseau horaire, consultez link:https://library.netapp.com/ecmdocs/ECMP1155684/html/GUID-E26E4C94-DF74-4E31-A6E8-1D2D2287A9A1.html["Affichage et réglage du fuseau horaire du système"^] dans la documentation de support NetApp.
+
+
+
+--
+`default-1weekly`:: Cette politique fonctionne de la même manière que la `default` politique, sauf qu’elle ne conserve qu’un seul instantané de la planification hebdomadaire.
+`none`:: Cette stratégie n'effectue aucune capture instantanée. Vous pouvez l'appliquer aux volumes pour empêcher la création automatique de captures instantanées.
+
+
+.. *Politique de hiérarchisation*: Sélectionnez la politique de hiérarchisation des données stockées dans le volume.
++
+_Balanced (Auto)_ est la stratégie de hiérarchisation par défaut lors de la création d’un volume via la console Workload Factory. Pour plus d’informations sur les stratégies de hiérarchisation des volumes, consultez link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Capacité de stockage du volume"^] la documentation AWS FSx for NetApp ONTAP. Notez que Workload Factory utilise des noms basés sur les cas d’utilisation dans la console Workload Factory pour les stratégies de hiérarchisation et inclut les noms des stratégies FSx for ONTAP entre parenthèses.
+
+.. *ARP/AI* : NetApp Autonomous Ransomware Protection with AI (ARP/AI) est activée par défaut lorsqu'un lien est associé au système de fichiers. link:ransomware-protection.html["En savoir plus sur ARP/AI"]. Acceptez cette déclaration pour continuer.
++
+Si la fonctionnalité est indisponible, c'est pour l'une des raisons suivantes :
+
++
+*** Aucun lien n'est associé au système de fichiers. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Une fois le lien associé, revenez à cette opération.
+*** Les volumes contenant des fichiers immuables et les volumes utilisant le protocole NVMe ne sont pas pris en charge pour ARP/AI.
+*** Le système de fichiers possède déjà une politique ARP/AI.
+
+
+
+
+. Sélectionnez *Créer*.
+
+
+.Informations connexes
+link:manage-block-storage.html["Gérer le stockage bloc pour un système de fichiers FSx for ONTAP"]

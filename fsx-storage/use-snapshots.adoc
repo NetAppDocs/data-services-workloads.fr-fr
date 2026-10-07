@@ -1,0 +1,151 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/use-snapshots.html 
+keywords: create snapshot, snapshot 
+summary: Protégez les données de volume contre toute suppression ou corruption accidentelle en créant et en gérant des instantanés dans NetApp Workload Factory. 
+---
+= Utilisez des instantanés pour protéger les données dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Protégez les données de volume contre toute suppression ou corruption accidentelle en créant et en gérant des instantanés dans NetApp Workload Factory. Vous pouvez créer un instantané à la demande d’un volume, définir une stratégie d’instantanés pour automatiser la création et la conservation des instantanés pour les machines virtuelles de stockage, et restaurer un volume à partir d’un instantané existant afin de récupérer des données à un point précis dans le temps.
+
+
+
+[[create-an-on-demand-snapshot-of-a-volume]]
+== Créer un instantané à la demande d'un volume
+
+Créez un instantané manuel d'un volume FSx for ONTAP dans NetApp Workload Factory. Les instantanés sont des versions à un instant précis du contenu de votre volume.
+
+Les instantanés sont des ressources des volumes et constituent des captures instantanées de vos données qui ne consomment de l’espace que pour les données modifiées. Comme les données évoluent au fil du temps, les instantanés occupent généralement plus d’espace à mesure qu’ils vieillissent.
+
+Les volumes FSx for ONTAP utilisent la copie sur écriture juste à temps afin que les fichiers non modifiés dans les instantanés ne consomment aucune capacité du volume.
+
+
+NOTE: Les instantanés ne sont pas des copies de vos données. Si vous souhaitez créer des copies de vos données, envisagez d'utiliser les fonctionnalités de sauvegarde de volumes ou de réplication de volumes.
+
+.Avant de commencer
+Vous devez associer un lien pour créer un instantané manuel d'un volume. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"]. Une fois le lien associé, revenez à cette opération.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans *FSx for ONTAP*, sélectionnez le menu des actions du système de fichiers contenant le volume pour lequel créer un instantané, puis sélectionnez *Gérer*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez l'onglet *Volumes*.
+. Dans l'onglet *Volumes*, sélectionnez le menu des actions du volume à protéger par des instantanés.
+. Sélectionnez *Actions de protection des données* puis *Gérer les instantanés*.
+. Sur la page Gérer les instantanés, sélectionnez *Créer un instantané*.
+. Dans la boîte de dialogue Créer un instantané, procédez comme suit :
++
+.. Saisissez un nom pour l'instantané dans le champ *Nom de l'instantané*.
+.. Vous pouvez éventuellement sélectionner une étiquette ou en créer une nouvelle.
+.. Définissez la *période de conservation* sous forme d’un nombre d’heures, de jours, de mois ou d’années.
+.. Facultatif : *Rendez cet instantané immuable* pour empêcher sa suppression pendant la période de conservation.
++
+Acceptez l’énoncé concernant les instantanés immuables.
+
+
+
+. Sélectionnez *Créer*.
+
+
+
+
+[[create-a-snapshot-policy-for-storage-vms]]
+== Créer une stratégie de snapshot pour les machines virtuelles de stockage
+
+Créez une stratégie de snapshots personnalisée pour les machines virtuelles de stockage dans Workload Factory afin de gérer la création et la conservation des snapshots. Une stratégie de snapshots définit la manière dont le système crée des snapshots pour une machine virtuelle de stockage. Vous pouvez créer une stratégie de snapshots pour une machine virtuelle de stockage dans un système de fichiers FSx for ONTAP. Vous pouvez également partager cette stratégie entre plusieurs machines virtuelles de stockage.
+
+Vous pouvez créer une stratégie de snapshot personnalisée qui diffère des trois stratégies de snapshot intégrées pour FSx for ONTAP :
+
+* `default`
+* `default-1weekly`
+* `none`
+
+
+Par défaut, chaque volume est associé à la stratégie de snapshots `default` du système de fichiers. Nous recommandons d'utiliser cette stratégie pour la plupart des charges de travail.
+
+La personnalisation d'une stratégie vous permet de spécifier quand créer des instantanés, combien de copies conserver et comment les nommer.
+
+.Avant de commencer
+* Une fois qu'une stratégie de snapshot est créée, son association avec la ou les machines virtuelles de stockage ne peut pas être modifiée, mais vous pouvez toujours ajouter ou supprimer la stratégie des volumes.
+* Avant d'utiliser les snapshots, tenez compte des points suivants concernant leur capacité :
++
+** Pour la plupart des ensembles de données, une capacité supplémentaire de 20 % suffit à conserver les instantanés pendant quatre semaines maximum. Au fil du temps, la probabilité d'utiliser les données pour des restaurations diminue.
+** L'écrasement de toutes les données d'un instantané consomme une capacité de volume importante, ce qui influe sur le provisionnement de la capacité du volume.
+
+
+* Pour créer une stratégie de capture instantanée personnalisée, vous devez associer un lien. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"]. Une fois le lien associé, revenez à cette opération.
+
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans *FSx for ONTAP*, sélectionnez le menu des actions du système de fichiers contenant le volume, puis sélectionnez *Manage*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez l'onglet *Storage VMs*.
+. Dans l'onglet *VM de stockage*, sélectionnez le menu des actions du volume à protéger avec des instantanés planifiés, puis *Actions avancées*, et enfin *Gérer les stratégies d'instantané*.
+. Sur la page de gestion des stratégies d'instantané, sélectionnez *Créer une stratégie d'instantané*.
+. Dans le champ *Nom de la stratégie d'instantané*, saisissez un nom pour la stratégie d'instantané.
+. Vous pouvez, si vous le souhaitez, saisir une description de la stratégie de snapshot.
+. Dans *Planification et copies de la stratégie*, sélectionnez quand créer des instantanés. Par exemple, chaque minute ou toutes les heures.
++
+Vous pouvez sélectionner plusieurs fréquences.
+
+. Sous *Nombre de copies*, indiquez le nombre de copies à conserver.
++
+Le nombre maximal d'exemplaires est de 1 023.
+
+. Facultatif : sous *Convention d’appellation*, saisissez un *Préfixe* pour la politique.
+. L'option *Retention label* est automatiquement renseignée.
++
+Cette étiquette fait référence à l’étiquette SnapMirror, ou étiquette de réplication, utilisée pour sélectionner uniquement les instantanés spécifiés à répliquer du système de fichiers source vers le système de fichiers cible.
+
+. Facultatif : activez les *instantanés immuables* pour toutes les planifications nécessaires, définissez la *période de conservation* pour chaque planification et acceptez la déclaration pour continuer.
++
+L'activation des instantanés immuables verrouille tous les instantanés de cette politique d'instantanés afin d'empêcher leur suppression pendant la période de conservation.
+
+. *Partage entre machines virtuelles de stockage* : activé par défaut. Lorsqu’il est activé, la stratégie de snapshot est partagée entre toutes les machines virtuelles de stockage du système de fichiers. Désactivez-le pour créer une stratégie de snapshot pour une seule machine virtuelle de stockage.
+. Sélectionnez *Créer*.
+
+
+
+
+[[restore-a-volume-from-a-snapshot]]
+== Restaurez un volume à partir d'un instantané
+
+Vous pouvez restaurer des données à partir d'un instantané vers un volume existant ou vers un nouveau volume. L'opération de restauration permet une récupération à un point précis dans le temps lorsqu'un volume contient des fichiers supprimés ou corrompus.
+
+La création d'un nouveau volume à partir d'un instantané permet de copier l'intégralité d'un volume en quelques secondes, quelle que soit sa taille. Cette copie constitue un nouveau volume.
+
+.Avant de commencer
+Tenez compte des limitations suivantes avant de créer un volume à partir d'un instantané :
+
+* Vous ne pouvez restaurer un volume à partir d’un snapshot que si vous disposez d’une copie Snapshot existante du volume.
+* Modifications des modèles d'autorisation : si vous utilisez cette opération pour changer le type de protocole de stockage en réseau (NAS), le modèle d'autorisation associé au style de sécurité peut également changer. Vous pourriez rencontrer des problèmes d'autorisation d'accès aux fichiers, que vous ne pourrez corriger manuellement qu'avec des droits d'administrateur, à l'aide des outils du client NAS de configuration des autorisations.
+
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans *FSx for ONTAP*, sélectionnez le menu des actions du système de fichiers contenant le volume, puis sélectionnez *Manage*.
+. Dans la vue d'ensemble du système de fichiers, sélectionnez l'onglet *Volumes*.
+. Dans l'onglet *Volumes*, sélectionnez le menu des actions du volume à restaurer à partir d'un instantané.
+. Sélectionnez *Actions de protection des données* puis *Gérer les instantanés*.
+. Sur la page Gérer les instantanés, sélectionnez le menu des actions de l'instantané à restaurer, puis sélectionnez *Restaurer*.
+. Dans la boîte de dialogue Restaurer le volume à partir d'un instantané, sélectionnez parmi les options suivantes :
++
+** Basculez pour sélectionner *Restaurer en tant que nouveau volume*.
++
+Dans le champ *Nom du volume restauré*, saisissez un nom unique pour le volume à restaurer.
+
+** Restaurez les données d'un instantané sur un volume existant. Cette opération supprime définitivement toutes les données modifiées après la création de l'instantané.
++
+Acceptez cette déclaration pour continuer.
+
+
+
+. Sélectionnez *Restaurer*.
+
