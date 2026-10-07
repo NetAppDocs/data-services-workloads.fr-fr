@@ -17,7 +17,7 @@ Suivez ces étapes pour commencer.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Un"] Ajouter des identifiants et des autorisations
 [role="quick-margin-para"]
-link:add-credentials.html["Ajouter des identifiants à un compte"]. Cela comprend la sélection des capacités de charge de travail et la création des politiques IAM pour les autorisations requises.
+link:add-credentials-oci.html["Ajouter des identifiants à un compte"]. Cela comprend la sélection des capacités de charge de travail et la création des politiques IAM pour les autorisations requises.
 
 [role="quick-margin-para"]
 Sélectionnez la stratégie d'autorisation link:permissions-oci.html["vue, planification et analyse"] par défaut.
