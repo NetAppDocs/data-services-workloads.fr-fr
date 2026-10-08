@@ -6811,4 +6811,5 @@
   <block id="e291c5603b49506d01779471f77ce7c8" category="paragraph">Vérifiez que vous remplissez les conditions suivantes :</block>
   <block id="53c306e93da69caff455d3eaa34a6b5c" category="list-text">Pour filtrer par balises d’allocation AWS, vérifiez que des balises sont attribuées à vos systèmes de fichiers FSx for ONTAP.</block>
   <block id="22818134e299296b864b78dc4cca4c88" category="paragraph">Un rapport CSV est généré et peut être téléchargé.</block>
+  <block id="9a90fd93ba397d5f48de07251acc1808" category="list-text">Analyse détaillée des composants pour les événements de latence</block>
 </blocks>
