@@ -28,7 +28,7 @@ Vous devez disposer d'au moins un tableau de bord personnalisé dans votre compt
 
 .Étapes
 . Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
-. Dans le menu NetApp Console, sélectionnez *Workloads* > *Workloads Overview* > *Custom dashboards*.
+. Dans le menu, sélectionnez *Aperçu des charges de travail* puis *Tableaux de bord personnalisés*.
 +
 Le catalogue des tableaux de bord affiche tous les tableaux de bord personnalisés de votre compte Workload Factory.
 
@@ -62,7 +62,30 @@ Le tableau de bord se met à jour instantanément. L'étiquette de visibilité s
 
 Les données du tableau de bord se chargent à l'ouverture de celui-ci. Vous pouvez l'actualiser pour afficher les informations les plus récentes.
 
-Le tableau de bord recharge les données de vos charges de travail. L'heure de la dernière mise à jour change pour indiquer quand les données ont été actualisées.
+Le tableau de bord recharge les données de vos charges de travail.
+
+
+
+[[edit-dashboards]]
+== Modifier les tableaux de bord
+
+Vous pouvez modifier un tableau de bord pour en changer les éléments affichés, notamment les indicateurs, les graphiques et les plages horaires.
+
+
+NOTE: Seul le créateur du tableau de bord peut le modifier. Pendant la modification, les autres utilisateurs ne peuvent pas voir vos modifications tant que vous ne les avez pas enregistrées.
+
+.Étapes
+. Sur la page *Tableaux de bord personnalisés*, repérez le tableau de bord que vous souhaitez modifier.
+. Dans le menu *Actions* de ce tableau de bord, sélectionnez *Modifier le tableau de bord*.
+. Dans la boîte de dialogue IA, décrivez les modifications que vous souhaitez apporter.
++
+Ce processus est similaire à la création d'un nouveau tableau de bord. Vous pouvez modifier les charges de travail, les indicateurs ou les plages horaires que le tableau de bord suit.
+
+. Vérifiez les modifications et sélectionnez **Enregistrer**.
+
+
+.Résultat
+Le tableau de bord se met à jour avec vos modifications. La date de dernière modification se met également à jour.
 
 
 
@@ -85,6 +108,6 @@ Le tableau de bord est définitivement supprimé de votre compte Workload Factor
 [[related-information]]
 == Informations connexes
 
-* link:create-custom-dashboard-fsx.html["Créer des tableaux de bord personnalisés supplémentaires"]
-* link:troubleshoot-custom-dashboards-fsx.html["Dépannage des tableaux de bord personnalisés"]
+* link:../admin/create-custom-dashboard-fsx.html["Créer des tableaux de bord personnalisés supplémentaires"]
+* link:../admin/troubleshoot-custom-dashboards-fsx.html["Dépannage des tableaux de bord personnalisés"]
 

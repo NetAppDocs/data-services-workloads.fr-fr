@@ -45,6 +45,8 @@ indexpage:
     links:
     - title: Configurer les notifications
       url: "/admin/configure-notifications.html"
+    - title: agents d’IA
+      url: "/admin/learn-agent.html"
     - title: Gérer les fonctionnalités d'IA
       url: "/admin/manage-genai-features.html"
     - title: Automatisez les tâches à l'aide de Codebox

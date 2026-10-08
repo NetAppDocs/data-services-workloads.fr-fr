@@ -21,7 +21,7 @@ Une fois créée, vous pouvez actualiser le tableau de bord pour voir les donné
 N'oubliez pas que les tableaux de bord personnalisés sont conçus pour être en lecture seule et ne peuvent pas modifier vos configurations de stockage ou de charge de travail.
 
 
-NOTE: Si l'administrateur de votre compte a désactivé les fonctionnalités d'IA, un message s'affichera et vous ne pourrez pas créer de tableaux de bord. Contactez votre administrateur ou link:manage-genai-features.html["Découvrez l'administration de l'IA"].
+NOTE: Si l'administrateur de votre compte a désactivé les fonctionnalités d'IA, un message s'affichera et vous ne pourrez pas créer de tableaux de bord. Contactez votre administrateur ou link:../admin/manage-genai-features.html["Découvrez l'administration de l'IA"].
 
 
 
@@ -30,7 +30,7 @@ NOTE: Si l'administrateur de votre compte a désactivé les fonctionnalités d'I
 
 .Étapes
 . Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
-. Dans le menu NetApp Console, sélectionnez *Workloads* > *Workloads Overview* > *Custom dashboards*.
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet de naviguer vers des charges de travail telles que le stockage, eda, ai, bases de données, vmware et l'administration."] puis *Aperçu des charges de travail* > *Tableaux de bord personnalisés*.
 +
 Si c'est votre premier tableau de bord, vous verrez un écran vierge avec des exemples d'invites pour vous aider à démarrer. Vous pouvez sélectionner *Copier l'invite* pour copier un exemple d'invite dans la zone de texte de la boîte de dialogue AI.
 
@@ -50,15 +50,16 @@ L'IA pourrait vous proposer plusieurs options pour mieux comprendre vos besoins.
 Votre tableau de bord est en cours de création. Cela peut prendre un moment.
 
 .Résultat
-Votre tableau de bord personnalisé a été créé et ajouté au catalogue de tableaux de bord. Par défaut, le tableau de bord est privé et visible uniquement par vous. Vous pouvez modifier la visibilité pour le rendre public si vous souhaitez le partager avec d'autres utilisateurs de votre compte Workload Factory. link:manage-custom-dashboards-fsx.html#change-dashboard-visibility["Découvrez comment modifier la visibilité du tableau de bord"].
+Votre tableau de bord personnalisé a été créé et ajouté au catalogue de tableaux de bord. Par défaut, le tableau de bord est privé et visible uniquement par vous. Vous pouvez modifier la visibilité pour le rendre public si vous souhaitez le partager avec d'autres utilisateurs de votre compte Workload Factory. link:../admin/manage-custom-dashboards-fsx.html#change-dashboard-visibility["Découvrez comment modifier la visibilité du tableau de bord"].
 
-Vous recevrez une notification lorsque votre tableau de bord sera prêt. S'il ne peut pas être créé, vous recevrez une notification contenant un lien pour réessayer. link:configure-notifications.html["Découvrez comment configurer les notifications"].
+Vous recevrez une notification lorsque votre tableau de bord sera prêt. S'il ne peut pas être créé, vous recevrez une notification contenant un lien pour réessayer. link:../admin/configure-notifications.html["Découvrez comment configurer les notifications"].
 
 .Et ensuite
 Après la création, vous pouvez :
 
 * Modifiez la visibilité du tableau de bord pour la partager avec votre équipe
 * Actualisez les données du tableau de bord pour afficher les informations les plus récentes
+* Modifiez les tableaux de bord pour changer les informations affichées, notamment les indicateurs, les graphiques et les plages horaires
 * Supprimez les tableaux de bord dont vous n'avez plus besoin
 * Consultez les détails du tableau de bord, y compris qui l'a créé et quand il a été mis à jour pour la dernière fois
 
@@ -68,6 +69,6 @@ Après la création, vous pouvez :
 [[related-information]]
 == Informations connexes
 
-* link:manage-custom-dashboards-fsx.html["Gérez vos tableaux de bord personnalisés"]
-* link:troubleshoot-custom-dashboards-fsx.html["Dépannage des tableaux de bord personnalisés"]
+* link:../admin/manage-custom-dashboards-fsx.html["Gérez vos tableaux de bord personnalisés"]
+* link:../admin/troubleshoot-custom-dashboards-fsx.html["Dépannage des tableaux de bord personnalisés"]
 

@@ -60,8 +60,8 @@ Workload Factory commence à collecter les métriques CloudWatch pour tous les s
 
 Après avoir activé le tableau de bord, vous pouvez :
 
-* link:task-use-overview-dashboard.html["Utilisez le tableau de bord Vue d'ensemble"] surveiller la santé et la capacité du cluster
-* link:task-use-overview-dashboard.html#change-ssd-management-mode["Activer et configurer les modes de gestion de la capacité SSD"] (Recommander, Automatiser ou Aucun)
-* link:task-use-overview-dashboard.html#change-throughput-management-mode["Activer et configurer les modes de gestion du débit"] (Recommander, Automatiser ou Aucun)
+* link:../fsx-eda/task-use-overview-dashboard.html["Utilisez le tableau de bord Vue d'ensemble"] surveiller la santé et la capacité du cluster
+* link:../fsx-eda/task-use-overview-dashboard.html#change-ssd-management-mode["Activer et configurer les modes de gestion de la capacité SSD"] (Recommander, Automatiser ou Aucun)
+* link:../fsx-eda/task-use-overview-dashboard.html#change-throughput-management-mode["Activer et configurer les modes de gestion du débit"] (Recommander, Automatiser ou Aucun)
 * Configurez des filtres pour vous concentrer sur des régions ou des comptes AWS spécifiques
 

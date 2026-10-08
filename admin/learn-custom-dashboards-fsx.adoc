@@ -4,7 +4,7 @@ permalink: admin/learn-custom-dashboards-fsx.html
 keywords: custom dashboards, dashboards, personalized dashboards, AI dashboards, operational visibility, workload monitoring 
 summary: 'Créez des tableaux de bord basés sur l"IA et personnalisés en fonction de vos charges de travail et de vos priorités pour une visibilité opérationnelle améliorée, sans être limité par des vues prédéfinies.' 
 ---
-= Découvrez les tableaux de bord personnalisés pour FSx for ONTAP dans NetApp Workload Factory
+= Découvrez les tableaux de bord personnalisés dans NetApp Workload Factory
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -18,7 +18,7 @@ Les tableaux de bord personnalisés utilisent l'IA pour créer des vues personna
 Tous les utilisateurs de votre compte Workload Factory peuvent consulter tous les tableaux de bord personnalisés. Cette configuration partagée aide les équipes à collaborer et à voir les mêmes informations opérationnelles dans l'ensemble de votre organisation.
 
 
-NOTE: Si l'administrateur de votre compte a désactivé les fonctionnalités d'IA, un message s'affichera et vous ne pourrez pas créer de tableaux de bord. Contactez votre administrateur ou link:manage-genai-features.html["Découvrez l'administration de l'IA"].
+NOTE: Si l'administrateur de votre compte a désactivé les fonctionnalités d'IA, un message s'affichera et vous ne pourrez ni créer ni modifier de tableaux de bord. Contactez votre administrateur ou link:../admin/manage-genai-features.html["Découvrez l'administration de l'IA"].
 
 
 
@@ -47,6 +47,11 @@ Lors de la configuration, le dialogue guidé par l'IA vous aide à définir :
 * Règles ou exigences que vous devez suivre et afficher
 
 
+Vous pouvez modifier des tableaux de bord depuis le catalogue et mettre à jour le nom, la description, la catégorie ou la requête de surveillance du tableau de bord avant de décider si vous souhaitez enregistrer la version révisée.
+
+
+NOTE: Seul le créateur du tableau de bord peut le modifier. Pendant la modification, les autres utilisateurs ne peuvent pas voir vos modifications tant que vous ne les avez pas enregistrées.
+
 
 
 [[view-and-share-dashboards]]
@@ -60,7 +65,7 @@ Les nouveaux tableaux de bord sont privés par défaut, donc vous seul pouvez le
 
 Chaque fiche de tableau de bord indique si le tableau de bord est privé ou public, ce qui vous permet de voir rapidement quels tableaux de bord sont partagés.
 
-link:manage-custom-dashboards-fsx.html#change-dashboard-visibility["Découvrez comment modifier la visibilité du tableau de bord"].
+link:../admin/manage-custom-dashboards-fsx.html#change-dashboard-visibility["Découvrez comment modifier la visibilité du tableau de bord"].
 
 
 
@@ -85,7 +90,7 @@ link:../fsx-storage/add-credentials.html["Découvrez comment ajouter des informa
 
 Workload Factory nécessite un lien pour se connecter aux systèmes de fichiers Amazon FSx for ONTAP. Un lien crée une relation de confiance et une connectivité entre Workload Factory et un ou plusieurs systèmes de fichiers Amazon FSx for ONTAP. Cela vous permet de surveiller et de gérer certaines fonctionnalités du système de fichiers directement à partir des appels d’API REST ONTAP qui ne sont pas disponibles via l’API Amazon FSx for ONTAP.
 
-link:../fsx-storage/create-link.html["Découvrez comment créer un lien"^].
+link:../fsx-storage/create-link.html["Découvrez comment créer un lien"].
 
 
 
@@ -134,7 +139,7 @@ Les exemples suivants montrent comment décrire vos besoins en matière de surve
 [[next-steps]]
 == Prochaines étapes
 
-* link:create-custom-dashboard-fsx.html["Créer un tableau de bord personnalisé"]
-* link:manage-custom-dashboards-fsx.html["Gérer les tableaux de bord personnalisés"]
-* link:troubleshoot-custom-dashboards-fsx.html["Dépannage des tableaux de bord personnalisés"]
+* link:../admin/create-custom-dashboard-fsx.html["Créer un tableau de bord personnalisé"]
+* link:../admin/manage-custom-dashboards-fsx.html["Gérer les tableaux de bord personnalisés"]
+* link:../admin/troubleshoot-custom-dashboards-fsx.html["Dépannage des tableaux de bord personnalisés"]
 

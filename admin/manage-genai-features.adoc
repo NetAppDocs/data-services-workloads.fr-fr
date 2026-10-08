@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: admin/manage-genai-features.html 
-keywords: gen ai, generative ai, bedrock, ask me, custom dashboards, rules builder, cloudshell ai, ems analyzer, db log analyzer, latency analyzer, byom, bring your own model, administration 
+keywords: gen ai, generative ai, bedrock, ask me, custom dashboards, rules builder, cloudshell ai, ems analyzer, db log analyzer, latency analyzer, administration 
 summary: 'Contrôlez l"accès aux fonctionnalités d"IA basées sur Bedrock dans Workload Factory. Vous pouvez désactiver les fonctionnalités d"IA ou utiliser NetApp-managed AWS Bedrock.' 
 ---
-= Gérez les fonctionnalités d'IA pour FSx for ONTAP dans NetApp Workload Factory
+= Gérez les fonctionnalités d'IA dans NetApp Workload Factory
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,14 +14,14 @@ summary: 'Contrôlez l"accès aux fonctionnalités d"IA basées sur Bedrock dans
 
 
 [role="lead"]
-Contrôlez l'accès aux fonctionnalités d'IA pour FSx for ONTAP dans Workload Factory. Vous pouvez désactiver les fonctionnalités d'IA ou utiliser AWS Bedrock géré par NetApp.
+Contrôlez l'accès aux fonctionnalités d'IA dans Workload Factory. Vous pouvez désactiver les fonctionnalités d'IA ou utiliser AWS Bedrock géré par NetApp.
 
 
 
 [[about-ai-features]]
 == À propos des fonctionnalités d'IA
 
-Workload Factory inclut plusieurs fonctionnalités basées sur l'IA qui améliorent votre expérience, telles que Ask Me, des tableaux de bord personnalisés et des analyseurs pour EMS, les journaux de base de données et la latence.
+Workload Factory inclut plusieurs fonctionnalités basées sur l'IA qui améliorent votre expérience, telles que Ask Me, des agents IA, des tableaux de bord personnalisés, Rule builder et des analyseurs pour EMS, les journaux de base de données et la latence.
 
 En tant qu'administrateur de Workload Factory, vous pouvez contrôler la manière dont ces fonctionnalités utilisent l'IA sur la page des paramètres d'IA.
 
@@ -41,7 +41,7 @@ NetApp-managed Bedrock (Recommandé):: Utilisez un service AWS Bedrock géré pa
 
 
 --
-Fonctionnalités GenAI désactivées:: Désactive toutes les fonctionnalités d'IA. Les utilisateurs ne peuvent plus utiliser Ask Me, les analyseurs, les tableaux de bord personnalisés, le générateur de règles ni aucun autre outil basé sur l'IA.
+Fonctionnalités GenAI désactivées:: Désactive toutes les fonctionnalités d'IA. Les utilisateurs ne peuvent plus utiliser Ask Me, l'agent IA, les analyseurs, les tableaux de bord personnalisés, le générateur de règles ni aucun autre outil basé sur l'IA.
 
 
 
@@ -59,7 +59,7 @@ Fonctionnalités GenAI désactivées:: Désactive toutes les fonctionnalités d'
 
 .Étapes
 . Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
-. Dans le menu NetApp Console, sélectionnez *Workloads* > *Administration* > *AI settings*.
+. Dans le menu, sélectionnez *Administration* puis *Paramètres IA*.
 . Sur la page *Paramètres IA*, sélectionnez votre configuration préférée :
 +
 ** *NetApp-managed Bedrock (Recommandé)* : Utilisez NetApp-managed AWS Bedrock.
@@ -136,7 +136,7 @@ Le comportement lors de l'arrêt peut varier selon la fonctionnalité. Consultez
 == Informations connexes
 
 * link:../setup/learn-about-workload-factory.html["Découvrez les fonctionnalités de Workload Factory"]
-* link:learn-custom-dashboards-fsx.html["Découvrez les tableaux de bord personnalisés"]
+* link:../admin/learn-custom-dashboards-fsx.html["Découvrez les tableaux de bord personnalisés"]
 * link:../fsx-storage/add-credentials.html["Ajouter les identifiants AWS"]
 * link:../fsx-storage/permissions-reference-fsx.html["Référence des autorisations"]
 

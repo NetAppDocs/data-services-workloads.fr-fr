@@ -340,6 +340,12 @@ sidebar:
       url: "/admin/manage-links.html"
     - title: Gérer les fonctionnalités d'IA pour FSx for ONTAP
       url: "/admin/manage-genai-features.html"
+    - title: Workload Factory AIOps
+      entries:
+      - title: Découvrez les agents IA
+        url: "/admin/learn-agent.html"
+      - title: Gérer les paramètres des agents d’IA
+        url: "/admin/manage-agent-settings.html"
     - title: Tableaux de bord personnalisés pour FSx pour ONTAP
       entries:
       - title: Découvrez les tableaux de bord personnalisés pour FSx for ONTAP

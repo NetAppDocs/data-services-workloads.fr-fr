@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: fsx-storage/create-custom-rule.html 
-keywords: create custom rule, custom rules, fsx, ontap, well architected, rule builder 
+keywords: create custom rule, byor, custom rules, fsx, ontap, well architected, rule builder 
 summary: Créez une règle architecturale personnalisée utilisant le langage naturel pour appliquer vos normes organisationnelles pour FSx for ONTAP. 
 ---
-= Créez une règle personnalisée dans NetApp Workload Factory
+= Créez une règle personnalisée pour Workload Factory dans NetApp Console
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,68 +14,18 @@ summary: Créez une règle architecturale personnalisée utilisant le langage na
 
 
 [role="lead"]
-Créez des règles personnalisées en les décrivant en langage clair. Le générateur de règles d’IA de NetApp Workload Factory transforme votre demande en une règle validée qui vérifie vos ressources FSx for ONTAP.
+Créez des règles personnalisées pour vérifier vos ressources FSx for ONTAP dans Workload Factory. Décrivez les règles en langage clair, et le générateur de règles IA transformera votre demande en une règle validée.
+
+.À propos de cette tâche
+Le processus de configuration des règles vous guide à chaque étape : création de la règle, vérification de son interprétation par l’IA et contrôle des résultats avant de planifier des révisions régulières. Vous gardez le contrôle tout au long du processus. Le système suggère une règle en fonction de votre prompt, mais rien ne se produit tant que vous ne l’avez pas approuvée.
 
 
+NOTE: Si l'administrateur de votre compte a désactivé les fonctionnalités d'IA, un message s'affichera et vous ne pourrez pas créer ni modifier de règles personnalisées. Contactez votre administrateur ou link:../admin/manage-genai-features.html["Découvrez l'administration de l'IA"^].
 
-[[about-this-task]]
-== À propos de cette tâche
-
-Le processus de création de règles vous guide pas à pas : définition de la règle, analyse de son interprétation par l’IA et vérification des résultats avant la planification des évaluations régulières. Vous gardez le contrôle à chaque étape. Le système suggère une règle en fonction de votre demande, mais rien n’avance tant que vous ne l’avez pas confirmée.
-
-
-NOTE: Si votre administrateur de compte a désactivé les fonctionnalités d'IA, vous ne pourrez pas créer de règles personnalisées. Contactez votre administrateur ou link:../admin/manage-genai-features.html["Découvrez l'administration de l'IA"^].
-
-
-
-[[limitations]]
-=== Limitations
-
-Les limitations suivantes s'appliquent aux règles personnalisées :
-
-* Les corrections automatiques ne sont pas disponibles. Vous devez corriger vous-même les ressources non conformes en suivant les instructions fournies.
-* Chaque règle ne peut vérifier qu'un seul type de ressource. Pour vérifier plusieurs types de ressources, créez des règles distinctes.
-* L'intervalle d'évaluation le plus court est d'une heure afin d'éviter une analyse excessive.
-* Les règles ont un accès en lecture seule et ne peuvent pas modifier votre environnement.
-
-
-
-
-[[custom-rule-examples]]
-=== Exemples de règles personnalisées
-
-Les exemples suivants illustrent les règles personnalisées courantes :
-
-*Protection du volume de production*:: « Tous les volumes portant l’étiquette ‘Prod’ doivent avoir une stratégie de snapshot installée »
-+
---
-Cette règle crée automatiquement des instantanés pour protéger les volumes de production conformément aux exigences de l'entreprise.
-
---
-*Hiérarchisation des volumes d’archives*:: "Tous les volumes portant l'étiquette 'Archive' doivent avoir une politique de hiérarchisation définie sur 'All'"
-+
---
-Cette règle permet de réduire les coûts en déplaçant automatiquement les données archivées vers un stockage moins coûteux.
-
---
-*Normes de dénomination des systèmes de fichiers*:: "Tous les systèmes de fichiers doivent respecter la convention d'appellation 'fsx-{environment}-{application}'"
-+
---
-Cette règle garantit que les systèmes de fichiers respectent les conventions d'appellation de l'organisation pour faciliter la gestion et la répartition des coûts.
-
---
-
-
-
-
-[[before-you-begin]]
-== Avant de commencer
-
-Avant de pouvoir créer et exécuter des règles personnalisées, assurez-vous de disposer des éléments suivants :
-
-* Vous avez configuré les identifiants AWS avec un accès en lecture seule. link:add-credentials.html["Ajouter les informations d'identification AWS à Workload Factory"^].
-* Vous disposez d'identifiants ONTAP avec des autorisations de visionneuse. link:add-credentials.html["Ajouter les informations d'identification ONTAP à Workload Factory"^].
-* Vous disposez d’un lien ou d’un agent Console configuré pour assurer la connectivité au système de stockage cloud. link:create-link.html["Créer et associer un lien"] ou link:https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy["déployer un agent de Console"^].
+.Avant de commencer
+* Vous avez configuré les identifiants AWS avec un accès en lecture seule.
+* Vous disposez d'identifiants ONTAP avec des autorisations de visionneuse.
+* Vous disposez d'un lien ou d'un agent configuré pour la connectivité FSx for ONTAP.
 * Vous comprenez que la création de règles personnalisées utilise le service d'IA Bedrock de NetApp.
 
 
@@ -84,12 +34,9 @@ Avant de pouvoir créer et exécuter des règles personnalisées, assurez-vous d
 [[create-a-rule]]
 == Créer une règle
 
-Utilisez le générateur de règles pour créer des règles personnalisées de meilleures pratiques en langage clair. Ces règles sont vérifiées sur l'ensemble de vos ressources.
-
 .Étapes
 . Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
-. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Bien architecturé*.
-. Dans le menu Well-architected, sélectionnez *Rule builder*.
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger"] puis sélectionnez Charges de travail > Bien architecturé > Générateur de règles.
 +
 Lorsque vous ouvrez l'éditeur de règles, des exemples d'invites s'affichent pour vous aider à rédiger votre règle personnalisée. Vous pouvez sélectionner *Copier l'invite* pour copier un exemple d'invite dans la zone de texte de la boîte de dialogue AI.
 
@@ -114,16 +61,20 @@ L'IA analyse votre requête et génère une définition de règle.
 
 Le générateur de règles affiche :
 
-* *Interprétation analysée* : Comment l’IA a compris votre requête en langage clair.
-* *Définition de la règle* : La règle structurée comprenant le type de ressource, la logique de condition et les critères d’évaluation.
-* *Justification* : Pourquoi l’IA a interprété votre requête de cette façon.
-* *Indicateur de confiance* : Niveau de confiance du système dans l’interprétation.
+Interprétation analysée:: Comment l'IA a compris votre consigne en langage clair.
+Définition de la règle:: La règle structurée comprenant le type de ressource, la logique de condition et les critères d'évaluation.
+Raisonnement:: Pourquoi l'IA a interprété votre requête de cette manière.
+Indicateur de confiance:: Le degré de confiance du système dans cette interprétation.
 
 
 .Étapes
 . Vérifiez l'interprétation pour vous assurer qu'elle correspond à ce que vous aviez l'intention de faire.
+. Vérifiez que la définition de la règle est correcte. Si l'interprétation est imprécise ou erronée, le système peut poser des questions telles que :
 +
-Vérifiez que la définition de la règle est correcte. Si l'interprétation est imprécise ou erronée, le système peut poser des questions telles que : * Quelle ressource doit être vérifiée ? * Quelle valeur ou limite définit la conformité ? * À quelle fréquence la règle doit-elle être exécutée ?
+** Quelle ressource faut-il vérifier?
+** Quelle valeur ou limite définit la conformité?
+** À quelle fréquence la règle doit-elle être exécutée ?
+
 
 . Répondez aux questions de clarification de l'IA.
 +
@@ -137,7 +88,7 @@ L'IA pourrait vous proposer plusieurs options pour mieux comprendre vos besoins.
 [[test-the-rule]]
 == Tester la règle
 
-Avant de programmer la règle, exécutez un test unique pour voir quelles ressources elle affectera.
+Avant d'enregistrer ou de planifier la règle, effectuez un test pour voir quelles ressources elle affectera.
 
 .Étapes
 . Sélectionnez *Valider la règle*.
@@ -146,17 +97,10 @@ Le système évalue toutes les ressources concernées par rapport à votre logiq
 
 . Examinez les résultats de la validation :
 +
-** *Ressources évaluées* : Nombre total de ressources vérifiées
-** *Conforme* : Ressources qui répondent aux critères de la règle
-** *Non conforme* : Ressources qui ne répondent pas aux critères
-** *Évaluations ayant échoué* : Ressources qui n'ont pas pu être évaluées (avec détails d'erreur)
-
-
-. Si certaines ressources n'ont pas réussi l'évaluation, examinez les raisons de l'erreur :
-+
-** *Erreurs d'identifiant AWS* : Les autorisations en lecture seule peuvent être insuffisantes pour certaines ressources
-** *Erreurs de connectivité* : le lien ou l’agent n’est peut-être pas configuré pour des systèmes de fichiers spécifiques
-** *Erreurs d'autorisation ONTAP* : L'utilisateur visualiseur pourrait ne pas avoir accès à certaines ressources
+** Ressources évaluées : nombre total de ressources vérifiées
+** Conforme : Ressources qui répondent aux critères de la règle
+** Non conformes : ressources qui ne répondent pas aux critères
+** Évaluations ayant échoué : ressources qui n’ont pas pu être évaluées (avec détails d’erreur)
 
 
 
@@ -166,36 +110,24 @@ Le système évalue toutes les ressources concernées par rapport à votre logiq
 [[save-or-schedule-the-rule]]
 == Enregistrer ou planifier la règle
 
-Après avoir testé votre règle, vous pouvez l'enregistrer comme brouillon ou la configurer pour qu'elle s'exécute régulièrement.
+Une fois votre règle validée, vous pouvez l'enregistrer comme brouillon ou la configurer pour qu'elle s'exécute régulièrement.
 
 .Étapes
 . Effectuez l'une des opérations suivantes :
 +
-** Pour programmer une évaluation régulière, définissez la fréquence d'évaluation (minimum 1 heure, par défaut 24 heures) et sélectionnez *Schedule*. La règle est activée et s'exécute selon la planification définie.
-** Pour enregistrer sans programmer, sélectionnez *Enregistrer comme brouillon*. La règle est enregistrée mais n’est pas évaluée tant que vous ne la planifiez pas.
-** Pour supprimer la règle, sélectionnez *Discard* pour annuler la création de la règle et recommencer.
+** Pour programmer une évaluation régulière, définissez la fréquence d'évaluation et sélectionnez *Schedule*. La règle est activée et s'exécute selon la planification définie.
+** Pour enregistrer après validation sans planification, sélectionnez *Enregistrer comme brouillon*. La règle est enregistrée mais n’est pas évaluée tant que vous ne la planifiez pas.
+** Pour supprimer la règle, sélectionnez *Supprimer*.
 
 
 
 
 .Résultat
-Votre règle personnalisée a été créée et figure dans le catalogue des règles. Si vous définissez une planification, elle vérifiera vos ressources FSx for ONTAP à la fréquence spécifiée.
-
-
-
-[[troubleshooting]]
-== Dépannage
-
-Aucun système de fichiers disponible:: Configurez vos identifiants AWS et assurez-vous que votre environnement dispose d'au moins un système de fichiers FSx for ONTAP. Le générateur de règles a besoin d'un système de fichiers pour appliquer les règles.
-Interprétation à faible confiance:: Des informations supplémentaires sont nécessaires. Répondez aux questions ou reformulez votre demande en précisant clairement le type de ressource, ses limites et ses conditions.
-Échecs de validation partielle:: Vérifiez quelles ressources ont échoué et pourquoi. Les causes fréquentes sont des paramètres de lien ou d'agent manquants, ou des autorisations insuffisantes. Corrigez le problème, puis validez à nouveau.
-Invite ambiguë:: Précisez davantage ce que vous souhaitez vérifier. Indiquez le type de ressource, la condition et le seuil. Consultez les exemples d'invites pour obtenir de l'aide.
-La règle cible plusieurs types de ressources:: Créez une règle distincte pour chaque type de ressource. Un seul type de ressource par règle est pris en charge.
-
+Votre règle personnalisée a été créée et figure dans le catalogue des règles. Si vous définissez une planification, elle vérifiera vos ressources FSx for ONTAP à la fréquence spécifiée. Si vous modifiez la règle ultérieurement, le système vous guidera à travers les mêmes étapes — discussion, vérification, approbation et validation — avant d’enregistrer la version mise à jour.
 
 
 
 [[what-to-do-next]]
 == Que faire ensuite
 
-link:manage-custom-rules.html["Gérer les règles personnalisées"]
+link:../fsx-storage/manage-custom-rules.html["Gérer les règles personnalisées"]

@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: fsx-storage/manage-custom-rules.html 
-keywords: manage custom rules, disable rules, delete rules, rule catalog, byor 
-summary: Consultez, activez, désactivez et supprimez les règles architecturales personnalisées du catalogue de règles. 
+keywords: manage rules, edit rules, disable rules, delete rules, rule catalog, byor 
+summary: Consultez, modifiez, activez, désactivez et supprimez les règles architecturales personnalisées du catalogue de règles. 
 ---
-= Gérer les règles personnalisées pour NetApp Workload Factory
+= Gérer les règles personnalisées pour Workload Factory dans NetApp Console
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: Consultez, activez, désactivez et supprimez les règles architecturale
 
 
 [role="lead"]
-Le catalogue des règles centralise la gestion de toutes vos règles personnalisées. Vous pouvez consulter les détails de chaque règle, vérifier ses résultats et l'activer ou la désactiver.
+Le catalogue des règles centralise la gestion de toutes vos règles personnalisées. Vous pouvez consulter les détails des règles, les modifier, vérifier les résultats et contrôler si elles s’exécutent selon un calendrier.
 
 
 
@@ -49,24 +49,94 @@ Si la vérification a échoué pour certains éléments, consultez le message d'
 [[edit-a-custom-rule]]
 == Modifier une règle personnalisée
 
-Vous pouvez modifier à tout moment la logique, la planification ou d'autres paramètres d'une règle. Lorsque vous modifiez une règle, l'éditeur de règles s'ouvre avec les paramètres actuels de la règle.
+Vous pouvez renommer une règle à tout moment. Vous pouvez également modifier sa description, son type de ressource, sa planification, sa gravité, sa logique conditionnelle, son périmètre d'évaluation et ses recommandations de correction.
+
+Vous pouvez renommer une règle depuis le catalogue des règles ou depuis sa fiche détaillée. Pour modifier tout autre paramètre de règle, commencez par le catalogue des règles.
 
 .Étapes
 . Dans le catalogue des règles, cliquez sur la règle que vous souhaitez modifier.
-. Cliquez sur *Modifier*.
+. Effectuez l'une des opérations suivantes :
 +
-La règle passe en mode brouillon et l'éditeur de règles s'ouvre.
-
-. Modifiez le libellé de la règle ou utilisez la conversation pour l’améliorer.
-. Examinez l’interprétation mise à jour de l’IA et la définition de la règle.
+** Pour renommer la règle, mettez à jour son nom dans le catalogue ou dans la fiche de détails de la règle.
+** Pour modifier d'autres paramètres de règle, cliquez sur *Modifier*.
 +
-Le système indique ce qui a changé par rapport à la règle actuelle, y compris les appels d'API ou la logique.
+La règle s'ouvre en mode chat avec son historique complet.
 
-. Effectuez l'une des actions suivantes en fonction des modifications apportées :
+
+
+. Demandez les modifications que vous souhaitez apporter, ou mettez à jour votre demande dans le chat.
 +
-** Si des modifications mineures ont été apportées, cliquez sur *Enregistrer* pour mettre à jour la règle.
-** Si des modifications importantes ont été apportées, cliquez sur *Valider la règle* pour tester les modifications, puis sur *Planifier* pour enregistrer et planifier la règle, ou sur *Enregistrer comme brouillon* pour enregistrer sans la planifier.
-** Pour annuler les modifications, cliquez sur *Rétablir la version précédente*. La règle retrouve sa définition d'origine et quitte le mode d'édition.
+Si la création de la règle a échoué précédemment, vous pouvez continuer à partir de cette règle et mettre à jour votre demande dans le chat.
+
+. Veuillez consulter l'explication mise à jour et le résumé des modifications.
++
+Le système affiche les modifications apportées à la règle actuelle avant que vous ne l'enregistriez.
+
+. Si la règle est en mode brouillon, sélectionnez *Valider la règle* pour tester la logique mise à jour.
+. Effectuez l'une des opérations suivantes :
++
+** Pour conserver les modifications, cliquez sur *Enregistrer* afin de remplacer la règle actuelle. Si vous avez modifié la planification, enregistrez la planification mise à jour. Si vous n’avez pas modifié la planification, elle restera inchangée.
+** Pour annuler les modifications, cliquez sur *Annuler les modifications*. La règle retrouve sa version précédente et quitte le mode d’édition.
 
 
 
+
+Pendant que vous modifiez une règle, celle-ci apparaît comme « En cours de modification » pour vous. Les autres utilisateurs voient toujours la règle planifiée actuelle, et les exécutions planifiées se poursuivent normalement jusqu'à ce que vous enregistriez les modifications.
+
+
+
+[[pause-a-rule]]
+== Suspendre une règle
+
+Suspendre une règle permet d'interrompre son évaluation sans la supprimer. Les règles suspendues restent dans le catalogue et peuvent être réactivées à tout moment.
+
+.Étapes
+. Dans le catalogue des règles, cliquez sur la règle que vous souhaitez suspendre.
+. Effectuez l'une des opérations suivantes :
++
+** Pour suspendre une règle planifiée, cliquez sur *Pause*, puis confirmez. La règle cesse de s'exécuter selon sa planification.
+** Pour reprendre une règle suspendue, cliquez sur *Reprendre*, puis confirmez. La règle reprend ses évaluations régulières.
+
+
+
+
+
+
+[[delete-a-custom-rule]]
+== Supprimer une règle personnalisée
+
+Supprimez définitivement une règle lorsque vous n'en avez plus besoin. Cette action est irréversible.
+
+.Étapes
+. Dans le catalogue des règles, cliquez sur la règle que vous souhaitez supprimer.
+. Cliquez sur *Delete*.
+. Confirmez que vous souhaitez supprimer définitivement la règle.
+
+
+.Résultat
+La règle est retirée du catalogue. Tout l'historique des évaluations est supprimé.
+
+
+
+[[run-a-quick-test]]
+== Effectuez un test rapide
+
+Effectuez un test rapide à tout moment pour vérifier la conformité actuelle sans attendre la prochaine exécution planifiée.
+
+.Étapes
+. Dans le catalogue des règles, cliquez sur la règle que vous souhaitez évaluer.
+. Cliquez sur *Valider*.
++
+Le système évalue toutes les ressources concernées par rapport à la logique de la règle.
+
+. Consultez les résultats pour connaître l'état actuel de la conformité.
+
+
+Les tests sont audités et figurent dans l'historique d'évaluation de la règle.
+
+
+
+[[what-to-do-next]]
+== Que faire ensuite
+
+link:../fsx-storage/learn-custom-rules.html["En savoir plus sur les règles personnalisées"]

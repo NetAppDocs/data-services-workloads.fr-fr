@@ -25,7 +25,7 @@ Utilisez ces informations pour résoudre les problèmes courants que vous pourri
 **Solution :** Essayez ce qui suit :
 
 * Reformulez votre demande en précisant davantage ce que vous souhaitez surveiller.
-* Commencez par l'une des invites d'exemple dans link:create-custom-dashboard-fsx.html["Créer un tableau de bord personnalisé"].
+* Commencez par l'une des invites d'exemple dans link:../admin/create-custom-dashboard-fsx.html["Créer un tableau de bord personnalisé"].
 * Décomposez les besoins complexes de surveillance en plusieurs tableaux de bord plus simples.
 * Spécifiez les charges de travail, les indicateurs, les plages temporelles ou les dimensions que vous souhaitez suivre.
 
@@ -41,7 +41,7 @@ Utilisez ces informations pour résoudre les problèmes courants que vous pourri
 
 **Solution :**
 
-* **Vérifiez les autorisations :** Assurez-vous que votre compte Workload Factory dispose d’un accès en lecture aux charges de travail et aux ressources utilisées par le tableau de bord. Consultez les exigences d’autorisation dans link:learn-custom-dashboards-fsx.html#aws-credentials-and-permissions["Identifiants et autorisations AWS"].
+* **Vérifiez les autorisations :** Assurez-vous que votre compte Workload Factory dispose d’un accès en lecture aux charges de travail et aux ressources utilisées par le tableau de bord. Consultez le link:../admin/learn-custom-dashboards-fsx.html#aws-credentials-and-permissions["exigences en matière d’autorisations"].
 * **Vérifiez vos identifiants :** Assurez-vous que vos identifiants AWS sont valides et n’ont pas expiré. Consultez link:../fsx-storage/add-credentials.html["Ajouter les identifiants AWS"] pour plus de détails.
 
 
@@ -85,4 +85,4 @@ Tous les utilisateurs d'un compte Workload Factory peuvent consulter et supprime
 [[additional-help]]
 == Aide supplémentaire
 
-Si vous continuez à rencontrer des problèmes avec les tableaux de bord personnalisés, consultez link:../get-help.html["Obtenez de l'aide"] pour obtenir des informations sur la manière de contacter l’assistance NetApp.
+Si vous continuez à rencontrer des problèmes avec les tableaux de bord personnalisés, consultez la documentation link:../get-help.html["Obtenez de l'aide"] pour obtenir des informations sur la manière de contacter l’assistance NetApp.
