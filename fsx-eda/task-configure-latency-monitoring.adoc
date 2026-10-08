@@ -114,7 +114,7 @@ Canaux de notification :
 * *Amazon SNS* : Publié sur votre rubrique SNS configurée pour l’intégration avec d’autres systèmes
 
 
-Pour activer les notifications, veuillez consulter link:../admin/configure-notifications.html#wf-console-email-notifications["Configurer les paramètres de notification"].
+Pour activer les notifications, veuillez consulter link:../admin/configure-notifications.html["Configurer les paramètres de notification"].
 
 
 

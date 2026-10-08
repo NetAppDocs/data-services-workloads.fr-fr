@@ -11,7 +11,7 @@ summary: Ajoutez, mettez à jour ou supprimez à tout moment les balises d’un 
 
 
 [role="lead"]
-Gérez les paramètres d'un système de fichiers FSx for ONTAP dans NetApp Workload Factory. Vous pouvez gérer les balises du système de fichiers, réinitialiser le mot de passe fsxadmin si nécessaire et mettre à jour la capacité de débit selon les besoins.
+Gérez les paramètres d’un système de fichiers FSx for ONTAP dans NetApp Workload Factory afin de conserver votre système de fichiers organisé, sécurisé et correctement dimensionné pour votre charge de travail. Vous pouvez ajouter ou modifier des balises, gérer les identifiants ONTAP, réinitialiser le mot de passe fsxadmin et mettre à jour la capacité de débit à tout moment.
 
 
 
@@ -34,6 +34,44 @@ Le nombre maximal d'étiquettes que vous pouvez appliquer à un système de fich
 
 
 
+[[manage-ontap-credentials]]
+== Gérer les identifiants ONTAP
+
+Gérez les identifiants ONTAP d’un système de fichiers FSx for ONTAP dans NetApp Workload Factory. Workload Factory propose deux types d’identifiants : principaux et restreints. Par défaut, le système de fichiers utilise les identifiants ONTAP principaux. Les identifiants restreints sont utilisés uniquement pour les opérations d’IA (AIOps) comme Ask Me, Rule builder et Custom dashboards. Vous pouvez éventuellement ajouter un ensemble d’identifiants restreints, et vous pouvez mettre à jour l’un ou l’autre ensemble d’identifiants à tout moment.
+
+Vous pouvez effectuer les tâches suivantes :
+
+* Choisissez d’ajouter un ensemble d’identifiants restreints, en utilisant soit un nom d’utilisateur et un mot de passe, soit un ARN secret.
+* Modifier les identifiants existants, notamment le nom d'utilisateur et le mot de passe, le mot de passe uniquement ou l'ARN du secret.
+
+
+NetApp Workload Factory prend en charge la transition entre le service d’identifiants NetApp Workload Factory (nom d’utilisateur et mot de passe) et AWS Secrets Manager.
+
+NetApp Workload Factory gère les identifiants restreints comme suit :
+
+* Si vous n'avez pas fourni d'identifiant restreint pour un système de fichiers et que vous créez ensuite des règles ou des tableaux de bord personnalisés, ou que vous posez des questions via Ask Me, Workload Factory crée des identifiants ONTAP en lecture seule à utiliser comme ensemble d'identifiants restreints.
+* Si vous avez déjà fourni des identifiants restreints pour un système de fichiers, ces identifiants sont utilisés pour AIOps.
+
+
+.Avant de commencer
+Vous devez associer un lien pour gérer les identifiants ONTAP. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Une fois le lien associé, revenez à cette opération.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans le menu FSx for ONTAP, sélectionnez *Inventaire*.
+. Dans l'*Inventaire*, sélectionnez le menu des actions du système de fichiers pour lequel vous souhaitez gérer les informations d'identification, puis sélectionnez *Gérer*.
+. Depuis l’aperçu du système de fichiers, sélectionnez le menu Actions.
++
+image:screenshot-manage-ontap-credentials.png["Capture d'écran du menu Actions dans l'onglet Vue d'ensemble d'un système de fichiers."]
+
+. Sélectionnez *Gérer les identifiants ONTAP*.
+. Mettez à jour les identifiants ONTAP principaux ou restreints.
+. Sélectionnez *Appliquer*.
+
+
+
+
 [[reset-the-fsxadmin-password-of-an-fsx-for-ontap-file-system]]
 == Réinitialiser le mot de passe fsxadmin d'un système de fichiers FSx for ONTAP
 
@@ -43,8 +81,8 @@ Si vous avez fourni un autre utilisateur lors de la création du système de fic
 
 .Étapes
 . Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
-. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Stockage*.
-. Dans le menu Stockage, sélectionnez *Inventaire*.
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. Dans le menu FSx for ONTAP, sélectionnez *Inventaire*.
 . Dans *Inventory*, sélectionnez le menu Actions du système de fichiers pour lequel vous souhaitez réinitialiser le mot de passe fsxadmin, puis sélectionnez *Manage*.
 . Depuis l’aperçu du système de fichiers, sélectionnez le menu Actions.
 +

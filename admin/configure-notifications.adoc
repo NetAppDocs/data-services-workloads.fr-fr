@@ -18,31 +18,9 @@ Vous pouvez configurer le service de notification NetApp Workload Factory pour e
 [[configure-workload-factory-notifications]]
 == Configurer les notifications de Workload Factory
 
-Vous pouvez configurer les notifications de Workload Factory à l'aide de la NetApp Console ou de la console Workload Factory.
+Vous pouvez configurer les notifications de Workload Factory à l’aide de NetApp Console.
 
-Les options pour recevoir des notifications incluent :
-
-
-
-[[netapp-console]]
-=== NetApp Console
-
-* *Notifications* : Configurez Workload Factory pour envoyer des notifications qui apparaissent sous l’icône de cloche dans NetApp Console.
-* *Courriel* : Activez les notifications par courriel dans NetApp Console pour recevoir des notifications à toutes les adresses courriel associées au compte sans nécessiter de configuration Amazon SNS.
-* *Amazon SNS* : Configurez Workload Factory pour envoyer des notifications à un sujet Amazon SNS.
-
-
-
-
-[[workload-factory-console]]
-=== console Workload Factory
-
-* *Courriel* : Activez les notifications par courriel dans la console Workload Factory pour recevoir des notifications à toutes les adresses courriel associées au compte sans nécessiter de configuration Amazon SNS.
-* *Amazon SNS* : Configurez Workload Factory pour envoyer des notifications à un sujet Amazon SNS à l’aide de la console Workload Factory.
-
-
-
-IMPORTANT: Lorsque vous configurez les notifications dans NetApp Console, celle-ci prend en charge la distribution des notifications et les options de notification de la console Workload Factory sont désactivées et affichées en mode lecture seule. Une infobulle indique que les notifications sont gérées depuis NetApp Console. Vous pouvez alors gérer les notifications uniquement depuis NetApp Console.
+Voici les options de notification disponibles : * *Notifications* : configurez Workload Factory pour envoyer des notifications qui s’affichent sous l’icône en forme de cloche dans NetApp Console. * *Email* : activez les notifications par email dans NetApp Console pour recevoir des notifications à toutes les adresses email associées au compte, sans nécessiter de configuration d’Amazon SNS. * *Amazon SNS* : configurez Workload Factory pour envoyer des notifications à un topic Amazon SNS.
 
 .Avant de commencer
 Les conditions préalables suivantes s'appliquent uniquement lors de la configuration des notifications Amazon SNS :
@@ -51,10 +29,6 @@ Les conditions préalables suivantes s'appliquent uniquement lors de la configur
 * Notez que Workload Factory prend en charge le type de sujet *Standard*. Ce type de sujet ne garantit pas l’envoi des notifications aux abonnés dans l’ordre de leur réception ; tenez-en compte pour les notifications critiques ou urgentes.
 
 
-[role="tabbed-block"]
-====
-.Configurer les notifications depuis NetApp Console
---
 .Étapes
 . Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
 . Dans le menu NetApp Console, sélectionnez *Workloads*, *Administration*, puis *Notifications setup*.
@@ -71,32 +45,12 @@ Une fois le sujet créé, copiez son ARN et saisissez-le dans le champ *ARN du s
 . Après avoir vérifié la configuration en envoyant une notification de test, sélectionnez *Apply*.
 
 
---
-[[wf-console-email-notifications]]
-.Configurer les notifications depuis la console Workload Factory
---
-.Étapes
-. Connectez-vous au link:https://console.workloads.netapp.com["console Workload Factory"^].
-. Dans le menu de la console Workload Factory, sélectionnez *Workloads*, *Administration*, puis *Notifications setup*.
-. Activez un ou plusieurs des types de notification suivants :
-+
-** *Notifications par e-mail* : Sélectionnez *Activer les notifications par e-mail*. Toutes les adresses e-mail associées au compte sont affichées en mode lecture seule.
-** *Notifications Amazon SNS* : Sélectionnez *Enable SNS notifications*, puis suivez les instructions pour configurer Amazon SNS depuis la console Amazon SNS.
-+
-Après avoir vérifié la configuration en envoyant une notification de test, sélectionnez *Apply*.
-
-
-
-
-
---
-====
 
 
 [[subscribe-to-the-amazon-sns-topic]]
 == Abonnez-vous à la rubrique Amazon SNS
 
-Après avoir configuré Workload Factory pour envoyer des notifications à un sujet, suivez les https://docs.aws.amazon.com/sns/latest/dg/sns-create-subscribe-endpoint-to-topic.html["instructions"] instructions de la documentation Amazon SNS pour vous abonner à ce sujet afin de recevoir des notifications de Workload Factory.
+Après avoir configuré NetApp Console pour envoyer des notifications à une rubrique, suivez la https://docs.aws.amazon.com/sns/latest/dg/sns-create-subscribe-endpoint-to-topic.html["instructions"] de la documentation Amazon SNS pour vous abonner à la rubrique afin de recevoir des notifications de Workload Factory.
 
 
 
