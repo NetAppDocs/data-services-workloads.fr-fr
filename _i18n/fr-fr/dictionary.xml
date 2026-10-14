@@ -380,7 +380,6 @@
   <block id="b26a5fa549c938ffb56d20623c3f69c0" category="list-text">Confirmez la suppression.</block>
   <block id="22e8351c82677bcc78bd23d6fb170bc8" category="paragraph">Le tableau de bord est définitivement supprimé de votre compte Workload Factory et tous les utilisateurs perdent l'accès à celui-ci.</block>
   <block id="9537d9160ef701530bdd875698475957" category="inline-link-macro">Créer des tableaux de bord personnalisés supplémentaires</block>
-  <block id="f7b22a19823cae9bc6664fece0b96115" category="summary">Contrôlez l'accès aux fonctionnalités d'IA basées sur Bedrock dans Workload Factory. Vous pouvez désactiver les fonctionnalités d'IA ou utiliser NetApp-managed AWS Bedrock.</block>
   <block id="00e95115c994386ef85f1864db952bca" category="section-title">À propos des fonctionnalités d'IA</block>
   <block id="46918c8c585299e7a785eed266de3f97" category="paragraph">En tant qu'administrateur de Workload Factory, vous pouvez contrôler la manière dont ces fonctionnalités utilisent l'IA sur la page des paramètres d'IA.</block>
   <block id="50f33d14f129e4548c1c270fd6725a78" category="section-title">Options de configuration</block>
@@ -393,10 +392,7 @@
   <block id="1ee78c04d8b078adcb0fca6be60af5a2" category="list-text">Fonctionnalités GenAI désactivées</block>
   <block id="396640080b08108896efb48796063406" category="list-text">Nous recommandons qu'un administrateur de compte configure les fonctionnalités d'IA.</block>
   <block id="6b7af6c72f84f0f7380106617c11be78" category="section-title">Configurer les fonctionnalités d'IA</block>
-  <block id="ef1f959eefc1f11cf2aec294261e066f" category="list-text">Sur la page *Paramètres IA*, sélectionnez votre configuration préférée :</block>
   <block id="7530dc640ec2dd92a9e70b8484867369" category="list-text">*NetApp-managed Bedrock (Recommandé)* : Utilisez NetApp-managed AWS Bedrock.</block>
-  <block id="053d266af64b45b2a2fbc0eeccc99297" category="list-text">*Fonctionnalités d'IA désactivées* : désactivez toutes les fonctionnalités d'IA.</block>
-  <block id="cbab3ffec133396f2f907f9faa5a4337" category="list-text">Sélectionnez *Enregistrer les préférences*.</block>
   <block id="1f19237677d2459e3c32c18ad28d89c4" category="paragraph">Vos paramètres sont enregistrés et appliqués immédiatement à toutes les fonctionnalités d'IA de Workload Factory. Vous pouvez consulter dans Tracker qui a mis à jour les paramètres en dernier et quand.</block>
   <block id="e8d0b42b043c438b67550c55202181fe" category="paragraph">Si les fonctionnalités d'IA sont désactivées, un message s'affiche lorsque les utilisateurs essaient d'utiliser des fonctionnalités alimentées par l'IA. L'interface reste visible et indique clairement que la fonctionnalité est indisponible.</block>
   <block id="c5a072ef0376df4bfe60ecf20f43c427" category="section-title">Contrôles budgétaires et limites de crédit</block>
@@ -5104,7 +5100,6 @@
   <block id="07413029412abf4b07d59a7418a48d98" category="doc">Connectez vos systèmes de fichiers FSx for ONTAP à VMware Cloud on AWS</block>
   <block id="ff8452c1f30c7c23563874f41490c4aa" category="paragraph">Après avoir déployé les systèmes de fichiers FSx for ONTAP, vous devez connecter ce système à votre infrastructure VMware Cloud on AWS. Votre Software-Defined Data Center (SDDC) offre des options réseau pour connecter le système de fichiers FSx for ONTAP en utilisant la fonctionnalité de peering VPC afin d’étendre la connectivité réseau aux volumes de stockage NFS externes.</block>
   <block id="36789903991e7a805b64dce62ee3cb41" category="inline-link">Consultez la documentation sur le peering VPC d'Amazon pour plus de détails</block>
-  <block id="3f44cc30db3785a317875ea3b608f92d" category="paragraph"><block ref="3f44cc30db3785a317875ea3b608f92d" category="inline-link-rx"></block></block>
   <block id="35e4dc1372c9892d7d45c118016255bf" category="paragraph">Le diagramme suivant montre comment utiliser le peering VPC pour connecter des clusters SDDC à zone de disponibilité unique (AZ) à des déploiements FSx for ONTAP à zone de disponibilité unique.</block>
   <block id="40c5156ee08f8bf4b4ba3c18de0844d9" category="inline-image-macro">Un schéma montrant comment utiliser VPC Peering pour connecter des clusters SDDC mono-AZ à des déploiements FSx for ONTAP mono-AZ.</block>
   <block id="9d06593ee15f520ce9a945a1bbad4daf" category="paragraph"><block ref="9d06593ee15f520ce9a945a1bbad4daf" category="inline-image-macro-rx" type="image"></block></block>
@@ -6760,10 +6755,8 @@
   <block id="89806ea6a9ed9b0bb6cb322f912aff65" category="paragraph">Le tableau de bord se met à jour avec vos modifications. La date de dernière modification se met également à jour.</block>
   <block id="665b56adc96ec0ae170583f2c939549f" category="list-text"><block ref="665b56adc96ec0ae170583f2c939549f" category="inline-link-macro-rx"></block></block>
   <block id="dbc831d32bec483a9698bd8ffbae773b" category="doc">Gérez les fonctionnalités d'IA dans NetApp Workload Factory</block>
-  <block id="13bb649429b18adc1dadc0ed391c5bc2" category="paragraph">Contrôlez l'accès aux fonctionnalités d'IA dans Workload Factory. Vous pouvez désactiver les fonctionnalités d'IA ou utiliser AWS Bedrock géré par NetApp.</block>
   <block id="17f306dd010c4f9182635b5f5e336fa1" category="paragraph">Workload Factory inclut plusieurs fonctionnalités basées sur l'IA qui améliorent votre expérience, telles que Ask Me, des agents IA, des tableaux de bord personnalisés, Rule builder et des analyseurs pour EMS, les journaux de base de données et la latence.</block>
   <block id="cbdbc1bacc2d0ff55d93219e225f857a" category="list-text">Désactive toutes les fonctionnalités d'IA. Les utilisateurs ne peuvent plus utiliser Ask Me, l'agent IA, les analyseurs, les tableaux de bord personnalisés, le générateur de règles ni aucun autre outil basé sur l'IA.</block>
-  <block id="3f0879fc8845a02f07ea71a0a584847e" category="list-text">Dans le menu, sélectionnez *Administration* puis *Paramètres IA*.</block>
   <block id="d558bf5c801444e8a41fb205b6481939" category="list-text"><block ref="d558bf5c801444e8a41fb205b6481939" category="inline-link-macro-rx"></block></block>
   <block id="7822184101da98dc9a2f973bcc0b1e57" category="list-text">Commencez par l'une des invites d'exemple dans <block ref="e353446964aabeb4012c8f3074fb20a4" category="inline-link-macro-rx"></block>.</block>
   <block id="1d66ae30886d42b24d56159b752d6ad9" category="inline-link-macro">exigences en matière d’autorisations</block>
@@ -6913,4 +6906,20 @@
   <block id="22941004ec8c49f5d8a764461a973801" category="list-text">Accès en lecture seule à votre environnement AWS. Les règles personnalisées nécessitent des autorisations en lecture seule comme limite de sécurité. <block ref="8e1e3c879b9dae9bf3456eb51959b906" category="inline-link-macro-rx"></block>.</block>
   <block id="8af9128504255d95219d06192a7427f2" category="list-text">Uniquement requis pour les règles qui doivent se connecter directement à ONTAP pour vérifier des paramètres auxquels les API AWS ne peuvent pas accéder. <block ref="c8334f2cb013f0b691325d2b949f8312" category="inline-link-macro-rx"></block>.</block>
   <block id="ef517711d9a5dee55f2bb56046d3fd70" category="paragraph"><block ref="385442535e80145b437f6d2ceb94114a" category="inline-link-macro-rx"></block> <block ref="f571cd95e32f7c421382198bc0dd0eae" category="inline-link-macro-rx"></block></block>
+  <block id="55c9e8516766e9331175c24a58463351" category="summary">Contrôlez l'accès aux fonctionnalités d'IA basées sur Bedrock dans Workload Factory. Vous pouvez désactiver les fonctionnalités d'IA ou utiliser Bedrock géré par NetApp ou par le client.</block>
+  <block id="fdb1959aef23285e43fe2cdcd4f28fee" category="paragraph">Contrôlez l'accès aux fonctionnalités d'IA dans Workload Factory. Vous pouvez désactiver les fonctionnalités d'IA ou utiliser AWS Bedrock géré par NetApp ou votre organisation.</block>
+  <block id="6f5403c75b81b8b52cd43cae97fcf772" category="list-text">Bedrock géré par le client</block>
+  <block id="c18ad30e2ef4050c256483f9a51ad2de" category="list-text">Utilisez votre propre configuration AWS Bedrock.</block>
+  <block id="edf60b9bc6b08bdb2aa52c67c9ff0924" category="list-text">Pour des résultats optimaux, NetApp recommande d'utiliser Anthropic Claude Sonnet 4.5 ou 4.6 avec votre configuration Amazon Bedrock</block>
+  <block id="4580e55cbed2076f7b001c4793810627" category="list-text">Si vous utilisez Bedrock géré par le client, mettez à jour la stratégie AWS pour les informations d'identification liées au rôle IAM de Workload Factory.</block>
+  <block id="42f8e0cc53973b95fb8c5ab1b1940d45" category="admonition">Ajoutez les autorisations requises à la stratégie AWS pour les informations d'identification liées au rôle IAM de Workload Factory.</block>
+  <block id="d8180f5e900b1f6f9e24a34bcc5df784" category="list-text">Dans le menu, sélectionnez *Administration* &gt; *Paramètres* &gt; *Outils d'IA*.</block>
+  <block id="e63e52d33b8423358a13ed6f555c8f70" category="list-text">Sur la page *Outils d'IA*, sélectionnez votre configuration préférée :</block>
+  <block id="cd805e2fc37a5ef0e58d5bcce3784800" category="list-text">*Bedrock géré par le client*:</block>
+  <block id="21311647ca0330ee847f5cb2e10ea926" category="list-text">Sélectionnez les informations d'identification AWS et la région associées au rôle IAM de Workload Factory</block>
+  <block id="f531442bfdac6ffe5ebf928d9259db20" category="list-text">Veuillez indiquer le profil d'inférence que vous souhaitez utiliser</block>
+  <block id="ca232c88bdf38a766c6b82ced2c60df3" category="list-text">Sélectionnez *Valider la configuration*.</block>
+  <block id="5a79cccf92e71cd2b96cbbe67a02e898" category="paragraph">Workload Factory affiche une notification indiquant si la connexion réussit ou échoue</block>
+  <block id="43d91f7086bfc8e0d64b9a83a049c1f0" category="list-text">*Fonctionnalités GenAI désactivées* : Désactivez toutes les fonctionnalités d’IA.</block>
+  <block id="5853c70be1c7abb4619f6f0a6696316e" category="paragraph"><block ref="5853c70be1c7abb4619f6f0a6696316e" category="inline-link-rx"></block></block>
 </blocks>
