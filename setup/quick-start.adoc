@@ -13,14 +13,15 @@ summary: Pour commencer à utiliser Workload Factory, inscrivez-vous et créez u
 [role="lead"]
 NetApp Workload Factory est accessible aux utilisateurs en tant que service de données cloud depuis NetApp Console. Pour commencer à utiliser Workload Factory, inscrivez-vous et créez un compte dans NetApp Console, puis ajoutez les identifiants du fournisseur de cloud afin que Workload Factory puisse gérer directement vos ressources et optimiser vos charges de travail.
 
-Avant de commencer, vous devriez avoir une compréhension de link:learn-about-workload-factory.html["Workload Factory"].
+Avant de commencer, vous devriez avoir une bonne compréhension de link:learn-about-workload-factory.html["Workload Factory"]. Vous devriez également link:https://docs.netapp.com/us-en/console-setup-admin/task-sign-up-saas.html["s'inscrire"^] à NetApp Console.
 
 
 
-[[sign-up-and-log-in-to-workload-factory-from-netapp-console]]
-== Inscrivez-vous et connectez-vous à Workload Factory depuis NetApp Console
+[[log-in-to-workload-factory-from-netapp-console]]
+== Connectez-vous à Workload Factory depuis NetApp Console
 
-link:sign-up-and-log-in.html["Inscrivez-vous et connectez-vous à Workload Factory depuis NetApp Console"]
+. Connectez-vous à l' https://console.netapp.com["NetApp Console"^].
+
 
 Ensuite, sélectionnez le lien *Démarrage rapide* correspondant à votre fournisseur de cloud pour commencer.
 
