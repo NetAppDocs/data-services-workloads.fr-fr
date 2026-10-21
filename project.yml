@@ -240,13 +240,13 @@ sidebar:
       entries:
       - title: Découvrez NetApp Workload Factory pour VMware
         url: "/fsx-vmware/learn-about-vmware-workloads.html"
-      - title: Démarrage rapide pour migrer vers Amazon EVS
+      - title: Démarrage rapide pour la migration Amazon EVS
         url: "/fsx-vmware/quick-start-evs.html"
-      - title: Démarrage rapide pour migrer vers Amazon EC2
+      - title: Démarrage rapide pour la migration vers Amazon EC2
         url: "/fsx-vmware/quick-start-native.html"
-      - title: Démarrage rapide pour la migration vers VMware Cloud on AWS
+      - title: Démarrage rapide pour la migration de VMware Cloud on AWS
         url: "/fsx-vmware/quick-start-vmware.html"
-      - title: Démarrage rapide pour la migration vers Google Cloud VMware Engine
+      - title: Démarrage rapide pour la migration de Google Cloud VMware Engine
         url: "/fsx-vmware/quick-start-gcve.html"
       - title: Explorez le centre de planification VMware
         url: "/fsx-vmware/explore-planning-center.html"

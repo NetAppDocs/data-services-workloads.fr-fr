@@ -4,7 +4,7 @@ permalink: fsx-vmware/quick-start-native.html
 keywords: quick start 
 summary: 'Commencez avec l"assistant de migration VMware pour déplacer votre infrastructure actuelle vers Amazon EC2 en utilisant Amazon FSx for ONTAP comme datastores NFS externes.' 
 ---
-= Démarrage rapide pour la migration vers Amazon EC2 à l'aide de l'assistant de migration des charges de travail VMware
+= Démarrage rapide pour la migration vers Amazon EC2
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

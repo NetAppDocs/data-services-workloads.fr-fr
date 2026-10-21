@@ -4,7 +4,7 @@ permalink: fsx-vmware/upload-vm-inventory.html
 keywords: vm workloads, capture vm details 
 summary: Vous pouvez utiliser le Planning Center pour téléverser des informations sur votre environnement VMware actuel. 
 ---
-= Importez les données d'inventaire des machines virtuelles dans NetApp Workload Factory
+= Importez les données d'inventaire des machines virtuelles dans Workload Factory for VMware
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
