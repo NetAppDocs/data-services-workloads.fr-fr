@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/delete-volume.html 
 keywords: delete volume, volume deletion 
-summary: 'Supprimez un volume de votre système de fichiers FSx for ONTAP qui n"est plus nécessaire afin de libérer de l"espace. Cette opération est irréversible.' 
+summary: 'Supprimez un volume dont vous n"avez plus besoin d"un système de fichiers FSx for ONTAP afin de libérer de l"espace. Cette opération est irréversible.' 
 ---
 = Supprimer un volume dans NetApp Workload Factory
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Supprimez un volume de votre système de fichiers FSx for ONTAP qui n"
 
 
 [role="lead"]
-Supprimez un volume de votre système de fichiers FSx for ONTAP qui n'est plus nécessaire afin de libérer de l'espace. Cette opération est irréversible.
+Supprimez un volume dont vous n'avez plus besoin d'un système de fichiers FSx for ONTAP afin de libérer de l'espace. Cette opération est irréversible.
 
 .Avant de commencer
 Veuillez tenir compte des points suivants avant de supprimer un volume :

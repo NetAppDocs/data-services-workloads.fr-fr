@@ -71,7 +71,7 @@ Par défaut, chaque volume est associé à la stratégie de snapshots `default` 
 La personnalisation d'une stratégie vous permet de spécifier quand créer des instantanés, combien de copies conserver et comment les nommer.
 
 .Avant de commencer
-* Une fois qu'une stratégie de snapshot est créée, son association avec la ou les machines virtuelles de stockage ne peut pas être modifiée, mais vous pouvez toujours ajouter ou supprimer la stratégie des volumes.
+* Une fois une stratégie de snapshot créée, son association avec la ou les VM de stockage ne peut plus être modifiée, mais vous pouvez toujours ajouter ou supprimer la stratégie à partir des volumes.
 * Avant d'utiliser les snapshots, tenez compte des points suivants concernant leur capacité :
 +
 ** Pour la plupart des ensembles de données, une capacité supplémentaire de 20 % suffit à conserver les instantanés pendant quatre semaines maximum. Au fil du temps, la probabilité d'utiliser les données pour des restaurations diminue.

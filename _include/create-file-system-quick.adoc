@@ -23,7 +23,7 @@ Cette configuration à une seule paire haute disponibilité est recommandée pou
 
 
 
-.. *Étiquettes* : Vous pouvez éventuellement ajouter jusqu’à 50 étiquettes.
+.. *Étiquettes* : si vous le souhaitez, ajoutez jusqu’à 50 étiquettes.
 
 
 . Sous *Détails du système de fichiers*, veuillez fournir les informations suivantes :

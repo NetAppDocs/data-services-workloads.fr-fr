@@ -18,17 +18,17 @@ Les données restent accessibles sur le clone et le parent pendant le fractionne
 .À propos de cette tâche
 L'opération de fractionnement des clones comprend les éléments suivants :
 
-* Il est impossible de créer de nouvelles copies Snapshot du volume FlexClone pendant l'opération de fractionnement.
-* Un volume FlexClone ne peut pas être séparé du volume parent s'il fait partie d'une relation de protection des données.
-* Si vous mettez le volume FlexClone hors ligne pendant le fractionnement, l'opération de fractionnement est suspendue ; lorsque vous remettez le volume FlexClone en ligne, l'opération de fractionnement reprend.
+* Vous ne pouvez pas créer de nouvelles copies instantanées du volume FlexClone pendant l'opération de fractionnement.
+* Vous ne pouvez pas séparer un volume FlexClone de son volume parent s'il appartient à une relation de protection des données.
+* Si vous mettez le volume FlexClone hors ligne pendant le fractionnement, l'opération de fractionnement est suspendue. Lorsque vous remettez le volume FlexClone en ligne, l'opération de fractionnement reprend.
 * Après la séparation, le volume parent FlexVol et le clone nécessitent tous deux l'espace total alloué, tel que déterminé par leurs garanties de volume.
-* Une fois qu'un FlexClone volume est séparé de son volume parent, les deux ne peuvent plus être réunis.
+* Après avoir séparé un volume FlexClone de son parent, vous ne pouvez pas les réunir à nouveau.
 
 
 .Avant de commencer
 Tenez compte des points suivants avant de diviser un volume cloné :
 
-* Pour scinder un volume cloné, vous devez associer un lien. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Une fois le lien associé, revenez à cette opération.
+* Pour scinder un volume cloné, vous devez associer un lien. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Après avoir associé le lien, revenez à cette opération.
 * Le volume FlexClone doit être en ligne lorsque l'opération de fractionnement commence.
 * Le volume parent doit être en ligne pour que le fractionnement réussisse.
 

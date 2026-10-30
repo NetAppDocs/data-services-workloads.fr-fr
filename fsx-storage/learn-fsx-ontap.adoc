@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/learn-fsx-ontap.html 
 keywords: Amazon FSx for NetApp ONTAP, FSx, storage, aws 
-summary: 'Amazon FSx for NetApp ONTAP est un service entièrement géré permettant aux clients de lancer et d"exécuter des systèmes de fichiers comme back-end de stockage pour leurs charges de travail au sein de Workload Factory.' 
+summary: 'Découvrez Amazon FSx for NetApp ONTAP, un service entièrement géré qui vous permet de lancer et d"exécuter des systèmes de fichiers comme back-end de stockage pour vos workloads dans Workload Factory.' 
 ---
 = Découvrez Amazon FSx for NetApp ONTAP dans NetApp Workload Factory
 :allow-uri-read: 
@@ -24,9 +24,9 @@ FSx for ONTAP est le composant _Storage_ de Workload Factory.
 
 FSx for ONTAP offre les fonctionnalités suivantes :
 
-* *Service entièrement géré* : fournit un service entièrement géré et intégré à la console Workload Factory.
+* *Service entièrement géré* : fournit un service entièrement géré intégré à la console Workload Factory.
 * *Haute disponibilité* : assure une haute disponibilité pour chaque système de fichiers FSx for ONTAP, prenant en charge les déploiements dans une ou plusieurs zones de disponibilité.
-* *Instantanés automatisés* : protègent les données grâce à des instantanés automatisés et efficaces, qui sont des copies en lecture seule à un instant donné du système de fichiers ou des volumes, quasi instantanées et peu gourmandes en espace.
+* *Instantanés automatisés* : protège les données grâce à des instantanés automatisés et efficaces, qui sont des copies en lecture seule quasi instantanées, peu gourmandes en espace, du système de fichiers ou des volumes à un moment donné.
 * *Réplication de volumes*: assure la reprise après sinistre grâce à la réplication interrégionale sur Amazon Web Services.
 * *Sauvegardes efficaces*: ajoute une couche de protection supplémentaire grâce à une copie des données dans une autre région en cas d’urgence.
 * *Clonage rapide* : accélère le développement d'applications grâce au clonage rapide.
@@ -46,7 +46,7 @@ FSx for ONTAP offre les fonctionnalités suivantes :
 
 * *Comparateur des coûts de stockage* : comparez vos coûts de stockage Amazon Elastic Block Store (EBS), Elastic File System (EFS) et FSx for Windows File Server avec FSx for ONTAP. À partir du comparateur, vous pouvez voir comment les configurations de stockage FSx for ONTAP offrent des économies potentielles et planifier votre migration vers le stockage FSx for ONTAP.
 * *Interface utilisateur de la console* : propose les options de mode de déploiement _Création rapide_ et _Création avancée_. La création rapide inclut les bonnes pratiques d’AWS, de NetApp et les meilleures pratiques standard du secteur pour vos configurations de stockage. L’interface affiche également les tendances d’utilisation de la capacité et du débit du stockage SSD, des résumés de charge de travail et des paramètres de configuration détaillés que vous pouvez développer.
-* *Codebox* : fournit aux développeurs un visualiseur de code pour les opérations FSx for ONTAP, des modèles de code à copier et à télécharger, ainsi qu’un catalogue d’automatisation pour la réutilisation du code.
+* *Codebox* : fournit aux développeurs une visionneuse de code pour les opérations FSx for ONTAP, des modèles de code à copier et à télécharger, ainsi qu’un catalogue d’automatisation pour la réutilisation du code.
 
 
 
@@ -77,7 +77,7 @@ AWS gère votre compte FSx for ONTAP, et non Workload Factory. Reportez-vous à 
 [[regions]]
 == Régions
 
-Workload factory est pris en charge dans toutes les régions commerciales où FSx for ONTAP est pris en charge. link:https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/["Afficher les régions Amazon prises en charge."^]
+Workload Factory est pris en charge dans toutes les régions commerciales où FSx for ONTAP est pris en charge. link:https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/["Afficher les régions Amazon prises en charge."^]
 
 Les régions AWS suivantes ne sont pas prises en charge :
 

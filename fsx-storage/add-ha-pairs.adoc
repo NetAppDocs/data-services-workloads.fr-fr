@@ -14,31 +14,31 @@ summary: Ajoutez des paires haute disponibilité à un système de fichiers dans
 Ajoutez des paires haute disponibilité (HA) pour faire évoluer un système de fichiers FSx for ONTAP Single-AZ de deuxième génération dans NetApp Workload Factory afin d'accroître les performances et la capacité. Cette extension vous offre davantage d'évolutivité des performances et de flexibilité par rapport aux systèmes de fichiers de première génération.
 
 .À propos de cette tâche
-Les nouvelles paires haute disponibilité sont ajoutées en utilisant le même SKU et la même capacité par paire haute disponibilité.
+Les nouvelles paires haute disponibilité utilisent la même référence et la même capacité par paire haute disponibilité.
 
 L'ajout de paires haute disponibilité n'est pas pris en charge pour les éléments suivants :
 
 * Déploiements haute disponibilité Multi-AZ ou systèmes de fichiers FSx for ONTAP de première génération
-* Systèmes de fichiers FSx for ONTAP avec plus de 5 machines virtuelles de stockage
+* Systèmes de fichiers FSx for ONTAP avec plus de cinq VM de stockage
 * Systèmes de fichiers FSx pour ONTAP avec LUN iSCSI
 * Les configurations dont la capacité SSD est maximale ou proche de la capacité maximale, ou qui ont atteint les limites d'allocation d'E/S
 
 
 Tenez compte des éléments suivants concernant l'ajout de paires haute disponibilité :
 
-* Suppression des paires haute disponibilité : les paires haute disponibilité ne peuvent pas être supprimées une fois ajoutées au système de fichiers.
-* Durée et limitations de l'opération : l'ajout de paires HA peut prendre environ 30 minutes. Envisagez d'ajouter des paires HA pendant une fenêtre de maintenance ou lors de périodes de faible activité. De plus, l'ajout de paires HA limite d'autres opérations telles que l'ajout de paires HA supplémentaires, le provisionnement des IOPS, l'augmentation de la capacité SSD et la mise à jour de la capacité de débit.
+* Suppression de paires haute disponibilité : vous ne pouvez pas supprimer de paires haute disponibilité après les avoir ajoutées au système de fichiers.
+* Durée de l'opération et limitations : l'ajout de paires haute disponibilité peut prendre environ 30 minutes. Envisagez d'ajouter des paires haute disponibilité pendant une fenêtre de maintenance ou durant des périodes de faible activité. De plus, l'ajout de paires haute disponibilité limite d'autres opérations, comme l'ajout de paires haute disponibilité supplémentaires, le provisionnement des IOPS, l'augmentation de la capacité SSD et la mise à jour de la capacité de débit.
 * Allocation des E/S : l’allocation automatique des E/S dépend de la capacité de stockage totale. L’allocation des E/S configurée par l’utilisateur est multipliée par le nombre de paires haute disponibilité ajoutées.
-* Cache NVMe : lors de l’ajout de paires haute disponibilité, le cache NVME est activé par défaut. Nous recommandons de le désactiver pour les charges de travail importantes.
+* Cache NVMe : lors de l’ajout de paires haute disponibilité, le cache NVMe est activé par défaut. Nous recommandons de désactiver le cache NVMe pour les workloads importants.
 * Nombre de paires haute disponibilité : Nous recommandons d’étendre votre système de fichiers à un nombre pair de paires haute disponibilité pour une distribution équilibrée des données entre les paires haute disponibilité.
-* Création de LUN : la création de LUN est possible sur un système de fichiers Single-AZ de deuxième génération uniquement si des LUN n’existent pas déjà sur le système de fichiers lors de l’ajout de paires haute disponibilité. La création de LUN est uniquement prise en charge sur un système de fichiers comportant 6 paires haute disponibilité ou moins.
+* Création de LUN : la création de LUN est possible sur un système de fichiers Single-AZ de deuxième génération uniquement si des LUN n'existent pas déjà sur le système de fichiers lors de l'ajout de paires haute disponibilité. La création de LUN est uniquement prise en charge sur un système de fichiers comportant six paires haute disponibilité ou moins.
 
 
 .Avant de commencer
 Effectuez les opérations suivantes avant d’ajouter des paires haute disponibilité à un système de fichiers :
 
 * Supprimez tous les LUN iSCSI pour faire évoluer le système de fichiers.
-* Assurez-vous que le système de fichiers ne comporte pas plus de 5 machines virtuelles de stockage.
+* Assurez-vous que le système de fichiers ne comporte pas plus de cinq machines virtuelles de stockage.
 
 
 .Étapes

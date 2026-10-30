@@ -23,7 +23,7 @@ Créez une sauvegarde manuelle d'un volume en dehors des sauvegardes régulière
 .À propos de cette tâche
 Les sauvegardes de volume sont effectuées volume par volume, donc chaque sauvegarde contient uniquement les données d'un volume particulier.
 
-Les sauvegardes de volume sont incrémentales, ce qui signifie que seules les données du volume qui ont changé depuis votre sauvegarde la plus récente sont enregistrées. Cela minimise le temps nécessaire pour créer la sauvegarde et l'espace de stockage requis pour la sauvegarde, ce qui permet d'économiser sur les coûts de stockage en ne dupliquant pas les données.
+Les sauvegardes de volume sont incrémentielles, ce qui signifie que seules les données du volume qui ont été modifiées depuis votre sauvegarde la plus récente sont enregistrées. Cela réduit le temps nécessaire à la création de la sauvegarde et l'espace de stockage nécessaire à celle-ci, ce qui permet de réaliser des économies sur les coûts de stockage en évitant la duplication des données.
 
 .Avant de commencer
 Pour sauvegarder vos volumes, votre volume et votre système de fichiers doivent tous deux disposer d'une capacité de stockage SSD disponible suffisante pour stocker l'instantané de sauvegarde. Lors de la création d'un instantané de sauvegarde, la capacité de stockage supplémentaire consommée par l'instantané ne doit pas amener le volume à dépasser 98 % d'utilisation du stockage SSD. Si cela se produit, la sauvegarde échouera.

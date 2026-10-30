@@ -33,7 +33,7 @@ Vous pouvez également charger une configuration enregistrée.
 
 
 
-.. *Étiquettes* : Vous pouvez éventuellement ajouter jusqu’à 50 étiquettes.
+.. *Étiquettes* : si vous le souhaitez, ajoutez jusqu’à 50 étiquettes.
 
 
 . Dans la section « Détails du système de fichiers », veuillez fournir les informations suivantes :
@@ -47,8 +47,8 @@ Vous pouvez également charger une configuration enregistrée.
 .. *Capacité de débit par paire haute disponibilité* : Sélectionnez la capacité de débit par nombre de paires haute disponibilité. Les systèmes de fichiers de première génération ne prennent en charge qu’une seule paire haute disponibilité.
 .. *IOPS provisionnées* : Sélectionnez l’une des options suivantes :
 +
-*** *Automatique* : En mode automatique, pour chaque Gio créé, 3 IOPS sont ajoutés.
-*** *Configuré par l'utilisateur* : pour l'option configurée par l'utilisateur, saisissez la valeur IOPS.
+*** *Automatique* : 3 IOPS sont ajoutés pour chaque GiB créé.
+*** *Configuré par l'utilisateur* : Saisissez la valeur d'IOPS.
 
 
 .. *Identifiants ONTAP* : Facultatif. Saisissez votre nom d’utilisateur ONTAP et votre mot de passe. Vous pouvez définir le mot de passe maintenant ou plus tard.

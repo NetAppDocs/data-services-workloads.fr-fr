@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/explore-savings.html 
 keywords: cost, savings, compare costs, EBS, EFS, FSx for Windows file servers FSx for ONTAP 
-summary: 'Découvrez les économies réalisables pour vos charges de travail de stockage dans Amazon Elastic Block Store (EBS), Elastic File System (EFS) et FSx for Windows File Servers par rapport à AWS FSx for NetApp ONTAP.' 
+summary: 'Découvrez les économies réalisées pour vos workloads de stockage dans Amazon Elastic Block Store (EBS), Elastic File System (EFS) et FSx for Windows File Server par rapport à Amazon FSx for NetApp ONTAP.' 
 ---
 = Découvrez les économies possibles avec FSx pour ONTAP dans NetApp Workload Factory
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Découvrez les économies réalisables pour vos charges de travail de 
 
 
 [role="lead"]
-Découvrez les économies réalisables pour vos charges de travail de stockage utilisant Amazon Elastic Block Store (EBS), Elastic File System (EFS) et FSx pour Windows File Server par rapport à FSx pour NetApp ONTAP.
+Découvrez les économies que vous pouvez réaliser pour vos workloads de stockage qui utilisent Amazon Elastic Block Store (EBS), Elastic File System (EFS) et FSx for Windows File Server en les comparant à FSx for ONTAP.
 
 NetApp Workload Factory intègre un calculateur d'économies de stockage permettant de comparer les environnements de stockage Amazon à FSx for ONTAP. Vous pouvez évaluer les économies potentielles avec ou sans fournir vos identifiants AWS et personnaliser les paramètres de configuration de votre environnement de stockage. Lorsque vous fournissez des identifiants AWS, vous pouvez sélectionner une ou plusieurs instances d'Amazon Elastic Block Store, par exemple, et laisser Workload Factory effectuer la comparaison automatiquement. Que ce soit manuellement ou automatiquement, le calculateur détermine quel service de stockage offre le coût le plus bas pour vos besoins de stockage.
 
@@ -22,7 +22,7 @@ Si le calculateur de stockage détermine que le stockage le plus rentable est FS
 [[calculator-options]]
 == Options de la calculatrice
 
-Deux options de calcul sont disponibles pour comparer les coûts entre vos systèmes et FSx for ONTAP : la personnalisation et la détection automatique pour vos environnements de stockage Amazon.
+Utilisez l’une des deux options du calculateur pour comparer le coût de vos systèmes avec FSx for ONTAP : personnalisation ou détection automatique pour vos environnements de stockage Amazon.
 
 Explorez les économies possibles grâce à la personnalisation : vous définissez les paramètres de configuration d’un environnement de stockage, notamment le cas d’utilisation, la région, le nombre de volumes ou de systèmes de fichiers, la quantité de stockage, la fréquence des instantanés, la quantité modifiée par instantané, les IOPS provisionnées, le débit et bien plus encore.
 

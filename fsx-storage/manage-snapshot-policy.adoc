@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/manage-snapshot-policy.html 
 keywords: manage snapshot policy, change snapshot policy, assign snapshot policy, remove snapshot policy, snapshot policies, snapshot schedule, update, snapshot long-term retention, enable long-term retention 
-summary: Gérez les stratégies de snapshot pour les volumes FSx for ONTAP dans Workload Factory. Une stratégie de snapshot définit la manière dont le système crée des snapshots pour un volume. 
+summary: Attribuez, modifiez, supprimez et effacez les stratégies de snapshot, et activez les snapshots immuables ainsi que la conservation à long terme pour les volumes FSx for ONTAP dans Workload Factory. 
 ---
 = Gérer les stratégies de snapshot pour les volumes dans NetApp Workload Factory
 :allow-uri-read: 
@@ -27,7 +27,7 @@ Par défaut, chaque volume est associé à la stratégie de snapshots `default` 
 Vous pouvez attribuer une stratégie de snapshot à un seul volume afin de créer des snapshots planifiés pour ce volume.
 
 .Avant de commencer
-Vous devez associer un lien pour attribuer une stratégie d'instantané. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Une fois le lien associé, revenez à cette opération.
+Vous devez associer un lien pour attribuer une stratégie d'instantané. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Après avoir associé le lien, revenez à cette opération.
 
 .Étapes
 . Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
@@ -39,7 +39,7 @@ Vous devez associer un lien pour attribuer une stratégie d'instantané. link:cr
 . Sur la page de gestion des stratégies d'instantané, sélectionnez le menu Actions de la stratégie d'instantané, puis sélectionnez *Attribuer une stratégie au volume*.
 . Dans la boîte de dialogue « Attribuer une stratégie d’instantané », sélectionnez une stratégie d’instantané à attribuer au volume et examinez la planification de la stratégie.
 +
-Si la politique contient des instantanés immuables et que vous souhaitez l'utiliser, acceptez la déclaration.
+Si la stratégie contient des snapshots immuables et que vous souhaitez l'utiliser, acceptez la déclaration.
 
 . Sélectionnez *Attribuer*.
 
@@ -52,10 +52,10 @@ La stratégie de snapshot est attribuée au volume.
 [[change-a-snapshot-policy]]
 == Modifier une politique d'instantané
 
-Vous pouvez modifier le nom, la planification et le nombre de copies à conserver de la stratégie de snapshot, ainsi qu'activer ou désactiver les snapshots immuables. Il n'est pas possible d'activer ou de désactiver le partage de stratégie entre les machines virtuelles de stockage. Cette option est disponible uniquement lors de la création de la stratégie de snapshot.
+Vous pouvez modifier le nom de la stratégie de snapshot, la planification et le nombre de copies à conserver, ainsi qu'activer ou désactiver les snapshots immuables. Vous ne pouvez pas activer ni désactiver le partage de stratégie entre les VM de stockage. Vous ne pouvez définir cette option que lors de la création d'une stratégie de snapshot.
 
 .Avant de commencer
-Pour afficher les stratégies d'instantané existantes, vous devez associer un lien. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Une fois le lien associé, revenez à cette opération.
+Pour afficher les stratégies d'instantané existantes, vous devez associer un lien. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Après avoir associé le lien, revenez à cette opération.
 
 .Étapes
 . Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
@@ -80,7 +80,7 @@ La politique relative aux instantanés a été mise à jour.
 Verrouillez les snapshots pour éviter leur suppression pendant la période de conservation.
 
 .Avant de commencer
-Vous devez associer un lien pour activer les instantanés immuables. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Une fois le lien associé, revenez à cette opération.
+Vous devez associer un lien pour activer les instantanés immuables. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Après avoir associé le lien, revenez à cette opération.
 
 .Étapes
 . Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
@@ -148,7 +148,7 @@ NOTE: La modification de la conservation à long terme n'est pas disponible lors
 Supprimez une stratégie de snapshot d'un volume si vous ne souhaitez plus créer de snapshots de ce volume ou si vous voulez supprimer une stratégie de snapshot attribuée à plusieurs volumes. Pour <<Supprimer une stratégie Snapshot,supprimer une stratégie d'instantané>> attribuée à plusieurs volumes, vous devez la supprimer manuellement de tous les volumes.
 
 .Avant de commencer
-Vous devez associer un lien pour supprimer une stratégie d'instantané. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Une fois le lien associé, revenez à cette opération.
+Vous devez associer un lien pour supprimer une stratégie d'instantané. link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"^]. Après avoir associé le lien, revenez à cette opération.
 
 .Étapes
 . Connectez-vous au link:https://console.netapp.com["NetApp Console"^].

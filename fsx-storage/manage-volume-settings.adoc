@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/manage-volume-settings.html 
 keywords: volume tags, edit volume tags, edit tags, enable immutable files, disable immutable files, lock files, unlock files, storage efficiency change, update storage efficiency 
-summary: Les étiquettes vous permettent de catégoriser vos ressources. Vous pouvez ajouter, modifier et supprimer des étiquettes de volume à tout moment pour les volumes FSx for ONTAP. 
+summary: 'Modifiez les workloads de volume, modifiez les étiquettes de volume, mettez à jour l"efficacité du stockage et gérez les paramètres des fichiers immuables pour les volumes FSx for ONTAP dans NetApp Workload Factory.' 
 ---
 = Gérez les paramètres de volume dans NetApp Workload Factory
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: Les étiquettes vous permettent de catégoriser vos ressources. Vous po
 
 
 [role="lead"]
-Personnalisez les paramètres de volume FSx for ONTAP dans NetApp Workload Factory afin de les adapter aux besoins de votre organisation. Vous pouvez gérer les balises de volume pour catégoriser les ressources, comme la définition des charges de travail des volumes, mettre à jour les paramètres d’efficacité du stockage pour optimiser l’espace et réaliser des économies, et gérer les paramètres des fichiers immuables pour contrôler la conservation des données et vous protéger contre les modifications non autorisées.
+Personnalisez les paramètres de volume FSx for ONTAP dans NetApp Workload Factory afin de les adapter aux besoins de votre organisation. Vous pouvez définir des workloads de volume et des balises pour catégoriser les ressources, mettre à jour les paramètres d'efficacité du stockage afin d'optimiser l'espace et les économies, et gérer les paramètres des fichiers immuables pour contrôler la conservation des données et les protéger contre les modifications non autorisées.
 
 
 
@@ -78,7 +78,7 @@ Les volumes utilisent le provisionnement fin, que vous activiez ou désactiviez 
 
 Vous pouvez mettre à jour certains paramètres des fichiers immuables pour un volume lorsque cette fonctionnalité est activée, tels que la politique et les périodes de conservation, la période de validation automatique et le mode d’ajout du volume.
 
-Notez que l'activation des fichiers immuables n'est possible que pendant link:create-volume.html["création de volume"].
+Vous pouvez activer les fichiers immuables uniquement pendant link:create-volume.html["création de volume"].
 
 .Étapes
 . Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
@@ -89,7 +89,7 @@ Notez que l'activation des fichiers immuables n'est possible que pendant link:cr
 +
 ** *Durée de conservation* : sélectionnez *Non spécifié* ou *Spécifier la période*.
 +
-*** *Non spécifié* : la période minimale par défaut est de « 0 » ans et la période maximale par défaut est de « 30 ans ».
+*** *Non spécifié* : la période minimale par défaut est de 0 ans et la période maximale par défaut est de 30 ans.
 *** *Période à préciser* : option permettant de définir la politique de rétention, les périodes minimale et maximale, la fonctionnalité d’autocommit et la fonctionnalité de mode d’ajout du volume. Veuillez fournir les informations suivantes :
 +
 **** *Politique de conservation* : cette période doit être supérieure ou égale à la période de conservation minimale et inférieure ou égale à la période de conservation maximale.
@@ -103,7 +103,7 @@ Notez que l'activation des fichiers immuables n'est possible que pendant link:cr
 ** *Mode d'ajout de volume* : activez ou désactivez cette fonction. L'activation du mode d'ajout de volume vous permet d'ajouter du contenu aux fichiers WORM.
 
 
-. Cliquez sur *Appliquer*.
+. Sélectionnez *Appliquer*.
 
 
 

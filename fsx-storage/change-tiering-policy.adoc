@@ -31,11 +31,11 @@ Veuillez consulter les politiques de hiérarchisation disponibles avant de modif
 
 * *Équilibré (Auto)* : stratégie de hiérarchisation par défaut lors de la création d'un volume via l'interface utilisateur. Les données fréquemment consultées sont conservées sur le niveau de stockage SSD, tandis que les données rarement consultées et les instantanés sont placés sur le niveau de stockage du pool de capacité après la période de refroidissement. Recommandé pour les charges de travail principales courantes.
 * *Optimisation des coûts (Tous)* : hiérarchise tous les snapshots et toutes les données vers le niveau de stockage du pool de capacité. Recommandé pour les cibles secondaires.
-* *Performances optimisées (instantanés uniquement)* : place uniquement les données d’instantané sur le niveau de stockage du pool de capacité. Recommandé pour les charges de travail à faible latence, telles que les bases de données stratégiques.
+* *Optimisé pour les performances (Snapshots uniquement)* : hiérarchise uniquement les données de snapshot vers le niveau de stockage du pool de capacité. Recommandé pour les workloads à faible latence, tels que les bases de données stratégiques.
 * *None* : Conserve les données du volume dans le niveau de stockage SSD, les empêchant d’être déplacées vers le niveau de stockage du pool de capacité.
 
 
-Notez que certaines politiques de hiérarchisation sont associées à une période de refroidissement minimale qui définit la durée, ou le nombre de jours de refroidissement, pendant laquelle les données utilisateur d'un volume doivent rester inactives pour que ces données soient considérées comme « froides » et déplacées vers le niveau de stockage du pool de capacité. La période de refroidissement commence dès que des données sont écrites sur le disque.
+Certaines politiques de hiérarchisation sont associées à une période de refroidissement minimale qui définit la durée, ou le nombre de jours de refroidissement, pendant laquelle les données utilisateur d'un volume doivent rester inactives pour que ces données soient considérées comme « froides » et déplacées vers le niveau de stockage du pool de capacité. La période de refroidissement commence dès que des données sont écrites sur le disque.
 
 .Étapes
 . Connectez-vous au link:https://console.netapp.com["NetApp Console"^].

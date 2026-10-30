@@ -16,7 +16,7 @@ Utilisez NetApp Workload Factory pour simplifier la gestion de vos ressources de
 .À propos de cette tâche
 Depuis la console NetApp Workload Factory, vous pouvez gérer les groupes d'initiateurs (igroups) afin de contrôler l'accès des clients aux périphériques de stockage bloc. Vous pouvez également consulter les détails des périphériques de stockage bloc, augmenter leur capacité, créer des clones, gérer l'accès des clients, archiver les données pour les périphériques de stockage bloc inactifs et supprimer des périphériques de stockage bloc.
 
-Consultez le schéma du stockage bloc pour vérifier les points suivants :
+Utilisez le schéma du stockage bloc pour vérifier les points suivants :
 
 * Connexions client
 * État du périphérique bloc
@@ -100,9 +100,9 @@ Consultez à tout moment les détails d'un périphérique de blocs existant.
 . Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
 . Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
 . Dans *FSx for ONTAP*, sélectionnez l'onglet *Périphériques de bloc*.
-. Accédez au menu des actions du périphérique de bloc, puis sélectionnez *Afficher les détails*.
+. Accédez au menu des actions du périphérique bloc, puis sélectionnez *Afficher les détails*.
 +
-Les informations générales, de consommation, d'accès et de protection du périphérique de bloc sont affichées.
+Workload Factory affiche des informations générales, de consommation, d'accès et de protection pour le périphérique de blocs.
 
 
 

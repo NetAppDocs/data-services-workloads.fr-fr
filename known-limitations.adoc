@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: known-limitations.html 
 keywords: limitations, fsx, ontap 
-summary: Les limitations connues désignent les plateformes, les périphériques ou les fonctions non pris en charge par cette version du produit, ou qui ne fonctionnent pas correctement avec celle-ci. 
+summary: 'Examinez les limitations connues d"Amazon FSx for NetApp ONTAP dans Workload Factory, notamment la prise en charge des régions, la gestion de la capacité, iSCSI, la protection des données et la migration des VM de stockage.' 
 ---
 = Limitations connues des charges de travail FSx for ONTAP dans NetApp Workload Factory
 :allow-uri-read: 
