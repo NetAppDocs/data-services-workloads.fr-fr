@@ -7,7 +7,7 @@ summary: 'Mettez à jour les détails du point d"accès S3, gérez les balises e
 = Modifiez les points d'accès S3 pour un volume FSx for ONTAP dans NetApp Console
 :allow-uri-read: 
 :icons: font
-:imagesdir: ./media/
+:imagesdir: ../media/
 
 
 [role="lead"]

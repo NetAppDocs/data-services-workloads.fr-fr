@@ -1,0 +1,129 @@
+---
+sidebar: sidebar 
+permalink: oci/configuration-analysis.html 
+keywords: configuration issues, issues, improve, analyze, storage configuration, OCI NSS, recommendation, recommendations 
+summary: 'NetApp Workload Factory analyse régulièrement les configurations système OCI NSS afin de déterminer s"il existe des problèmes de configuration.' 
+---
+= Analyse de configuration pour les systèmes OCI NSS
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp Workload Factory analyse régulièrement les configurations système OCI NSS afin de détecter d'éventuels problèmes de configuration. Le cas échéant, Workload Factory vous indique la nature des problèmes et vous explique les modifications à apporter pour que votre environnement de stockage atteigne des performances optimales, une meilleure rentabilité et la conformité aux meilleures pratiques.
+
+Principales fonctionnalités :
+
+* Analyse quotidienne de la configuration
+* Validations automatiques des bonnes pratiques
+* Observabilité proactive
+* Des idées à l'action
+* Conseiller OCI Well-Architected Framework
+
+
+
+
+[[how-it-works]]
+== Comment ça marche
+
+Workload Factory analyse chaque jour vos charges de travail sur les déploiements de stockage cloud pris en charge. L’analyse fournit l’état de l’architecture bien conçue, des informations et des recommandations.
+
+Une fois l'analyse quotidienne terminée, les configurations apparaissent comme « optimisées » ou « non optimisées » dans le tableau de bord Well-architected du déploiement. Vous y trouverez les problèmes de configuration classés par catégorie, ainsi que des recommandations. Workload Factory fournit des instructions détaillées pour vous aider à mettre en œuvre les modifications recommandées.
+
+Vous pouvez ignorer l'analyse des configurations qui ne s'appliquent pas à vos environnements. Cela évite les alertes inutiles et des résultats d'optimisation inexacts.
+
+
+
+[[why-it-matters]]
+== Pourquoi c'est important
+
+NetApp Workload Factory applique les meilleures pratiques aux environnements de stockage, de base de données et VMware de grande envergure en combinant une évaluation continue avec des recommandations et des corrections. Les correctifs automatisés réduisent les erreurs humaines, garantissent une gestion uniforme et préservent les performances et la fiabilité de vos infrastructures de charges de travail.
+
+
+
+[[analysis-requirements]]
+== Exigences d'analyse
+
+Pour une analyse complète du système de fichiers, vous devez procéder comme suit :
+
+* Associez un lien. La connectivité des liens permet à Workload Factory d'analyser toutes les configurations système OCI NSS, telles que la protection des données et les performances.
++
+link:create-link.html["Apprenez comment associer un lien existant ou créer et associer un nouveau lien"].
+
+* Accordez les autorisations de _visualisation, de planification et d'analyse_ dans votre compte OCI.
++
+link:add-credentials-oci.html["Découvrez comment accorder des autorisations à un compte OCI"].
+
+
+
+
+
+[[best-practices-and-recommendations-for-storage-workloads]]
+== Meilleures pratiques et recommandations pour les charges de travail de stockage
+
+Le tableau de bord bien architecturé évalue les configurations de stockage par rapport aux bonnes pratiques ONTAP et au cadre AWS Well-Architected. L'évaluation recommande également des améliorations et des correctifs.
+
+L'analyse bien conçue catégorise les configurations selon les piliers suivants du cadre : _fiabilité_, _sécurité_, _excellence opérationnelle_, _optimisation des coûts_ et _efficacité des performances_.
+
+
+NOTE: Actuellement, Workload Factory ne fournit pas de recommandations spécifiques à chaque charge de travail pour toutes les configurations. Adaptez vos configurations aux besoins spécifiques de chaque charge de travail.
+
+
+
+[[reliability]]
+=== Fiabilité
+
+La fiabilité garantit que les charges de travail exécutent leurs fonctions prévues correctement et de manière constante, même en cas de perturbations.
+
+* *Capacité des objets de fichier*
++
+Il convient d'augmenter le seuil de capacité des fichiers afin d'éviter d'atteindre la limite de capacité du volume. Une capacité de fichiers insuffisante (en inodes) empêche l'écriture de données supplémentaires sur le volume. Workload Factory recommande de maintenir l'utilisation de la capacité des fichiers en dessous de 80 % pour permettre la création de nouveaux fichiers.
+
+* *Politique d'instantané*
++
+Planifiez des instantanés locaux pour une sauvegarde efficace et une restauration rapide. Les instantanés sont des images instantanées de vos volumes à un instant précis. Cette recommandation ne s'applique pas aux environnements de base de données.
+
+* *Marge de capacité SSD*
++
+La capacité du niveau de stockage SSD ne doit pas dépasser 80 % d'utilisation. Cela pourrait impacter les lectures et écritures de données sur votre niveau de stockage pool de capacité et affecter la capacité de débit de votre système de fichiers. Lorsque la capacité est épuisée, les volumes de données deviennent en lecture seule. Les services tentant d'écrire de nouvelles données échouent également.
+
+
+
+
+
+[[operational-excellence]]
+=== Excellence opérationnelle
+
+L'excellence opérationnelle garantit que les charges de travail sont exploitées et surveillées efficacement et qu'elles sont en mesure de répondre aux besoins de leurs utilisateurs.
+
+* *Rapports de capacité visibles par l’hôte*
++
+Activez la génération de rapports de capacité visibles par l'hôte pour une meilleure visibilité sur l'utilisation du stockage au niveau du volume.
+
+* *Capacité maximale du volume*
++
+La marge de capacité du volume doit être définie sur 10 % pour permettre la croissance et éviter les problèmes de capacité imprévus.
+
+
+
+
+
+[[cost-optimization]]
+=== Optimisation des coûts
+
+L'optimisation des coûts vous aide à obtenir la plus grande valeur pour votre entreprise tout en maintenant les coûts bas.
+
+* *Hiérarchisation des données froides* Utilisez la stratégie de hiérarchisation basée uniquement sur les instantanés, qui déplace uniquement les données d'instantané vers le niveau de capacité tout en conservant les données actives sur le niveau SSD. Cette approche préserve des performances à faible latence pour les charges de travail de base de données tout en réduisant les coûts de stockage. Hiérarchisez les données d'instantané après une période de refroidissement de 7 jours.
+* *Nettoyage des Snapshot*
++
+Supprimez les anciens instantanés ou ceux créés manuellement dont vous n'avez plus besoin. Leur suppression permet de réduire les coûts et l'encombrement, surtout s'ils ne sont pas nécessaires à votre SLA ou à vos besoins de restauration.
+
+* *Efficacités de stockage*
++
+Activez les techniques d'efficacité du stockage — compactage, compression et déduplication — pour optimiser l'utilisation du stockage et réduire le coût de la couche SSD.
+
+
+
+.Et ensuite
+link:improve-configurations.html["Mettre en œuvre des configurations OCI NSS bien architecturées"]

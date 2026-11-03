@@ -1,0 +1,216 @@
+= Améliorations de l'administration de Workload Factory
+:allow-uri-read: 
+
+
+
+
+[[workload-factory-administration-enhancements]]
+=== Améliorations de l'administration de Workload Factory
+
+
+
+==== Vérifier et actualiser les données du tableau de bord personnalisé
+
+Vous pouvez désormais consulter la date et l'heure de la dernière mise à jour des indicateurs de votre tableau de bord personnalisé et les actualiser manuellement. Survolez *Actualiser les données* pour afficher la date et l'heure de la dernière mise à jour.
+
+Sélectionnez *Actualiser les données* pour lancer une nouvelle analyse. Une bannière confirme que l'analyse a démarré, et le bouton est désactivé jusqu'à la fin de l'analyse.
+
+Lorsque de nouvelles données sont disponibles, sélectionnez *Charger maintenant* dans la bannière de notification pour mettre à jour le tableau de bord.
+
+Les options *Refresh data* et *Load it now* créent toutes deux des événements de collecte de données dans Tracker.
+
+link:admin/manage-custom-dashboards-fsx.html#refresh-dashboard-data["Découvrez comment actualiser les données du tableau de bord personnalisé"]
+
+
+
+==== Spécifiez les régions pour les tableaux de bord personnalisés
+
+Les tableaux de bord personnalisés vous invitent désormais à sélectionner une ou plusieurs régions si votre requête ne les inclut pas. Les données du tableau de bord sont limitées aux régions sélectionnées.
+
+link:admin/create-custom-dashboard-fsx.html["Apprenez à créer un tableau de bord personnalisé"]
+
+
+
+==== Stratégie IAM pour la création de liens FSx for ONTAP
+
+Le modèle CloudFormation et le code Terraform permettant de créer des liens utilisent désormais une stratégie IAM au lieu des autorisations Lambda intégrées.
+
+link:fsx-storage/create-link.html["Découvrez comment créer un lien"]
+
+
+
+==== Audit et suivi des actions des agents d’IA
+
+Vous pouvez désormais utiliser Tracker pour consulter les modifications apportées aux paramètres de l'agent IA et, en mode lecture/écriture, chaque demande d'approbation, y compris la question de l'agent et la réponse de l'utilisateur.
+
+Les modifications de ressources effectuées via les API Workload Factory sont consignées par le service Workload Factory qui effectue l'opération.
+
+link:admin/learn-agent.html#audit-and-tracking-for-agent-actions["Découvrez comment auditer et suivre les actions des agents"]
+
+
+
+[[amazon-fsx-for-netapp-ontap-enhancements]]
+=== Améliorations d’Amazon FSx for NetApp ONTAP
+
+
+
+==== Améliorations apportées au diagramme du groupe initiateur
+
+Le diagramme affichant les groupes d'initiateurs pour les périphériques de stockage bloc sur la page « Gérer l'accès client » contient désormais plus de détails sur les hôtes. Lorsque vous survolez un hôte dans le diagramme, ses détails s'affichent, notamment le nom de l'hôte, l'ID d'instance, le type de workload, la région et le nom qualifié iSCSI (IQN).
+
+
+
+==== Amélioration des e-mails pour les problèmes bien architecturés
+
+Le nouveau format des e-mails fournit davantage de détails et de contexte sur les problèmes de configuration détectés par Workload Factory. L'e-mail indique le nombre de ressources analysées, le nombre de celles présentant des alertes ou des problèmes critiques, ainsi que la nature de ces problèmes. L'e-mail contient également un lien vers le tableau de bord Well-Architected de FSx for ONTAP afin que vous puissiez résoudre les problèmes immédiatement.
+
+
+
+==== Améliorations du tableau de bord bien architecturé
+
+
+
+===== Prise en charge de certaines vérifications de configuration
+
+Vous pouvez exécuter manuellement une analyse sur les configurations sélectionnées afin d'analyser uniquement les configurations qui vous intéressent et de réduire ainsi le temps d'attente.
+
+
+
+===== Nouvelles recommandations dans l'analyse bien architecturée
+
+Workload Factory inclut désormais les configurations suivantes dans l'analyse bien architecturée pour les systèmes de fichiers FSx for ONTAP :
+
+Pour les workloads de stockage :
+
+* *Connecter l'hôte au nœud de basculement* : vérifie si les hôtes sont connectés au nœud de basculement dans un système de fichiers FSx for ONTAP actif-passif pour des raisons de fiabilité.
+* *Connecter l'hôte au nœud préféré* : vérifie si les hôtes sont connectés à leurs périphériques bloc en utilisant le nœud préféré pour optimiser les performances.
+* *Lacune de la détection multi-périphériques ARP/AI* : ARP/AI assure une protection complète lorsqu'un volume n'a qu'un seul périphérique de bloc qui lui est associé. Si un volume a plusieurs périphériques de bloc associés, Workload Factory déplace ces périphériques de bloc vers de nouveaux volumes afin que chaque volume n'ait qu'un seul périphérique de bloc.
+* *Nettoyage des clones* : vérifie s’il existe des clones de volume datant de plus de 30 jours qui peuvent être supprimés afin d’optimiser l’utilisation du stockage et de réduire les coûts.
+* *Correspondance du système d'exploitation du groupe d'initiateurs à celui de l'hôte* : vérifie si le système d'exploitation du groupe d'initiateurs (igroup) correspond à celui de l'hôte afin d'éviter les problèmes d'E/S ou de performances.
+
+
+Pour les workloads Kubernetes :
+
+* *Configuration QoS* : vérifie si les volumes persistants Kubernetes sont protégés par une politique QoS ONTAP pour optimiser les performances.
+* *VM de stockage Kubernetes dédiée* : vérifie si le système de fichiers utilise une VM de stockage dédiée pour les workloads Kubernetes afin d’améliorer l’isolation et de simplifier la gestion du stockage.
+* *Règles d'export Kubernetes dédiées* : vérifie si chaque volume persistant Kubernetes possède des règles d'export dédiées qui autorisent uniquement l'accès depuis les nœuds worker du cluster.
+* *CHAP bidirectionnel pour les backends iSCSI Kubernetes* : vérifie si les backends iSCSI Trident ont l’authentification CHAP mutuelle activée pour des raisons de sécurité.
+* *Désactiver `showmount` sur la VM de stockage d'application* : vérifie si `showmount` est désactivé sur la VM de stockage d'application afin d'empêcher les clients de lister les exports auxquels ils ne peuvent pas accéder.
+
+
+Pour les workloads de base de données :
+
+* *Stratégie de snapshot SAP HANA* : vérifie si la stratégie de snapshot est définie sur « Aucun » pour les volumes SAP HANA afin de réduire les coûts de stockage et d’améliorer les performances des données actives de la base de données.
+* *Politique de snapshot MySQL* : vérifie si la politique de snapshot est définie sur « Aucun » pour les volumes MySQL afin de réduire les coûts de stockage et d’améliorer les performances des données actives de la base de données.
+* *Politique de snapshot PostgreSQL* : vérifie si la politique de snapshot est définie sur « Aucun » pour les volumes PostgreSQL afin de réduire les coûts de stockage et d’améliorer les performances des données de base de données actives.
+
+
+
+
+===== Valeurs actuelles et recommandées pour les configurations
+
+Vous pouvez consulter les valeurs actuelles et recommandées de certaines configurations non optimisées dans le tableau de bord Well-Architected. Cela vous indique la valeur recommandée avant de la corriger.
+
+* Hiérarchisation des données froides
+* Stratégie de snapshot
+* marge de capacité SSD
+
+
+
+
+==== Optimisation des coûts
+
+
+
+===== Prévisions et analyses de coûts
+
+Vous pouvez désormais prévoir les coûts de vos systèmes de fichiers FSx for ONTAP grâce à la fonctionnalité de prévision des coûts. Cela vous permet de planifier votre budget et d'optimiser efficacement vos ressources. Vous pouvez également consulter des informations sur vos coûts et vos habitudes d'utilisation afin d'identifier des opportunités d'optimisation des coûts.
+
+
+
+===== Rapports de coûts et d'utilisation AWS (CUR)
+
+Workload Factory utilise désormais AWS Cost and Usage Reports (CUR) au lieu d'AWS Cost Explorer pour fournir des relevés de facturation détaillés livrés dans des compartiments S3 appartenant aux clients. CUR offre une meilleure granularité des coûts et constitue la base pour des cas d'utilisation avancés de FinOps, de refacturation et d'allocation des coûts.
+
+
+
+==== Améliorations de la migration des machines virtuelles de stockage
+
+Workload Factory fournit des conseils améliorés dans l'interface utilisateur pour la migration des machines virtuelles de stockage. Cela comprend des instructions étape par étape et une exécution de test avant de valider la migration en production.
+
+link:fsx-storage/create-replication.html["Apprenez-en davantage sur la migration des machines virtuelles de stockage"]
+
+
+
+==== Amélioration des notifications par e-mail concernant le délai de réplication
+
+En cas de grand nombre d'événements de retard de réplication liés, Workload Factory les regroupe automatiquement dans une seule notification par e-mail afin que vous ne soyez pas submergé de notifications.
+
+
+
+==== Amélioration automatique de la gestion de la capacité
+
+Vous pouvez désormais activer les notifications automatiques de gestion de la capacité pour essayer la fonctionnalité avant de demander à Workload Factory de gérer automatiquement votre capacité. Vous serez averti lorsque votre système de fichiers manquera de capacité.
+
+
+
+==== Configurations de base de données incluses dans un tableau de bord bien architecturé
+
+Le tableau de bord à l’architecture optimisée inclut désormais des recommandations pour les configurations de votre base de données, vous permettant d’évaluer et d’optimiser votre installation selon les meilleures pratiques. Les premières configurations affichées dans le tableau de bord sont :
+
+* Hiérarchisation des données froides
+* Efficacités du stockage
+* Stratégie de snapshot
+* marge de capacité SSD
+* Gestion de l'espace des périphériques de blocs
+* Type de OS
+* Faire correspondre le type de système d'exploitation du périphérique de bloc à l'hôte
+* Périphériques de bloc inactifs (LUNs)
+* Placement des fichiers de données (.mdf)
+* Emplacement des fichiers journaux (.ldf)
+* État des E/S multipath
+* Délai d'attente des E/S multivoies
+* quorum du cluster
+* Dimensionnement optimal des ressources de calcul
+
+
+Sélectionnez le menu principal dans la console Workload Factory, puis sélectionnez *Well-architected* pour trouver le tableau de bord Well-architected.
+
+image:well-architected-menu-option.png["Option de menu bien conçue dans la console NetApp Workload Factory"]
+
+
+
+==== Points de décision relatifs au débit
+
+Vous pouvez désormais consulter les recommandations de débit client et les points de décision d'automatisation. Survolez un point de décision pour afficher des détails, tels que le SKU actuel et recommandé ou les métriques dépassées dans la fenêtre temporelle (%).
+
+
+
+[[google-cloud-netapp-volumes-enhancements]]
+=== Améliorations de Google Cloud NetApp Volumes
+
+
+
+==== Afficher les pools de stockage Google Cloud NetApp Volumes
+
+Vous pouvez désormais consulter vos pools de stockage Google Cloud NetApp Volumes dans NetApp Workload Factory. Filtrez par projets, identifiants et région, puis sélectionnez le nom d’un pool de stockage pour afficher tous ses détails, notamment la zone, la zone de réplication, le débit, la description et les étiquettes.
+
+
+
+[[oci-netapp-storage-service-enhancements]]
+=== Améliorations du service de stockage OCI NetApp
+
+
+
+==== Analyse de l’architecture optimisée des systèmes OCI NSS
+
+NetApp Workload Factory inclut l’évaluation well-architected pour les systèmes OCI NSS. L’évaluation fournit des informations, des recommandations et des correctifs pour vous aider à atteindre l’excellence opérationnelle.
+
+Des évaluations de configuration sont disponibles pour les piliers suivants du cadre OCI Well-Architected :
+
+* Fiabilité : capacité des objets de fichier, stratégie de snapshots et marge de capacité SSD
+* Excellence opérationnelle : rapports de capacité visibles par l’hôte et marge de capacité du volume
+* Optimisation des coûts : hiérarchisation des données froides, nettoyage des instantanés et efficacité du stockage
+
+
+Apprenez-en davantage sur link:oci/configuration-analysis.html["l'analyse bien architecturée des systèmes OCI NSS"] et sur link:oci/improve-configurations.html["mise en œuvre de configurations bien architecturées"].
