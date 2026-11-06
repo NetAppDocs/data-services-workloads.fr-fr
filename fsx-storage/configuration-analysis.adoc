@@ -96,7 +96,7 @@ La réplication interrégionale garantit la réplication de vos données vers un
 
 * *Marge de capacité SSD*
 +
-La capacité du niveau de stockage SSD ne doit pas dépasser 80 % d'utilisation. Cela pourrait impacter les lectures et écritures de données sur votre niveau de stockage pool de capacité et affecter la capacité de débit de votre système de fichiers. Lorsque la capacité est épuisée, les volumes de données deviennent en lecture seule. Les services tentant d'écrire de nouvelles données échouent également.
+La capacité du niveau de stockage SSD ne doit pas dépasser 80 % d’utilisation. Le dépassement de ce seuil peut affecter les lectures et écritures de données sur votre niveau de stockage du pool de capacité et réduire la capacité de débit de votre système de fichiers. Lorsque la capacité est épuisée, les volumes de données deviennent en lecture seule. Les services qui tentent d’écrire de nouvelles données échouent également.
 
 * *Étiquettes de politique de réplication*
 +
