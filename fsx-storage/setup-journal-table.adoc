@@ -61,7 +61,7 @@ Le {uuid} est un identifiant aléatoire de 8 caractères généré lors de la cr
 Pour activer la fonctionnalité de tableau de journal, procédez comme suit :
 
 * Disposez d'un volume existant avec un point d'accès link:create-volume.html["Créer un volume avec un point d'accès S3"]
-* Configurez le réseau sur *Internet* pour le point d'accès S3. link:manage-s3-access-points.html["Modifier la configuration réseau du point d'accès S3"].
+* Configurez le réseau sur *Internet* pour le point d'accès S3. link:edit-s3-access-points.html["Modifier la configuration réseau du point d'accès S3"].
 * link:add-credentials.html["Accorder les autorisations d'_opérations et de correction_'"^] à vos identifiants NetApp Workload Factory.
 * Ajoutez les autorisations de stratégie IAM suivantes au compte AWS que vous utilisez pour exécuter le déploiement CloudFormation afin de configurer la table Journal.
 +

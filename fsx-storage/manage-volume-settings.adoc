@@ -114,5 +114,5 @@ Vous pouvez activer les fichiers immuables uniquement pendant link:create-volume
 * link:create-volume.html["Créez un volume dans Workload Factory"]
 * link:manage-volume-capacity.html["Gérer la capacité de volume dans NetApp Workload Factory"]
 * link:change-tiering-policy.html["Modifier la stratégie de hiérarchisation des volumes dans Workload Factory"]
-* link:manage-s3-access-points.html["Gérez les points d'accès S3 dans Workload Factory"]
+* link:edit-s3-access-points.html["Gérez les points d'accès S3 dans Workload Factory"]
 

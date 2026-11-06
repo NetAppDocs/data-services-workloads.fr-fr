@@ -39,7 +39,7 @@ Workload Factory analyse le statut well-architected des configurations suivantes
 [[before-you-begin]]
 == Avant de commencer
 
-* Vous devez link:add-credentials.html["accorder les autorisations d'_opérations et de remédiation_"] dans votre compte OCI.
+* Vous devez link:add-credentials-oci.html["accorder les autorisations d'_opérations et de remédiation_"] dans votre compte OCI.
 * link:create-link.html["Connectez-vous à un système OCI NSS à l'aide d'un lien"] pour l’analyse la plus complète de vos ressources de système de fichiers.
 
 

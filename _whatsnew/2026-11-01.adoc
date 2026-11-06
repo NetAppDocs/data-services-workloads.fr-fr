@@ -19,7 +19,7 @@ Lorsque de nouvelles données sont disponibles, sélectionnez *Charger maintenan
 
 Les options *Refresh data* et *Load it now* créent toutes deux des événements de collecte de données dans Tracker.
 
-link:admin/manage-custom-dashboards-fsx.html#refresh-dashboard-data["Découvrez comment actualiser les données du tableau de bord personnalisé"]
+link:https://docs.netapp.com/us-en/data-services-workloads/admin/manage-custom-dashboards-fsx.html#refresh-dashboard-data["Découvrez comment actualiser les données du tableau de bord personnalisé"]
 
 
 
@@ -27,7 +27,7 @@ link:admin/manage-custom-dashboards-fsx.html#refresh-dashboard-data["Découvrez 
 
 Les tableaux de bord personnalisés vous invitent désormais à sélectionner une ou plusieurs régions si votre requête ne les inclut pas. Les données du tableau de bord sont limitées aux régions sélectionnées.
 
-link:admin/create-custom-dashboard-fsx.html["Apprenez à créer un tableau de bord personnalisé"]
+link:https://docs.netapp.com/us-en/data-services-workloads/admin/create-custom-dashboard-fsx.html["Apprenez à créer un tableau de bord personnalisé"]
 
 
 
@@ -35,7 +35,7 @@ link:admin/create-custom-dashboard-fsx.html["Apprenez à créer un tableau de bo
 
 Le modèle CloudFormation et le code Terraform permettant de créer des liens utilisent désormais une stratégie IAM au lieu des autorisations Lambda intégrées.
 
-link:fsx-storage/create-link.html["Découvrez comment créer un lien"]
+link:https://docs.netapp.com/us-en/data-services-workloads/fsx-storage/create-link.html["Découvrez comment créer un lien"]
 
 
 
@@ -45,7 +45,7 @@ Vous pouvez désormais utiliser Tracker pour consulter les modifications apport�
 
 Les modifications de ressources effectuées via les API Workload Factory sont consignées par le service Workload Factory qui effectue l'opération.
 
-link:admin/learn-agent.html#audit-and-tracking-for-agent-actions["Découvrez comment auditer et suivre les actions des agents"]
+link:https://docs.netapp.com/us-en/data-services-workloads/admin/learn-agent.html["Découvrez comment auditer et suivre les actions des agents"]
 
 
 
@@ -213,4 +213,4 @@ Des évaluations de configuration sont disponibles pour les piliers suivants du 
 * Optimisation des coûts : hiérarchisation des données froides, nettoyage des instantanés et efficacité du stockage
 
 
-Apprenez-en davantage sur link:oci/configuration-analysis.html["l'analyse bien architecturée des systèmes OCI NSS"] et sur link:oci/improve-configurations.html["mise en œuvre de configurations bien architecturées"].
+Apprenez-en davantage sur link:https://docs.netapp.com/us-en/data-services-workloads/oci/add-credentials-oci.html["l'analyse bien architecturée des systèmes OCI NSS"] et sur link:https://docs.netapp.com/us-en/data-services-workloads/oci/improve-configurations.html["mise en œuvre de configurations bien architecturées"].

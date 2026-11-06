@@ -52,4 +52,4 @@ Vous pouvez, en option, utiliser la fonctionnalité de table de journal avec les
 
 Autres sujets connexes :
 
-link:manage-s3-access-points.html["Modifiez ou supprimez les points d'accès S3 pour un volume dans NetApp Workload Factory"]
+link:edit-s3-access-points.html["Modifiez ou supprimez les points d'accès S3 pour un volume dans NetApp Workload Factory"]
