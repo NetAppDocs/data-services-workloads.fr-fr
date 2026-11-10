@@ -7105,4 +7105,11 @@
   <block id="38e979158d55ae25a36aba4d97b0a8b4" category="list-text">Planifiez les besoins futurs en capacité en fonction des tendances de croissance</block>
   <block id="2814ccd9bf1ef1faffa5931e29ee7f74" category="list-text">Dépanner les tentatives d'automatisation ayant échoué</block>
   <block id="f2abe5914eba19478c3b813d9def8548" category="sidebar">FSx pour ONTAP analyse de la latence</block>
+  <block id="e9f11fc9d91bec322284ec741f87191d" category="section-title">Améliorations de Workload Factory pour VMware</block>
+  <block id="2296d077680e104e6519a9745c173ece" category="paragraph">Ces améliorations concernent le calculateur de coût total de possession (TCO) d'EVS pour les migrations VMware.</block>
+  <block id="37460924712e1c37dc5ad9be085001ad" category="section-title">Prise en charge des instances i7i.metal-24xl et i7i.metal-48xl dans l’EVS TCO calculator</block>
+  <block id="b6c3bb340d0b13e009a53c6c8a2b9219" category="paragraph">Le calculateur de coût total de possession (TCO) d'EVS prend désormais en charge les instances EC2 AWS i7i.metal-24xl et i7i.metal-48xl comme hôtes de cluster. Par rapport aux configurations i4i.metal, les instances i7i.metal-24xl permettent de réduire le coût initial d'EVS d'environ 33 % pour le calcul et de 25 % pour le stockage vSAN.</block>
+  <block id="e50148793a31ae443693925cfda40d91" category="paragraph">Le calculateur compare tous les types d'instances et sélectionne automatiquement l'option la plus économique. Une nouvelle section de comparaison affiche les configurations hôtes EVS côte à côte, facilitant ainsi le choix de la configuration la mieux adaptée à vos besoins.</block>
+  <block id="0665cdd8950328e06e0db9b1e16938d3" category="inline-link-macro">Calculez les économies estimées pour EVS</block>
+  <block id="536315c4cd9e40b477f48fcc8b1863a7" category="paragraph"><block ref="536315c4cd9e40b477f48fcc8b1863a7" category="inline-link-macro-rx"></block></block>
 </blocks>
