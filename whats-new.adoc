@@ -202,6 +202,45 @@ Vous pouvez désormais consulter les recommandations de débit client et les poi
 
 
 
+[[workload-factory-for-eda-enhancements]]
+=== Améliorations de Workload Factory pour EDA
+
+Ces améliorations portent sur les détails du volume dans l'analyse de latence, une vérification de la pression du système de fichiers, les points de décision du débit et la relance d'une analyse de latence.
+
+
+
+==== Afficher les détails du volume pendant l'analyse de latence
+
+Vous pouvez consulter plus de détails sur le volume dans Workload Factory pendant que vous analysez un événement de latence afin de voir comment le volume est configuré. La page d'analyse détaillée de la latence affiche le *type de volume* (RW ou DP) et le *style de volume* (FlexVol ou FlexGroup).
+
+link:https://docs.netapp.com/us-en/data-services-workloads/fsx-eda/task-analyze-latency-trends.html["Apprenez à analyser les tendances de latence"]
+
+
+
+==== Vérifiez la pression du système de fichiers pour un événement de latence
+
+Dans Workload Factory, vous pouvez vérifier si la pression sur le système de fichiers a affecté les performances lorsqu’un événement de latence s’est produit afin de décider si vous devez examiner le système de fichiers. Pour un volume présentant une alerte de latence, vous pouvez consulter les données CloudWatch des 40 minutes précédant l’événement et ouvrir le système de fichiers pour approfondir l’analyse.
+
+link:https://docs.netapp.com/us-en/data-services-workloads/fsx-eda/learn-latency-monitoring.html#file-system-pressure["En savoir plus sur les vérifications de pression du système de fichiers"]
+
+
+
+==== Examiner les points de décision relatifs au débit pour l'EDA
+
+Vous pouvez consulter les points de décision relatifs au débit du client sur le tableau de bord EDA Overview afin de voir quand Workload Factory a recommandé ou appliqué une modification du débit. Survolez un point de décision pour afficher des détails, tels que la référence SKU actuelle et recommandée ou les métriques ayant dépassé les seuils dans la fenêtre temporelle.
+
+link:https://docs.netapp.com/us-en/data-services-workloads/fsx-eda/task-use-overview-dashboard.html#analyze-capacity-and-throughput-trends-and-decision-points["Apprenez à examiner les points de décision relatifs au débit"]
+
+
+
+==== Effectuez à nouveau une analyse de latence
+
+Vous pouvez relancer une analyse de latence dans Workload Factory pour un volume afin d’actualiser les résultats après vos investigations ou modifications. Sélectionnez *Relancer l’analyse* pour démarrer une nouvelle analyse et mettre à jour les résultats.
+
+link:https://docs.netapp.com/us-en/data-services-workloads/fsx-eda/task-analyze-latency-issues.html["Apprenez à analyser les problèmes de latence"]
+
+
+
 [[google-cloud-netapp-volumes-enhancements]]
 === Améliorations de Google Cloud NetApp Volumes
 
