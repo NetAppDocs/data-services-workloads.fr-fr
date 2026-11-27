@@ -7,7 +7,7 @@ summary: Avant de pouvoir ouvrir un ticket d’assistance auprès du support tec
 = Inscrivez-vous pour obtenir de l'assistance avec la NetApp Console
 :allow-uri-read: 
 :icons: font
-:imagesdir: ./media/
+:imagesdir: https://docs.netapp.com/us-en/console-family/media/
 
 
 [role="lead"]
@@ -94,7 +94,7 @@ Si vous êtes novice chez NetApp et que vous n'avez pas de compte NSS, suivez ch
 . Dans le coin supérieur droit de la Console, sélectionnez l'icône Aide, puis *Support*.
 . Localisez le numéro de série de votre identifiant de compte sur la page Support Registration.
 +
-image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/screenshot-serial-number.png["Capture d'écran du menu Aide où Support est la première option affichée"]
+image:screenshot-serial-number.png["Capture d'écran du menu Aide où Support est la première option affichée"]
 
 . Accédez à  https://register.netapp.com["Site d'inscription au support de NetApp"^] et sélectionnez *Je ne suis pas un client NetApp enregistré*.
 . Remplissez les champs obligatoires (ceux avec des astérisques rouges).
@@ -149,7 +149,7 @@ Ces identifiants NSS sont associés à votre ID de compte Console. Les utilisate
 .Étapes
 . Dans le coin supérieur droit de la Console, sélectionnez l'icône Aide, puis *Support*.
 +
-image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/screenshot-help-support.png["Capture d'écran du menu Aide où Support est la première option affichée"]
+image:screenshot-help-support.png["Capture d'écran du menu Aide où Support est la première option affichée"]
 
 . Sélectionnez *NSS Management > Add NSS Account*.
 . Lorsque vous y êtes invité, sélectionnez *Continuer* pour être redirigé vers une page de connexion Microsoft.
@@ -174,9 +174,9 @@ Il en va de même si vous possédez déjà des comptes NSS au niveau client et q
 
 ** Une fois la connexion réussie, NetApp enregistrera le nom d'utilisateur NSS.
 +
-Il s'agit d'un identifiant généré par le système et associé à votre adresse e-mail. Sur la page *Gestion NSS*, vous pouvez consulter votre adresse e-mail depuis le image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-nss-menu.png["Une icône composée de trois points horizontaux"] menu.
+Il s'agit d'un identifiant généré par le système et associé à votre adresse e-mail. Sur la page *Gestion NSS*, vous pouvez consulter votre adresse e-mail depuis le image:icon-nss-menu.png["Une icône composée de trois points horizontaux"] menu.
 
-** Si vous devez actualiser vos identifiant tokens de connexion, il existe également une option *Mettre à jour les identifiants* dans le menu image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-nss-menu.png["Une icône composée de trois points horizontaux"].
+** Si vous devez actualiser vos identifiant tokens de connexion, il existe également une option *Mettre à jour les identifiants* dans le menu image:icon-nss-menu.png["Une icône composée de trois points horizontaux"].
 +
 Cette option vous invite à vous reconnecter. Veuillez noter que le jeton de ces comptes expire après 90 jours. Une notification sera publiée pour vous en avertir.
 

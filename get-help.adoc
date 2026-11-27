@@ -7,7 +7,7 @@ summary: 'NetApp propose une assistance pour la NetApp Console de différentes m
 = Obtenez de l'aide concernant les services cloud de la NetApp Console
 :allow-uri-read: 
 :icons: font
-:imagesdir: ./media/
+:imagesdir: https://docs.netapp.com/us-en/console-family/media/
 
 
 [role="lead"]
@@ -87,7 +87,7 @@ La taille des pièces jointes est limitée à 25 Mo par fichier. Les extensions 
 
 
 +
-image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/screenshot-create-case.png["Capture d'écran du formulaire « Créer un cas » qui vous permet de créer un cas auprès du support NetApp."]
+image:screenshot-create-case.png["Capture d'écran du formulaire « Créer un cas » qui vous permet de créer un cas auprès du support NetApp."]
 
 
 
@@ -141,10 +141,10 @@ La page *Gestion des cas* affiche les cas ouverts liés au compte NSS associé �
 ** Sous *Dossiers de l'organisation*, sélectionnez *Afficher* pour consulter tous les dossiers associés à votre entreprise.
 ** Modifiez la plage de dates en choisissant une plage de dates exacte ou en choisissant une période différente.
 ** Filtrez le contenu des colonnes.
-** Modifiez les colonnes affichées dans le tableau en sélectionnant image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-table-columns.png["L'icône plus qui apparaît dans le tableau"] puis en choisissant les colonnes que vous souhaitez afficher.
+** Modifiez les colonnes affichées dans le tableau en sélectionnant image:icon-table-columns.png["L'icône plus qui apparaît dans le tableau"] puis en choisissant les colonnes que vous souhaitez afficher.
 
 
-. Gérez un dossier existant en sélectionnant image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-table-action.png["Une icône à trois points qui apparaît dans la dernière colonne du tableau"] l'une des options disponibles :
+. Gérez un dossier existant en sélectionnant image:icon-table-action.png["Une icône à trois points qui apparaît dans la dernière colonne du tableau"] l'une des options disponibles :
 +
 ** *Voir le dossier* : Affichez tous les détails d’un dossier spécifique.
 ** *Mise à jour des notes de cas* : Fournissez des détails supplémentaires sur votre problème ou sélectionnez *Télécharger des fichiers* pour joindre jusqu’à un maximum de cinq fichiers.
