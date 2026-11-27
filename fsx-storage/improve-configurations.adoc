@@ -74,6 +74,32 @@ Le processus de réparation démarre. Sélectionnez le menu des paramètres du c
 
 
 
+[[customize-a-configuration-as-a-custom-rule]]
+== Personnaliser une configuration comme règle personnalisée
+
+Faites correspondre la vérification d'architecture à la norme de votre organisation afin que la recommandation d'origine reste disponible.
+
+Si l'option « Personnaliser comme règle » est disponible, vous pouvez créer une règle personnalisée à partir de cette configuration. L'invite est préremplie à partir de la configuration et ne sera pas soumise tant que vous ne l'aurez pas envoyée.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Workloads* > *Well-architected* > *FSx for ONTAP*.
+. Sélectionnez la configuration que vous souhaitez modifier.
+. Si l'option *Personnaliser comme règle* est disponible, sélectionnez-la.
++
+Les règles personnalisées s'ouvrent avec une invite basée sur votre configuration. L'invite n'est pas soumise. Modifiez l'invite pour utiliser une autre ressource, un autre seuil ou une autre vérification.
+
+. Suivez les étapes pour examiner le prompt, valider la règle et l'enregistrer ou la programmer. La règle reste à l'état de brouillon jusqu'à ce que vous la programmiez.
++
+link:create-custom-rule.html["Créer une règle personnalisée"]
+
+
+
+.Résultat
+La configuration d'origine reste dans le tableau de bord well-architected et n'est pas supprimée. La description de la règle précise que la règle est basée sur cette configuration. Une règle personnalisée lit uniquement votre environnement. Pour appliquer la recommandation, mettez à jour la configuration dans le tableau de bord.
+
+
+
 [[dismiss-a-configuration-analysis]]
 == Rejeter une analyse de configuration
 

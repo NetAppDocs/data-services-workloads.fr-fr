@@ -37,7 +37,7 @@ Le nombre maximal d'étiquettes que vous pouvez appliquer à un système de fich
 [[manage-ontap-credentials]]
 == Gérer les identifiants ONTAP
 
-Gérez les identifiants ONTAP d’un système de fichiers FSx for ONTAP dans NetApp Workload Factory. Workload Factory propose deux types d’identifiants : principaux et restreints. Par défaut, le système de fichiers utilise les identifiants ONTAP principaux. Les identifiants restreints sont utilisés uniquement pour les opérations d’IA (AIOps) comme Ask Me, Rule builder et Custom dashboards. Vous pouvez éventuellement ajouter un ensemble d’identifiants restreints, et vous pouvez mettre à jour l’un ou l’autre ensemble d’identifiants à tout moment.
+Gérez les identifiants ONTAP d’un système de fichiers FSx for ONTAP dans NetApp Workload Factory. Workload Factory propose deux types d’identifiants : principaux et restreints. Par défaut, le système de fichiers utilise les identifiants ONTAP principaux. Les identifiants restreints sont utilisés uniquement pour les opérations d’IA (AIOps) telles que Ask Me, les règles personnalisées et les tableaux de bord personnalisés. Vous pouvez éventuellement ajouter un ensemble d’identifiants restreints, et vous pouvez mettre à jour l’un ou l’autre ensemble d’identifiants à tout moment.
 
 Vous pouvez effectuer les tâches suivantes :
 

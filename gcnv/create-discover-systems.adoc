@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: gcnv/create-discover-systems.html 
-keywords: Google Cloud NetApp Volumes, gcnv, volumes, create system, delete system, access key, secret key, region, availability zones, discover, storage capacity, iops, throughput, security group, security, NetApp Console 
-summary: Créez ou découvrez des systèmes de stockage cloud pour ajouter et gérer des volumes et des services de données supplémentaires depuis la NetApp Console. 
+keywords: Google Cloud NetApp Volumes, gcnv, add system, system name, credentials, region, NetApp Console 
+summary: Ajoutez un système Google Cloud NetApp Volumes à la NetApp Console pour gérer ses pools de stockage, ses volumes et ses services de données. 
 ---
-= Créez ou découvrez les systèmes Google Cloud NetApp Volumes dans NetApp Console
+= Ajouter un système Google Cloud NetApp Volumes dans NetApp Console
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,33 +14,30 @@ summary: Créez ou découvrez des systèmes de stockage cloud pour ajouter et g�
 
 
 [role="lead"]
-Découvrez les systèmes Google Cloud NetApp Volumes et gérez les volumes et les services de données supplémentaires depuis la NetApp Console.
+Ajoutez un système Google Cloud NetApp Volumes afin de pouvoir gérer ses pools de stockage et ses volumes depuis la NetApp Console.
 
 
 
-[[discover-an-existing-cloud-storage-system]]
-== Découvrez un système de stockage cloud existant
+[[add-a-system]]
+== Ajouter un système
 
-Découvrez vos systèmes de stockage à partir de la page Discoverable systems.
+Enregistrez le projet que vous souhaitez gérer afin que Workload Factory inclue ses pools de stockage dans chaque région.
 
 .Avant de commencer
-Fournissez vos identifiants pour vos Google Cloud NetApp Volumes dans Workload Factory.
-
-.À propos de cette tâche
-Vous ne pouvez découvrir un système de stockage cloud qu'une seule fois dans un compte et l'associer à un seul espace de travail. Ce système de stockage peut ensuite être supprimé et réassocié à un autre espace de travail.
+Ajoutez les informations d’identification de votre projet Google Cloud NetApp Volumes dans Workload Factory. link:add-credentials.html["Apprenez à ajouter des identifiants"].
 
 .Étapes
-. Dans le menu NetApp Console, sélectionnez *Stockage*, puis *Gestion*, et enfin *Discoverable systems*.
-. Le nombre de systèmes de stockage cloud détectés s'affiche. Sélectionnez *Discover*.
-. Sélectionnez un ou plusieurs systèmes de stockage, puis sélectionnez *Discover* pour les ajouter à la page Systèmes.
+. Dans le menu NetApp Console, sélectionnez *Storage* > *Management* > Systems, puis *Add system* > *Google Cloud Platform*.
+. Sous *Google Cloud NetApp Volumes*, sélectionnez *Discover*.
+. Saisissez un nom pour le système.
+. Sélectionnez les informations d’identification du système.
+. Vous pouvez sélectionner une région si vous le souhaitez. Si vous n'en sélectionnez pas, le système couvre toutes les régions.
++
+
+NOTE: La région ne limite pas la découverte. Workload Factory découvre les pools de stockage dans toutes les régions pour les informations d'identification. La région que vous sélectionnez détermine ce que le système affiche sur le canevas et ce que la conformité et DRaaS utilisent.
+
+. Cliquez sur *Discover*.
 
 
-[NOTE]
-====
-* Si vous sélectionnez un système de stockage sans nom, vous serez invité à saisir un nom pour ce système.
-* Si vous sélectionnez un système de stockage qui ne dispose pas des informations d'identification requises pour le gérer depuis la Console, vous recevrez une invite vous demandant de sélectionner des informations d'identification disposant des autorisations requises.
-
-
-====
 .Résultat
-La Console affiche votre système découvert sur la page Systems. Vous pouvez gérer vos systèmes de stockage de plusieurs manières, par exemple depuis Workloads dans la NetApp Console, à l'aide de ONTAP System Manager ou à l'aide des outils de gestion du stockage de votre fournisseur de cloud.
+La NetApp Console affiche le système sur la page Systèmes. Vous pouvez ajouter autant de systèmes que vous le souhaitez pour les mêmes identifiants.

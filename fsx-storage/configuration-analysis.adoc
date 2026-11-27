@@ -33,7 +33,7 @@ Une fois l'analyse quotidienne terminée, les configurations apparaissent comme 
 
 Vous pouvez ignorer l'analyse des configurations qui ne s'appliquent pas à vos environnements. Cela évite les alertes inutiles et des résultats d'optimisation inexacts.
 
-Vous pouvez également créer des règles personnalisées en langage clair pour valider vos environnements par rapport aux normes de votre organisation et aux bonnes pratiques NetApp. Testez les règles à blanc, puis planifiez leur exécution dans vos environnements. link:learn-custom-rules.html["En savoir plus sur les règles personnalisées"^].
+Vous pouvez également créer des règles personnalisées en langage clair pour valider vos environnements par rapport aux normes de votre organisation et aux bonnes pratiques de NetApp. Vous pouvez démarrer une règle à partir d'une configuration well-architected prise en charge, ou rédiger votre propre invite. Testez les règles avec un test à blanc, puis planifiez leur exécution dans vos environnements. link:learn-custom-rules.html["En savoir plus sur les règles personnalisées"^].
 
 
 
@@ -110,17 +110,9 @@ Augmentez le seuil de capacité des fichiers pour éviter d'atteindre la limite 
 +
 Workload Factory recommande de connecter les hôtes au nœud de basculement afin de maintenir la connectivité et d’éviter les interruptions lors des basculements.
 
-* *Politique de snapshot SAP HANA*
+* *Politique de snapshot de la base de données*
 +
-Configurez la stratégie de snapshot sur « Aucun » pour les volumes SAP HANA afin de réduire les coûts de stockage et d’améliorer les performances des données de base de données actives.
-
-* *Politique de gestion des instantanés MySQL*
-+
-Configurez la stratégie de snapshot sur « Aucun » pour les volumes MySQL afin de réduire les coûts de stockage et d'améliorer les performances des données actives de la base de données.
-
-* *Politique de snapshot PostgreSQL*
-+
-Définissez la stratégie de snapshot sur « Aucun » pour les volumes PostgreSQL afin de réduire les coûts de stockage et d'améliorer les performances des données de la base de données active.
+Définissez la stratégie de snapshot sur « Aucun » pour les volumes SAP HANA, MySQL et PostgreSQL afin de réduire les coûts de stockage et d'améliorer les performances des données de base de données actives.
 
 
 
@@ -142,10 +134,6 @@ Les volumes hébergeant des données applicatives via iSCSI ne doivent pas autor
 * *Lacune concernant la détection multi-appareils ARP/AI*
 +
 ARP/AI offre une couverture de protection complète lorsqu'un volume ne comporte qu'un seul périphérique de bloc qui lui est attaché. Si un volume comporte plusieurs périphériques de bloc qui lui sont attachés, Workload Factory les déplace vers de nouveaux volumes afin que chaque volume n'ait qu'un seul périphérique de bloc.
-
-* *CHAP bidirectionnel pour les backends iSCSI de Kubernetes*
-+
-Utilisez l'authentification CHAP bidirectionnelle pour les backends iSCSI de Trident afin de garantir l'authentification mutuelle de l'initiateur et de la cible iSCSI. Cela empêche les hôtes non autorisés d'établir des sessions iSCSI avec la machine virtuelle de stockage.
 
 * *Désactivez `showmount` sur la machine virtuelle de stockage de l’application*
 +
@@ -196,10 +184,6 @@ Configurez le provisionnement fin pour les volumes FSx for ONTAP hébergeant des
 +
 Configurez les systèmes de fichiers FSx for ONTAP avec les paramètres de connectivité et d’authentification d’API AWS Transform MGN (MGN) requis avant de les utiliser avec AWS MGN.
 
-* *VM de stockage Kubernetes dédiée*
-+
-Utilisez une machine virtuelle de stockage dédiée pour les charges de travail Kubernetes. Séparer le stockage Kubernetes facilite sa gestion, simplifie la configuration des politiques et contribue à garantir des paramètres de stockage cohérents.
-
 * *Faire correspondre l’OS de l’igroup à l’hôte*
 +
 Faites correspondre le système d'exploitation du groupe d'initiateurs (igroup) au système d'exploitation de l'hôte pour éviter les problèmes d'E/S ou de performances.
@@ -215,7 +199,7 @@ L'optimisation des coûts vous aide à obtenir la plus grande valeur pour votre 
 
 * *Hiérarchisation des données froides*
 +
-Activez la hiérarchisation des données inactives pour réduire l'utilisation du niveau de stockage SSD. Appliquez une stratégie de hiérarchisation à chaque volume dédié au stockage des données. Pour les volumes de bases de données, activez la hiérarchisation des données inactives lorsque cela est approprié. FSx for ONTAP analyse en continu les données à la recherche de données inactives et les déplace vers le niveau de pool de capacité sans interruption.
+Activez la hiérarchisation des données inactives pour réduire l'utilisation du niveau de stockage SSD. Appliquez une stratégie de hiérarchisation à chaque volume dédié au stockage général des données. Pour les volumes de base de données autres que les volumes principaux SAP HANA, activez la hiérarchisation des données inactives, le cas échéant. FSx for ONTAP analyse en continu les données à la recherche de données inactives et les déplace vers le niveau de pool de capacité sans interruption.
 
 * *Efficacités de stockage*
 +
@@ -239,7 +223,11 @@ Une capacité SSD excédentaire engendre des coûts inutiles. Réduisez le nivea
 
 * *Volumes NAS inactifs*
 +
-Après 31 jours sans utilisation d’un volume NAS, archivez-le ou supprimez-le afin de réduire les coûts.
+Après 31 jours d'inutilisation d'un volume NAS, archivez les données dans le niveau du pool de capacité ou supprimez le volume NAS inutilisé afin de réduire les coûts.
+
+* *Nettoyage des clones*
++
+Supprimez les clones de volume datant de plus de 30 jours afin d'optimiser l'utilisation du stockage et de réduire les coûts.
 
 * *Nettoyage des clones*
 +

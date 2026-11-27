@@ -319,3 +319,10 @@ Lors de l’enregistrement de Oracle Database sur SUSE Linux Enterprise Server 1
 === Autorisations de l'opérateur requises
 
 NetApp Workload Factory for EDA nécessite des autorisations d'opérateur pour fonctionner correctement.
+
+
+
+[[latency-breakdown-for-dp-volumes]]
+=== Répartition de la latence pour les volumes DP
+
+La répartition des composants dans l’analyse de latence de base n’est pas disponible pour les volumes de protection des données (DP).

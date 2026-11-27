@@ -65,7 +65,7 @@ Sélectionnez un événement de latence dans la colonne *Gravité* pour ouvrir l
 
 La disponibilité de l'analyse IA dépend de la configuration de votre compte. Si l'IA gérée par NetApp est activée, vous pouvez exécuter une analyse IA sans configurer Bedrock. L'analyse IA est indisponible si la limite de crédit mensuelle est atteinte ou si votre administrateur désactive les fonctionnalités IA.
 
-* *Basique* : Affiche les résultats d'une analyse automatique. S'il est lié au système de fichiers, il présente le détail des composants et indique celui qui est à l'origine du délai. En l'absence de lien, vous êtes invité à en ajouter un.
+* *Basique* : affiche les résultats d'une analyse automatique. S'il est lié au système de fichiers, il affiche une ventilation des composants et indique lequel est à l'origine du délai. S'il n'existe aucun lien, vous êtes invité à en ajouter un. Pour les volumes de protection des données (DP), la ventilation des composants n'est pas disponible.
 +
 Un graphique interactif de latence des métriques CloudWatch pour le volume concerné s'affiche. Il présente soit les métriques de lecture, soit celles d'écriture, selon l'alarme qui a déclenché l'événement. Vous pouvez sélectionner différentes plages horaires et utiliser un filtre pour afficher toutes les opérations, les opérations de lecture, d’écriture ou de métadonnées.
 
@@ -84,7 +84,7 @@ Pour des instructions détaillées sur l'utilisation des graphiques, voir link:t
 Examinez les résultats, notamment :
 
 +
-** Explication de la cause potentielle
+** Explication de la cause racine potentielle, qui recherche les causes liées à FlexCache®, au pool de capacité et au système de fichiers, les limites de débit et d'IOPS, l'utilisation élevée des disques SSD, la saturation en écriture et d'autres volumes utilisant les mêmes ressources.
 ** Liste des clients EC2 concernés
 ** Étapes correctives recommandées
 
@@ -93,6 +93,22 @@ Examinez les résultats, notamment :
 . Pour mettre à jour les résultats, sélectionnez *Relancer l'analyse*. Une nouvelle analyse démarre pour le volume, et le panneau se met à jour lorsque l'analyse est terminée.
 . Suivez les étapes recommandées pour résoudre le problème de latence.
 . Après avoir effectué les modifications, consultez le tableau des événements de latence pour confirmer que le problème est résolu.
+
+
+
+
+[[track-volumes-for-automatic-analysis]]
+== Suivez les volumes pour l'analyse automatique
+
+Les volumes suivis font automatiquement l’objet d’une analyse par IA lorsqu’un événement de latence est détecté, ce qui vous permet d’en examiner la cause sans lancer d’analyse.
+
+* Pour suivre des volumes, sélectionnez-en un ou plusieurs et marquez-les comme suivis. Pour arrêter le suivi, désélectionnez-les.
+* Les volumes suivis affichent un indicateur de suivi à côté de l’indicateur analysé par l’IA. Vous pouvez filtrer le tableau pour n’afficher que les volumes suivis.
+* Les résultats d'analyse sont conservés pendant 72 heures, y compris les analyses manuelles. Les résultats d'analyse automatique sont horodatés et apparaissent dans la section *AI analysis* du panneau de droite ainsi que sur la page d'analyse détaillée.
+* L'analyse automatique ne se relance que lorsqu'un nouvel événement de latence se produit ou que 24 heures se sont écoulées depuis la dernière analyse.
+* Si vous effectuez une analyse manuellement, elle remplace les résultats actuels.
+* Les volumes suivis sont automatiquement désélectionnés après 30 jours.
+* Les courriels de notification incluent les résultats des analyses automatiques.
 
 
 

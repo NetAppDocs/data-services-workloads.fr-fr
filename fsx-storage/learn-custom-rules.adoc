@@ -21,7 +21,7 @@ Les règles personnalisées vous permettent de définir, de vérifier et d’app
 [[overview]]
 == Aperçu
 
-Le générateur de règles vous permet de créer des règles personnalisées en langage simple. Ces règles sont vérifiées sur l’ensemble de vos ressources. Les règles personnalisées vous aident à faire respecter les normes, les limites de risque et les exigences opérationnelles de votre organisation, que les règles par défaut ne couvrent pas nécessairement.
+Les règles personnalisées vous permettent de créer des contrôles en langage clair. Ces règles sont vérifiées sur l'ensemble de vos ressources. Les règles personnalisées vous aident à appliquer les normes, les limites de risque et les exigences opérationnelles de votre organisation que les règles par défaut pourraient ne pas couvrir. Vous pouvez démarrer une règle personnalisée à partir d'une configuration well-architected prise en charge. La configuration d'origine reste en place, et la nouvelle règle commence sous forme de brouillon jusqu'à ce que vous la planifiiez. Vous pouvez recevoir une notification lorsqu'une règle planifiée se termine. link:manage-custom-rules.html["Gérer les règles personnalisées"]
 
 
 NOTE: Si l'administrateur de votre compte a désactivé les fonctionnalités d'IA, vous ne pouvez ni créer de nouvelles règles ni modifier les règles existantes. Les règles déjà planifiées continuent de s'exécuter. link:../admin/manage-genai-features.html["Découvrez comment gérer les fonctionnalités d'IA"].
@@ -60,6 +60,7 @@ Lien ou agent:: Uniquement requis pour les règles qui doivent se connecter dire
 * Chaque règle vérifie un seul type de ressource, mais peut s'appliquer à un large éventail de ressources. Par exemple, une règle peut évaluer les volumes dans plusieurs régions, dans toutes les régions ou sur plusieurs comptes. Pour évaluer différents types de ressources, créez des règles distinctes.
 * Les règles sont exécutées au maximum une fois par heure afin d'éviter les analyses excessives.
 * Les règles peuvent uniquement lire votre environnement et ne peuvent pas le modifier.
+* Une règle personnalisée créée à partir d'une configuration bien conçue ne modifie ni ne supprime cette configuration.
 * Vous pourrez modifier ces paramètres ultérieurement à partir du catalogue des règles.
 
 

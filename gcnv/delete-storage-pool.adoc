@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: gcnv/delete-storage-pool.html 
+keywords: delete storage pool, remove storage pool, storage pool 
+summary: Supprimez un pool de stockage Google Cloud NetApp Volumes qui ne contient aucun volume dans NetApp Workload Factory. 
+---
+= Supprimer un pool de stockage NetApp Google Cloud Volumes dans NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Supprimez un pool de stockage qui ne contient plus de volumes, sans utiliser la console Google Cloud.
+
+
+
+[[before-you-begin]]
+== Avant de commencer
+
+Assurez-vous que votre pool de stockage et le rôle de l'utilisateur autorisent la suppression afin que l'option de suppression soit disponible en cas de besoin.
+
+* Le pool de stockage ne doit contenir aucun volume.
+* Le pool de stockage doit être à l'état Prêt ou Erreur.
+* Vous devez avoir le rôle d’administrateur Google Cloud NetApp Volumes.
+
+
+
+
+[[delete-a-storage-pool]]
+== Supprimer un pool de stockage
+
+Supprimez le pool de stockage uniquement lorsque vous êtes sûr que rien n'en dépend, car cette action est irréversible.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Stockage* > *Google Cloud NetApp Volumes*.
+. Dans le tableau des pools de stockage, sélectionnez image:screenshot_gallery_options.gif["Une icône avec trois points."] pour le pool de stockage, puis sélectionnez *Supprimer*.
+. Dans la boîte de dialogue de confirmation, saisissez le texte *delete* pour confirmer, puis sélectionnez *Delete*.
+
+
+.Résultat
+L'état du pool de stockage passe à « Suppression en cours ». Une fois la suppression terminée, Workload Factory retire le pool de stockage de la table. En cas d'échec de la suppression, le pool de stockage reste dans la table et un message d'erreur apparaît dans link:../admin/monitor-operations.html["Tracker"].

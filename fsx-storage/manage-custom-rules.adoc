@@ -14,18 +14,18 @@ summary: Consultez, modifiez, activez, désactivez et supprimez les règles arch
 
 
 [role="lead"]
-Le catalogue des règles centralise la gestion de toutes vos règles personnalisées. Vous pouvez consulter les détails des règles, les modifier, vérifier les résultats et contrôler si elles s’exécutent selon un calendrier.
+Le catalogue des règles centralise la gestion de toutes vos règles personnalisées. Vous pouvez consulter les détails des règles, les modifier, vérifier les résultats, activer les notifications pour les exécutions planifiées et contrôler leur exécution selon une planification.
 
 
 
 [[view-the-rules-catalog]]
 == Consultez le catalogue des règles
 
-Le catalogue des règles affiche toutes les règles que vous avez créées, leur statut, leur planification et leurs derniers résultats.
+Le catalogue des règles affiche toutes les règles que vous avez créées, leur statut, leur planification, leurs derniers résultats et si les notifications sont activées.
 
 .Étapes
 . Connectez-vous en utilisant l'un des link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["expériences sur console"^].
-. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger"] puis sélectionnez *Générateur de règles*.
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger"] puis sélectionnez *Bien architecturé* > *Règles personnalisées*.
 . Cliquez sur *Afficher vos règles* pour ouvrir le catalogue des règles.
 
 
@@ -43,6 +43,29 @@ Les résultats indiquent quelles ressources respectent votre règle et lesquelle
 
 
 Si la vérification a échoué pour certains éléments, consultez le message d'erreur pour en connaître la raison. Les causes fréquentes sont des problèmes de connexion, des autorisations manquantes ou un lien non configuré.
+
+
+
+[[receive-notifications-for-a-scheduled-custom-rule]]
+== Recevoir des notifications pour une règle personnalisée planifiée
+
+Recevez une notification lorsqu'une règle personnalisée planifiée se termine afin de pouvoir consulter les résultats sans vous connecter.
+
+Les notifications sont désactivées par défaut et doivent être activées pour chaque règle. Après chaque exécution planifiée, Workload Factory envoie une notification via les canaux configurés pour le compte. Tout utilisateur du compte peut activer ou désactiver les notifications. Les tests manuels n'envoient pas de notifications.
+
+.Avant de commencer
+Vérifiez que la règle peut s'exécuter selon une planification et que votre compte peut envoyer des notifications.
+
+* Vous pouvez modifier ce paramètre uniquement lorsque la règle est planifiée.
+* Le service de notification Workload Factory est activé. link:../admin/configure-notifications.html["Configurez les notifications dans Workload Factory"^].
+
+
+.Étapes
+. Dans le catalogue des règles, sélectionnez la règle.
+. Si l'option *M'avertir* est indisponible car la règle n'est pas programmée, programmez la règle et ouvrez-la à nouveau.
+. Si l'option *M'avertir* est indisponible car les notifications ne sont pas configurées, configurez les notifications pour le compte, puis ouvrez à nouveau la règle.
+. Activez l'option *M'avertir* et choisissez de recevoir des notifications pour chaque exécution planifiée ou uniquement pour les exécutions qui échouent ou qui réussissent partiellement.
+
 
 
 
@@ -81,14 +104,14 @@ Le système affiche les modifications apportées à la règle actuelle avant que
 
 
 
-Pendant que vous modifiez une règle, celle-ci apparaît comme « En cours de modification » pour vous. Les autres utilisateurs voient toujours la règle planifiée actuelle, et les exécutions planifiées se poursuivent normalement jusqu'à ce que vous enregistriez les modifications.
+Pendant que vous modifiez une règle, celle-ci apparaît comme « En cours de modification ». Les autres utilisateurs voient toujours la règle planifiée actuelle et les exécutions planifiées se poursuivent normalement jusqu'à ce que vous enregistriez les modifications. La modification d'une règle n'active ni ne désactive ses notifications.
 
 
 
 [[pause-a-rule]]
 == Suspendre une règle
 
-Suspendre une règle permet d'interrompre son évaluation sans la supprimer. Les règles suspendues restent dans le catalogue et peuvent être réactivées à tout moment.
+Mettez une règle en pause pour interrompre les évaluations sans la supprimer. Les règles suspendues restent dans le catalogue et peuvent être réactivées à tout moment. La mise en pause d'une règle n'active ni ne désactive ses notifications.
 
 .Étapes
 . Dans le catalogue des règles, cliquez sur la règle que vous souhaitez suspendre.
@@ -121,7 +144,7 @@ La règle est retirée du catalogue. Tout l'historique des évaluations est supp
 [[run-a-quick-test]]
 == Effectuez un test rapide
 
-Effectuez un test rapide à tout moment pour vérifier la conformité actuelle sans attendre la prochaine exécution planifiée.
+Effectuez un test rapide à tout moment pour vérifier la conformité actuelle sans attendre la prochaine exécution planifiée. Un test rapide n'envoie pas de notification.
 
 .Étapes
 . Dans le catalogue des règles, cliquez sur la règle que vous souhaitez évaluer.

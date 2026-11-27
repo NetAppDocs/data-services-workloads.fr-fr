@@ -1,17 +1,17 @@
 ---
 sidebar: sidebar 
 permalink: fsx-storage/manage-volume-settings.html 
-keywords: volume tags, edit volume tags, edit tags, enable immutable files, disable immutable files, lock files, unlock files, storage efficiency change, update storage efficiency 
-summary: 'Modifiez les workloads de volume, modifiez les étiquettes de volume, mettez à jour l"efficacité du stockage et gérez les paramètres des fichiers immuables pour les volumes FSx for ONTAP dans NetApp Workload Factory.' 
+keywords: volume tags, edit volume tags, edit tags, manage mount points, mount points, junction paths, enable immutable files, disable immutable files, lock files, unlock files, storage efficiency change, update storage efficiency 
+summary: 'Modifiez les charges de travail des volumes, gérez les points de montage, modifiez les balises de volume, mettez à jour l"efficacité du stockage et gérez les paramètres des fichiers immuables pour les volumes FSx for ONTAP dans NetApp Workload Factory.' 
 ---
-= Gérez les paramètres de volume dans NetApp Workload Factory
+= Gérez les paramètres de volume FSx for ONTAP dans NetApp Workload Factory
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Personnalisez les paramètres de volume FSx for ONTAP dans NetApp Workload Factory afin de les adapter aux besoins de votre organisation. Vous pouvez définir des workloads de volume et des balises pour catégoriser les ressources, mettre à jour les paramètres d'efficacité du stockage afin d'optimiser l'espace et les économies, et gérer les paramètres des fichiers immuables pour contrôler la conservation des données et les protéger contre les modifications non autorisées.
+Personnalisez les paramètres de volume FSx for ONTAP dans NetApp Workload Factory afin de les adapter aux besoins de votre organisation. Vous pouvez définir des charges de travail de volume et des étiquettes pour catégoriser les ressources, mettre à jour les paramètres d'efficacité du stockage pour optimiser l'espace et les économies, gérer les points de montage (chemins de jonction) pour contrôler l'emplacement de montage des volumes, et gérer les paramètres des fichiers immuables pour contrôler la conservation des données et les protéger contre les modifications non autorisées.
 
 
 
@@ -21,13 +21,27 @@ Personnalisez les paramètres de volume FSx for ONTAP dans NetApp Workload Facto
 Mettez à jour les charges de travail d'un volume pour qu'elles correspondent à ses cas d'utilisation prévus.
 
 .Étapes
-. Connectez-vous en utilisant l'un des link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["expériences sur console"^].
-. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet de naviguer vers des charges de travail telles que le stockage, eda, ai, bases de données, vmware et l'administration."] puis sélectionnez *Stockage*.
-. Dans le menu Stockage, sélectionnez *Volumes explorer*.
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Explorateur de volumes*.
 . Sélectionnez le menu Actions du volume pour lequel vous souhaitez mettre à jour la charge de travail.
 . Sélectionnez *Actions avancées*, puis *Modifier les charges de travail*.
 . Dans la boîte de dialogue Modifier les charges de travail, sélectionnez les charges de travail appropriées pour le volume.
 . Sélectionnez *Appliquer* pour enregistrer les modifications.
+
+
+
+
+[[manage-mount-points-junction-paths]]
+== Gérer les points de montage (chemins de jonction)
+
+Gérez l’emplacement de montage des volumes dans le namespace d’une machine virtuelle de stockage. Workload Factory vérifie les dépendances avant de démonter un volume. Vous ne pouvez pas démonter un volume qui a d’autres volumes montés en dessous, et un avertissement s’affiche si le volume comporte des partages SMB.
+
+.Étapes
+. Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Explorateur de volumes*.
+. Sélectionnez le menu Actions du volume pour gérer ses points de montage.
+. Sélectionnez *Actions avancées*, puis *Gérer les points de montage*.
+. Sur la page Gérer les points de montage, montez, démontez ou modifiez le point de montage (chemin de jonction) du volume.
 
 
 
@@ -41,7 +55,7 @@ Les étiquettes peuvent vous aider à catégoriser vos ressources. Vous pouvez a
 . Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
 . Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Explorateur de volumes*.
 . Sélectionnez le menu Actions du volume pour modifier les balises.
-. Sélectionnez *Actions de base* puis *Modifier les balises de volume*.
+. Sélectionnez *Actions de base*, puis *Modifier les balises du volume*.
 . Sur la page Modifier les balises du volume, ajoutez, modifiez ou supprimez des balises.
 +
 Le nombre maximal d'étiquettes que vous pouvez appliquer à un volume est de 50.
@@ -56,7 +70,7 @@ Le nombre maximal d'étiquettes que vous pouvez appliquer à un volume est de 50
 
 Mettez à jour le paramètre d'efficacité du stockage après la création du volume.
 
-La fonction d'optimisation du stockage comprend la déduplication, la compression et le compactage des données afin d'obtenir un gain d'espace optimal sur un volume FlexVol. La déduplication élimine les blocs de données dupliqués. La compression des données compresse les blocs de données afin de réduire l'espace de stockage physique requis. Le compactage des données permet de stocker davantage de données dans un espace réduit afin d'améliorer l'efficacité du stockage.
+La fonctionnalité d'efficacité du stockage comprend la déduplication, la compression des données et le compactage des données afin d'obtenir des économies d'espace optimales sur un volume FlexVol. La déduplication élimine les blocs de données dupliqués. La compression des données compresse les blocs de données afin de réduire la quantité de stockage physique requise. Le compactage des données permet de stocker davantage de données dans moins d'espace afin d'améliorer l'efficacité du stockage.
 
 Si vous avez choisi de ne pas activer l'optimisation du stockage lors de la création d'un volume, vous pouvez activer ce paramètre à tout moment afin de potentiellement économiser de l'espace et réaliser des économies.
 
@@ -76,7 +90,7 @@ Les volumes utilisent le provisionnement fin, que vous activiez ou désactiviez 
 [[manage-immutable-files-for-a-volume-in-netapp-workload-factory]]
 == Gérer les fichiers immuables d'un volume dans NetApp Workload Factory
 
-Vous pouvez mettre à jour certains paramètres des fichiers immuables pour un volume lorsque cette fonctionnalité est activée, tels que la politique et les périodes de conservation, la période de validation automatique et le mode d’ajout du volume.
+Lorsque la fonctionnalité de fichiers immuables est activée pour un volume, vous pouvez mettre à jour des paramètres tels que la stratégie et les périodes de conservation, la période de validation automatique et le mode d’ajout du volume.
 
 Vous pouvez activer les fichiers immuables uniquement pendant link:create-volume.html["création de volume"].
 
@@ -85,12 +99,12 @@ Vous pouvez activer les fichiers immuables uniquement pendant link:create-volume
 . Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger permet d'accéder à Workloads, l'élément de menu de Workload Factory"], *Charges de travail* > *Explorateur de volumes*.
 . Sélectionnez le menu Actions du volume à mettre à jour.
 . Sélectionnez *Actions de protection des données*, puis *Gérer les fichiers immuables*.
-. Sur la page Gérer les fichiers immuables, vous pouvez mettre à jour les éléments suivants :
+. Sur la page Gérer les fichiers immuables, mettez à jour les éléments suivants :
 +
-** *Durée de conservation* : sélectionnez *Non spécifié* ou *Spécifier la période*.
+** *Durée de conservation*: Sélectionnez *Non spécifié* ou *Spécifier la période*.
 +
 *** *Non spécifié* : la période minimale par défaut est de 0 ans et la période maximale par défaut est de 30 ans.
-*** *Période à préciser* : option permettant de définir la politique de rétention, les périodes minimale et maximale, la fonctionnalité d’autocommit et la fonctionnalité de mode d’ajout du volume. Veuillez fournir les informations suivantes :
+*** *Précisez la période* : Définissez la politique de conservation des données, les périodes minimale et maximale, la fonction d’autocommit et la fonction de mode d’ajout du volume. Fournissez les détails suivants :
 +
 **** *Politique de conservation* : cette période doit être supérieure ou égale à la période de conservation minimale et inférieure ou égale à la période de conservation maximale.
 **** *Périodes minimales et maximales* : Définissez les périodes minimales et maximales pour valider les fichiers de ce volume dans un état WORM immuable.
@@ -98,9 +112,9 @@ Vous pouvez activer les fichiers immuables uniquement pendant link:create-volume
 
 
 
-** *Autocommit* : activez ou désactivez la fonction permettant de valider automatiquement dans WORM les fichiers qui n’ont pas été modifiés pendant la période d’Autocommit.
+** *Autocommit* : activez ou désactivez la fonctionnalité pour valider automatiquement les fichiers dans WORM lorsqu’ils n’ont pas été modifiés pendant la période Autocommit.
 ** *Suppression privilégiée* : activez ou désactivez la fonctionnalité. L’activation de la fonctionnalité permet à un administrateur SnapLock de supprimer un volume WORM non expiré. Cette fonctionnalité est prise en charge uniquement en mode de rétention Enterprise.
-** *Mode d'ajout de volume* : activez ou désactivez cette fonction. L'activation du mode d'ajout de volume vous permet d'ajouter du contenu aux fichiers WORM.
+** *Mode d'ajout de volume* : Activez ou désactivez cette fonction. L'activation du mode d'ajout de volume vous permet d'ajouter du contenu aux fichiers WORM.
 
 
 . Sélectionnez *Appliquer*.

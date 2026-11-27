@@ -14,7 +14,7 @@ summary: Créez une règle architecturale personnalisée utilisant le langage na
 
 
 [role="lead"]
-Créez des règles personnalisées pour vérifier vos ressources FSx for ONTAP dans Workload Factory. Décrivez les règles en langage clair, et le générateur de règles IA transformera votre demande en une règle validée.
+Créez des règles personnalisées pour vérifier vos ressources FSx for ONTAP dans Workload Factory. Décrivez les règles en langage clair, et Workload Factory transformera votre demande en une règle validée.
 
 .À propos de cette tâche
 Le processus de configuration des règles vous guide à chaque étape : création de la règle, vérification de son interprétation par l’IA et contrôle des résultats avant de planifier des révisions régulières. Vous gardez le contrôle tout au long du processus. Le système suggère une règle en fonction de votre prompt, mais rien ne se produit tant que vous ne l’avez pas approuvée.
@@ -34,11 +34,16 @@ NOTE: Si l'administrateur de votre compte a désactivé les fonctionnalités d'I
 [[create-a-rule]]
 == Créer une règle
 
+Décrivez le contrôle souhaité afin de pouvoir examiner la règle avant son application à vos ressources.
+
 .Étapes
 . Connectez-vous au link:https://console.netapp.com["NetApp Console"^].
-. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger"] puis sélectionnez Charges de travail > Bien architecturé > Générateur de règles.
+. Sélectionnez le menu image:workloads-menu-icon.png["L'icône du menu hamburger"] puis sélectionnez Charges de travail > Bien architecturé > Règles personnalisées.
 +
-Lorsque vous ouvrez l'éditeur de règles, des exemples d'invites s'affichent pour vous aider à rédiger votre règle personnalisée. Vous pouvez sélectionner *Copier l'invite* pour copier un exemple d'invite dans la zone de texte de la boîte de dialogue AI.
+Lorsque vous ouvrez les règles personnalisées, des exemples d'invites s'affichent pour vous aider à rédiger votre règle personnalisée. Vous pouvez sélectionner *Copier l'invite* pour copier un exemple d'invite dans la zone de texte de la boîte de dialogue AI.
+
++
+Si vous avez ouvert les règles personnalisées à partir d'une configuration bien architecturée, le prompt est déjà renseigné et n'est pas envoyé. Modifiez le prompt avant de continuer.
 
 . Dans le champ *Créer une règle*, saisissez la description de votre règle en langage naturel. Soyez aussi précis que possible concernant :
 +
@@ -59,7 +64,7 @@ L'IA analyse votre requête et génère une définition de règle.
 [[review-the-ai-interpretation]]
 == Examiner l'interprétation de l'IA
 
-Le générateur de règles affiche :
+La page affiche :
 
 Interprétation analysée:: Comment l'IA a compris votre consigne en langage clair.
 Définition de la règle:: La règle structurée comprenant le type de ressource, la logique de condition et les critères d'évaluation.
@@ -123,7 +128,7 @@ Une fois votre règle validée, vous pouvez l'enregistrer comme brouillon ou la 
 
 
 .Résultat
-Votre règle personnalisée a été créée et figure dans le catalogue des règles. Si vous définissez une planification, elle vérifiera vos ressources FSx for ONTAP à la fréquence spécifiée. Si vous modifiez la règle ultérieurement, le système vous guidera à travers les mêmes étapes — discussion, vérification, approbation et validation — avant d’enregistrer la version mise à jour.
+Votre règle personnalisée a été créée et figure dans le catalogue des règles. Si vous définissez une planification, elle vérifiera vos ressources FSx for ONTAP à la fréquence spécifiée. Si vous êtes parti d’une configuration bien architecturée, la description de la règle indique que la règle est basée sur cette configuration. La configuration d’origine n’est ni modifiée ni supprimée. Si vous modifiez la règle ultérieurement, le système vous guidera à travers les mêmes étapes — discussion, vérification, approbation et validation — avant d’enregistrer la version mise à jour.
 
 
 

@@ -322,6 +322,8 @@ sidebar:
       url: "/gcnv/add-credentials.html"
     - title: Afficher les pools de stockage Google Cloud NetApp Volumes
       url: "/gcnv/view-storage-pools.html"
+    - title: Supprimer un pool de stockage Google Cloud NetApp Volumes
+      url: "/gcnv/delete-storage-pool.html"
     - title: Analyse de configuration pour Google Cloud NetApp Volumes
       url: "/gcnv/configuration-analysis.html"
     - title: Améliorez les configurations des pools de stockage
